@@ -1,1 +1,4 @@
 /target/
+.classpath
+.project
+spring-*/src/main/java/META-INF/MANIFEST.MF

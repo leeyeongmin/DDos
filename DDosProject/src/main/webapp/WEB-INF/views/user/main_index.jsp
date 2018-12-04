@@ -1,54 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>Resume - Start Bootstrap Theme</title> 
+<title>Resume - Start Bootstrap Theme</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<!-- Custom fonts for this template -->
+<link
+	href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i"
+	rel="stylesheet">
+<link href="assets/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="assets/css/resume.min.css" rel="stylesheet">
-    
-    <script src="assets/js/jquery.min.js"></script>
-	<script type="text/javascript">
-	    // html dom 이 다 로딩된 후 실행된다.
-	    $(document).ready(function(){
-	        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
-    	    $(".menu>a").click(function(){
-   	         var submenu = $(this).next("ul");
- 
-        	    // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-            	if( submenu.is(":visible") ){
-            	    submenu.slideUp();
-      	      }else{
-      	          submenu.slideDown();
-      	      }
-      	  });
-    	});
-	</script>
-	<style>
-	.menu a {
-		cursor: pointer;
-	}
+<!-- Custom styles for this template -->
+<link href="assets/css/resume.min.css" rel="stylesheet">
 
-	.menu .hide {
-		display: none;
-	}
-	</style>
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+	// html dom ì´ ë¤ ë¡ë©ë í ì¤íëë¤.
+	$(document).ready(function() {
+		// menu í´ëì¤ ë°ë¡ íìì ìë a íê·¸ë¥¼ í´ë¦­íìë
+		$(".menu>a").click(function() {
+			var submenu = $(this).next("ul");
 
-  </head>
+			// submenu ê° íë©´ìì ë³´ì¼ëë ìë¡ ë³´ëëê² ì ê³  ìëë©´ ìëë¡ ë³´ëëê² í¼ì¹ê¸°
+			if (submenu.is(":visible")) {
+				submenu.slideUp();
+			} else {
+				submenu.slideDown();
+			}
+		});
+	});
+</script>
+<style>
+.menu a {
+	cursor: pointer;
+}
+
+.menu .hide {
+	display: none;
+}
+</style>
+
+</head>
 
 <body id="page-top">
 
@@ -62,11 +73,13 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<span class="d-none d-lg-block">
-			<li class="menu"><a><img class="img-fluid img-profile rounded-circle mx-auto mb-2"
-			src="assets/css/images/profile.jpg"/></a>
+			<ul>
+			<li class="menu"><a><img
+					class="img-fluid img-profile rounded-circle mx-auto mb-2"
+					src="assets/css/images/profile.jpg" /></a>
 				<ul class="hide navbar-nav">
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about" >About</a></li>
+						href="#about">About</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#experience">Experience</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
@@ -77,13 +90,16 @@
 						href="#interests">Interests</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
 						href="#awards">Awards</a></li>
+				</ul></li>
 				</ul>
-			</li>
 		</span>
 
 	</nav>
+	<article>
+	<tiles:insertAttribute name="content" />
+	</article>
 
-	<div class="container-fluid p-0">
+	<%-- <div class="container-fluid p-0">
 
 		<section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
 			<div class="my-auto">
@@ -109,6 +125,9 @@
 			</div>
 		</section>
 
+			<tiles:insertAttribute name="content" />
+
+
 		<!-- <hr class="m-0">
 
 		<section class="resume-section p-3 p-lg-5 d-flex flex-column"
@@ -127,7 +146,7 @@
 			</div>
 		</section> -->
 
-	</div>
+	</div> --%>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="assets/vendor/jquery/jquery.min.js"></script>

@@ -22,6 +22,15 @@ public class LoginController {
 		return "login/Home";
 		
 	}
+	
+	@RequestMapping("/main")
+	public String main() {
+		
+		return "tiles/contents";
+		
+	}
+	
+	
 
 	/*@RequestMapping("login")
 	public String login(@ModelAttribute("user") UserVO vo, HttpSession session) { // UserVO 를 jsp에서 user로 사용

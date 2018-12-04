@@ -10,6 +10,10 @@
 	<definition name="intro" template="/WEB-INF/views/login/intro.jsp">
 	</definition>
 	
+	<definition name="no/*/*" template="/WEB-INF/views/tiles/nolayout.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	
 	<definition name="*/*" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>

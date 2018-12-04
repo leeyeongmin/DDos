@@ -11,7 +11,7 @@ public class LoginController {
 	// 로그인 폼 불러오기
 	@RequestMapping("/loginForm")
 	public String loginForm() {
-		return "login/Login";
+		return "no/login/Login";
 	}
 
 	// 로그인 처리
@@ -19,7 +19,7 @@ public class LoginController {
 	@RequestMapping("login")
 	public String login() {
 		
-		return "login/Home";
+		return "no/login/Home";
 		
 	}
 	

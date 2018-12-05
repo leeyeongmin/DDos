@@ -11,6 +11,9 @@
 	<typeAliases>
 		<typeAlias alias="user" type="com.ddos.web.login.UserVO" />	
 		<typeAlias alias="read" type="com.ddos.web.read.ReadVO" />
+		<typeAlias alias="book" type="com.ddos.web.book.BookVO" />
+		<typeAlias alias="notice" type="com.ddos.web.notice.NoticeVO" />
+		
 	</typeAliases>
 	
 </configuration>

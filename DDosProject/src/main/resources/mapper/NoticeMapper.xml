@@ -4,7 +4,7 @@
 <mapper namespace="notice">
 
 
-	<select id="getNoticeList" resultType="board">
+	<select id="getNoticeList" resultType="notice">
 		SELECT * FROM NOTICE
 		ORDER BY NOTICE_NUL DESC
 

@@ -28,16 +28,13 @@
 						<h1>DDos</h1>
 						<p>대구 &nbsp;&bull;&nbsp; 도서관 &nbsp;&bull;&nbsp; 스터디</p>
 						<nav>
-								<a class="cbtn" href="main"><img class="pen" src="assets/css/images/book.png"/></a>
-<<<<<<< HEAD
-								<a class="cbtn" href="read"><img class="pen" src="assets/css/images/room.png"/></a>
-=======
-								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/room.png"/></a> <!-- 자리 -->
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
-								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/study.png"/></a>
-								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/suggest.png"/></a>
-								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/notice.png"/></a>
-								<a class="cbtn" href="book"><img class="pen" src="assets/css/images/messenger.png"/></a><!-- 도서 -->
+								<a class="cbtn" href="book"><img class="pen" src="assets/css/images/book.png"/></a><!-- 도서 -->
+								<a class="cbtn" href="read"><img class="pen" src="assets/css/images/room.png"/></a><!-- 자리 -->
+								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/study.png"/></a><!-- 스터디 -->
+								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/suggest.png"/></a><!-- 건의사항 -->
+								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/notice.png"/></a><!-- 공지사항 -->
+								<a class="cbtn" href="main"><img class="pen" src="assets/css/images/messenger.png"/></a><!-- 메신저 -->
+								
 
 						</nav>
 					</header>

@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ddos.web.book.BookService;
-import com.ddos.web.book.BookVo;
+import com.ddos.web.book.BookVO;
 
 // 도서 controller
 @Controller
@@ -16,7 +16,7 @@ public class BookController {
 
 	// 1건 조회
 	@RequestMapping("/book")
-	public String getBook(Model model, BookVo bvo) {
+	public String getBook(Model model, BookVO bvo) {
 		model.addAttribute("book", bookservice.getBook(bvo));
 		return "book/getBook";
 	}

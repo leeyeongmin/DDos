@@ -1,6 +1,6 @@
 package com.ddos.web.book;
 
-public class BookVo {
+public class BookVO {
 	private int bookisbn;	//isbn
 	private String bookTitle;	//도서명
 	private String bookCont;	//도서 내용

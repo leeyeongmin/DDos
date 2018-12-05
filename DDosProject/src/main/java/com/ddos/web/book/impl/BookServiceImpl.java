@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ddos.web.book.BookService;
-import com.ddos.web.book.BookVo;
+import com.ddos.web.book.BookVO;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -12,7 +12,7 @@ public class BookServiceImpl implements BookService {
 	@Autowired BookDaoMybatis bamb;
 
 	@Override
-	public BookVo getBook(BookVo bvo) {
+	public BookVO getBook(BookVO bvo) {
 		return bamb.getBook(bvo);
 	}
 	

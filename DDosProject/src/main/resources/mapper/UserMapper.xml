@@ -4,9 +4,19 @@
 <mapper namespace="user">
 
 
-	<select id="getUserList">
-
-		SELECT * FROM DUAL
+	<select id="getUser" parameterType="user" resultType="user">
+		SELECT ID, PASSWORD, NAME
+		FROM MEMBER
+		WHERE ID = #{id}
+	
 	</select>
+	
+	<insert id="insertUser" parameterType="user">
+	
+		INSERT INTO MEMBER(ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT) 
+		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, SYSDATE, 'USER',0)
+	
+	</insert>
+	
 
 </mapper> 

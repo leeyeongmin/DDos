@@ -1,4 +1,4 @@
-package com.ddos.web.login;
+package com.ddos.web;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -34,6 +34,7 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "no/login/intro";
+		//return "home";
 	}
 	
 }

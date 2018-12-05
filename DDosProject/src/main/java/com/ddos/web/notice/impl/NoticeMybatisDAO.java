@@ -10,7 +10,8 @@ public class NoticeMybatisDAO {
 	private SqlSession mybatis;
 	
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
-		return mybatis.selectList("NoticeDAO.getBoardList", vo);
+		System.out.println("my batis spring jdbc 다중 조회");
+		return mybatis.selectList("notice.getBoardList", vo);
 	}
 }
                                                                                                                                                                                                                                                                                                                                                                                                                              

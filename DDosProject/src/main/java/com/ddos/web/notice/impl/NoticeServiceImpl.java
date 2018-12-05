@@ -11,11 +11,10 @@ import com.ddos.web.notice.NoticeVO;
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
 	@Autowired
-	private NoticeDAO noticeDAO;
+	private NoticeMybatisDAO noticeDAO;
 	
-	@Override
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
-		return null; //noticeDAO.getNoticeList(vo);
+		return noticeDAO.getNoticeList(vo);
 	}
 
 }

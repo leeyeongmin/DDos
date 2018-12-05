@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.ddos.web.read.ReadService;
 import com.ddos.web.read.ReadVO;
-import com.ddos.web.read.batis.ReadBatis;
 
 @Service
 public class ReadImpl implements ReadService{

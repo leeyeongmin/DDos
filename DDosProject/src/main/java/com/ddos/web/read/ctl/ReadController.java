@@ -21,5 +21,10 @@ public class ReadController {
 	}
 	
 	
+	@RequestMapping("read")
+	public String read() {
+		return "read/ReadChoose";
+	}
+	
 	
 }

@@ -30,12 +30,10 @@ public class LoginController {
 		
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping("/read")
 	public String read() {
 		return "read/ReadChoose";
 	}
-=======
 	
 	@RequestMapping("/booksss")
 	public String book() {
@@ -44,7 +42,6 @@ public class LoginController {
 		
 	}
 	
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 
 	/*@RequestMapping("login")
 	public String login(@ModelAttribute("user") UserVO vo, HttpSession session) { // UserVO 를 jsp에서 user로 사용

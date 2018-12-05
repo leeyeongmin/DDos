@@ -31,6 +31,13 @@ public class LoginController {
 	}
 	
 	
+	@RequestMapping("/booksss")
+	public String book() {
+		
+		return "user/getBook";
+		
+	}
+	
 
 	/*@RequestMapping("login")
 	public String login(@ModelAttribute("user") UserVO vo, HttpSession session) { // UserVO 를 jsp에서 user로 사용

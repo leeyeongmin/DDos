@@ -1,19 +1,19 @@
 package com.ddos.web.book;
 
 public class BookVo {
-	private int isbn;
-	private String bookTitle;
-	private String bookCont;
-	private String bookWriter;
-	private String bookComp;
-	private String bookGenre;
-	private int bookAmount;
-	private String bookLoc;
+	private int bookisbn;	//isbn
+	private String bookTitle;	//도서명
+	private String bookCont;	//도서 내용
+	private String bookWriter;	//저자
+	private String bookComp;	//출판사
+	private String bookGenre;	//장르
+	private int bookAmount;		//수량
+	private String bookLoc;		//위치
 	public int getIsbn() {
-		return isbn;
+		return bookisbn;
 	}
 	public void setIsbn(int isbn) {
-		this.isbn = isbn;
+		this.bookisbn = isbn;
 	}
 	public String getBookTitle() {
 		return bookTitle;
@@ -57,13 +57,13 @@ public class BookVo {
 	public void setBookLoc(String bookLoc) {
 		this.bookLoc = bookLoc;
 	}
-	
 	@Override
 	public String toString() {
-		return "BookVo [isbn=" + isbn + ", bookTitle=" + bookTitle + ", bookCont=" + bookCont + ", bookWriter="
+		return "BookVo [bookisbn=" + bookisbn + ", bookTitle=" + bookTitle + ", bookCont=" + bookCont + ", bookWriter="
 				+ bookWriter + ", bookComp=" + bookComp + ", bookGenre=" + bookGenre + ", bookAmount=" + bookAmount
 				+ ", bookLoc=" + bookLoc + "]";
-	} 
- 
+	}
+	
+
 	
 }

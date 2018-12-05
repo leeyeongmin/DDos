@@ -9,7 +9,8 @@
 		
 	<!-- Alias 설정 -->
 	<typeAliases>
-		<typeAlias alias="user" type="com.ddos.web.login.UserVO" />
+		<typeAlias alias="user" type="com.ddos.web.login.UserVO" />	
+		<typeAlias alias="read" type="com.ddos.web.read.ReadVO" />
 	</typeAliases>
 	
 </configuration>

@@ -30,6 +30,10 @@ public class LoginController {
 		
 	}
 	
+	@RequestMapping("/read")
+	public String read() {
+		return "read/ReadChoose";
+	}
 	
 	@RequestMapping("/booksss")
 	public String book() {

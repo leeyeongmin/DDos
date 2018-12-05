@@ -25,6 +25,11 @@ public class BookController {
 	public String getBookList(Model model, BookVo bvo) {
 		model.addAttribute("booklist", bookservice.getBookList(bvo));
 		return "book/getBookList";
+<<<<<<< HEAD
 	}*/
 
+=======
+	}
+*/
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 }

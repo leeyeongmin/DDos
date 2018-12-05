@@ -9,8 +9,13 @@
 		
 	<!-- Alias 설정 -->
 	<typeAliases>
+<<<<<<< HEAD
 		<typeAlias alias="user" type="com.ddos.web.login.UserVO" />
 		<typeAlias alias="user" type="com.ddos.web.book.BookVo" />
+=======
+		<typeAlias alias="user" type="com.ddos.web.login.UserVO" />	
+		<typeAlias alias="read" type="com.ddos.web.read.ReadVO" />
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 	</typeAliases>
 	
 </configuration>

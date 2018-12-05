@@ -28,8 +28,4 @@ public class BookController {
 <<<<<<< HEAD
 	}*/
 
-=======
-	}
-*/
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 }

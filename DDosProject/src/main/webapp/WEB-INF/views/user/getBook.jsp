@@ -11,7 +11,7 @@
 <div>
 <img class="imgifluid"  width="100" src="http://menu.mt.co.kr/ize/thumb/2016/06/06/2016060523587270403_1.jpg" alt="나미야잡화점"
 			 border=1 align=lef style="width:20%; margin-left:20%"/>
-<ul>
+<ul style="list-style-type:none">
 				<li>저자 &nbsp ${book.bookWriter} </li>
 				<li>출판사&nbsp ${book.bookComp}</li>
 				<li>ISBN&nbsp ${book.bookisbn}</li>

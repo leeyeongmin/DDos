@@ -21,10 +21,10 @@ public class BookController {
 		return "book/getBook";
 	}
 
-	@RequestMapping("/booklist")
+	/*@RequestMapping("/booklist")
 	public String getBookList(Model model, BookVo bvo) {
 		model.addAttribute("booklist", bookservice.getBookList(bvo));
 		return "book/getBookList";
 	}
-
+*/
 }

@@ -30,7 +30,10 @@ public class LoginController {
 		
 	}
 	
-	
+	@RequestMapping("/read")
+	public String read() {
+		return "read/ReadChoose";
+	}
 
 	/*@RequestMapping("login")
 	public String login(@ModelAttribute("user") UserVO vo, HttpSession session) { // UserVO 를 jsp에서 user로 사용

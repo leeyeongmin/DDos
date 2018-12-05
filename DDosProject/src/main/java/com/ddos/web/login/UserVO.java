@@ -5,6 +5,8 @@ public class UserVO {
 	private String id;
 	private String password;
 	private String name;
+	private String phone;
+	private String brith;
 	
 	public String getId() {
 		return id;
@@ -24,10 +26,25 @@ public class UserVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getBrith() {
+		return brith;
+	}
+	public void setBrith(String brith) {
+		this.brith = brith;
+	}
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", password=" + password + ", name=" + name  + "]";
+		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", phone=" + phone + ", brith="
+				+ brith + "]";
 	}
+	
+	
 	
 	
 }

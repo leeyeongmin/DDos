@@ -75,7 +75,11 @@ body .container .tabs .tab.active a, body .container .tabs .tab:hover a {
 body .container .tabs .tab.active {
   border-bottom: 1px solid #263238;
 }
-body .container .content form {
+body .container .content .joinform {
+  position: relative;
+  height: 350px;
+}
+body .container .content .loginform {
   position: relative;
   height: 287px;
 }

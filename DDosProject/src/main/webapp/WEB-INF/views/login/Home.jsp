@@ -29,7 +29,11 @@
 						<p>대구 &nbsp;&bull;&nbsp; 도서관 &nbsp;&bull;&nbsp; 스터디</p>
 						<nav>
 								<a class="cbtn" href="main"><img class="pen" src="assets/css/images/book.png"/></a>
+<<<<<<< HEAD
 								<a class="cbtn" href="read"><img class="pen" src="assets/css/images/room.png"/></a>
+=======
+								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/room.png"/></a> <!-- 자리 -->
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/study.png"/></a>
 								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/suggest.png"/></a>
 								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/notice.png"/></a>

@@ -8,10 +8,9 @@
 	</settings>
 		
 	<!-- Alias 설정 -->
-	<!-- <typeAliases>
-		<typeAlias alias="board" type="com.company.app.board.BoardVO" />
-		<typeAlias alias="user" type="com.company.app.user.UserVO" />
-	</typeAliases> -->
+	<typeAliases>
+		<typeAlias alias="user" type="com.ddos.web.login.UserVO" />
+	</typeAliases>
 	
 	<typeAliases>
 		<typeAlias alias="read" type="com.ddos.web.read.ReadVO" />

@@ -1,4 +1,4 @@
-package com.ddos.web.read.batis;
+package com.ddos.web.read.impl;
 
 import java.util.List;
 

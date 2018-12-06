@@ -6,15 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="js/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-	function choose(ck){
+	$(function(){
+		$(".seat").click(function () {
+			$.ajax({
+				type : "post",
+				url : "overlap?selectSeat=" + $(this).attr("name"),
+				success:function(result){
+					alert(result);
+				}
+			})
+			//alert($(this).val());
+			//alert($(this).attr("name"));
+		})
+	});
+
+	/*function choose(ck){
 		
-		if(confirm(ck.value + "자리를 선택하시겠습니까?")){
-			location.href="user_ck.do?seat=" + ck.name;
+		if(confirm("'" + ck.value + "' 자리를 선택하시겠습니까?")){
+			//location.href="user_ck.do?seat=" + ck.name;
 		}
-	}
+	}*/
 
 </script>
 </head>
@@ -33,7 +47,7 @@
 				<c:choose>
 					<c:when test="${setlist.status =='1'}">
 						<td><input type="button" class="seat" value="<%= set++ %>" name="${setlist.seat_num }"
-						style="background: #ffffff; width: 100%; height: 100%" onclick="choose(this)"></td>
+						style="background: #ffffff; width: 100%; height: 100%" ></td>
 					</c:when>
 					
 					<c:when test="${setlist.status=='2'}">

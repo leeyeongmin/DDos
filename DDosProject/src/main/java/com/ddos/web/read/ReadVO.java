@@ -5,10 +5,19 @@ public class ReadVO {
 	private String status;
 	
 	private String room;		//열람실 선택 
-	private String[] seat;		//선택 좌석 		
+	private String[] seat;		//저장 할 좌석 		
+	private String selectSeat;	//선택 좌석
+	
+	
 
-	
-	
+	public String getSelectSeat() {
+		return selectSeat;
+	}
+
+	public void setSelectSeat(String selectSeat) {
+		this.selectSeat = selectSeat;
+	}
+
 	public String[] getSeat() {
 		return seat;
 	}
@@ -43,7 +52,7 @@ public class ReadVO {
 
 	@Override
 	public String toString() {
-		return "ReadVO [seat_num=" + seatNum + ", status=" + status + "]";
+		return "ReadVO [seat_num=" + seatNum + ", status=" + status + "]" + "selectSeat : " + selectSeat;
 	}
 	
 	

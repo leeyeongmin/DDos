@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddos.web.read.ReadService;
 import com.ddos.web.read.ReadVO;
@@ -37,5 +39,12 @@ public class ReadController {
 		return "user/ReadSelect";
 	}
 	
+	@RequestMapping(value = "overlap", method = { RequestMethod.POST})
+	@ResponseBody
+	public String overlap(ReadVO vo) {
+		System.out.println(vo);
+		
+		return "a";
+	}
 	
 }

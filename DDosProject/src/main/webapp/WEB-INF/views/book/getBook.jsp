@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
 <body>
 <h3> 도서명${book.bookTitle} </h3>
@@ -21,8 +26,10 @@
 			</ul>
 </div>
 
-<table class="table" style="width:50%; margin-left:20%">
-  <thead class="thead-light">
+<div class="container" style="width:50%; margin-left:20%">
+  	<div class="table-responsive">
+	  <table class="table">
+	    <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">소장처/자료실</th>
@@ -41,5 +48,7 @@
     </tr>
   </tbody>
 </table>
+	</div>
+</div>
 </body>
 </html>

@@ -2,22 +2,29 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="book">
- 
+<mapper namespace="book">
+
+	<!-- 전체 조회 -->
+	<select id="getBookList" parameterType="book" resultType="book">
+		SELECT BOOK_TITLE, BOOK_WRITER, BOOK_COMP, BOOK_LOC
+		FROM BOOK
+
+		<!-- <if test="searchKeyword != null and searchKeyword != ''">
+			WHERE ${searchCondition} like '%' || #{searchKeyword} || '%'
+		</if> -->
+	</select>
+
 	<!-- 1건 조회 -->
 	<select id="getBook" parameterType="book" resultType="book">
-	SELECT	B.ISBN, B.BOOK_TITLE, B.BOOK_CONT, B.BOOK_WRITER
-			B.BOOK_COMP, B.BOOK_GENRE, B.BOOK_AMOUNT, B.BOOK_LOC,
-			R.DUE_DATE
-	FROM	BOOK B JOIN RENTAL R
-	ON B.ISBN = R.ISBN
-	WHERE ISBN = #{isbn}
+		SELECT B.ISBN, B.BOOK_TITLE, B.BOOK_CONT, B.BOOK_WRITER
+		B.BOOK_COMP, B.BOOK_GENRE, B.BOOK_AMOUNT, B.BOOK_LOC,
+		R.DUE_DATE
+		FROM BOOK B JOIN RENTAL R
+		ON B.ISBN = R.ISBN
+		WHERE ISBN = #{isbn}
+		
 	</select>
-	
-	<select id="getBookList" parameterType="book" resultType="book">
-	SELECT	B.ISBN, B.BOOK_TITLE, B.BOOK_CONT, B.BOOK_WRITER
-			B.BOOK_COMP, B.BOOK_GENRE, B.BOOK_AMOUNT, B.BOOK_LOC,
-	FROM	BOOK 
-	</select>
-	
+
+
+
 </mapper>

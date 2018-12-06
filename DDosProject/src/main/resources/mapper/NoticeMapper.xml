@@ -3,11 +3,25 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
 
-
+	<!--  전체 조회  -->
 	<select id="getNoticeList" resultType="notice">
 		SELECT * FROM NOTICE
-		ORDER BY NOTICE_NUL DESC
-
+		<where>
+		<if test="searchCondition != null and searchCondition == 'noticeTitle'">
+			and noticeTitle like '%' || @{searchKeyword} || '%'
+		</if>
+		</where>
+		ORDER BY NOTICE_NUM DESC
+	</select>
+	
+	<!--  단건 조회  -->
+	<select id="getNotice" resultType="notice">
+		SELECT NOTICE_TITLE,
+				NOTICE_CONT,
+				NOTICE_DATE,
+				NOTICE_CNT
+		FROM NOTICE
+		WHERE NOTICE_NUM = #{noticeNum}
 	</select>
 
 </mapper> 

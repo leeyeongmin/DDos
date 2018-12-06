@@ -12,6 +12,32 @@
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/login.css" />
 
+<script>
+//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
+var idCheck = 0;
+//아이디 체크하여 가입버튼 비활성화, 중복확인.
+function checkId() {
+    var inputed = $('.joinform').find('#email');
+    $.ajax({
+        data : {
+            id : inputed.val()
+        },
+        url : "checkId",
+        success : function(data) {
+        	if(data=='2'){
+        		inputed.css("background-color", "transparent");
+        	} else if (data == '0') {
+            	inputed.css("background-color", "#B0F6AC");		//녹색
+                idCheck = 1;
+            } else if (data == '1') {
+            	inputed.css("background-color", "#FFCECE");		//빨강
+                idCheck = 0;
+            } 
+        }
+    });
+}
+</script>
+
 </head>
 <body>
 	<section class="container login-bg">
@@ -26,28 +52,28 @@
 					<form class="loginform" action="login"
 						enctype="multipart/form-data">
 						<input type="email" name="id" id="email" class="inpt"
-							required="required" placeholder="Your email" value="${user.id }" />
+							required="required" placeholder="Your email" value="${user.id }" style="color:black;" />
 						<input type="password" name="password" id="password" class="inpt"
 							required="required" placeholder="Your password"
-							value="${user.password }">
+							value="${user.password }" style="color:black;">
 						<div class="submit-wrap">
 							<input type="submit" value="Sign in" class="submit"> 
-							<a href="Home.jsp" class="more" style="color: black;">Forgot your password?</a>
+							<a href="findForm" class="more" style="color: black;">Forgot your password?</a>
 						</div>
 					</form>
 				</div>
 				<div class="signup-cont cont">
-					<form class="joinform" action="join" enctype="multipart/form-data" method="post">
-						<input type="email" name="id" id="email" class="inpt"
-							required="required" placeholder="Your email" > 
+					<form class="joinform" action="join" enctype="multipart/form-data">
+							<input type="email" name="id" id="email" class="inpt"
+							required="required" placeholder="Your email" style="color:black;" oninput="checkId()"> 
 							<input type="password" name="password" id="password" class="inpt"
-							required="required" placeholder="Your password"> 
+							required="required" placeholder="Your password" style="color:black;"> 
 							<input type="text" name="name" id="name" class="inpt"
-							required="required" placeholder="Your name"> 
+							required="required" placeholder="Your name" style="color:black;"> 
 							<input type="text" name="phone" id="phone" class="inpt"
-							required="required" placeholder="Your phone"> 
+							required="required" placeholder="Your phone" style="color:black;"> 
 							<input type="text" name="birth" id="birth" class="inpt"
-							required="required" placeholder="Your birth">
+							required="required" placeholder="Your birth" style="color:black;">
 						<div class="submit-wrap">
 							<input type="submit" value="Sign up" class="submit">
 						</div>

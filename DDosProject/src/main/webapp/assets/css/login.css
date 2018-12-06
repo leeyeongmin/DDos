@@ -173,6 +173,33 @@ body .container .content input.submit:hover {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
+body .container .content input.submit2 {
+  margin-top:5%;
+  margin-left:10%;
+  font-size: 12px;
+  line-height: 42px;
+  display: block;
+  width: 80%;
+  height: 42px;
+  cursor: pointer;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #263238;
+  border: 1px solid #263238;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+body .container .content input.submit2:hover {
+  background-color: #263238;
+  color: #ffffff;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
 body .container .content input:focus {
   outline: none;
 }

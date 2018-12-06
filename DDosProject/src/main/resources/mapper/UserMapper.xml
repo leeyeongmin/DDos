@@ -14,9 +14,35 @@
 	<insert id="insertUser" parameterType="user">
 	
 		INSERT INTO MEMBER(ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT) 
-		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, SYSDATE, 'USER',0)
+		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, SYSDATE,'user',0)
 	
 	</insert>
+	
+	<select id="checkId" parameterType="user" resultType="int">
+	
+		SELECT COUNT(*)
+    	FROM MEMBER WHERE ID=#{id}
+    	
+	</select>
+	
+	<select id="findId" parameterType="user" resultType="user">
+	
+		SELECT ID
+		FROM MEMBER
+		WHERE NAME = #{name}
+		AND PHONE = #{phone}
+	
+	</select>
+	
+	<select id="findPwd" parameterType="user" resultType="user">
+	
+		SELECT PASSWORD
+		FROM MEMBER
+		WHERE ID = #{id}
+		AND NAME = #{name}
+		AND PHONE = #{phone}
+	
+	</select>
 	
 
 </mapper> 

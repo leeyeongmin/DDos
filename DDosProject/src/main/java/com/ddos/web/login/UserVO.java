@@ -6,7 +6,7 @@ public class UserVO {
 	private String password;
 	private String name;
 	private String phone;
-	private String brith;
+	private String birth;
 	
 	public String getId() {
 		return id;
@@ -32,16 +32,16 @@ public class UserVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getBrith() {
-		return brith;
+	public String getBirth() {
+		return birth;
 	}
-	public void setBrith(String brith) {
-		this.brith = brith;
+	public void setBirth(String brith) {
+		this.birth = brith;
 	}
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", phone=" + phone + ", brith="
-				+ brith + "]";
+				+ birth + "]";
 	}
 	
 	

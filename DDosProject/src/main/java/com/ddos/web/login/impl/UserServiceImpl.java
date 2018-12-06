@@ -21,4 +21,19 @@ public class UserServiceImpl implements UserService {
 	public void insertUser(UserVO vo) {
 		dao.insertUser(vo);
 	}
+
+	@Override
+	public int checkId(UserVO vo) {
+		return dao.checkId(vo);
+	}
+
+	@Override
+	public UserVO findId(UserVO vo) {
+		return dao.findId(vo);
+	}
+
+	@Override
+	public UserVO findPwd(UserVO vo) {
+		return dao.findPwd(vo);
+	}
 }

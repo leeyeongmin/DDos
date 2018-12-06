@@ -8,16 +8,16 @@
 <title>getNoticeList.jsp</title>
 </head>
 <body>
-<%-- 	<c:if test="${empty sessionScope.login}">
+ 	<c:if test="${empty sessionScope.login}">
 		<a href="LoginForm">로그인</a>
 	</c:if>
 	<c:if test="${not empty sessionScope.login}">
 		${sessionScope.login.id} 님<a href="Logout">로그아웃</a>
-	</c:if>
-	<h3>일반 게시판</h3>=request.getContextPath()
-	<a href="${pageContext.request.contextPath}/insertBoard">등록</a><br> --%>
+	</c:if> 
+	<h3>일반 게시판</h3>
+	<%-- <a href="${pageContext.request.contextPath}/insertBoard">등록</a><br> --%>
 	
-	<form name="frm">
+	<form>
 		<select name="searchCondition">
 			<option value="title">제목
 			<option value="content">내용
@@ -33,7 +33,7 @@
 			document.frm.submit();
 		}
 	</script>
-	<form>
+	<form action="getNoticeList">
 		<table border="1">
 			<tr>
 				<td>번호<a href="#" onclick="go_sort('seq')">▲</a></td>
@@ -46,12 +46,12 @@
 				<tr>
 					<td>${notice.noticeNum}</td>
 					<td><a href="./getNotice?seq=${notice.noticeNum}">${notice.noticeTitle}</a></td>
-					<td>${notice.memberId}</td>
+					<td>${notice.noticeCont}</td>
 					<td>${notice.noticeDate}</td>
 					<td>${notice.noticeCnt}</td>
 				</tr>
 			</c:forEach>
 		</table>
-		</form>
+	</form>
 </body>
 </html>

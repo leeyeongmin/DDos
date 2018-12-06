@@ -13,7 +13,7 @@
 		<typeAlias alias="read" type="com.ddos.web.read.ReadVO" />
 		<typeAlias alias="book" type="com.ddos.web.book.BookVO" />
 		<typeAlias alias="notice" type="com.ddos.web.notice.NoticeVO" />
-		
+		<typeAlias alias="userread" type="com.ddos.web.read.UserReadVO"/>
 	</typeAliases>
 	
 </configuration>

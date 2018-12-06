@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ddos.web.read.ReadVO;
 
 @Repository
-public class ReadBatis {
+public class ReadDAOMyBatis {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
@@ -18,4 +18,8 @@ public class ReadBatis {
 		return mybatis.selectList("read.setRoom", vo);
 	}
 	
+	public void saveSeat(ReadVO vo) {
+		mybatis.update("read.saveSeat", vo);			//지정된 자리
+		mybatis.update("read.releaseSeat", vo);			//지정되지 않은 자리 
+	}
 }

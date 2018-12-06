@@ -9,30 +9,33 @@
 </head>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	function set1(obj1){
+
+	function click_set(seatnum){			//좌석 선택 시 
 	
-		if(obj1.style.backgroundColor == "rgb(0, 255, 0)"){
-			obj1.style.background = "#ffffff";
+		if(seatnum.style.backgroundColor == "rgb(0, 255, 0)"){
+			seatnum.style.background = "#ffffff";
 		}else{
-			obj1.style.background = "#00ff00";
+			seatnum.style.background = "#00ff00";
 		}
 	
 	}
 	
-	function setting(){
+	function save_set(){		//저장 버튼 클릭 시 
 		
 		var $cnts = $('.seat');
 		var $save = new Array();
 		
 		for(var i=0; i<$cnts.length; i++){
 			if($cnts.eq(i).css("background-color") == "rgb(0, 255, 0)" ){	//선택된 좌석일 경우
-				$save.push($cnts.eq(i).attr("name")) 
+				$save.push($cnts.eq(i).attr("name"));
+			
 			}
 		}
 		
-		var $set = $save.join("','");		//배열 => String 문자로  
-		alert($set);
+		//var $set = $save.join("','");		//배열 => String 문자로  
+		alert($save);
 		
+		location.href="saveSeat?seat="+$save;
 		
 	}
 	
@@ -48,7 +51,9 @@
 </script>
 <body>
 <% int set = 1; %>
-
+	<div align="center">
+	<h3>${readVO.room} 열람실 </h3>	
+	${setList }
 	<table>
 		<c:forEach items="${setList}" var="setlist" varStatus="status">
 	 	<c:if test="${status.index mod 7 == 0}">
@@ -57,12 +62,12 @@
 				 <c:choose>
 				 <c:when test="${setlist.status=='0'}">
 					<td><input type="button" class="seat" value="<% if(set < 10) { %>0<%=set++%><%}else{ %><%=set++ %><% } %>" name="${setlist.seat_num}"
-					style="background: #ffffff" onclick="set1(this)"></td> 
+					style="background: #ffffff" onclick="click_set(this)"></td> 
 				</c:when>
 				
 			 	<c:otherwise>
 					<td><input type="button" class="seat" value="<% if(set < 10) { %>0<%=set++%><%}else{ %><%=set++ %><% } %>" name="${setlist.seat_num}"
-					style="background: #00ff00" onclick="set1(this)"></td>
+					style="background: #00ff00" onclick="click_set(this)"></td>
 				</c:otherwise> 
 				
 			</c:choose> 
@@ -73,6 +78,7 @@
 		
 	</table>
 	
-	<input type="button" value="저장" onclick="setting()">
+	<input type="button" value="저장" onclick="save_set()">
+	</div>
 </body>
 </html>

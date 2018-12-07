@@ -28,8 +28,15 @@ public class ReadServiceImpl implements ReadService{
 
 
 	@Override
-	public ReadVO overlap(ReadVO vo) {
+	public ReadVO overlap(ReadVO vo) {				//중복 확인
 		return dao.overlap(vo);
 	}
+
+
+	@Override
+	public void updateSeat(ReadVO vo) {				//좌석 사용중으로 변경
+		dao.updateSeat(vo);
+	}
+
 
 }

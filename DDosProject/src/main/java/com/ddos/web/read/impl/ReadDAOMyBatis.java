@@ -23,7 +23,12 @@ public class ReadDAOMyBatis {
 		mybatis.update("read.releaseSeat", vo);			//지정되지 않은 자리 
 	}
 	
-	public ReadVO overlap(ReadVO vo) {
+	public ReadVO overlap(ReadVO vo) {					//좌석 중복 확인
 		return mybatis.selectOne("read.overlap", vo);	
+	}
+	
+	public void updateSeat(ReadVO vo) {
+		mybatis.update("read.updateSeat",vo);			//좌석 사용중 변경
+		mybatis.update("read.insertUsing",vo);			//history 추가
 	}
 }

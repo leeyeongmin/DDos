@@ -28,17 +28,27 @@
 		})
 	});		//$()
 	
+	
 	function insertSeat(seat){
-		alert(seat);
+		location.href="updateSeat?selectSeat="+seat+"&room="+$("#roomNum").text();
+	}
+	
+	window.onload=function(){			//로딩 될 때 실행 
+		alert("ss");// 시간타임 체크 
 	}
 
 </script>
+<style type="text/css">
+	.roomstyle {
+		font-size: 50px;
+	}
+</style>
 </head>
 <body>
 	<% int set = 1; %>
 	<div align="center">
-	<h3>${ReadVO.room} 열람실</h3>
-	${setList }
+	<span id="roomNum" class="roomstyle">${readVO.room}</span><span class="roomstyle">열람실</span>
+	   
 		<table border="1">
 			<c:forEach items="${setList}" var="setlist" varStatus="status">
 				

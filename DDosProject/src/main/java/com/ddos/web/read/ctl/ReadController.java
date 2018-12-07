@@ -45,4 +45,9 @@ public class ReadController {
 		return readserivce.overlap(vo);
 	}
 	
+	@RequestMapping("updateSeat")
+	public String updateSeat(ReadVO vo) {
+		readserivce.updateSeat(vo);
+		return "redirect:getRoom?room="+vo.getRoom();
+	}
 }

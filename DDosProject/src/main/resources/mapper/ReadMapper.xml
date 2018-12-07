@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="read">
-	<select id="setRoom" resultType="read">
+	<select id="setRoom" resultType="read">		<!-- 열람실 room 선택 -->
 		select SEAT_NUM,
 			   STATUS
 		from READINGROOM
 		where SEAT_NUM like #{room} || '%'
 	</select>
 	
-	<update id="saveSeat" parameterType="read">
+	<update id="saveSeat" parameterType="read">		<!-- 좌석 저장(관리자) -->
 		update READINGROOM
 		set STATUS = '1'
 		where  SEAT_NUM in
@@ -18,7 +18,7 @@
 		</foreach>
 	</update>
 	
-	<update id="releaseSeat" parameterType="read">
+	<update id="releaseSeat" parameterType="read">		<!-- 좌석 해제(관리자) -->
 		update READINGROOM
 		set STATUS = '0'
 		where  SEAT_NUM not in
@@ -27,11 +27,23 @@
 		</foreach>
 	</update>
 	
-	<select id="overlap" resultType="read"> 
+	<select id="overlap" resultType="read"> 		<!-- 중복 좌석 확인 -->
 		select SEAT_NUM,
 			   STATUS
 		from   READINGROOM
 		where SEAT_NUM =  #{selectSeat}
 	</select>
+	
+	<update id="updateSeat" parameterType="read">									<!-- 좌석 사용 변경 -->
+		update READINGROOM
+		set STATUS = '2'
+		where SEAT_NUM = #{selectSeat}
+	</update>
+	
+	<insert id="insertUsing" parameterType="read">							<!-- 좌석 로그 입력 -->
+		insert into 
+		READINGROOM_HISTORY(READINGROOM_NUM, END_TIME, MEMBER_ID, SEAT_NUM, START_TIME)
+					 values(READING_SEQ.NEXTVAL, sysdate+3/24, 'a', #{selectSeat}, sysdate)
+	</insert>
 	
 </mapper>

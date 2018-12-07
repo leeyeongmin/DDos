@@ -140,7 +140,9 @@ public class UserController {
 		
 		if(vo.getId().equals("")) {
 			return "2";
-		}else {
+		}
+		
+		else {
 			return new String(new Integer(userService.checkId(vo)).toString());
 		}
     }

@@ -25,12 +25,23 @@ function checkId() {
         url : "checkId",
         success : function(data) {
         	if(data=='2'){
-        		inputed.css("background-color", "transparent");
-        	} else if (data == '0') {
-            	inputed.css("background-color", "#B0F6AC");		//녹색
-                idCheck = 1;
+        		/* 
+        		inputed.css("background-color", "transparent"); */
+        		
+        		document.getElementById("checkIdResult").innerHTML = '<img src=""/>';
+        		
+        		
+        	} else if (data == '0') {/* 
+            	inputed.css("background-color", "#B0F6AC");		//녹색 */
+            	
+            	document.getElementById("checkIdResult").innerHTML = '<img src="assets/css/images/yes.png" style="margin-left:1%; padding-top:2%; display:inline-block; width:5%; height:7%px;"/>';
+                
+            	idCheck = 1;
             } else if (data == '1') {
-            	inputed.css("background-color", "#FFCECE");		//빨강
+            	/* inputed.css("background-color", "#FFCECE");		//빨강
+            	 */
+            	document.getElementById("checkIdResult").innerHTML = '<img src="assets/css/images/no.png" style="margin-left:1%; padding-top:2%; display:inline-block; width:5%; height:7%;"/>';
+            	
                 idCheck = 0;
             } 
         }
@@ -64,8 +75,13 @@ function checkId() {
 				</div>
 				<div class="signup-cont cont">
 					<form class="joinform" action="join" enctype="multipart/form-data">
-							<input type="email" name="id" id="email" class="inpt"
-							required="required" placeholder="Your email" style="color:black;" oninput="checkId()"> 
+					
+					
+							<input type="email" name="id" id="email" class="inpt1"
+							required="required" placeholder="Your email" style="color:black;" oninput="checkId()">
+							
+							<span id="checkIdResult"></span>
+							 
 							<input type="password" name="password" id="password" class="inpt"
 							required="required" placeholder="Your password" style="color:black;"> 
 							<input type="text" name="name" id="name" class="inpt"

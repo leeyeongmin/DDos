@@ -8,4 +8,23 @@
 		from READINGROOM
 		where SEAT_NUM like #{room} || '%'
 	</select>
+	
+	<update id="saveSeat" parameterType="read">
+		update READINGROOM
+		set STATUS = '1'
+		where  SEAT_NUM in
+		<foreach collection="seat" item="item" open="(" close=")" separator=",">
+				#{item}
+		</foreach>
+	</update>
+	
+	<update id="releaseSeat" parameterType="read">
+		update READINGROOM
+		set STATUS = '0'
+		where  SEAT_NUM not in
+		<foreach collection="seat" item="item" open="(" close=")" separator=",">
+				#{item}
+		</foreach>
+	</update>
+	
 </mapper>

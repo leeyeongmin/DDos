@@ -1,6 +1,6 @@
 package com.ddos.web.rental;
 
-public class RentalVo {
+public class RentalVO {
 
 	private int rentablNum;		//대출 반납 고유 번호
 	private String rentalDate;	//대출일자

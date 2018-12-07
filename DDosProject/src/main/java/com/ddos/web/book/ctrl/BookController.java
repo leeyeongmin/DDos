@@ -14,18 +14,25 @@ public class BookController {
 	@Autowired
 	BookService bookservice; // service 호출
 
-	// 1건 조회
-	@RequestMapping("/book")
-	public String getBook(Model model, BookVO bvo) {
-		model.addAttribute("book", bookservice.getBook(bvo));
-		return "book/getBook";
+	// 메인에서 도서목록으로
+	@RequestMapping("book")
+	public String book(Model model, BookVO vo) {
+		model.addAttribute("bookList", bookservice.getBookList(vo));
+		return "book/getBookList";
 	}
 
-	/*@RequestMapping("/booklist")
-	public String getBookList(Model model, BookVo bvo) {
-		model.addAttribute("booklist", bookservice.getBookList(bvo));
+	// 전체 목록 조회
+	@RequestMapping("getBookList")
+	public String getBookList(Model model, BookVO vo) {
+		model.addAttribute("bookList", bookservice.getBookList(vo));
 		return "book/getBookList";
-<<<<<<< HEAD
-	}*/
+	}
+
+	// 1건 조회
+	@RequestMapping("getBook")
+	public String getBook(Model model, BookVO vo) {
+		model.addAttribute("book", bookservice.getBook(vo));
+		return "book/getBook";
+	}
 
 }

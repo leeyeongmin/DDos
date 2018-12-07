@@ -11,7 +11,19 @@ import com.ddos.web.book.BookVO;
 @Service
 public class BookServiceImpl implements BookService {
 
-	@Autowired BookDAOMybatis dab;
+	@Override
+	public List<BookVO> getBookList(BookVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BookVO getBook(BookVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*@Autowired BookDAOMybatis dab;
 
 	//전체 조회
 	@Override
@@ -23,7 +35,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public BookVO getBook(BookVO vo) {
 		return dab.getBook(vo);
-	}
+	}*/
 	
 	
 	

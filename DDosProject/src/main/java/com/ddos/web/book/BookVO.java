@@ -1,7 +1,7 @@
 package com.ddos.web.book;
 
 public class BookVO {
-	private int bookIsbn;	//isbn
+	private String isbn;	//isbn
 	private String bookTitle;	//도서명
 	private String bookCont;	//도서 내용
 	private String bookWriter;	//저자
@@ -9,11 +9,28 @@ public class BookVO {
 	private String bookGenre;	//장르
 	private int bookAmount;		//수량
 	private String bookLoc;		//위치
-	public int getBookIsbn() {
-		return bookIsbn;
+	
+	//검색
+	private String searchCondition;
+	private String searchKeyword;
+	
+	public String getSearchCondition() {
+		return searchCondition;
 	}
-	public void setBookIsbn(int bookIsbn) {
-		this.bookIsbn = bookIsbn;
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	public String getBookTitle() {
 		return bookTitle;
@@ -59,7 +76,7 @@ public class BookVO {
 	}
 	@Override
 	public String toString() {
-		return "BookVO [bookIsbn=" + bookIsbn + ", bookTitle=" + bookTitle + ", bookCont=" + bookCont + ", bookWriter="
+		return "BookVO [Isbn=" + isbn + ", bookTitle=" + bookTitle + ", bookCont=" + bookCont + ", bookWriter="
 				+ bookWriter + ", bookComp=" + bookComp + ", bookGenre=" + bookGenre + ", bookAmount=" + bookAmount
 				+ ", bookLoc=" + bookLoc + "]";
 	}

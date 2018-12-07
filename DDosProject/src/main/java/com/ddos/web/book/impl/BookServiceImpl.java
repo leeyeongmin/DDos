@@ -11,21 +11,25 @@ import com.ddos.web.book.BookVO;
 @Service
 public class BookServiceImpl implements BookService {
 
-	@Autowired BookDAOMybatis dab;
+	@Autowired
+	BookDAOMybatis dab;
 
-	//전체 조회
+	// 전체 조회
 	@Override
 	public List<BookVO> getBookList(BookVO vo) {
 		return dab.getBookList(vo);
 	}
-	
+
 	// 한건 조회
 	@Override
 	public BookVO getBook(BookVO vo) {
 		return dab.getBook(vo);
 	}
-	
-	
-	
+
+	// 도서 등록
+	public void insertBook(BookVO vo) {
+		dab.insertBook(vo);
+	}
+	// 도서 수정
 
 }

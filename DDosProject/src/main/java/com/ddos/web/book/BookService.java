@@ -10,6 +10,11 @@ public interface BookService {
 	// 1건 조회
 	public BookVO getBook(BookVO vo);
 	
+	// 도서 입력
+	public void insertBook(BookVO vo);
+	
+	// 도서 수정
+
 	
 
 }

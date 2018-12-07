@@ -6,12 +6,15 @@
 
 	<!-- 전체 조회 -->
 	<select id="getBookList" parameterType="book" resultType="book">
-		SELECT BOOK_TITLE, BOOK_WRITER, BOOK_COMP, BOOK_LOC
+		SELECT BOOK_TITLE, BOOK_WRITER, BOOK_COMP, BOOK_LOC, ISBN
 		FROM BOOK
-
-		<!-- <if test="searchKeyword != null and searchKeyword != ''">
-			WHERE ${searchCondition} like '%' || #{searchKeyword} || '%'
-		</if> -->
+		<where> <if test="searchCondition != null and searchCondition == 'booktitle'"> <!-- view 페이지 명 -->
+					and book_Title like '%' || #{searchKeyword} || '%' </if><!-- db 칼럼 명, #vo -->
+				 <if test="searchCondition != null and searchCondition == 'bookwriter'"> 
+			 		and book_Writer like '%' || #{searchKeyword} || '%' </if> 
+			 	<if test="searchCondition != null and searchCondition == 'bookcomp'"> 
+			 		and book_Comp like '%' || #{searchKeyword} || '%' </if> 
+		</where> 
 	</select>
 
 	<!-- 1건 조회 -->
@@ -25,6 +28,13 @@
 		
 	</select>
 
+<!-- 도서 입력 -->
+	<insert id="insertBook"  parameterType="book">
+		INSERT INTO BOOK (ISBN, BOOK_TITLE, BOOK_CONT, BOOK_WRITER, BOOK_COMP,
+						 BOOK_GENRE, BOOK_AMOUNT, BOOK_LOC)
+		VALUES(#{isbn}, #{bookTitle}, #{bookCont}, #{bookWriter}, #{bookComp}, #{bookGenre},
+				 #{bookAmount}, #{bookLoc})
+	</insert>
 
 
 </mapper>

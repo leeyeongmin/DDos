@@ -14,10 +14,8 @@
 	<c:if test="${not empty sessionScope.login}">
 		${sessionScope.login.id} 님<a href="Logout">로그아웃</a>
 	</c:if> 
-	<h3>일반 게시판</h3>
-	<%-- <a href="${pageContext.request.contextPath}/insertBoard">등록</a><br> --%>
-	
-	<form>
+	<h3>공지사항</h3>
+ 	<form>
 		<select name="searchCondition">
 			<option value="title">제목
 			<option value="content">내용
@@ -33,6 +31,7 @@
 			document.frm.submit();
 		}
 	</script>
+	
 	<form action="getNoticeList">
 		<table border="1">
 			<tr>
@@ -45,7 +44,7 @@
 			<c:forEach items="${noticeList}" var="notice">
 				<tr>
 					<td>${notice.noticeNum}</td>
-					<td><a href="./getNotice?seq=${notice.noticeNum}">${notice.noticeTitle}</a></td>
+					<td><a href="./getNotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle}</a></td>
 					<td>${notice.noticeCont}</td>
 					<td>${notice.noticeDate}</td>
 					<td>${notice.noticeCnt}</td>
@@ -53,5 +52,6 @@
 			</c:forEach>
 		</table>
 	</form>
+	<a href="./insertNoticeform">등록</a>
 </body>
 </html>

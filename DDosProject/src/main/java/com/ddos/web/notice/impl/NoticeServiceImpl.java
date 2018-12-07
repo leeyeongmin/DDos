@@ -13,14 +13,36 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMybatisDAO noticeDAO;
 	
+	// 전체 조회
 	@Override
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
 		return noticeDAO.getNoticeList(vo);
 	}
 
+	// 상세 조회
 	@Override
 	public NoticeVO getNotice(NoticeVO vo) {
 		return noticeDAO.getNotice(vo);
+	}
+
+	
+	// 수정
+	@Override
+	public void updateNotice(NoticeVO vo) {
+		noticeDAO.updateNotice(vo);
+	}
+	
+	
+	// 등록
+	@Override
+	public void insertNotice(NoticeVO vo) {
+		noticeDAO.insertNotice(vo);
+		System.out.println("=== noticeNum = " + vo.getNoticeNum());
+	}
+
+	@Override
+	public void deleteNotice(NoticeVO vo) {
+		noticeDAO.deleteNotice(vo);
 	}
 
 }

@@ -41,10 +41,8 @@ public class ReadController {
 	
 	@RequestMapping(value = "overlap", method = { RequestMethod.POST})
 	@ResponseBody
-	public String overlap(ReadVO vo) {
-		System.out.println(vo);
-		
-		return "a";
+	public ReadVO overlap(ReadVO vo) {
+		return readserivce.overlap(vo);
 	}
 	
 }

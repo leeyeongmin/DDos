@@ -26,4 +26,10 @@ public class ReadServiceImpl implements ReadService{
 		dao.saveSeat(vo);
 	}
 
+
+	@Override
+	public ReadVO overlap(ReadVO vo) {
+		return dao.overlap(vo);
+	}
+
 }

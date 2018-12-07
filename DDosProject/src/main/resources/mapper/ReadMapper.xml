@@ -27,4 +27,11 @@
 		</foreach>
 	</update>
 	
+	<select id="overlap" resultType="read"> 
+		select SEAT_NUM,
+			   STATUS
+		from   READINGROOM
+		where SEAT_NUM =  #{selectSeat}
+	</select>
+	
 </mapper>

@@ -11,24 +11,26 @@
 
 	$(function(){
 		$(".seat").click(function () {
-			$.ajax({
-				type : "post",
-				url : "overlap?selectSeat=" + $(this).attr("name"),
-				success:function(result){
-					alert(result);
-				}
-			})
-			//alert($(this).val());
-			//alert($(this).attr("name"));
+			if(confirm("'" + $(this).attr("value") + "' 자리를 선택하시겠습니까?")){
+				$.ajax({
+					type : "post",
+					url : "overlap?selectSeat=" + $(this).attr("name"),
+					success:function(result){
+						if(result.status == "2"){
+							alert("이미 선택된 좌석입니다.");
+							location.reload();
+						}else{
+							insertSeat(result.seat_num);
+						}
+					}
+				})
+			}
 		})
-	});
-
-	/*function choose(ck){
-		
-		if(confirm("'" + ck.value + "' 자리를 선택하시겠습니까?")){
-			//location.href="user_ck.do?seat=" + ck.name;
-		}
-	}*/
+	});		//$()
+	
+	function insertSeat(seat){
+		alert(seat);
+	}
 
 </script>
 </head>
@@ -46,12 +48,12 @@
 				
 				<c:choose>
 					<c:when test="${setlist.status =='1'}">
-						<td><input type="button" class="seat" value="<%= set++ %>" name="${setlist.seat_num }"
+						<td><input type="button" class="seat" value="<% if(set < 10) { %>0<%=set++%><%}else{ %><%=set++ %><% } %>" name="${setlist.seat_num }"
 						style="background: #ffffff; width: 100%; height: 100%" ></td>
 					</c:when>
 					
 					<c:when test="${setlist.status=='2'}">
-						<td><input type="button" class="seat" value="<%= set++ %>" name="${setlist.seat_num }"
+						<td><input type="button" class="seat" value="<% if(set < 10) { %>0<%=set++%><%}else{ %><%=set++ %><% } %>" name="${setlist.seat_num }"
 						style="background: gray" disabled="disabled"></td>
 					</c:when>
 					

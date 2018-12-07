@@ -22,4 +22,8 @@ public class ReadDAOMyBatis {
 		mybatis.update("read.saveSeat", vo);			//지정된 자리
 		mybatis.update("read.releaseSeat", vo);			//지정되지 않은 자리 
 	}
+	
+	public ReadVO overlap(ReadVO vo) {
+		return mybatis.selectOne("read.overlap", vo);	
+	}
 }

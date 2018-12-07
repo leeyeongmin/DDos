@@ -15,6 +15,7 @@
 </script>
 </head>
 <body>
+<!-- 도서 검색 창 -->
 	<form name="frm">
 		<select name="searchCondition">
 			<option value="booktitle">도서명

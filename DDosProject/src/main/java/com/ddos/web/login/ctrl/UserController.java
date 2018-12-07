@@ -154,5 +154,15 @@ public class UserController {
 			userService.insertUser(vo);					//등록 처리
 			return "no/login/Login";					
 		}
+		
+		//-------------------------------------------------------------------메인페이지 넘어가기-----------------------------------------------------------
+			
+		
+		// 로그인 폼 불러오기
+		@RequestMapping("mainForm")
+		public String mainForm() {
+			
+			return "admin/adminHome";
+		}
 	
 }

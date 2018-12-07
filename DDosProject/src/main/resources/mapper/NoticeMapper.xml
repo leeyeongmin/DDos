@@ -16,7 +16,8 @@
 	
 	<!--  단건 조회  -->
 	<select id="getNotice" resultType="notice">
-		SELECT NOTICE_TITLE,
+		SELECT NOTICE_NUM,
+				NOTICE_TITLE,
 				NOTICE_CONT,
 				NOTICE_DATE,
 				NOTICE_CNT
@@ -24,4 +25,39 @@
 		WHERE NOTICE_NUM = #{noticeNum}
 	</select>
 
+	<!-- 등록 -->
+	<insert id="insertNotice" parameterType="notice">
+		<selectKey keyProperty="noticeNum" resultType="integer" order="BEFORE">
+			SELECT MAX(NOTICE_NUM)+1 FROM NOTICE
+		</selectKey>
+		INSERT INTO NOTICE (
+				NOTICE_NUM,
+				NOTICE_TITLE,
+				NOTICE_CONT,
+				MEMBER_ID,
+				NOTICE_DATE,
+				NOTICE_CNT)
+			VALUES (
+				#{noticeNum},
+				#{noticeTitle},
+				#{noticeCont},
+				#{memberId},
+				sysdate,
+				0	
+			)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="updateNotice" parameterType="notice">
+		UPDATE NOTICE SET
+				NOTICE_TITLE = #{noticeTitle},
+				NOTICE_CONT = #{noticeCont}
+		WHERE NOTICE_NUM = #{noticeNum}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteNotice" parameterType="notice">
+		DELETE NOTICE
+		WHERE NOTICE_NUM = #{noticeNum}
+	</delete>
 </mapper> 

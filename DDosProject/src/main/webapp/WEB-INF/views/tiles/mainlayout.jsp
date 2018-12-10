@@ -434,9 +434,11 @@
         <!-- ============================================================== -->
         <!-- end left sidebar -->
         <!-- ============================================================== -->
-        
-        <tiles:insertAttribute name="content" />
-        
+        <div class="dashboard-wrapper">
+        	<div class="container-fluid  dashboard-content">
+        		<tiles:insertAttribute name="content" />
+        	</div>
+        </div>
     </div>
     <!-- ============================================================== -->
     <!-- end main wrapper  -->

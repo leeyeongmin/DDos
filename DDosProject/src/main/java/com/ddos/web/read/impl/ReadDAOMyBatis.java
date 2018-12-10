@@ -31,4 +31,8 @@ public class ReadDAOMyBatis {
 		mybatis.update("read.updateSeat",vo);			//좌석 사용중 변경
 		mybatis.update("read.insertUsing",vo);			//history 추가
 	}
+	
+	public void timecheck() {
+		
+	}
 }

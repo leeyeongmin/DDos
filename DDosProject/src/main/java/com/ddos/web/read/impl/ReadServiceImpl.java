@@ -39,4 +39,11 @@ public class ReadServiceImpl implements ReadService{
 	}
 
 
+	@Override
+	public void timecheck() {						//좌석 시간 체크
+		
+		
+	}
+
+
 }

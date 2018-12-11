@@ -65,7 +65,13 @@ public class UserController {
 			return "no/login/Login";
 		}else {
 			session.setAttribute("login", uservo);
-			return "admin/AdminHome";
+			
+			if(uservo.getId().equals("admin@gmail.com")) {
+				return "admin/admin/AdminHome";
+			}
+			else {
+				return "user/UserHome";
+			}
 		}
 	}
 

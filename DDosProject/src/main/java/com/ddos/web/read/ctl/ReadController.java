@@ -50,7 +50,7 @@ public class ReadController {
 		readserivce.updateSeat(vo);
 		return "redirect:getRoom?room="+vo.getRoom();
 	}
-<<<<<<< HEAD
+
 	
 /*	@RequestMapping("timecheck")
 	public void timecheck() {
@@ -63,6 +63,5 @@ public class ReadController {
 		return readserivce.seat_useing(vo.getLoginId());
 	}
 	
-=======
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
+
 }

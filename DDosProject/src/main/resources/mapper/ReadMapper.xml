@@ -43,14 +43,10 @@
 	<insert id="insertUsing" parameterType="read">							<!-- 좌석 로그 입력 -->
 		insert into 
 		READINGROOM_HISTORY(READINGROOM_NUM, END_TIME, MEMBER_ID, SEAT_NUM, START_TIME)
-<<<<<<< HEAD
 					 values(READING_SEQ.NEXTVAL, sysdate+1/24, #{loginId}, #{selectSeat}, sysdate)
-=======
-					 values(READING_SEQ.NEXTVAL, sysdate+3/24, 'a', #{selectSeat}, sysdate)
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 	</insert>
 	
-<<<<<<< HEAD
+
 	<insert id="timecheck" statementType="CALLABLE">		<!-- 프로시저는 insert,update, delete 사용 가능 -->
 		{call P_readingroom_timeck()}	
 	</insert>
@@ -62,6 +58,5 @@
 		and MEMBER_ID = #{value}
 	</select>
 	
-=======
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
+
 </mapper>

@@ -65,44 +65,22 @@ public class UserController {
 			return "no/login/Login";
 		}else {
 			session.setAttribute("login", uservo);
-			return "no/login/Home";
+			
+			if(uservo.getId().equals("admin@gmail.com")) {
+				return "admin/admin/AdminHome";
+			}
+			else {
+				return "user/UserHome";
+			}
 		}
 	}
 
 	//-------------------------------------------------------------------비번찾기-----------------------------------------------------------
 	
-	// 아이디,비번찾기 폼 불러오기
+	// 비번찾기 폼 불러오기
 	@RequestMapping("/findForm")
 	public String findForm() {
 		return "no/login/FindInfo";
-	}
-	
-	
-	//아이디 찾기 처리
-	@RequestMapping("findId")
-	public String findId(@ModelAttribute("fid") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		//UserVO 를 jsp에서 user로 사용
-		//id 단건 조회
-		
-		UserVO uservo = userService.findId(vo);
-		
-		System.out.println(vo);
-		System.out.println(uservo);
-	       
-		response.setContentType("text/html; charset=UTF-8");
-	       PrintWriter out = response.getWriter();
-		
-		//해당 아이디가 존재 할 경우 password 비교
-		if(uservo == null) {		//id가 없는 경우
-			
-	           out.println("<script>alert('회원 정보가 존재하지 않습니다. 회원 가입을 해주세요.');</script>");
-	           out.flush();
-			
-			return "no/login/Login";
-		}else {
-			out.println("<script>alert("+"'"+ uservo.getId() + "'" +");</script>");
-			out.flush();
-			return "no/login/Login";
-		}
 	}
 	
 	//비밀번호찾기 처리
@@ -134,16 +112,23 @@ public class UserController {
 	
 	//-------------------------------------------------------------------회원가입-----------------------------------------------------------
 	
+		
+	//회원가입 폼 불러오기
+	@RequestMapping("/joinForm")
+	public String joinForm() {
+		return "no/login/SignUp";
+	}
+	
 	//id check
 	@RequestMapping(value = "checkId", method = { RequestMethod.GET, RequestMethod.POST})
-    public @ResponseBody String idCheck(UserVO vo) {
+    public @ResponseBody int idCheck(UserVO vo) {
 		
 		if(vo.getId().equals("")) {
-			return "2";
+			return 2;
 		}
 		
 		else {
-			return new String(new Integer(userService.checkId(vo)).toString());
+			return userService.checkId(vo);
 		}
     }
 
@@ -154,15 +139,6 @@ public class UserController {
 			userService.insertUser(vo);					//등록 처리
 			return "no/login/Login";					
 		}
-		
-		//-------------------------------------------------------------------메인페이지 넘어가기-----------------------------------------------------------
-			
-		
-		// 로그인 폼 불러오기
-		@RequestMapping("mainForm")
-		public String mainForm() {
-			
-			return "admin/adminHome";
-		}
+
 	
 }

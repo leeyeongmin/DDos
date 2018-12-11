@@ -7,7 +7,7 @@
 	<select id="getNoticeList" resultType="notice">
 		SELECT * FROM NOTICE
 		<where>
-		<if test="searchCondition != null and searchCondition == 'noticeTitle'">
+		<if test="searchType != null and searchType == 'noticeTitle'">
 			and noticeTitle like '%' || @{searchKeyword} || '%'
 		</if>
 		</where>
@@ -25,6 +25,14 @@
 		WHERE NOTICE_NUM = #{noticeNum}
 	</select>
 
+	<!-- 조회수 증가 -->
+	<update id="increaseCnt">
+		UPDATE NOTICE SET
+			NOTICE_CNT = NOTICE_CNT+1
+		WHERE
+			NOTICE_NUM = #{noticeNum}
+	</update>
+	
 	<!-- 등록 -->
 	<insert id="insertNotice" parameterType="notice">
 		<selectKey keyProperty="noticeNum" resultType="integer" order="BEFORE">

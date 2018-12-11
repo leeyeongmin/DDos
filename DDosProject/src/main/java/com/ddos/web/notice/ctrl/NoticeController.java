@@ -46,9 +46,11 @@ public class NoticeController {
 		return "redirect:getNoticeList";	// 목록 요청
 	}
 	
+	
 	// 단건 조회
 	@RequestMapping("getNotice")
 	public String getNotice(Model model, NoticeVO vo) {
+		noticeService.increaseCnt(vo);
 		model.addAttribute("notice", noticeService.getNotice(vo));
 		return "notice/getNotice";
 	}

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>getNoticeList.jsp</title>
+<title>getSuggestionList.jsp</title>
 <script>
 	function check(){
 		if(document.search.searchKeyword.value == "") {
@@ -24,16 +24,16 @@
 	<c:if test="${not empty sessionScope.login}">
 		${sessionScope.login.id} 님<a href="Logout">로그아웃</a>
 	</c:if> 
-	<h3>공지사항</h3>
+	<h3>건의사항</h3>
  	<form action="search" name="search" method="post">
 		<select name="searchType">
-			<option value="noticeTitle"<c:if test="${'noticeTitle' == searchType}"> selected </c:if>>제목</option>
+			<option value="sugTitle"<c:if test="${'sugTitle' == searchType}"> selected </c:if>>제목</option>
 		</select>
 		<input type="text" name="searchKeyword" value="${searchKeyword}">
 		<input type="button" value="검색" onclick="click()">
 	</form>
 	
-	<form action="getNoticeList">
+	<form action="getSuggestionList">
 		<table border="1">
 			<tr>
 				<td>번호</td>
@@ -42,17 +42,17 @@
 				<td>작성일</td>
 				<td>조회수</td>
 			</tr>
-			<c:forEach items="${noticeList}" var="notice">
+			<c:forEach items="${suggestionList}" var="suggestion">
 				<tr>
-					<td>${notice.noticeNum}</td>
-					<td><a href="./getNotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle}</a></td>
-					<td>${notice.noticeCont}</td>
-					<td>${notice.noticeDate}</td>
-					<td>${notice.noticeCnt}</td>
+					<td>${suggestion.sugNum}</td>
+					<td><a href="./getSuggestion?sugNum=${suggestion.sugNum}">${suggestion.sugTitle}</a></td>
+					<td>${suggestion.sugCont}</td>
+					<td>${suggestion.sugDate}</td>
+					<td>${suggestion.sugCnt}</td>
 				</tr>
 			</c:forEach>
 		</table>
 	</form>
-	<a href="./insertNoticeform">등록</a>
+	<a href="./insertSuggestionform">등록</a>
 </body>
 </html>

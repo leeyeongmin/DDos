@@ -13,6 +13,7 @@
 등록일: ${notice.noticeDate} <br>
 조회수: ${notice.noticeCnt} <br>
 내용: ${notice.noticeCont} <br><hr>
+<a href="getNoticeList">목록</a>
 <a href="./updateNoticeform?noticeNum=${notice.noticeNum}">수정</a>  
 <a href="./deleteNotice?noticeNum=${notice.noticeNum}">삭제</a>
 </body>

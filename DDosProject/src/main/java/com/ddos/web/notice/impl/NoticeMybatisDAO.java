@@ -31,6 +31,12 @@ public class NoticeMybatisDAO {
 		mybatis.delete("notice.deleteNotice", vo);
 	}
 	
+	// 조회수 증가
+	public void increaseCnt(NoticeVO vo) {
+		System.out.println("my batis increaseCnt() 기능 처리");
+		mybatis.update("notice.increaseCnt", vo);
+	}
+	
 	// 단건 조회
 	public NoticeVO getNotice(NoticeVO vo) {
 		System.out.println("my batis spring jdbc 단건 조회");

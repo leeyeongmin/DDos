@@ -45,9 +45,14 @@
 		});
 	}
 	
+<<<<<<< HEAD
 	function insertSeat(seat){
 		login_id = $('input:hidden[name="login_name"]').val();
 		location.href="updateSeat?selectSeat="+seat+"&room="+$("#roomNum").text()+"&loginId="+login_id;
+=======
+	window.onload=function(){			//로딩 될 때 실행 
+		alert("ss");// 시간타임 체크 
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 	}
 	
 /* 	window.onload=function(){			//로딩 될 때 실행 

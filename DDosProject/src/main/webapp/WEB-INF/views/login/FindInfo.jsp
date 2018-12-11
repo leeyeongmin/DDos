@@ -1,92 +1,70 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+ 
 <head>
-<title>Aerial by HTML5 UP</title>
-<meta charset="utf-8" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/libs/css/style.css">
+    <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
 
-<jsp:include page="homeIndex.jsp" flush="false" />
-
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="assets/css/login.css" />
-
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .bgimg{
+    background-image: url("assets/images/intro.png");
+    min-height:100%;
+    background-position: center;
+    background-size: cover;
+    }
+    </style>
 </head>
-<body>
-	<section class="container login-bg">
-		<article>
-			<h1 style="margin-top: 5%;">Find Information</h1>
-			<div class="tabs">
-				<span class="tab signin active"><a href="#signin">Find Id</a></span>
-				<span class="tab signup"><a href="#signup">Find Password</a></span>
-			</div>
-			<div class="content">
-				<div class="signin-cont cont">
-					<form class="loginform" action="findId"
-						enctype="multipart/form-data">
-						
-						<input type="text" name="name" id="name" class="inpt"
-							required="required" placeholder="Your name" style="color:black;" value="${user.name }"> 
-							
-						<input type="text" name="phone" id="phone" class="inpt"
-							required="required" placeholder="Your phone" style="color:black;"  value="${user.phone }">
-						
-						<div class="submit-wrap">
-							<input type="submit" value="Find Id" class="submit"> 
-						</div>
-					</form>
-					<input onClick="location.href='loginForm'" type="button" value="Back" class="submit2">
-				</div>
-				<div class="signup-cont cont">
-					<form class="loginform" action="findPwd" enctype="multipart/form-data">
-					
-						<input type="email" name="id" id="email" class="inpt"
-							required="required" placeholder="Your email"  style="color:black;" value="${user.id }"/>
-							
-						<input type="text" name="name" id="name" class="inpt"
-							required="required" placeholder="Your name" style="color:black;" value="${user.name }"> 
-							
-						<input type="text" name="phone" id="phone" class="inpt"
-							required="required" placeholder="Your phone" style="color:black;"  value="${user.phone }">
-							
-						<div class="submit-wrap">
-							<input type="submit" value="Find Password" class="submit">
-							<input onClick="location.href='loginForm'"  type="button" value="Back" class="submit2">
-						</div>
-					</form>
-				</div>
-			</div>
-		</article>
-	</section>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript">
-		$('.tabs .tab').click(function() {
-			if ($(this).hasClass('signin')) {
-				$('.tabs .tab').removeClass('active');
-				$(this).addClass('active');
-				$('.cont').hide();
-				$('.signin-cont').show();
-			}
-			if ($(this).hasClass('signup')) {
-				$('.tabs .tab').removeClass('active');
-				$(this).addClass('active');
-				$('.cont').hide();
-				$('.signup-cont').show();
-			}
-		});
-		$('.container .bg').mousemove(
-				function(e) {
-					var amountMovedX = (e.pageX * -1 / 30);
-					var amountMovedY = (e.pageY * -1 / 9);
-					$(this).css('background-position',
-							amountMovedX + 'px ' + amountMovedY + 'px');
-				});
-	</script>
-
+<body class="bgimg">
+    <!-- ============================================================== -->
+    <!-- forgot password  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card">
+            <div class="card-header text-center"><img class="logo-img" src="assets/images/logo.png" alt="logo"><span class="splash-description">Please enter your user information.</span></div>
+            <div class="card-body">
+                <form action="findPwd">
+                    <p>Don't worry, we'll send you an email to reset your password.</p>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" type="email" name="id" required="" placeholder="Your Email" value="${user.id }" }>
+                    </div>
+                    <div class="form-group pt-1"><button type="submit" class="btn-primary btn-lg btn-block">reset Password</button></div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <span>Don't have an account? <a href="joinForm">Sign Up</a></span>
+             </div class="card-footer text-center">
+             <div>
+                <span>Do you want to sign in? <a href="joinForm">Sign In</a></span>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end forgot password  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 </body>
 
-
+ 
 </html>

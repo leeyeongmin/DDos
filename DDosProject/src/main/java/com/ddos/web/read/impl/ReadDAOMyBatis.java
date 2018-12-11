@@ -31,6 +31,7 @@ public class ReadDAOMyBatis {
 		mybatis.update("read.updateSeat",vo);			//좌석 사용중 변경
 		mybatis.update("read.insertUsing",vo);			//history 추가
 	}
+<<<<<<< HEAD
 	
 	public void timecheck() {
 		mybatis.update("read.timecheck");
@@ -39,4 +40,6 @@ public class ReadDAOMyBatis {
 	public String useing_seat(String login_id) {
 		return mybatis.selectOne("read.seat_useing", login_id);
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 }

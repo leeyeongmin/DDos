@@ -3,18 +3,25 @@
 2.1//EN"
 "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-	<definition name="mainTemplate" template="/WEB-INF/views/tiles/mainlayout.jsp">
+	<definition name="adminTemplate" template="/WEB-INF/views/tiles/adminLayout.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/tiles/content.jsp" />
+	</definition>
+	<definition name="userTemplate" template="/WEB-INF/views/tiles/userLayout.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/tiles/content.jsp" />
 	</definition>
 	
-	<definition name="intro" template="/WEB-INF/views/login/intro.jsp">
+	<definition name="home" template="/WEB-INF/views/home.jsp">
 	</definition>
 	
 	<definition name="no/*/*" template="/WEB-INF/views/tiles/nolayout.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	
-	<definition name="*/*" extends="mainTemplate">
+	<definition name="admin/*/*" extends="adminTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	
+	<definition name="*/*" extends="adminTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 <!-- 	<definition name="*/*/*" extends="mainTemplate">

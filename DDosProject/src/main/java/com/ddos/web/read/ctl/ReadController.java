@@ -18,7 +18,6 @@ public class ReadController {
 	
 	@RequestMapping("read")			//메인에서 화면 변경 
 	public String read() {
-		System.out.println("sssss");
 		return "user/ReadChoose";
 	}
 	
@@ -40,17 +39,18 @@ public class ReadController {
 		return "user/ReadSelect";
 	}
 	
-	@RequestMapping(value = "overlap", method = { RequestMethod.POST})		//중복 체크
+	@RequestMapping(value = "overlap", method = { RequestMethod.POST})
 	@ResponseBody
 	public ReadVO overlap(ReadVO vo) {
 		return readserivce.overlap(vo);
 	}
 	
-	@RequestMapping("updateSeat")							//자리 사용으로 변환
+	@RequestMapping("updateSeat")
 	public String updateSeat(ReadVO vo) {
 		readserivce.updateSeat(vo);
 		return "redirect:getRoom?room="+vo.getRoom();
 	}
+<<<<<<< HEAD
 	
 /*	@RequestMapping("timecheck")
 	public void timecheck() {
@@ -63,4 +63,6 @@ public class ReadController {
 		return readserivce.seat_useing(vo.getLoginId());
 	}
 	
+=======
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 }

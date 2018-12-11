@@ -1655,14 +1655,14 @@ Left Navigation Sidebar
     align-items: center;
 }
 
-.nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
+ .nav-left-sidebar .nav-link[data-toggle="collapse"]::after {
     display: inline-block;
     width: 0;
     height: 0;
     position: absolute;
-    right: 20px;
+    /* right: 20px; */
     vertical-align: 0.255em;
-    content: "";
+    /* content: ""; */
     border-top: 0.3em solid;
     border-right: 0.3em solid transparent;
     border-bottom: 0;
@@ -1717,7 +1717,7 @@ Left Navigation Sidebar
     padding-left: 12px;
     padding-right: 12px;
     /* margin-top: 5px; */
-    background: #24274a;
+    background: #003973;
 }
 
 .nav-left-sidebar .submenu .nav .nav-item .nav-link {
@@ -1805,7 +1805,7 @@ Leftsidebar - dark
 ------------------------- */
 
 .sidebar-dark {
-    background-color: #0e0c28;
+    background-color: #003973;
     -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
     box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.13);
     -webkit-transition: all 0.3s ease;
@@ -1830,13 +1830,13 @@ Leftsidebar - dark
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:hover {
     color: #fff;
-    background-color: #242849;
+    background-color: #ffd452;
     border-radius: 2px;
 }
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link.active {
-    background-color: #242849;
+    background-color: #003973;
     color: #fff;
     border-radius: 2px;
 }
@@ -1844,7 +1844,7 @@ Leftsidebar - dark
 .sidebar-dark.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover {
     color: #fff;
     border-radius: 2px;
-    background-color: #242849;
+    background-color: #003973;
 }
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-item .badge{
@@ -2187,7 +2187,7 @@ Pageheader
 .influence-finder {}
 
 .influence-finder .user-social-media {
-    padding: 16px 68px;
+    padding: 16px 60px;
     text-align: center;
     border-right: 1px solid #e6e6f2;
 }

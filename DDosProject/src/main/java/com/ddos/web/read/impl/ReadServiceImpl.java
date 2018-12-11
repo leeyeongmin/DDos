@@ -39,6 +39,7 @@ public class ReadServiceImpl implements ReadService{
 	}
 
 
+<<<<<<< HEAD
 	@Override
 	public void timecheck() {						//좌석 시간 체크
 		dao.timecheck();
@@ -52,4 +53,6 @@ public class ReadServiceImpl implements ReadService{
 	}
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 }

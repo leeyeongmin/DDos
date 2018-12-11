@@ -52,9 +52,15 @@ public class ReadController {
 		return "redirect:getRoom?room="+vo.getRoom();
 	}
 	
-	@RequestMapping("timecheck")
+/*	@RequestMapping("timecheck")
 	public void timecheck() {
-		
+		readserivce.timecheck();
+	}*/
+	
+	@RequestMapping("useing_seat")
+	@ResponseBody
+	public String useing_seat(ReadVO vo) {			//로그인 후 자리 확인
+		return readserivce.seat_useing(vo.getLoginId());
 	}
 	
 }

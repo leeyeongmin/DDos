@@ -41,8 +41,14 @@ public class ReadServiceImpl implements ReadService{
 
 	@Override
 	public void timecheck() {						//좌석 시간 체크
+		dao.timecheck();
 		
-		
+	}
+
+
+	@Override
+	public String seat_useing(String login_id) {
+		return dao.useing_seat(login_id);
 	}
 
 

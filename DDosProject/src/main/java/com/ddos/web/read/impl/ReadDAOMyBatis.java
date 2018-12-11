@@ -33,6 +33,10 @@ public class ReadDAOMyBatis {
 	}
 	
 	public void timecheck() {
-		
+		mybatis.update("read.timecheck");
+	}
+	
+	public String useing_seat(String login_id) {
+		return mybatis.selectOne("read.seat_useing", login_id);
 	}
 }

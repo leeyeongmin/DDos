@@ -26,18 +26,35 @@
 				})
 			}
 		})
+		useing_seat("${login.id}");
 	});		//$()
 	
 	
-	function insertSeat(seat){
-		location.href="updateSeat?selectSeat="+seat+"&room="+$("#roomNum").text();
+	function useing_seat(id){
+		$.ajax({
+			type : "post",
+			url : "useing_seat?loginId="+id,
+			success:function(result){
+				//$("[name="+result+"]").
+				alert(result);
+				if(result != null){
+					alert($(".seat").length)
+				}
+				
+			}
+		});
 	}
 	
-	window.onload=function(){			//로딩 될 때 실행 
-		alert("ss");// 시간타임 체크
-		//location.href="timecheck";
-		
+	function insertSeat(seat){
+		login_id = $('input:hidden[name="login_name"]').val();
+		location.href="updateSeat?selectSeat="+seat+"&room="+$("#roomNum").text()+"&loginId="+login_id;
 	}
+	
+/* 	window.onload=function(){			//로딩 될 때 실행 
+		alert("ss");// 시간타임 체크
+		location.href="timecheck";
+		
+	} */
 
 </script>
 <style type="text/css">
@@ -50,10 +67,10 @@
 	<% int set = 1; %>
 	<div align="center">
 	<span id="roomNum" class="roomstyle">${readVO.room}</span><span class="roomstyle">열람실</span>
-	   
+	<input type="hidden" value="${login.id}" name="login_name"> 
 		<table border="1">
+			
 			<c:forEach items="${setList}" var="setlist" varStatus="status">
-				
 		 		<c:if test="${status.index mod 7 == 0}">
 						<tr>
 				</c:if>

@@ -43,11 +43,18 @@
 	<insert id="insertUsing" parameterType="read">							<!-- 좌석 로그 입력 -->
 		insert into 
 		READINGROOM_HISTORY(READINGROOM_NUM, END_TIME, MEMBER_ID, SEAT_NUM, START_TIME)
-					 values(READING_SEQ.NEXTVAL, sysdate+1/24, 'a', #{selectSeat}, sysdate)
+					 values(READING_SEQ.NEXTVAL, sysdate+1/24, #{loginId}, #{selectSeat}, sysdate)
 	</insert>
 	
-	<update id="timeck">
-		UPDATE READINGROOM
-	</update>
+	<insert id="timecheck" statementType="CALLABLE">		<!-- 프로시저는 insert,update, delete 사용 가능 -->
+		{call P_readingroom_timeck()}	
+	</insert>
+	
+	<select id="seat_useing" parameterType="string" resultType="string">
+		select SEAT_NUM
+		from READINGROOM_HISTORY
+		where to_char(end_time,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+		and MEMBER_ID = #{value}
+	</select>
 	
 </mapper>

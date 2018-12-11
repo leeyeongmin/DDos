@@ -7,8 +7,15 @@ public class ReadVO {
 	private String room;		//열람실 선택 
 	private String[] seat;		//저장 할 좌석 		
 	private String selectSeat;	//선택 좌석
-	
-	
+	private String loginId;		//로그인ID 이름
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
 
 	public String getSelectSeat() {
 		return selectSeat;

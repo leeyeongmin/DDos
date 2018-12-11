@@ -177,14 +177,14 @@
 							<li class="nav-divider">Function</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="statisticsForm">
+								<a class="nav-link" href="book">
 									<i class="fas fa-fw fa-chart-pie"></i>
-									Statistics
+									Book
 								</a>
 							</li>
 							
 							<li class="nav-item ">
-								<a class="nav-link" href="#">
+								<a class="nav-link" href="read">
 									<i class="fab fa-fw fa-wpforms"></i>
 									Seat Setting
 								</a>
@@ -193,7 +193,7 @@
 							<li class="nav-item">
 								<a class="nav-link" href="#">
 									<i class="fas fa-fw fa-file"></i> 
-									Notice
+									Study & Study Room
 								</a>
 							</li>
 							

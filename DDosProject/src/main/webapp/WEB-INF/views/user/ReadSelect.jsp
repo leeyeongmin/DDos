@@ -38,7 +38,13 @@
 				//$("[name="+result+"]").
 				alert(result);
 				if(result != null){
-					$("[name="+result+"]")
+					for(i=0; i<$(".seat"); i++){
+						if($(".seat").eq(i).attr("name") == result){
+							alert($(".seat").eq(i));
+						}else{
+							
+						}
+					}
 				}
 				
 			}

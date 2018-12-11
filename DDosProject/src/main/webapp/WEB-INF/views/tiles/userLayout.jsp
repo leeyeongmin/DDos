@@ -198,6 +198,20 @@
 							</li>
 							
 							<li class="nav-item">
+								<a class="nav-link" href="getNoticeList">
+									<i class="fas fa-fw fa-columns"></i>
+									Notice
+								</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="getSuggestionList">
+									<i class="fas fa-fw fa-columns"></i>
+									Suggestion
+								</a>
+							</li>
+							
+							<li class="nav-item">
 								<a class="nav-link" href="#">
 									<i class="fas fa-fw fa-columns"></i>
 									Events

@@ -9,14 +9,14 @@
 		
 	<!-- Alias 설정 -->
 	<typeAliases>
-		<typeAlias alias="user" type="com.ddos.web.login.UserVO" />	
+		<typeAlias alias="user" type="com.ddos.web.user.UserVO" />	
 		<typeAlias alias="read" type="com.ddos.web.read.ReadVO" />
 		<typeAlias alias="book" type="com.ddos.web.book.BookVO" />
 		<typeAlias alias="notice" type="com.ddos.web.notice.NoticeVO" />
 		<typeAlias alias="userread" type="com.ddos.web.read.UserReadVO"/>
 		<typeAlias alias="study" type="com.ddos.web.study.StudyVO"/>
 		<typeAlias alias="suggestion" type="com.ddos.web.suggestion.SuggestionVO"/>
-		<typeAlias alias="studymember" type="com.ddos.web.study.StudyMemberVO"/>			  
+		<typeAlias alias="studymember" type="com.ddos.web.study.StudyMemberVO"/>		  
 	</typeAliases>
 	
 </configuration>

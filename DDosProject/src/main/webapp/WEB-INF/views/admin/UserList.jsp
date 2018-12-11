@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h3 class="mb-2">Influencer Finder </h3>
+                                <h3 class="mb-2">User List </h3>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
@@ -79,20 +79,24 @@
                                                         <div class="user-avatar-name d-inline-block">
                                                             <h2 class="font-24 m-b-10">Henry Barbara</h2>
                                                         </div>
-                                                        <div class="rating-star d-inline-block pl-xl-2 mb-2 mb-xl-0">
-                                                            <i class="fa fa-fw fa-star"></i>
-                                                            <i class="fa fa-fw fa-star"></i>
-                                                            <i class="fa fa-fw fa-star"></i>
-                                                            <i class="fa fa-fw fa-star"></i>
-                                                            <i class="fa fa-fw fa-star"></i>
-                                                        </div>
                                                     </div>
                                                     <div class="user-avatar-address">
-                                                        <p class="mb-2"><i class="fa fa-map-marker-alt mr-2  text-primary"></i>Salt Lake City, UT <span class="m-l-10">Male<span class="m-l-20">29 Year Old</span></span>
+                                                        <p class="mb-2">
+                                                        	<i class="fa fa-map-marker-alt mr-2  text-primary"></i>
+                                                        	Salt Lake City, UT 
+                                                        	<span class="m-l-10">
+                                                        		Male
+                                                        		<span class="m-l-20">
+                                                        			29 Year Old
+                                                        		</span>
+                                                        	</span>
                                                         </p>
-                                                        <div class="mt-3">
-                                                            <a href="#" class="mr-1 badge badge-light">Fitness</a><a href="#" class="mr-1 badge badge-light">Life Style</a><a href="#" class="mr-1 badge badge-light">Gym</a><a href="#" class="badge badge-light">Crossfit</a>
-                                                        </div>
+                                                      <div class="mt-3">
+                                                      	<a href="#" class="mr-1 badge badge-light">Fitness</a>
+                                                      	<a href="#" class="mr-1 badge badge-light">Life Style</a>
+                                                      	<a href="#" class="mr-1 badge badge-light">Gym</a>
+                                                      	<a href="#" class="badge badge-light">Crossfit</a>
+                                                      </div>
                                                     </div>
                                                 </div>
                                             </div>

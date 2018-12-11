@@ -9,4 +9,5 @@ public interface StudyService {
 	public void deleteStudyList(StudyVO vo);
 	public StudyVO getStudy(StudyVO vo);
 	public List<StudyVO> getStudyList(StudyVO vo);
+	public void insertStudyMember(StudyMemberVO vo);
 }

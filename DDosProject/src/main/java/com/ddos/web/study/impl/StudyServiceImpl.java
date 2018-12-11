@@ -1,9 +1,11 @@
 package com.ddos.web.study.impl;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ddos.web.study.StudyMemberVO;
 import com.ddos.web.study.StudyService;
 import com.ddos.web.study.StudyVO;
 
@@ -38,7 +40,7 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public StudyVO getStudy(StudyVO vo) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getStudy(vo);
 	}
 
 	@Override
@@ -46,4 +48,11 @@ public class StudyServiceImpl implements StudyService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void insertStudyMember(StudyMemberVO vo) {
+		// TODO Auto-generated method stub
+		dao.insertStudyMember(vo);
+	}
+
 }

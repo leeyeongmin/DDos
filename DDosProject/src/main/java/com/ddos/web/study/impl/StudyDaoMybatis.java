@@ -1,9 +1,11 @@
 package com.ddos.web.study.impl;
 
 import org.mybatis.spring.SqlSessionTemplate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ddos.web.study.StudyMemberVO;
 import com.ddos.web.study.StudyVO;
 
 @Repository
@@ -17,4 +19,13 @@ public class StudyDaoMybatis {
 			mybatis.update("study.insertStudy",vo);
 		}
 		
+		public void insertStudyMember(StudyMemberVO vo) {
+			System.out.println("mybatis insertStudyMember() 기능 처리");
+			mybatis.update("study.insertStudyMember",vo);
+		}
+		
+		public StudyVO getStudy(StudyVO vo) {
+			System.out.println("mybatis getStudy() 기능처리");
+			return mybatis.selectOne("study.getStudy",vo);
+		}
 }

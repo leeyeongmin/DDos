@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="study">
+
+
+
+	<!-- 스터디 -->
+	<insert id="insertStudy" parameterType="study">
+	INSERT INTO STUDY(
+	STUDY_NUM,
+	STUDY_NAME,
+	STUDY_SUBJECT,
+	STUDY_TIME,
+	STUDY_DATE,
+	RECRUIT_END,
+	RECRUIT_PERSON,
+	STATUS,
+	STUDYROOM_NUM,
+	MEMBER_ID)
+	
+	VALUES(
+		SELECT NVL(MAX(STUDY_NUM),0)+1 FROM STUDY,
+		#{studyNum},
+		#{studyName},
+		#{studySubject},
+		#{studyTime},
+		sysdate,
+		#{recruitEnd},
+		#{recruitPerson},
+		#{status},
+		#{studyroomNumber},
+		#{memberId}
+	)	
+	</insert>
+	
+	<!-- 스터디멤버 -->
+	 <insert id="insertStudyMember" parameterType="studymember">
+	INSERT INTO STUDY_MEMBER(
+	STUDYROOM_NUM,
+	MEMBER_ID)
+	
+	VALUES(
+		#{studyNum},
+		#{memberId}
+	)
+	</insert>
+	
+	<select id="getStudy" parameterType="study" resultType="study">
+		SELECT *
+		FROM STUDY
+		WHERE STUDY_NAME=#{study_name}
+	</select> 
+	
+</mapper> 

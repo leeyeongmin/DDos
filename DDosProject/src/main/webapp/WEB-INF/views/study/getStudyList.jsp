@@ -128,7 +128,10 @@
 
 			<td>
 			<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+2%>&day=<%=k%>">
-				<%=k%></a><FONT color="blue" SIZE=2><%=prevStudy[k] %></FONT><br>
+				<%=k%></a>
+				<FONT color="blue" SIZE=2>
+				<a href="./getStudy?studyName=<%=prevStudy[k] %>"><%=prevStudy[k] %></a>
+				</FONT><br>
 				</td>
 			<%
 				}
@@ -140,7 +143,10 @@
 
 			<td>
 				<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+2%>&day=<%=j%>">
-				<%=j%></a><FONT color="blue" SIZE=2> <%=curStudy[j] %> </FONT><br>
+				<%=j%></a>
+				<FONT color="blue" SIZE=2>
+				<a href="./getStudy?studyName=<%=curStudy[j] %> "><%=curStudy[j] %> </a>
+				 </FONT><br>
 				<% 	if ((yo + j - 1) % 7 == 0) { if(j==last_day){continue;}%>
 			</td>
 		</tr>
@@ -162,7 +168,9 @@
 		
 			<td>			
 			<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+2%>&day=<%=e%>"><%=e%></a>
-			<FONT color="blue" SIZE=2> <%=nextStudy[e] %></FONT></td>
+			<FONT color="blue" SIZE=2> 
+			<a href="./getStudy?studyName=<%=nextStudy[e] %>"><%=nextStudy[e] %> </a>
+				</FONT></td>
 
 			<%
 				}

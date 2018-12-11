@@ -7,7 +7,7 @@ public class NoticeVO {
 	private String noticeCont;
 	private String memberId;
 	private int noticeCnt;
-	private String searchCondition;
+	private String searchType;
 	private String searchKeyword;
 
 	public int getNoticeNum() {
@@ -58,12 +58,12 @@ public class NoticeVO {
 		this.noticeCnt = noticeCnt;
 	}
 
-	public String getSearchCondition() {
-		return searchCondition;
+	public String getSearchType() {
+		return searchType;
 	}
 
-	public void setSearchCondition(String searchCondition) {
-		this.searchCondition = searchCondition;
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
 	}
 
 	public String getSearchKeyword() {
@@ -77,7 +77,7 @@ public class NoticeVO {
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeNum=" + noticeNum + ", noticeTitle=" + noticeTitle + ", noticeDate=" + noticeDate
-				+ ", noticeCont=" + noticeCont + ", memberId=" + memberId + ", noticeCnt=" + noticeCnt
-				+ ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + "]";
+				+ ", noticeCont=" + noticeCont + ", memberId=" + memberId + ", noticeCnt=" + noticeCnt + ", searchType="
+				+ searchType + ", searchKeyword=" + searchKeyword + "]";
 	}
 }

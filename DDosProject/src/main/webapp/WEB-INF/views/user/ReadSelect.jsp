@@ -34,9 +34,7 @@
 	}
 	
 	window.onload=function(){			//로딩 될 때 실행 
-		alert("ss");// 시간타임 체크
-		//location.href="timecheck";
-		
+		alert("ss");// 시간타임 체크 
 	}
 
 </script>

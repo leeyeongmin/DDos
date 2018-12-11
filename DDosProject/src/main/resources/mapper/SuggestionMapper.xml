@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="suggestion">
+
+	<!--  전체 조회  -->
+	<select id="getSuggestionList" resultType="suggestion">
+		SELECT * FROM SUGGESTION	
+		<where>
+		<if test="searchType != null and searchType == 'sugTitle'">
+			and sugTitle like '%' || @{searchKeyword} || '%'
+		</if>
+		</where>
+		ORDER BY SUG_NUM DESC
+	</select>
+	
+	<!--  단건 조회  -->
+	<select id="getSuggestion" resultType="suggestion">
+		SELECT SUG_NUM,
+				SUG_TITLE,
+				SUG_DATE,
+				SUG_CONT,
+				SUG_CNT
+		FROM SUGGESTION
+		WHERE SUG_NUM = #{sugNum}
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="increaseCnt">
+		UPDATE SUGGESTION SET
+			SUG_CNT = SUG_CNT+1
+		WHERE
+			SUG_NUM = #{sugNum}
+	</update>
+	
+	<!-- 등록 -->
+	<insert id="insertSuggestion" parameterType="suggestion">
+		<selectKey keyProperty="sugNum" resultType="integer" order="BEFORE">
+			SELECT MAX(SUG_NUM)+1 FROM SUGGESTION
+		</selectKey>
+		INSERT INTO SUGGESTION (
+				SUG_NUM,
+				SUG_TITLE,
+				SUG_CONT,
+				MEMBER_ID,
+				SUG_DATE,
+				SUG_CNT)
+			VALUES (
+				#{sugNum},
+				#{sugTitle},
+				#{sugCont},
+				#{memberId},
+				sysdate,
+				0	
+			)
+	</insert>
+
+	<!-- 수정 -->
+	<update id="updateSuggestion" parameterType="suggestion">
+		UPDATE SUGGESTION SET
+				SUG_TITLE = #{sugTitle},
+				SUG_CONT = #{sugCont}
+		WHERE SUG_NUM = #{sugNum}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteSuggestion" parameterType="suggestion">
+		DELETE SUGGESTION
+		WHERE SUG_NUM = #{sugNum}
+	</delete>
+</mapper> 

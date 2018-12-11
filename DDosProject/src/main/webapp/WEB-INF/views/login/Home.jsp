@@ -34,7 +34,6 @@
 								<a class="cbtn" href="main_index.html"><img class="pen" src="assets/css/images/suggest.png"/></a><!-- 건의사항 -->
 								<a class="cbtn" href="getNoticeList"><img class="pen" src="assets/css/images/notice.png"/></a><!-- 공지사항 -->
 								<a class="cbtn" href="mainForm"><img class="pen" src="assets/css/images/messenger.png"/></a><!-- 메신저 -->
-
 						</nav>
 					</header>
 

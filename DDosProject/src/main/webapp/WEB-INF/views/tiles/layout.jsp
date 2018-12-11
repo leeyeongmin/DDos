@@ -33,7 +33,6 @@
 <link href="assets/css/resume.min.css" rel="stylesheet">
 
 <script src="assets/js/jquery.min.js"></script>
-
 <script type="text/javascript">
 	// html dom ì´ ë¤ ë¡ë©ë í ì¤íëë¤.
 	$(document).ready(function() {

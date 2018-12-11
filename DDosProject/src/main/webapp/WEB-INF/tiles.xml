@@ -3,11 +3,11 @@
 2.1//EN"
 "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-	<definition name="mainTemplate" template="/WEB-INF/views/tiles/mainlayout.jsp">
+	<definition name="mainTemplate" template="/WEB-INF/views/tiles/layout.jsp">
 		<put-attribute name="content" value="/WEB-INF/views/tiles/content.jsp" />
 	</definition>
 	
-	<definition name="intro" template="/WEB-INF/views/login/intro.jsp">
+	<definition name="home" template="/WEB-INF/views/home.jsp">
 	</definition>
 	
 	<definition name="no/*/*" template="/WEB-INF/views/tiles/nolayout.jsp">

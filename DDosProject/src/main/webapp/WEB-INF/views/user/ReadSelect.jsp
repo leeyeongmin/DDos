@@ -38,7 +38,7 @@
 				//$("[name="+result+"]").
 				alert(result);
 				if(result != null){
-					alert($(".seat").length)
+					$("[name="+result+"]")
 				}
 				
 			}

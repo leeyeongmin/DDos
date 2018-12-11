@@ -21,7 +21,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	
-	<definition name="*/*" extends="adminTemplate">
+	<definition name="*/*" extends="userTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 <!-- 	<definition name="*/*/*" extends="mainTemplate">

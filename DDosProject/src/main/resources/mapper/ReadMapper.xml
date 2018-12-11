@@ -4,9 +4,18 @@
 <mapper namespace="read">
 	<select id="setRoom" resultType="read">		<!-- 열람실 room 선택 -->
 		select SEAT_NUM,
+		to_number(SUBSTR(seat_num,2,2)) as "row",
+		 to_number(SUBSTR(seat_num,4,2)) as "col",
 			   STATUS
 		from READINGROOM
 		where SEAT_NUM like #{room} || '%'
+	</select>
+	
+	
+	<select id="getroomsize" resultType="map">
+		select to_number(max(SUBSTR(seat_num,2,2))) as "row", to_number(max(SUBSTR(seat_num,4,2))) as "col"
+		from readingroom
+		where seat_num like #{room} || '%'
 	</select>
 	
 	<update id="saveSeat" parameterType="read">		<!-- 좌석 저장(관리자) -->

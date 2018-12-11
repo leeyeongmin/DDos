@@ -1,6 +1,7 @@
 package com.ddos.web.read.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,13 @@ public class ReadServiceImpl implements ReadService{
 	@Override
 	public String seat_useing(String login_id) {
 		return dao.useing_seat(login_id);
+	}
+
+
+	@Override
+	public Map<String, String> getroomsize(ReadVO vo) {
+		// TODO Auto-generated method stub
+		return dao.getroomsize(vo);
 	}
 
 

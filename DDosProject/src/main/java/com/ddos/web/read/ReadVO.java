@@ -8,6 +8,25 @@ public class ReadVO {
 	private String[] seat;		//저장 할 좌석 		
 	private String selectSeat;	//선택 좌석
 	private String loginId;		//로그인ID 이름
+	
+	private String col;
+	private String row;
+	
+	public String getCol() {
+		return col;
+	}
+
+	public void setCol(String col) {
+		this.col = col;
+	}
+
+	public String getRow() {
+		return row;
+	}
+
+	public void setRow(String row) {
+		this.row = row;
+	}
 
 	public String getLoginId() {
 		return loginId;
@@ -33,11 +52,11 @@ public class ReadVO {
 		this.seat = seat;
 	}
 
-	public String getSeat_num() {
+	public String getSeatNum() {
 		return seatNum;
 	}
 
-	public void setSeat_num(String seat_num) {
+	public void setSeatNum(String seat_num) {
 		this.seatNum = seat_num;
 	}
 

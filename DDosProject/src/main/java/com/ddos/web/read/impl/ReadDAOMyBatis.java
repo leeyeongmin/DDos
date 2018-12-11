@@ -1,6 +1,7 @@
 package com.ddos.web.read.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,10 @@ public class ReadDAOMyBatis {
 	
 	public String useing_seat(String login_id) {
 		return mybatis.selectOne("read.seat_useing", login_id);
+	}
+	
+	public Map<String, String> getroomsize(ReadVO vo){
+		return mybatis.selectOne("read.getroomsize", vo);
 	}
 
 }

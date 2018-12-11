@@ -36,6 +36,7 @@ public class ReadController {
 	@RequestMapping("getRoom")		//열람실 선택 (유저)
 	public String getRoom(Model model, ReadVO vo) {
 		model.addAttribute("setList", readserivce.setRoom(vo));
+		model.addAttribute("roomsize", readserivce.getroomsize(vo));
 		return "user/ReadSelect";
 	}
 	

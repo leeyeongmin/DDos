@@ -71,7 +71,7 @@ div.card {
 							</form>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getNoticeList" width="100%"
+									<table id="AdmingetNoticeList" width="100%"
 										class="table table-bordered table-hover text-center">
 										<thead>
 											<tr>

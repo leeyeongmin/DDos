@@ -93,7 +93,7 @@ div.card {
 											</c:forEach>
 										</tbody>
 									</table>
-									<!-- <a href="insertNoticeform" class="btn btn-secondary" style="margin-top: 30px">등록</a> -->
+									<a href="insertNoticeform" class="btn btn-secondary" style="margin-top: 30px">등록</a>
 								</div>
 							</div>
 						</div>

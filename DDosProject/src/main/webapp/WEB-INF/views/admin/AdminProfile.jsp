@@ -14,47 +14,6 @@
     <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
     
-   <!--  <script>
-  //사용자 목록 조회 요청
-    function boardList() {
-    	$.ajax({
-    		url:'user/'+id,
-    		type:'GET',		//method
-    		/* contentType:'application/json;charset=utf-8', */ //쓸거면 컨트롤러에 header 등등 써줘야함
-    		dataType:'json',
-    		error:function(xhr,status,msg){
-    			alert("상태값 :" + status + " Http에러메시지 :"+msg);
-    		},
-    		success:adminInfoResult
-    	});
-    }//userList
-
-    //사용자 목록 조회 응답								//로드 되자마자 바로 페이지에 뿌려준다
-    function adminInfoResult(data) {
-    	console.log(data);
-    	$(".adminInfo").empty();
-    	$.each(data,function(idx,item){
-    		$('<div>')
-    		.append($('<div>').html(item.id))
-    		.append($('<div>').html(item.name))
-    		.append($('<div>').html(item.phone))
-    		.append($('<div>').html(item.birth))
-    		.append($('<div>').html(item.expDate))
-    		.append($('<div>').html(item.memSeparation))
-    		.append($('<div>').html(item.outCount))
-    		/* 
-    		.append(item.id)
-    		.append(item.name)
-    		.append(item.phone)
-    		.append(item.birth)
-    		.append(item.expDate)
-    		.append(item.memSeparation)
-    		.append(item.outCount) */
-    		.appendTo('.adminInfo');
-    	});//each
-    }//userListResult
-    </script>
-     -->
 </head>
 
 <body>
@@ -71,13 +30,13 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h3 class="mb-2">Influencer Profile </h3>
+                                <h3 class="mb-2">Admin Profile </h3>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">DDos</a></li>
-                                            <li class="breadcrumb-item"><a href="userListForm" class="breadcrumb-link">Customer List</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Customer Profile</li>
+                                            <li class="breadcrumb-item">User</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Manager Information</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -125,10 +84,13 @@
                                 <div class="card-body border-top">
                                     <h3 class="font-16">Sub Info</h3>
                                     <div class="">
+                                    	<li class="mb-2">Gender&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;${user.gender}</li>
                                         <li class="mb-2">Birth Day&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;${user.birth}</li>
+                                        <li class="mb-2">Address&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;${user.address}</li>
                                     </ul>
                                     </div>
                                 </div>
+                                
                                 
                             </div>
                             <!-- ============================================================== -->

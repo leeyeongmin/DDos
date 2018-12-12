@@ -160,7 +160,6 @@
                                 <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
                                 	<i class="fa fa-fw fa-user-circle"></i>
                                 	User 
-                               		<span class="badge badge-success">6</span>
                                 </a>
                                 <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">

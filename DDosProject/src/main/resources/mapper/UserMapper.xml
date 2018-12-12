@@ -17,15 +17,16 @@
 	
 	<select id="getUserList" resultType="user">
 
-		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT
+		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER
 		FROM MEMBER
+		WHERE MEM_SEPARATION = 'user'
 	</select>
 	
 	
 	<insert id="insertUser" parameterType="user">
 	
-		INSERT INTO MEMBER(ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT) 
-		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, SYSDATE,'user',0)
+		INSERT INTO MEMBER(ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER) 
+		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, ADD_MONTHS(SYSDATE,+12),'user',0, #{address}, #{gender})
 	
 	</insert>
 	

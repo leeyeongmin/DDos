@@ -71,45 +71,62 @@ body {
                     if(extraAddr !== ''){
                         extraAddr = ' (' + extraAddr + ')';
                     }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    /* document.getElementById("sample6_extraAddress").value = extraAddr; */
-                
-                } else {
-                    /* document.getElementById("sample6_extraAddress").value = ''; */
                 }
-
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                /* document.getElementById('sample6_postcode').value = data.zonecode; */
                 document.getElementById("address").value = addr;
             }
         }).open();
     }
-</script>
-<script>
 	//id 중복 체크
 	var idCheck = 0;
-	function checkId() {
-		var inputed = $('.joinform').find('#email');
-		$
-				.ajax({
-					data : {
-						id : inputed.val()
-					},
-					url : "checkId",
-					success : function(data) {
-						if (data == 2) {
-							document.getElementById("checkIdResult").innerHTML = '<img src=""/>'
-						} else if (data == 0) {
-							document.getElementById("checkIdResult").innerHTML = '<img src="" style="margin-left:1%; padding-top:2%; display:inline-block; width:5%; height:7%;"/>';
-						} else {
-							document.getElementById("checkIdResult").innerHTML = '<img src="" style="margin-left:1%; padding-top:2%; display:inline-block; width:5%; height:7%;"/>';
-						}
-					}
-				})
-	}
+    //아이디 체크하여 가입버튼 비활성화, 중복확인.
+    function checkId() {
+        var inputed = $('#email').val();
+        $.ajax({
+            data : {
+                id : inputed
+            },
+            url : "checkId",
+            success : function(data) {
+                if(data=='2') {
+                    $("#email").css("background-color", "transparent");
+                    idCheck = 0;
+                } else if (data == '0') {
+                    $("#email").css("background-color", "#92C2F4");
+                    idCheck = 1;
+                } else if (data == '1') {
+                    $("#email").css("background-color", "#FF9666");
+                    idCheck = 0;
+                } 
+            }
+        });
+    }
+	
+	//재입력 비밀번호 체크하여 가입버튼 비활성화 또는 맞지않음을 알림.
+	var pwdCheck = 0;
+    function checkPwd() {
+        var inputed = $('#password').val();
+        var reinputed = $('#repassword').val();
+        if(reinputed=="" && inputed==""){
+        	$("#password").css("background-color", "transparent");
+            $("#repassword").css("background-color", "transparent");
+        }
+        else if (inputed == reinputed) {
+        	$("#password").css("background-color", "#92C2F4");
+            $("#repassword").css("background-color", "#92C2F4");
+            pwdCheck = 1;
+            if(idCheck==1 && pwdCheck == 1) {
+                signupCheck();
+            }
+        } else{
+            pwdCheck = 0;
+            $("#password").css("background-color", "#FF9666");
+            $("#repassword").css("background-color", "#FF9666");
+        }
+    }
 	
 	function check_only(chk){
-		var obj = document.getElementsByName("chkbox");
+		var obj = document.getElementsByName("gender");
 		for(var i=0; i<obj.length; i++){
 			if(obj[i] != chk){
 				obj[i].checked=false;
@@ -117,6 +134,44 @@ body {
 		}
 	}
 </script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+<script>
+
+$(document).ready(function () {
+   $(function () {
+            
+            $('#phone').keydown(function (event) {
+             var key = event.charCode || event.keyCode || 0;
+             $text = $(this); 
+             if (key !== 8 && key !== 9) {
+                 if ($text.val().length === 3) {
+                     $text.val($text.val() + '-');
+                 }
+                 if ($text.val().length === 8) {
+                     $text.val($text.val() + '-');
+                 }
+             }
+
+             return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+			 // Key 8번 백스페이스, Key 9번 탭, Key 46번 Delete 부터 0 ~ 9까지, Key 96 ~ 105까지 넘버패트
+			 // 한마디로 JQuery 0 ~~~ 9 숫자 백스페이스, 탭, Delete 키 넘버패드외에는 입력못함
+         })
+   });
+
+});
+</script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script>
+$(function() {
+  $( "#birth" ).datepicker({
+    dateFormat: 'yy-mm-dd'
+  });
+});
+</script>
+
 </head>
 <!-- ============================================================== -->
 <!-- signup form  -->
@@ -126,7 +181,7 @@ body {
 	<!-- ============================================================== -->
 	<!-- signup form  -->
 	<!-- ============================================================== -->
-	<form class="splash-container joinform">
+	<form class="splash-container joinForm" action="join" method="post">
 		<div class="card">
 			<div class="card-header">
 				<h3 class="mb-1">Registrations Form</h3>
@@ -135,26 +190,35 @@ body {
 			<div class="card-body">
 				<div class="form-group">
 					<input class="form-control form-control-lg" type="email" name="id"
-						id="email" required="" placeholder="E-mail" autocomplete="off"
+						id="email" required="" placeholder="Your e-mail" autocomplete="off"
 						oninput="checkId()">
 				</div>
 				<div class="form-group">
 					<input class="form-control form-control-lg" type="text" name="name"
-						id="name" required="" placeholder="Username" autocomplete="off">
+						id="name" required="" placeholder="Your name" autocomplete="off">
 				</div>
 				<div class="form-group">
 					<input class="form-control form-control-lg" type="password"
-						id="password" name="password" required="" placeholder="Password">
+						id="password" name="password" required="" placeholder="Your password"
+						oninput="checkPwd()">
 				</div>
 				<div class="form-group">
-					<input class="form-control form-control-lg" required=""
-						placeholder="Password Confirm">
+					<input class="form-control form-control-lg" type="password" 
+						id="repassword" required="" placeholder="Your password confirm"
+						oninput="checkPwd()">
+				</div>
+				<div class="form-group">
+					<input class="form-control form-control-lg" type="text" name="phone"
+						id="phone" required="" placeholder="Your phone" autocomplete="off" maxlength="13">
+				</div>
+				<div class="form-group">
+					<input class="form-control form-control-lg" type="text" name="birth"
+						id="birth" required="" placeholder="Your Birthday" autocomplete="off">
 				</div>
 				<div class="form-group">
 					<input class="form-control form-control-lg" type="text"
-						id="address" name="maddress" required="" placeholder="Address">
+						id="address" name="address" required="" placeholder="Your address">
 				</div>
-				
 				<div class="form-group">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <button class="btn  btn-block btn-social btn-twitter" type="button"
@@ -164,11 +228,11 @@ body {
 				<div class="custom-controls-stacked">
 					<label class="custom-control custom-checkbox"
 						style="display: inline-block; margin-left:15%;"> <input id="male"
-						name="chkbox" type="checkbox" class="custom-control-input" value="male" onclick="check_only(this)">
+						name="gender" type="checkbox" class="custom-control-input" value="male" onclick="check_only(this)">
 						<span class="custom-control-label">Male</span>
 					</label> <label class="custom-control custom-checkbox"
 						style="display: inline-block; margin-left:25%;"> <input id="female"
-						name="chkbox" type="checkbox" class="custom-control-input" value="female" onclick="check_only(this)">
+						name="gender" type="checkbox" class="custom-control-input" value="female" onclick="check_only(this)">
 						<span class="custom-control-label">Female</span>
 					</label>
 					<div id="error-container1"></div>
@@ -180,7 +244,7 @@ body {
 			</div>
 			<div class="card-footer bg-white">
 				<p>
-					Already member? <a href="#" class="text-secondary">Login Here.</a>
+					Already member? <a href="loginForm" class="text-secondary">Login Here.</a>
 				</p>
 			</div>
 		</div>

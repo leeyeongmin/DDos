@@ -16,9 +16,9 @@ public class AdminUserController {
 	
 	@Autowired UserService userService;
 	
-	//-------------------------------------------------------유저관리----------------------------------
+	//-------------------------------------------------------�쑀��愿�由�----------------------------------
 	
-	//유저 리스트 정보 조회 & 폼 불러오기
+	//�쑀�� 由ъ뒪�듃 �젙蹂� 議고쉶 & �뤌 遺덈윭�삤湲�
 	@RequestMapping("getUserList")
 	public String getUserList(Model model, UserVO vo){
 		model.addAttribute("userList", userService.getUserList(vo));
@@ -31,7 +31,6 @@ public class AdminUserController {
 	}*/
 	
 	
-	// 관리자 정보 조회 & 폼 불러오기
 	@RequestMapping("/userDetail") // http://localhost:8081/app/getBoardList
 	public String getUser(Model model, UserVO vo) {
 		
@@ -49,7 +48,7 @@ public class AdminUserController {
 	}
 	
 	
-	//통계 폼 불러오기
+	//�넻怨� �뤌 遺덈윭�삤湲�
 	@RequestMapping("/statisticsForm")
 	public String statisticsForm() {
 		return "admin/admin/AdminHome";

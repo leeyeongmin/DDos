@@ -27,6 +27,10 @@ public class StudyController {
 		return "no/study/makeStudy";	
 	}
 
+	@RequestMapping("deleteStudy")
+	public String deleteStudy() {
+		return "redirect:getStudyList";
+	}
 	//스터디 단건 조회
 	@RequestMapping("getStudy")
 	public String getStudy(Model model,StudyVO vo) {

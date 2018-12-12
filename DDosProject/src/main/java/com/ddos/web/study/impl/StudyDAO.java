@@ -27,7 +27,7 @@ public class StudyDAO {
 	public StudyDAO() {
 		String user = "ddos";
 		String pw = "ddos";
-		String url = "jdbc:oracle:thin:@192.168.0.97:1521:xe";
+		String url = "jdbc:oracle:thin:@180.71.250.243:1521:xe";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, user, pw);
@@ -42,7 +42,7 @@ public class StudyDAO {
 	//이전,현재,다음 달의 스터디리스트를 받아옴
 	public String[] studyListCalender(int year,int month) {
 
-		String sql = "select to_number(to_char(study_date,'dd')) as day,study_time,study_name,studyroom_num"
+		String sql = "select to_number(to_char(study_date,'dd')) as day,study_time,study_name,studyroom_num,study_num"
 				+ " from study where to_number(to_char(study_date,'yyyy'))=? "
 				+ "and to_number(to_char(study_date,'mm'))=?";
 
@@ -69,7 +69,9 @@ public class StudyDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				day = rs.getInt("day");
-				ary[day] = ary[day] + "<br>" + rs.getInt("study_time") + " "+rs.getString("study_name");
+				ary[day] = ary[day] + "<br>" + rs.getInt("study_time") +" "+rs.getString("study_name")+"("
+							+rs.getString("studyroom_num")+"번방)"+","+rs.getInt("study_num")+",\t";
+				System.out.println(ary[day]);
 			}
 		} catch (Exception e) {
 

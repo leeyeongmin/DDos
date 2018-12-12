@@ -16,7 +16,7 @@
 </head>
 <style>
 	#wrapper{
-	margin:40px 0px 0px 350px;
+	margin:40px 0px 0px 100px;
 	}
 	#calendartable{
 		width:700px;
@@ -39,6 +39,9 @@
 	String prevStudy[] = new String[31];
 	String curStudy[] = new String[31];
 	String nextStudy[] = new String[31];
+	String studyName;
+	String studyNumber;
+	String[] tmp;
 	StudyDAO sd = new StudyDAO();
 %>
 	<%
@@ -127,14 +130,26 @@
 			%>
 
 			<td>
-			<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+2%>&day=<%=k%>">
+			<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m%>&day=<%=k%>">
 				<%=k%></a>
 				<FONT color="blue" SIZE=2>
-				<a href="./getStudy?studyName=<%=prevStudy[k] %>"><%=prevStudy[k] %></a>
+				<% 	if(prevStudy[k]!="")
+					{
+					tmp = new String[12];
+					tmp = prevStudy[k].split("\t");
+						for(String wo : tmp)
+						{	
+							studyName=wo.split(",")[0];
+							studyNumber=wo.split(",")[1];
+						
+				%>
+				<a href="./getStudy?studyNumber=<%=studyNumber %>"><%=studyName %></a>
 				</FONT><br>
 				</td>
 			<%
+						}
 				}
+			}
 			%>
 
 			<%
@@ -142,19 +157,31 @@
 			%>
 
 			<td>
-				<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+2%>&day=<%=j%>">
+				<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+1%>&day=<%=j%>">
 				<%=j%></a>
 				<FONT color="blue" SIZE=2>
-				<a href="./getStudy?studyName=<%=curStudy[j] %> "><%=curStudy[j] %> </a>
+				<% 	if(curStudy[j] != "")
+					{
+					 tmp = new String[12];
+					 tmp = curStudy[j].split("\t");
+						for(String wo : tmp)
+						{	
+							studyName=wo.split(",")[0];
+							studyNumber=wo.split(",")[1];						
+				%>
+				<a href="./getStudy?studyNumber=<%=studyNumber %>"><%=studyName %></a>
 				 </FONT><br>
-				<% 	if ((yo + j - 1) % 7 == 0) { if(j==last_day){continue;}%>
+				<% 		}
+					}	
+					if ((yo + j - 1) % 7 == 0) { if(j==last_day){continue;}%>
 			</td>
 		</tr>
 		<tr height="80" valign="top">
 
-			<%
+			<%				}
+			
 				}
-				}
+			
 				int nextend;
 				if(yo == 7){
 					nextend = 7;
@@ -169,10 +196,22 @@
 			<td>			
 			<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+2%>&day=<%=e%>"><%=e%></a>
 			<FONT color="blue" SIZE=2> 
-			<a href="./getStudy?studyName=<%=nextStudy[e] %>"><%=nextStudy[e] %> </a>
+			<% 	if(nextStudy[e]!="")
+				{
+					tmp = new String[12];
+					tmp = nextStudy[e].split("\t");
+						for(String wo : tmp)
+						{	
+							studyName=wo.split(",")[0];
+							studyNumber=wo.split(",")[1];
+						
+				%>
+			<a href="./getStudy?studyNumber=<%=studyNumber%>"><%=studyName%>  </a>
 				</FONT></td>
 
 			<%
+						}
+					}
 				}
 			%>
 

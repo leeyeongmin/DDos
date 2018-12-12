@@ -1,6 +1,7 @@
 package com.ddos.web.study.impl;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,8 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public void insertStudy(StudyVO vo) {
 		// TODO Auto-generated method stub
-		dao.insertStudy(vo);
+		HttpServletRequest request = null;
+		dao.insertStudy(vo,request);
 	}
 
 	@Override

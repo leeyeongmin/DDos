@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="study">
-
-
 
 	<!-- 스터디 -->
 	<insert id="insertStudy" parameterType="study">
@@ -20,18 +19,17 @@
 	MEMBER_ID)
 	
 	VALUES(
-		SELECT NVL(MAX(STUDY_NUM),0)+1 FROM STUDY,
-		#{studyNum},
+		STUDY_SEQ.NEXTVAL,
 		#{studyName},
 		#{studySubject},
 		#{studyTime},
-		sysdate,
-		#{recruitEnd},
+		to_date(#{studyDate},'mm/dd'),
+		to_date(#{recruitEnd},'mm/dd/yyyy'),
 		#{recruitPerson},
 		#{status},
 		#{studyroomNumber},
 		#{memberId}
-	)	
+		)
 	</insert>
 	
 	<!-- 스터디멤버 -->
@@ -41,15 +39,27 @@
 	MEMBER_ID)
 	
 	VALUES(
-		#{studyNum},
+		#{studyNumber},
 		#{memberId}
 	)
 	</insert>
 	
 	<select id="getStudy" parameterType="study" resultType="study">
-		SELECT *
+		SELECT 
+		
+		STUDY_NUM,
+		STUDY_NAME,
+		STUDY_SUBJECT,
+		STUDY_TIME,
+		TO_CHAR(STUDY_DATE,'YYYY-MM-DD') AS STUDY_DATE,
+		TO_CHAR(RECRUIT_END,'YYYY-MM-DD') AS RECRUIT_END,
+		RECRUIT_PERSON,
+		STATUS,
+		STUDYROOM_NUM,
+		MEMBER_ID
+		
 		FROM STUDY
-		WHERE STUDY_NAME=#{study_name}
+		WHERE STUDY_NUM=#{studyNumber}
 	</select> 
 	
 </mapper> 

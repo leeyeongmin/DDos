@@ -1,5 +1,7 @@
 package com.ddos.web.study.impl;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,8 @@ public class StudyDaoMybatis {
 		@Autowired
 		private SqlSessionTemplate mybatis;
 		
-		public void insertStudy(StudyVO vo) {
-			System.out.println("mybatis insertStudy() 기능처리");
+		public void insertStudy(StudyVO vo,HttpServletRequest request) {
+			System.out.println("mybatis insertStudy() 기능처리");		
 			mybatis.update("study.insertStudy",vo);
 		}
 		

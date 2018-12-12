@@ -64,5 +64,10 @@ public class ReadController {
 		return readserivce.seat_useing(vo.getLoginId());
 	}
 	
-
+	@RequestMapping("return_seat")
+	@ResponseBody
+	public void return_seat(ReadVO vo) {		//좌석 반환
+		readserivce.return_seat(vo);
+	}
+	
 }

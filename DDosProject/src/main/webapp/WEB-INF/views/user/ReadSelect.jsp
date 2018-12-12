@@ -7,23 +7,49 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
 .seat{
-	background-color: gray
+	background-color: black
 }
-
 .myseat{	
-	background-color : #ff0000;
+	background-color : #0066FF;
 }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$(".seat").click(function() {
-
+			var seat = $(this).attr("name");
 			if($(this).hasClass("myseat")){
-				alert("예매");
+
+				
+				$("#dialog-confirm").dialog({
+				      resizable: false,
+				      height: "auto",
+				      width: 400,
+				      modal: true,
+				      buttons: {
+				        "연장": function() {
+
+				          $( this ).dialog( "close" );
+				        },
+				        "반납": function() {
+				        	$.ajax({
+				    			type : "post",
+				    			url : "return_seat?loginId=${login.id}&selectSeat="+ seat
+				        	})
+				        	$( this ).dialog( "close" );
+				        	location.reload();
+					    }, 
+					    "취소": function() {
+					    		alert($(this));
+						          $( this ).dialog( "close" );
+						    }
+				      }
+				    });
+				
 				
 			}else if (confirm("'" + $(this).attr("value") + "' 자리를 선택하시겠습니까?")) {
 				$.ajax({
@@ -40,35 +66,38 @@
 				})
 			}
 		})
+		function callback(){
+			$(".ui-dialog-buttonset").dialog( "close" );
+		}
 		useing_seat("${login.id}");
 	}); //$()
-
+	
+	
 	 function useing_seat(id){
 		$.ajax({
 			type : "post",
 			url : "useing_seat?loginId="+id,
 			success:function(result){
 				//$("[name="+result+"]").
-				alert(result);
-				if(result != null){
+				
+				if(result != ""){
+		
 					$("[name="+result+"]").attr("disabled", false);
 					//$("[name="+result+"]").css("backgroundColor","#ff0000");
 					$("[name="+ result + "]").addClass("myseat");
 					$("input[name!="+result+"]").attr("disabled", true);
-					$("input[name!="+result+"]").css("backgroundColor","gray");
+					//$("input[name!="+result+"]").css("backgroundColor","gray");
 					
 				}
 				
 			}
 		});
 	} 
-
 	function insertSeat(seat) {
 		login_id = $('input:hidden[name="login_name"]').val();
 		location.href = "updateSeat?selectSeat=" + seat + "&room="
 				+ $("#roomNum").text() + "&loginId=" + login_id;
 	}
-
 	/* 	window.onload=function(){			//로딩 될 때 실행 
 	 alert("ss");// 시간타임 체크
 	 location.href="timecheck";
@@ -134,7 +163,6 @@
 				</c:if>
 				
 				<c:choose>
-
 					<c:when test="${setlist.status =='1'}">
 						<td><input type="button" class="seat" value="<% if(set < 10) { %>0<%=set++%><%}else{ %><%=set++ %><% } %>" name="${setlist.seat_num }"
 						style="background: #ffffff; width: 100%; height: 100%" ></td>
@@ -160,6 +188,9 @@
 		</table>
 
 		<div id="use"></div>
+		<div id="dialog-confirm" title="작업을 선택하세요">
+  			
+		</div>
 	</div>
 </body>
 </html>

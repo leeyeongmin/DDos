@@ -60,5 +60,11 @@ public class ReadServiceImpl implements ReadService{
 	}
 
 
+	@Override
+	public void return_seat(ReadVO vo) {
+		dao.return_seat(vo);
+	}
+
+
 
 }

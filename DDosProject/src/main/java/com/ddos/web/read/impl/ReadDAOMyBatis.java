@@ -45,5 +45,9 @@ public class ReadDAOMyBatis {
 	public Map<String, String> getroomsize(ReadVO vo){
 		return mybatis.selectOne("read.getroomsize", vo);
 	}
+	
+	public void return_seat(ReadVO vo) {
+		mybatis.update("read.return_seat", vo);
+	}
 
 }

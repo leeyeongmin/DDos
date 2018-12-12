@@ -44,7 +44,7 @@
     <div class="splash-container">
         <div class="card ">
             <div class="card-header text-center">
-            <img class="logo-img" src="assets/images/logo.png" alt="logo">
+            <img class="logo-img" src="assets/images/ddoslogo.png" alt="logo" style="width:50%;">
             <span class="splash-description">Please enter your user information.</span>
             </div>
             <div class="card-body">

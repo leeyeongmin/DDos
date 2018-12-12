@@ -68,28 +68,20 @@
 	                                            <div class="user-avatar-info">
 	                                                <div class="m-b-20">
 	                                                    <div class="user-avatar-name">
-	                                                        <h2 class="mb-1">Henry Barbara</h2>
+	                                                        <h2 class="mb-1">${user.name }</h2>
 	                                                    </div>
-	                                                    <div class="rating-star  d-inline-block">
-	                                                        <i class="fa fa-fw fa-star"></i>
-	                                                        <i class="fa fa-fw fa-star"></i>
-	                                                        <i class="fa fa-fw fa-star"></i>
-	                                                        <i class="fa fa-fw fa-star"></i>
-	                                                        <i class="fa fa-fw fa-star"></i>
-	                                                        <p class="d-inline-block text-dark">14 Reviews </p>
-	                                                    </div>
+	                                                    
 	                                                </div>
 	                                                <!--  <div class="float-right"><a href="#" class="user-avatar-email text-secondary">www.henrybarbara.com</a></div> -->
 	                                                <div class="user-avatar-address">
 	                                                    <p class="border-bottom pb-3">
-	                                                        <span class="d-xl-inline-block d-block mb-2"><i class="fa fa-map-marker-alt mr-2 text-primary "></i>4045 Denver AvenueLos Angeles, CA 90017</span>
-	                                                        <span class="mb-2 ml-xl-4 d-xl-inline-block d-block">Joined date: 23 June, 2018  </span>
-	                                                        <span class=" mb-2 d-xl-inline-block d-block ml-xl-4">Male 
-	                                                                </span>
-	                                                        <span class=" mb-2 d-xl-inline-block d-block ml-xl-4">29 Year Old </span>
+	                                                        
+	                                                        <span class=" mb-2 d-xl-inline-block d-block ml-xl-4">${user.id }</span>
 	                                                    </p>
 	                                                    <div class="mt-3">
-	                                                        <a href="#" class="badge badge-light mr-1">Fitness</a> <a href="#" class="badge badge-light mr-1">Life Style</a> <a href="#" class="badge badge-light">Gym</a>
+	                                                        <span class="d-xl-inline-block d-block mb-2"><i class="fa fa-map-marker-alt mr-2 text-primary "></i>4045 Denver AvenueLos Angeles, CA 90017</span>
+	                                                        <span class="mb-2 ml-xl-4 d-xl-inline-block d-block">${user.birth }</span>
+	                                                        <span class=" mb-2 d-xl-inline-block d-block ml-xl-4">Male </span>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -97,12 +89,9 @@
 	                                    </div>
 	                                </div>
 	                                <div class="border-top user-social-box">
-	                                    <div class="user-social-media d-xl-inline-block"><span class="mr-2 twitter-color"> <i class="fab fa-twitter-square"></i></span><span>13,291</span></div>
-	                                    <div class="user-social-media d-xl-inline-block"><span class="mr-2  pinterest-color"> <i class="fab fa-pinterest-square"></i></span><span>84,019</span></div>
-	                                    <div class="user-social-media d-xl-inline-block"><span class="mr-2 instagram-color"> <i class="fab fa-instagram"></i></span><span>12,300</span></div>
-	                                    <div class="user-social-media d-xl-inline-block"><span class="mr-2  facebook-color"> <i class="fab fa-facebook-square "></i></span><span>92,920</span></div>
-	                                    <div class="user-social-media d-xl-inline-block "><span class="mr-2 medium-color"> <i class="fab fa-medium"></i></span><span>291</span></div>
-	                                    <div class="user-social-media d-xl-inline-block"><span class="mr-2 youtube-color"> <i class="fab fa-youtube"></i></span><span>1291</span></div>
+	                                    <div class="user-social-media d-xl-inline-block "><span class="mr-2 twitter-color"> 대여 횟수 : </span><span>20</span></div>
+                                        <div class="user-social-media d-xl-inline-block"><span class="mr-2  pinterest-color"> 열림실 사용 횟수 : </span><span>19</span></div>
+                                        <div class="user-social-media d-xl-inline-block"><span class="mr-2 instagram-color"> 리뷰 횟수 : </span><span>12</span></div>
 	                                </div>
 	                            </div>
 	                        </div>

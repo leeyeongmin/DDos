@@ -28,6 +28,7 @@
 <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
 </head>
 <body>
+
 	<!-- ============================================================== -->
 	<!-- main wrapper -->
 	<!-- ============================================================== -->
@@ -165,10 +166,10 @@
                                     <ul class="nav flex-column">
                                         
                                         <li class="nav-item">
-                                            <a class="nav-link" href="userListForm">Customer List</a>
+                                            <a class="nav-link" href="getUserList">Customer List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="adminDetail">Manager Information</a>
+                                            <a class="nav-link" href="userDetail?id=${login.id}">Manager Information</a>
                                         </li>
                                         
                                     </ul>
@@ -177,23 +178,37 @@
 							<li class="nav-divider">Function</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="statisticsForm">
+								<a class="nav-link" href="book">
 									<i class="fas fa-fw fa-chart-pie"></i>
-									Statistics
+									Book
 								</a>
 							</li>
 							
 							<li class="nav-item ">
-								<a class="nav-link" href="#">
+								<a class="nav-link" href="read">
 									<i class="fab fa-fw fa-wpforms"></i>
 									Seat Setting
 								</a>
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="#">
+								<a class="nav-link" href="getStudyList">
 									<i class="fas fa-fw fa-file"></i> 
+									Study & Study Room
+								</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="getNoticeList">
+									<i class="fas fa-fw fa-columns"></i>
 									Notice
+								</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="getSuggestionList">
+									<i class="fas fa-fw fa-columns"></i>
+									Suggestion
 								</a>
 							</li>
 							

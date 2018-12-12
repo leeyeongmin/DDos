@@ -1,6 +1,8 @@
 package com.ddos.web.user.impl;
 
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,10 @@ public class UserDAOMybatis {
 		public UserVO getUser(UserVO vo) {
 			System.out.println("mybatis spring jdbc 단건 조회 처리");
 			return mybatis.selectOne("user.getUser", vo);
+		}
+		//회원 리스트 조회
+		public List<UserVO> getUserList(UserVO vo) {
+			return mybatis.selectList("user.getUserList", vo);
 		}
 		// 등록
 		public void insertUser(UserVO vo) {

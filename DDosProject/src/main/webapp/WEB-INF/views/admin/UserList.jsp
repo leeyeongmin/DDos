@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!doctype html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
  
 <head>
@@ -43,6 +44,7 @@
                     <!-- ============================================================== -->
                     <!-- end pageheader -->
                     <!-- ============================================================== -->
+                    
                     <!-- ============================================================== -->
                     <!-- content -->
                     <!-- ============================================================== -->
@@ -63,7 +65,12 @@
                         <!-- ============================================================== -->
                         <!-- end search bar  -->
                         <!-- ============================================================== -->
+                        
                         <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+                        
+                        <c:forEach items="${userList }" var="userList">			<!-- ()안에 model""이거 --> 
+                        
+                        
                             <!-- ============================================================== -->
                             <!-- card influencer one -->
                             <!-- ============================================================== -->
@@ -77,33 +84,34 @@
                                                 <div class="pl-xl-3">
                                                     <div class="m-b-0">
                                                         <div class="user-avatar-name d-inline-block">
-                                                            <h2 class="font-24 m-b-10">Henry Barbara</h2>
+                                                            <h2 class="font-24 m-b-10">${userList.name }</h2>
                                                         </div>
                                                     </div>
                                                     <div class="user-avatar-address">
+                                                    	<span class="m-l-10">
+                                                        	${userList.id }
+                                                        </span>
                                                         <p class="mb-2">
                                                         	<i class="fa fa-map-marker-alt mr-2  text-primary"></i>
                                                         	Salt Lake City, UT 
-                                                        	<span class="m-l-10">
+                                                        </p>
+                                                        <div class="mt-3">
+                                                    </div>
+                                                    <div class="mt-3">
+                                                      	<span class="m-l-10">
                                                         		Male
                                                         		<span class="m-l-20">
-                                                        			29 Year Old
+                                                        			${userList.birth }
                                                         		</span>
                                                         	</span>
-                                                        </p>
-                                                      <div class="mt-3">
-                                                      	<a href="#" class="mr-1 badge badge-light">Fitness</a>
-                                                      	<a href="#" class="mr-1 badge badge-light">Life Style</a>
-                                                      	<a href="#" class="mr-1 badge badge-light">Gym</a>
-                                                      	<a href="#" class="badge badge-light">Crossfit</a>
-                                                      </div>
+													</div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="float-xl-right float-none mt-xl-0 mt-4">
                                                     <a href="#" class="btn-wishlist m-r-10"><i class="far fa-star"></i></a>
-                                                    <a href="userDetail" class="btn btn-secondary">Show User</a>
+                                                    <a href="userDetail?id=${userList.id}" class="btn btn-secondary">Show User</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,10 +125,15 @@
                                 <!-- ============================================================== -->
                                 <!-- end card influencer one -->
                                 <!-- ============================================================== -->
+                                
+                                </c:forEach>
+                                
                                 <!-- ============================================================== -->
                                 <!-- end content -->
                                 <!-- ============================================================== -->
                             </div>
+                            
+                            
                             <!-- ============================================================== -->
                             <!-- influencer sidebar  -->
                             <!-- ============================================================== -->
@@ -234,6 +247,14 @@
                 <!-- ============================================================== -->
                 <!-- end wrapper  -->
                 <!-- ============================================================== -->
+                
+                
+                
+                
+                
+                
+                
+                
             </div>
             <!-- ============================================================== -->
             <!-- end main wrapper  -->

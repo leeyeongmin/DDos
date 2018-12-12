@@ -1,6 +1,6 @@
 package com.ddos.web.user;
 
-
+import java.util.List;
 
 public interface UserService {
 	
@@ -9,4 +9,5 @@ public interface UserService {
 	public int checkId(UserVO vo);
 	public UserVO findId(UserVO vo);
 	public UserVO findPwd(UserVO vo);
+	public List<UserVO> getUserList(UserVO vo);
 }

@@ -1,5 +1,7 @@
 package com.ddos.web.user.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,10 @@ public class UserServiceImpl implements UserService {
 	
 	public UserVO getUser(UserVO vo) {
 		return dao.getUser(vo);
+	}
+	
+	public List<UserVO> getUserList(UserVO vo){
+		return dao.getUserList(vo);
 	}
 
 	@Override

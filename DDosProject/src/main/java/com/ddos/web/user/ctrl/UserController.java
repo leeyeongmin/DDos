@@ -56,6 +56,7 @@ public class UserController {
             
 			return "no/login/Login";
 		}else {
+			
 			session.setAttribute("login", uservo);
 			
 			if(uservo.getId().equals("admin@gmail.com")) {

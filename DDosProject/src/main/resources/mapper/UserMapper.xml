@@ -7,10 +7,20 @@
 		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT
 		FROM MEMBER
 		
-		<!-- 리스트 조회를 위해 단일인지 전체인지 조건 달기 -->
+		<!-- <if test="searchKeyword != null and searchKeyword ==''">
+      		WHERE ${searchCondition} like '%' || #{searchKeyword} || '%'
+      	</if> -->
+		
 		WHERE ID = #{id}
 	
 	</select>
+	
+	<select id="getUserList" resultType="user">
+
+		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT
+		FROM MEMBER
+	</select>
+	
 	
 	<insert id="insertUser" parameterType="user">
 	

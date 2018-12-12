@@ -24,16 +24,13 @@
 		</select> <input type="text" name="searchKeyword">
 		<button>검색</button>
 	</form>
-	<button>
-		<a href="${pageContext.request.contextPath}/insertBook">등록</a>
-	</button>
+	
 
-	<br>
 	<div class="row">
 		<table id="getBookList" width="100%"
 			class="table table-bordered table-hover text-center">
 			<thead>
-				<tr>
+				<tr> 
 					<th>도서명</th>
 					<th>저자</th>
 					<th>출판사</th>
@@ -50,10 +47,14 @@
 						<td>${book.isbn}></td>
 						<td>${book.bookLoc}</td>
 					</tr>
-				</c:forEach>
-			</tbody>
+			</c:forEach>
+						</tbody>
 
-		</table>
-	</div>
+					</table>
+				</div>
+			
+	<button>
+		<a href="${pageContext.request.contextPath}/insertBook">등록</a>
+	</button>
 </body>
 </html>

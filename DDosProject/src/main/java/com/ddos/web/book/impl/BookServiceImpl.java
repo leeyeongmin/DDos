@@ -11,7 +11,6 @@ import com.ddos.web.book.BookVO;
 @Service
 public class BookServiceImpl implements BookService {
 
-
 	@Autowired BookDAOMybatis dab;
 
 
@@ -33,8 +32,11 @@ public class BookServiceImpl implements BookService {
 		dab.insertBook(vo);
 	}
 	// 도서 수정
+	public void updateBook(BookVO vo) {
+		dab.updateBook(vo);
 
 	}
+}
 	
 	
 	

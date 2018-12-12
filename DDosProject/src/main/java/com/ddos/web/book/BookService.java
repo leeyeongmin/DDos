@@ -14,6 +14,7 @@ public interface BookService {
 	public void insertBook(BookVO vo);
 	
 	// 도서 수정
+	public void updateBook(BookVO vo);
 
 	
 

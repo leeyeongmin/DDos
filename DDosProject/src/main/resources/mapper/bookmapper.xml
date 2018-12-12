@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="book">
-
+	
 	<!-- 전체 조회 -->
 	<select id="getBookList" parameterType="book" resultType="book">
 		SELECT BOOK_TITLE, BOOK_WRITER, BOOK_COMP, BOOK_LOC, ISBN
@@ -18,23 +18,28 @@
 	</select>
 
 	<!-- 1건 조회 -->
-	<select id="getBook" parameterType="book" resultType="book">
-		SELECT B.ISBN, B.BOOK_TITLE, B.BOOK_CONT, B.BOOK_WRITER
-		B.BOOK_COMP, B.BOOK_GENRE, B.BOOK_AMOUNT, B.BOOK_LOC,
-		R.DUE_DATE
-		FROM BOOK B JOIN RENTAL R
-		ON B.ISBN = R.ISBN
-		WHERE ISBN = #{isbn}
-		
+	<select id="getBook" parameterType="book" resultType="book" >
+		SELECT	 B.ISBN as ISBN, BOOK_TITLE, BOOK_CONT, BOOK_WRITER,
+				 BOOK_COMP, BOOK_GENRE, BOOK_AMOUNT, BOOK_LOC, R.DUE_DATE AS DUE_DATE
+		FROM	 BOOK B, RENTAL R
+   		WHERE B.ISBN = R.ISBN
+   		AND b.ISBN=#{isbn}
+   		AND 
 	</select>
 
 <!-- 도서 입력 -->
-	<insert id="insertBook"  parameterType="book">
+	<insert id="insertBook"  parameterType="book" >
 		INSERT INTO BOOK (ISBN, BOOK_TITLE, BOOK_CONT, BOOK_WRITER, BOOK_COMP,
 						 BOOK_GENRE, BOOK_AMOUNT, BOOK_LOC)
-		VALUES(#{isbn}, #{bookTitle}, #{bookCont}, #{bookWriter}, #{bookComp}, #{bookGenre},
+		VALUES		(#{isbn}, #{bookTitle}, #{bookCont}, #{bookWriter}, #{bookComp}, #{bookGenre},
 				 #{bookAmount}, #{bookLoc})
 	</insert>
 
 
+<!-- 수정 -->
+	<update id="updateBook" parameterType="book">
+		UPDATE BOOK SET 	BOOK_TITLE= #{bookTitle}, BOOK_CONT= #{bookCont}, BOOK_WRITER= #{bookWriter}, BOOK_COMP= #{bookComp},
+						 	BOOK_GENRE= #{bookGenre}, BOOK_AMOUNT= #{bookAmount}, BOOK_LOC= #{bookLoc}
+		WHERE 			ISBN = #{isbn}
+	</update>
 </mapper>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>getSuggestionList.jsp</title>
+<title>getNoticeList.jsp</title>
 <script>
 	function check() {
 		if (document.search.searchKeyword.value == "") {
@@ -17,9 +17,9 @@
 	}
 </script>
 <style>
-	div.card {
-		padding: 12px 20px 12px 20px;
-	}
+div.card {
+	padding: 12px 20px 12px 20px;
+}
 </style>
 </head>
 <body>
@@ -36,13 +36,13 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Suggestion</h3>
+							<h3 class="mb-2">Notice</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Suggestion</li>
+										<li class="breadcrumb-item active" aria-current="page">Notice</a></li>
 									</ol>
 								</nav>
 							</div>
@@ -52,7 +52,6 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-
 				<c:if test="${empty sessionScope.login}">
 					<a href="LoginForm">로그인</a>
 				</c:if>
@@ -64,16 +63,15 @@
 						<div class="card">
 							<form action="search" name="search" method="post">
 								<select name="searchType">
-									<option value="sugTitle"
-										<c:if test="${'sugTitle' == searchType}"> selected </c:if>>제목</option>
+									<option value="noticeTitle"
+										<c:if test="${'noticeTitle' == searchType}"> selected </c:if>>제목</option>
 								</select> <input type="text" name="searchKeyword"
 									value="${searchKeyword}"> <input type="button"
 									value="검색" class="btn btn-primary btn-sm" onclick="click()">
 							</form>
-
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getSuggestionList" width="100%"
+									<table id="getNoticeList" width="100%"
 										class="table table-bordered table-hover text-center">
 										<thead>
 											<tr>
@@ -83,18 +81,19 @@
 												<th width="10%">조회수</th>
 											</tr>
 										</thead>
-										<tbody id="suggestionList">
-											<c:forEach items="${suggestionList}" var="suggestion">
+										<tbody id=noticelist>
+											<c:forEach items="${noticeList}" var="notice">
 												<tr>
-													<td>${suggestion.sugNum}</td>
+													<td>${notice.noticeNum}</td>
 													<td><a
-														href="./getSuggestion?sugNum=${suggestion.sugNum}">${suggestion.sugTitle}</a></td>
-													<td>${suggestion.sugDate}</td>
-													<td>${suggestion.sugCnt}</td>
+														href="./getNotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle}</a></td>
+													<td>${notice.noticeDate}</td>
+													<td>${notice.noticeCnt}</td>
 												</tr>
 											</c:forEach>
+										</tbody>
 									</table>
-									<a href="./insertSuggestionform" class="btn btn-secondary" style="margin-top: 30px">등록</a>
+										<a href="insertNoticeform" class="btn btn-secondary" style="margin-top: 30px">등록</a>
 								</div>
 							</div>
 						</div>
@@ -103,5 +102,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

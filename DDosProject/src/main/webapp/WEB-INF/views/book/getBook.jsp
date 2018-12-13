@@ -52,8 +52,7 @@
 
 				<!-- 여기서 부터 내용 -->
 				<div class="row">
-					<div
-						class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 pr-xl-0 pr-lg-0 pr-md-0  m-b-30"  style="width:30%;">
+					<div style="width:30%;">
 						<div class="product-slider">
 							<!--사진넣는 곳-->
 							<div id="productslider-1" class="product-carousel carousel slide"
@@ -88,8 +87,7 @@
 					</div>
 					
 					
-					<div
-						class="col-xl-6 col-lg-6 col-sm-12 col-12 pl-xl-0 pl-lg-0 pl-md-0 border-left m-b-30">
+					<div style="width:70%;">
 						<div class="product-details">
 							<div class="border-bottom pb-3 mb-3">
 								<h2 class="mb-3">${book.bookTitle}</h2>

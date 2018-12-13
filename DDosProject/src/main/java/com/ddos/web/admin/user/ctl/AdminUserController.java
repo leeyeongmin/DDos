@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ddos.web.notice.NoticeService;
+import com.ddos.web.notice.NoticeVO;
+import com.ddos.web.study.StudyService;
+import com.ddos.web.study.StudyVO;
 import com.ddos.web.user.UserService;
 import com.ddos.web.user.UserVO;
 
@@ -15,6 +19,8 @@ import com.ddos.web.user.UserVO;
 public class AdminUserController {
 	
 	@Autowired UserService userService;
+	@Autowired StudyService studyService;
+	@Autowired NoticeService noticeService;
 	
 	//-------------------------------------------------------admin user manager----------------------------------------------
 	
@@ -46,6 +52,17 @@ public class AdminUserController {
 		}
 	}
 	
+	
+	/*@RequestMapping("/adminTabOne") // http://localhost:8081/app/getBoardList
+	public String getAdminTabOne(Model model, UserVO uvo, StudyVO svo, NoticeVO nvo ) {
+		
+		model.addAttribute("user", userService.getUser(uvo));
+		model.addAttribute("user", studyService.getStudy(svo));
+		model.addAttribute("user", noticeService.getNotice(nvo));
+		
+		return "admin/admin/AdminHome";
+
+	}*/
 	
 	
 	@RequestMapping("/statisticsForm")

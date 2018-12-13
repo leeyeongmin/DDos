@@ -56,5 +56,19 @@
 	
 	</select>
 	
+	
+	<select id="adminTabOne" parameterType="user" resultType="map">
+	
+		SELECT ID userid, NAME username
+		FROM MEMBER
+		
+		SELECT NOTICE_NUM noticenum, NOTICE_TITLE noticetitle
+		FROM NOTICE
+		
+		SELECT STUDY_NUM studynum, STUDY_NAME studyname
+		FROM STUDY
+	
+	</select>
+	
 
 </mapper> 

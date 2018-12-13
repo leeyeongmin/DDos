@@ -118,6 +118,7 @@
 
 
 						<a href="#" class="btn btn-primary btn-block btn-default" style=width=25px;>대출</a>
+					<a href="./updateBookform?isbn=${book.isbn}" class="btn btn-primary btn-block btn-default" style=width=25px;>수정</a>
 					</div>
 				</div>
 

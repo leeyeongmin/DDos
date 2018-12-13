@@ -56,10 +56,10 @@ public class BookController {
 	}
 
 //수정 폼
-	@RequestMapping("/updateBookform")
+	@RequestMapping("updateBookform")
 	public String updateBookform(Model model, BookVO vo) {
 		model.addAttribute("book", bookservice.getBook(vo));
-		return "book/updateBoard";
+		return "book/updateBook";
 	}
 
 	// 수정 처리

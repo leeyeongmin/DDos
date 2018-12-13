@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,13 +67,14 @@
 
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">ISBN</label> 
-						<input name="isbn" type="text" class="form-control">
+						<input name="isbn" type="text" class="form-control" required>
 					</div>
 
 
 					<div class="form-group">
-						<label for="input-select">위치</label> <select class="form-control"
+						<label for="input-select">자료실</label> <select class="form-control"
 							name="bookLoc">
+							<option value="loc" selected>자료실 선택</option>
 							<option value="총류">총류 자료실</option>
 							<option value="철학 및 역사">철학 및 역사 자료실</option>
 							<option value="과학">과학 자료실</option>
@@ -84,6 +86,7 @@
 					<div class="form-group">
 						<label for="input-select">장르</label> <select class="form-control"
 							name="bookGenre">
+							<option value="genre" selected>장르 선택</option>
 							<option value="총류">총류</option>
 							<option value="철학 및 역사">철학 및 역사</option>
 							<option value="과학">과학</option>

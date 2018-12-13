@@ -95,7 +95,7 @@
 
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">도서 내용</label>
-						<textarea class="form-control" name="content" rows="3"></textarea>
+						<textarea class="form-control" name="bookCont" rows="3"></textarea>
 					</div>
 					<div class="form-group row text-right">
 						<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ddos.web.study.StudyMemberVO;
 import com.ddos.web.study.StudyService;
 import com.ddos.web.study.StudyVO;
 
@@ -27,8 +28,10 @@ public class StudyController {
 		return "no/study/makeStudy";	
 	}
 
+	//스터디 삭제
 	@RequestMapping("deleteStudy")
-	public String deleteStudy() {
+	public String deleteStudy(StudyVO vo) {
+		studyService.deleteStudy(vo);
 		return "redirect:getStudyList";
 	}
 	//스터디 단건 조회
@@ -45,7 +48,8 @@ public class StudyController {
 	
 	
 	@RequestMapping("insertStudyMember")
-	public String insertStudyMember() {
+	public String insertStudyMember(StudyMemberVO vo) {
+		studyService.insertStudyMember(vo);
 		return "redirect:getStudyList";
 	}
 }

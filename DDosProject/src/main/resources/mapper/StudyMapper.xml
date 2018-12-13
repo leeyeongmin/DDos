@@ -3,7 +3,15 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="study">
-
+<!-- <resultMap type="study" id="studyResult">
+	<id property="study" column="seq"/>
+	<result property="title" column="TITLE"/>
+	<result property="writer" column="WRITER"/>
+	<result property="content" column="CONTENT"/>
+	<result property="regdate" column="REGDATE"/>
+	<result property="cnt" column="CNT"/>
+	
+</resultMap> -->
 	<!-- 스터디 -->
 	<insert id="insertStudy" parameterType="study">
 	INSERT INTO STUDY(
@@ -35,7 +43,7 @@
 	<!-- 스터디멤버 -->
 	 <insert id="insertStudyMember" parameterType="studymember">
 	INSERT INTO STUDY_MEMBER(
-	STUDYROOM_NUM,
+	STUDY_NUM,
 	MEMBER_ID)
 	
 	VALUES(
@@ -44,10 +52,12 @@
 	)
 	</insert>
 	
+	
+	<!-- 단건조회 -->
 	<select id="getStudy" parameterType="study" resultType="study">
 		SELECT 
 		
-		STUDY_NUM,
+		STUDY_NUM as studyNumber,
 		STUDY_NAME,
 		STUDY_SUBJECT,
 		STUDY_TIME,
@@ -55,11 +65,15 @@
 		TO_CHAR(RECRUIT_END,'YYYY-MM-DD') AS RECRUIT_END,
 		RECRUIT_PERSON,
 		STATUS,
-		STUDYROOM_NUM,
+		STUDYROOM_NUM as studyroomNumber,
 		MEMBER_ID
 		
 		FROM STUDY
 		WHERE STUDY_NUM=#{studyNumber}
 	</select> 
+	
+	<delete id="deleteStudy" parameterType="study">
+	DELETE FROM STUDY WHERE STUDY_NUM= #{studyNumber}
+	</delete>
 	
 </mapper> 

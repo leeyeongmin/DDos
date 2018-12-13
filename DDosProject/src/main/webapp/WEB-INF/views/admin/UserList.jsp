@@ -33,6 +33,7 @@
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
+                                        	 <li class="breadcrumb-item"><a href="adminHome" class="breadcrumb-link">DDos</a></li>
                                             <li class="breadcrumb-item">User</li>
                                             <li class="breadcrumb-item active" aria-current="page">Costomer List</li>
                                         </ol>
@@ -153,92 +154,8 @@
                                             <option>Followers</option>
                                         </select>
                                     </div>
-                                    <div class="card-body border-top">
-                                        <h3 class="font-16">Influncer by Rating</h3>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio1"><i class="fas fa-star rating-color fa-xs"></i></label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio2"><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i></label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio3"><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i></label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio4"><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs"></i></label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio5"><i class="fas fa-star rating-color fa-xs"></i><i class="fas fa-star rating-color fa-xs fa-xs"></i><i class="fas fa-star rating-color fa-xs fa-xs"></i><i class="fas fa-star rating-color fa-xs fa-xs"></i><i class="fas fa-star rating-color fa-xs fa-xs"></i></label>
-                                        </div>
-                                    </div>
-                                    <div class="card-body border-top">
-                                        <h3 class="font-16">Social Media Platform</h3>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck10">
-                                            <label class="custom-control-label" for="customCheck10">Facebook</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck11">
-                                            <label class="custom-control-label" for="customCheck11">Instagram</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck12">
-                                            <label class="custom-control-label" for="customCheck12">Pinterest</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck13">
-                                            <label class="custom-control-label" for="customCheck13">Twitter</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck14">
-                                            <label class="custom-control-label" for="customCheck14">Youtube</label>
-                                        </div>
-                                    </div>
-                                    <div class="card-body border-top">
-                                        <h3 class="font-16">Influncer Category</h3>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck15">
-                                            <label class="custom-control-label" for="customCheck15">Business</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck16">
-                                            <label class="custom-control-label" for="customCheck16">Lifestyle</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck17">
-                                            <label class="custom-control-label" for="customCheck17">Fitness</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck18">
-                                            <label class="custom-control-label" for="customCheck18">Sports</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck19">
-                                            <label class="custom-control-label" for="customCheck19">Clothing</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck20">
-                                            <label class="custom-control-label" for="customCheck20">Pets & Animals</label>
-                                        </div>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck21">
-                                            <label class="custom-control-label" for="customCheck21">Beauty & Makeup</label>
-                                        </div>
-                                    </div>
-                                    <div class="card-body border-top">
-                                        <h3 class="font-16">Age Demographics</h3>
-                                        <select class="form-control">
-                                            <option selected>Select the Age</option>
-                                            <option value="20-30">20-30</option>
-                                            <option value="30-40">30-40</option>
-                                            <option value="40-50">40-50</option>
-                                        </select>
-                                    </div>
+                                    
+                                    
                                     <div class="card-body border-top">
                                         <a href="#" class="btn btn-secondary btn-lg btn-block">Submit</a>
                                     </div>

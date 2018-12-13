@@ -24,6 +24,11 @@ public class AdminUserController {
 	
 	//-------------------------------------------------------admin user manager----------------------------------------------
 	
+	@RequestMapping("/adminHome")
+	public String adminHome() {
+		return "admin/admin/AdminHome";
+	}
+	
 	@RequestMapping("/UserManageForm")
 	public String loginForm() {
 		return "admin/admin/AdminHome";

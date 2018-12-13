@@ -15,31 +15,33 @@ public class UserDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-		// 회원 단건 조회
+		// �쉶�썝 �떒嫄� 議고쉶
 		public UserVO getUser(UserVO vo) {
-			System.out.println("mybatis spring jdbc 단건 조회 처리");
+			System.out.println("mybatis spring jdbc �떒嫄� 議고쉶 泥섎━");
 			return mybatis.selectOne("user.getUser", vo);
 		}
-		//회원 리스트 조회
+		//�쉶�썝 由ъ뒪�듃 議고쉶
 		public List<UserVO> getUserList(UserVO vo) {
 			return mybatis.selectList("user.getUserList", vo);
 		}
-		// 등록
+		// �벑濡�
 		public void insertUser(UserVO vo) {
-			System.out.println("mybatis spring jdbc insert 처리");
-			mybatis.update("user.insertUser", vo);										//namespace.id   이렇게 써주면 mapping를 해서 하는 경우가 완료
+			mybatis.update("user.insertUser", vo);										//namespace.id   �씠�젃寃� �뜥二쇰㈃ mapping瑜� �빐�꽌 �븯�뒗 寃쎌슦媛� �셿猷�
 		}
-		//ID 중복 체크
+		//ID 以묐났 泥댄겕
 		public int checkId(UserVO vo) {
 			return mybatis.selectOne("user.checkId", vo);
 		}
-		//ID 찾기
+		//ID 李얘린
 		public UserVO findId(UserVO vo) {
 			return mybatis.selectOne("user.findId", vo);
 		}
-		//Password 찾기
+		//Password 李얘린
 		public UserVO findPwd(UserVO vo) {
 			return mybatis.selectOne("user.findPwd", vo);
+		}
+		public void updateUser(UserVO vo) {
+			mybatis.update("user.updateUser",vo);
 		}
 		
 }

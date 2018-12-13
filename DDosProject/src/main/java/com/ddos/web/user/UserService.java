@@ -10,4 +10,5 @@ public interface UserService {
 	public UserVO findId(UserVO vo);
 	public UserVO findPwd(UserVO vo);
 	public List<UserVO> getUserList(UserVO vo);
+	public void updateUser(UserVO vo);
 }

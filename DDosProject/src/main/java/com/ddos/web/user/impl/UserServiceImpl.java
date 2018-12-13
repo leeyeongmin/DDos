@@ -42,4 +42,10 @@ public class UserServiceImpl implements UserService {
 	public UserVO findPwd(UserVO vo) {
 		return dao.findPwd(vo);
 	}
+
+	@Override
+	public void updateUser(UserVO vo) {
+		dao.updateUser(vo);
+		
+	}
 }

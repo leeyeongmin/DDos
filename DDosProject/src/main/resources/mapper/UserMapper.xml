@@ -10,6 +10,10 @@
 		<!-- <if test="searchKeyword != null and searchKeyword ==''">
       		WHERE ${searchCondition} like '%' || #{searchKeyword} || '%'
       	</if> -->
+      	
+      	<!-- <if test="outCount.equals('')">
+      			WHERE OUT_COUNT = #{outCount}
+      	</if> --> 
 		
 		WHERE ID = #{id}
 	
@@ -26,7 +30,7 @@
 	<insert id="insertUser" parameterType="user">
 	
 		INSERT INTO MEMBER(ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER) 
-		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, ADD_MONTHS(SYSDATE,+12),'user',0, #{address}, #{gender})
+		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, ADD_MONTHS(TO_date(sysdate, ‘YY-MON-DD’),12),'user',0, #{address}, #{gender})
 	
 	</insert>
 	
@@ -57,18 +61,22 @@
 	</select>
 	
 	
-	<select id="adminTabOne" parameterType="user" resultType="map">
+	<update id="updateUser" parameterType="user">
 	
-		SELECT ID userid, NAME username
-		FROM MEMBER
-		
-		SELECT NOTICE_NUM noticenum, NOTICE_TITLE noticetitle
-		FROM NOTICE
-		
-		SELECT STUDY_NUM studynum, STUDY_NAME studyname
-		FROM STUDY
+		UPDATE MEMBER SET
+			PASSWORD = #{password},
+			NAME = #{name},
+			PHONE = #{phone},
+			BIRTH = #{birth},
+			ADDRESS = #{address}
+			
+			<if test="outCount.equals('')">
+      			,OUT_COUNT = #{outCount}
+      		</if> 
+			
+		WHERE ID = 	#{id}
 	
-	</select>
+	</update>
 	
 
 </mapper> 

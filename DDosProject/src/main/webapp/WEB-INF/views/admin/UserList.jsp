@@ -154,13 +154,25 @@
                                             <option>Followers</option>
                                         </select>
                                     </div>
-                                    
-                                    
                                     <div class="card-body border-top">
                                         <a href="#" class="btn btn-secondary btn-lg btn-block">Submit</a>
                                     </div>
                                 </div>
+                                
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="font-16">Special Member</h3>
+                                    </div>
+                                    <div class="card-body border-top" style="margin-top:5%;">
+                                        <a href="#" class="btn btn-secondary-i btn-lg btn-block">Interest Member</a>
+                                    </div>
+                                    <div class="card-body border-top" style="margin-top:5%;">
+                                        <a href="#" class="btn btn-secondary-b btn-lg btn-block">Black Member</a>
+                                    </div>
+                                </div>
+                                
                             </div>
+                           
                             <!-- ============================================================== -->
                             <!-- end influencer sidebar  -->
                             <!-- ============================================================== -->

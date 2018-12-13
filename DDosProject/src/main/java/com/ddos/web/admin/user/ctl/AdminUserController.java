@@ -69,6 +69,16 @@ public class AdminUserController {
 
 	}*/
 	
+	//update admin info
+	@RequestMapping("updateAdminInfo")
+	public String updateNotice(UserVO vo) {
+		
+		System.out.println(vo);
+		
+		userService.updateUser(vo);
+		return "admin/admin/AdminHome";
+	}
+	
 	
 	@RequestMapping("/statisticsForm")
 	public String statisticsForm() {

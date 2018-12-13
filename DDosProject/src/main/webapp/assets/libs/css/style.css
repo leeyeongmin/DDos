@@ -2719,6 +2719,65 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     border-color: #f0346e;
 }
 
+/*--- btn secondary  iuser --*/
+
+.btn-secondary-i {
+    color: #fff;
+    background-color: #1ace00;
+    border-color: #1ace00;
+}
+
+.btn-secondary-i:hover {
+    color: #fff;
+    background-color: #16b000;
+    border-color: #16b000;
+}
+
+.btn-secondary-i.focus,
+.btn-secondary-i:focus {
+    color: #fff;
+    background-color: #16b000;
+    border-color: #16b000;
+    box-shadow: 0 0 0 1px rgb(000, 102, 000);
+}
+
+.btn-secondary-i:not(:disabled):not(.disabled).active,
+.btn-secondary-i:not(:disabled):not(.disabled):active,
+.show>.btn-secondary-i.dropdown-toggle {
+    color: #fff;
+    background-color: #16b000;
+    border-color: #16b000;
+}
+
+/*--- btn secondary  buser--*/
+
+.btn-secondary-b {
+    color: #fff;
+    background-color: #4b4b4b;
+    border-color: #4b4b4b;
+}
+
+.btn-secondary-b:hover {
+    color: #fff;
+    background-color: #404040;
+    border-color: #404040;
+}
+
+.btn-secondary-b.focus,
+.btn-secondary-b:focus {
+    color: #fff;
+    background-color: #404040;
+    border-color: #404040;
+    box-shadow: 0 0 0 1px rgb(000, 000, 000);
+}
+
+.btn-secondary-b:not(:disabled):not(.disabled).active,
+.btn-secondary-b:not(:disabled):not(.disabled):active,
+.show>.btn-secondary-b.dropdown-toggle {
+    color: #fff;
+    background-color: #404040;
+    border-color: #404040;
+}
 
 /*--- btn success --*/
 

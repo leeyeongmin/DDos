@@ -26,8 +26,10 @@
 </style>
 
 <script>
-	function popup(month,day){
-		var tempDay = window.open("makeStudy?month="+month+"&day="+day, "reservation", "width=400, height=600, left=150, top=150"); 
+//팝업창 띄움
+	function popup(month,day){		
+		window.name="studylist.do";
+		window.open("makeStudy?month="+month+"&day="+day, "reservation", "width=400, height=600, left=150, top=150"); 
 	}
 </script>
 
@@ -130,7 +132,7 @@
 			%>
 
 			<td>
-			<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m%>&day=<%=k%>">
+			<a style="color:gray; cursor:pointer;" onclick="popup(<%=m%>,<%=k%>)" <%-- href="makeStudy?month=<%=m%>&day=<%=k%>" --%>>
 				<%=k%></a>
 				<FONT color="blue" SIZE=2>
 				<% 	if(prevStudy[k]!="")
@@ -157,7 +159,7 @@
 			%>
 
 			<td>
-				<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+1%>&day=<%=j%>">
+				<a style="color:gray; cursor:pointer;" onclick="popup(<%=m+1%>,<%=j%>)"">
 				<%=j%></a>
 				<FONT color="blue" SIZE=2>
 				<% 	if(curStudy[j] != "")
@@ -194,7 +196,7 @@
 			%>
 		
 			<td>			
-			<a style="color:gray; cursor:pointer;" href="makeStudy?month=<%=m+2%>&day=<%=e%>"><%=e%></a>
+			<a style="color:gray; cursor:pointer;" onclick="popup(<%=m+2%>,<%=e%>)"><%=e%></a>
 			<FONT color="blue" SIZE=2> 
 			<% 	if(nextStudy[e]!="")
 				{

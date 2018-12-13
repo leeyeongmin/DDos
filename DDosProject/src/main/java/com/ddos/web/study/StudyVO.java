@@ -11,6 +11,8 @@ public class StudyVO {
 	private String status;
 	private int studyroomNumber;
 	private String memberId;
+	
+	
 	public int getStudyNumber() {
 		return studyNumber;
 	}

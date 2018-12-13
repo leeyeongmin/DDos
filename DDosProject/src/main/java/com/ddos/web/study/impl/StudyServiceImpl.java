@@ -30,7 +30,7 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public void deleteStudy(StudyVO vo) {
 		// TODO Auto-generated method stub
-		
+		dao.deleteStudy(vo);
 	}
 
 	@Override

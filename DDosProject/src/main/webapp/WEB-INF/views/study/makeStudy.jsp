@@ -34,15 +34,22 @@
 <script>
 $(function() {
     
+	
+	//사용안함
     $("#okay").click(function(){
     	
     	var params = $("#addForm").serialize();    	
-    	$.getJSON("insertStudy", params, function(data){
-    		makeCommentView(datas)
+    	$.getJSON("./insertStudy", params, function(data){
+    		/* makeCommentView(datas) */
 		});
-
+		
+    	
+    	//opener.parent.location="./insertStudy";
+    	opener.parent.location.reload();
+    	window.close();
     });
     
+    //스터디룸별 사용 가능한 스터디 시간 구하는 함수
     $("#studyroomNumber").on("change",function(){
 		var roomNum=document.getElementById("studyroomNumber").value;
 		var opt = document.getElementById("studyTime");
@@ -80,15 +87,15 @@ $(function() {
 </script>
 
 </head>
-<style>
+<!-- <style>
 	#wrapper{
 	margin:40px 0px 0px 350px;
 	}
-</style>
+</style> -->
 <body>
 
     <div id="wrapper">
-    <form id="addForm" action="./insertStudy" method="post">
+    <form id="addForm" action="./insertStudy" method="post" target="studylist.do">
 		<p>스터디 명:<input type="text" name="studyName"></p>
 		<p>스터디 주제:<input type="text" name="studySubject"></p>
 		<p>스터디 룸:
@@ -111,11 +118,10 @@ $(function() {
 		<input type="hidden" value="모집중" name="status">
 		스터디장:<input type="hidden" value="${sessionScope.login.id}" name="memberId">
 		<br>
-    	<input type="submit" value="예약" >
+    	<input type="submit" value="예약" onclick="window.close()">
     	<input type="reset" value="리셋">
-    	<input type="button" value="취소" onclick="history.back()">
-		<!-- onclick="movePage()"
-		 -->
+    	<input type="button" value="취소" onclick="self.close()">
+
 	 </form>
 	 </div>
 	

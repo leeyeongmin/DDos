@@ -12,6 +12,16 @@ public class ReadVO {
 	private String col;
 	private String row;
 	
+	private String endTime;
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String end_time) {
+		this.endTime = end_time;
+	}
+
 	public String getCol() {
 		return col;
 	}
@@ -78,7 +88,7 @@ public class ReadVO {
 
 	@Override
 	public String toString() {
-		return "ReadVO [seat_num=" + seatNum + ", status=" + status + "]" + "selectSeat : " + selectSeat;
+		return "ReadVO [seat_num=" + seatNum + ", status=" + status + "]" + "selectSeat : " + selectSeat + endTime;
 	}
 	
 	

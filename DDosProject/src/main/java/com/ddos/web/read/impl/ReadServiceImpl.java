@@ -48,8 +48,8 @@ public class ReadServiceImpl implements ReadService{
 
 
 	@Override
-	public String seat_useing(String login_id) {
-		return dao.useing_seat(login_id);
+	public String seat_useing(ReadVO vo) {
+		return dao.useing_seat(vo);
 	}
 
 
@@ -63,6 +63,24 @@ public class ReadServiceImpl implements ReadService{
 	@Override
 	public void return_seat(ReadVO vo) {
 		dao.return_seat(vo);
+	}
+
+
+	@Override
+	public String remaining(ReadVO vo) {
+		return dao.remaining(vo);
+	}
+
+
+	@Override
+	public void extension(ReadVO vo) {
+		dao.extension(vo);
+	}
+
+
+	@Override
+	public String usetimer(ReadVO vo) {
+		return dao.usetimer(vo);
 	}
 
 

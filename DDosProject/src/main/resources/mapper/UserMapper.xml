@@ -4,7 +4,7 @@
 <mapper namespace="user">
 
 	<select id="getUser" parameterType="user" resultType="user">
-		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT
+		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS,GENDER
 		FROM MEMBER
 		
 		<!-- <if test="searchKeyword != null and searchKeyword ==''">

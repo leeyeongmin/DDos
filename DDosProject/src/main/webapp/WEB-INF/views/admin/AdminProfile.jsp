@@ -84,9 +84,9 @@
                                 <div class="card-body border-top">
                                     <h3 class="font-16">Sub Info</h3>
                                     <div class="">
-                                    	<li class="mb-2">Gender&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;${user.gender}</li>
-                                        <li class="mb-2">Birth Day&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;${user.birth}</li>
-                                        <li class="mb-2">Address&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;${user.address}</li>
+                                    	<li class="mb-2">Gender:${user.gender}</li>
+                                        <li class="mb-2">Birth Day:${user.birth}</li>
+                                        <li class="mb-2">Address:${user.address}</li>
                                     </ul>
                                     </div>
                                 </div>

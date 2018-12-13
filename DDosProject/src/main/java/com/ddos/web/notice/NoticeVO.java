@@ -7,6 +7,7 @@ public class NoticeVO {
 	private String noticeCont;
 	private String memberId;
 	private int noticeCnt;
+	// 검색
 	private String searchType;
 	private String searchKeyword;
 

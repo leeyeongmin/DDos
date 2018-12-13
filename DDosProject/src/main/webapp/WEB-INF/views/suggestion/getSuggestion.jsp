@@ -24,19 +24,36 @@
 								<div class="table-responsive">
 									<table id="getNotice" width="100%"
 										class="table table-bordered table-hover text-center">
-										글번호 : ${suggestion.sugNum}
-										<br> 제목: ${suggestion.sugTitle}
-										<br> 등록일: ${suggestion.sugDate}
-										<br> 조회수: ${suggestion.sugCnt}
-										<br> 내용: ${suggestion.sugCont}
-										<br>
-										<hr>
-										<a href="getSuggestionList">목록</a>
-										<a href="./updateSuggestionform?sugNum=${suggestion.sugNum}">수정</a>
-										<a href="./deleteSuggestion?sugNum=${suggestion.sugNum}">삭제</a>
+										<tr>
+											<td width="20%">글번호</td>
+											<td>${suggestion.sugNum}</td>
+										</tr>
+										<tr>
+											<td width="20%">제목</td>
+											<td>${suggestion.sugTitle}</td>
+										</tr>
+										<tr>
+											<td>등록일</td>
+											<td>${suggestion.sugDate}</td>
+										</tr>
+										<tr>
+											<td>조회수</td>
+											<td>${suggestion.sugCnt}</td>
+										</tr>
+										<tr>
+											<td>내용</td>
+											<td>${suggestion.sugCont}</td>
+										</tr>
 									</table>
 								</div>
+								<a href="getSuggestionList" class="btn btn-primary btn-sm"
+									style="margin-top: 30px">목록</a> <a
+									href="./updateSuggestionform?sugNum=${suggestion.sugNum}"
+									class="btn btn-primary btn-sm" style="margin-top: 30px">수정</a>
+								<a href="./deleteSuggestion?sugNum=${suggestion.sugNum}"
+									class="btn btn-primary btn-sm" style="margin-top: 30px">삭제</a>
 							</div>
+							<!-- end card-body -->
 						</div>
 					</div>
 				</div>

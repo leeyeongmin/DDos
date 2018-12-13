@@ -54,10 +54,10 @@
 				<!-- ============================================================== -->
 
 				<c:if test="${empty sessionScope.login}">
-					<a href="LoginForm">로그인</a>
+					<a href="loginForm">로그인</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.login}">
-		${sessionScope.login.id} 님<a href="Logout">로그아웃</a>
+		${sessionScope.login.id} 님<a href="./">로그아웃</a>
 				</c:if>
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

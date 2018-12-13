@@ -53,21 +53,22 @@ div.card {
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
 				<c:if test="${empty sessionScope.login}">
-					<a href="LoginForm">로그인</a>
+					<a href="loginForm">로그인</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.login}">
-		${sessionScope.login.id} 님<a href="Logout">로그아웃</a>
+		${sessionScope.login.id} 님<a href="./">로그아웃</a>
 				</c:if>
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
-							<form action="search" name="search" method="post">
+							<!-- 검색 -->
+							<form name="search">
 								<select name="searchType">
-									<option value="noticeTitle"
-										<c:if test="${'noticeTitle' == searchType}"> selected </c:if>>제목</option>
-								</select> <input type="text" name="searchKeyword"
-									value="${searchKeyword}"> <input type="button"
-									value="검색" class="btn btn-primary btn-sm" onclick="click()">
+									<option value="noticeTitle">제목
+									<option value="noticeCont">내용
+								</select> 
+								<input type="text" name="searchKeyword"> 
+								<button class="btn btn-primary btn-sm">검색</button>
 							</form>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -93,7 +94,8 @@ div.card {
 											</c:forEach>
 										</tbody>
 									</table>
-									<a href="insertNoticeform" class="btn btn-secondary" style="margin-top: 30px">등록</a>
+									<a href="insertNoticeform" class="btn btn-secondary"
+										style="margin-top: 30px">등록</a>
 								</div>
 							</div>
 						</div>

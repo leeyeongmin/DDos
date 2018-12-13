@@ -7,14 +7,48 @@
 <title>공지사항</title>
 </head>
 <body>
-	<h3>공지 수정</h3>
-	<form action="updateNotice" method="post">
-		글번호 <input type="hidden" name="noticeNum" value="${notice.noticeNum}">${notice.noticeNum}<br>
-		제목 <input type="text" name="noticeTitle" value="${notice.noticeTitle}"><br>
-		내용
-		<textarea rows="20" cols="20" name="noticeCont">${notice.noticeCont}</textarea>
-		<br>
-		<button>수정 완료</button>
-	</form>
+	<div class="dashboard-main-wrapper">
+		<!-- ============================================================== -->
+		<!-- wrapper  -->
+		<!-- ============================================================== -->
+		<div class="dashboard-finance">
+			<div class="container-fluid dashboard-content">
+				<!-- ============================================================== -->
+				<!-- pageheader  -->
+				<!-- ============================================================== -->
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table id="insertSuggestion" width="100%"
+										class="table table-bordered table-hover text-center">
+										<form action="updateNotice" method="post">
+											<tr>
+												<td>글번호</td>
+												<td><input type="hidden" name="noticeNum"
+													value="${notice.noticeNum}">${notice.noticeNum}</td>
+											</tr>
+											<tr>
+												<td>제목</td>
+												<td><input type="text" name="noticeTitle"
+													value="${notice.noticeTitle}" style="width: 100%"></td>
+											</tr>
+											<tr>
+												<td>내용</td>
+												<td><textarea rows="20" cols="20" name="noticeCont" style="width: 100%">${notice.noticeCont}</textarea></td>
+											</tr>
+												<button class="btn btn-primary btn-sm"
+													style="margin-bottom: 30px">수정 완료</button>
+										</form>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

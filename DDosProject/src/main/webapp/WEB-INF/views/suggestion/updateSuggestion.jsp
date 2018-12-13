@@ -11,20 +11,42 @@
 		<!-- ============================================================== -->
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
-
 		<div class="dashboard-finance">
 			<div class="container-fluid dashboard-content">
 				<!-- ============================================================== -->
 				<!-- pageheader  -->
 				<!-- ============================================================== -->
-				<form action="updateSuggestion" method="post">
-					글번호 <input type="hidden" name="sugNum" value="${suggestion.sugNum}">${suggestion.sugNum}<br>
-					제목 <input type="text" name="sugTitle"
-						value="${suggestion.sugTitle}"><br> 내용
-					<textarea rows="20" cols="20" name="sugCont">${suggestion.sugCont}</textarea>
-					<br>
-					<button>수정 완료</button>
-				</form>
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table id="insertSuggestion" width="100%"
+										class="table table-bordered table-hover text-center">
+										<form action="updateSuggestion" method="post">
+											<tr>
+												<td>글번호</td>
+												<td><input type="hidden" name="sugNum"
+												value="${suggestion.sugNum}">${suggestion.sugNum}</td>
+											</tr>
+											<tr>
+												<td>제목</td>
+												<td><input type="text" name="sugTitle"
+												value="${suggestion.sugTitle}" style="width:100%"></td>
+											</tr>
+											<tr>
+												<td>내용</td>
+												<td><textarea rows="20" cols="20" name="sugCont" style="width: 100%">${suggestion.sugCont}</textarea></td>
+											</tr>
+											<button class="btn btn-primary btn-sm"
+												style="margin-bottom: 30px">수정 완료</button>
+										</form>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -8,8 +8,9 @@
 		SELECT * FROM SUGGESTION	
 		<where>
 		<if test="searchType != null and searchType == 'sugTitle'">
-			and sugTitle like '%' || @{searchKeyword} || '%'
-		</if>
+			and SUG_TITLE like '%' || #{searchKeyword} || '%' </if>
+		<if test="searchType != null and searchType == 'sugCont'">
+			and SUG_CONT like '%' || #{searchKeyword} || '%' </if>
 		</where>
 		ORDER BY SUG_NUM DESC
 	</select>
@@ -59,7 +60,8 @@
 	<update id="updateSuggestion" parameterType="suggestion">
 		UPDATE SUGGESTION SET
 				SUG_TITLE = #{sugTitle},
-				SUG_CONT = #{sugCont}
+				SUG_CONT = #{sugCont},
+				SUG_DATE = sysdate
 		WHERE SUG_NUM = #{sugNum}
 	</update>
 	

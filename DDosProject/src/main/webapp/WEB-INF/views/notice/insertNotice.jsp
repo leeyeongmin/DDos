@@ -25,12 +25,21 @@
 									<table id="insertNotice" width="100%"
 										class="table table-bordered table-hover text-center">
 										<form action="insertNotice" method="post">
-											작성자 <input type="hidden" name="memberId"
-												value="${sessionScope.login.id}">${sessionScope.login.id}<br>
-											제목 <input type="text" name="noticeTitle"><br> 내용
-											<textarea rows="20" cols="40" name="noticeCont"></textarea>
-											<br>
-											<button>등록</button>
+											<tr>
+												<td>작성자</td>
+												<td><input type="hidden" name="memberId"
+												value="${sessionScope.login.id}">${sessionScope.login.id}</td>
+											</tr>
+											<tr>
+												<td>제목</td>
+												<td><input type="text" name="noticeTitle" style="width: 100%"></td>
+											</tr>
+											<tr>
+												<td>내용</td>
+												<td><textarea rows="20" cols="40" name="noticeCont" style="width: 100%"></textarea></td>
+											</tr>
+											<button class="btn btn-primary btn-sm"
+												style="margin-bottom: 30px" onclick="check()">등록</button>
 										</form>
 									</table>
 								</div>

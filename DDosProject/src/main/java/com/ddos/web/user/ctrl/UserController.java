@@ -25,33 +25,33 @@ public class UserController {
 	@Autowired UserService userService;
 	
 	
-	//-------------------------------------------------------------------濡쒓렇�씤---------------------------------------------------
-	// 濡쒓렇�씤 �뤌 遺덈윭�삤湲�
+	//-------------------------------------------------------------------로그인---------------------------------------------------
+	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
 		return "no/login/Login";
 	}
 
-	//濡쒓렇�씤 泥섎━
+	
 	@RequestMapping("login")
-	public String login(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		//UserVO 瑜� jsp�뿉�꽌 user濡� �궗�슜
-		//id �떒嫄� 議고쉶
+	public String login(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		
+		
 		
 		UserVO uservo = userService.getUser(vo);
         
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
 		
-		//�빐�떦 �븘�씠�뵒媛� 議댁옱 �븷 寃쎌슦 password 鍮꾧탳
-		if(uservo == null) {		//id媛� �뾾�뒗 寃쎌슦
+		
+		if(uservo == null) {
 			
-            out.println("<script>alert('�쉶�썝 �젙蹂닿� 議댁옱�븯吏� �븡�뒿�땲�떎. �쉶�썝 媛��엯�쓣 �빐二쇱꽭�슂.');</script>");
+            out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
             out.flush();
 			
 			return "no/login/Login";
 		}else if(! vo.getPassword().equals(uservo.getPassword())) {		//password �삤瑜�
 			
-			out.println("<script>alert('鍮꾨�踰덊샇媛� ���졇�뒿�땲�떎. 鍮꾨�踰덊샇瑜� �솗�씤�빐二쇱꽭�슂.');</script>");
+			out.println("<script>alert('아이디 비밀번호가 일치하지 않습니다. 다시 한번 확인해 주세요.');</script>");
             out.flush();
             
 			return "no/login/Login";
@@ -70,16 +70,16 @@ public class UserController {
 
 	//-------------------------------------------------------------------鍮꾨쾲李얘린-----------------------------------------------------------
 	
-	// 鍮꾨쾲李얘린 �뤌 遺덈윭�삤湲�
+	
 	@RequestMapping("/findForm")
 	public String findForm() {
 		return "no/login/FindInfo";
 	}
 	
-	//鍮꾨�踰덊샇李얘린 泥섎━
+	
 		@RequestMapping("findPwd")
 		public String findPwd(@ModelAttribute("fpwd") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		//UserVO 瑜� jsp�뿉�꽌 user濡� �궗�슜
-			//id �떒嫄� 議고쉶
+			
 			
 			UserVO uservo = userService.findPwd(vo);
 			
@@ -89,10 +89,10 @@ public class UserController {
 			response.setContentType("text/html; charset=UTF-8");
 		       PrintWriter out = response.getWriter();
 			
-			//�빐�떦 �븘�씠�뵒媛� 議댁옱 �븷 寃쎌슦 password 鍮꾧탳
-			if(uservo == null) {		//id媛� �뾾�뒗 寃쎌슦
+			
+			if(uservo == null) {		
 				
-		           out.println("<script>alert('�쉶�썝 �젙蹂닿� 議댁옱�븯吏� �븡�뒿�땲�떎. �쉶�썝 媛��엯�쓣 �빐二쇱꽭�슂.');</script>");
+		           out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
 		           out.flush();
 				
 				return "no/login/Login";
@@ -106,7 +106,7 @@ public class UserController {
 	//-------------------------------------------------------------------�쉶�썝媛��엯-----------------------------------------------------------
 	
 		
-	//�쉶�썝媛��엯 �뤌 遺덈윭�삤湲�
+
 	@RequestMapping("/joinForm")
 	public String joinForm() {
 		return "no/login/SignUp";
@@ -126,7 +126,7 @@ public class UserController {
     }
 
 	
-	// �벑濡� 泥섎━
+
 		@RequestMapping("join")
 		public String insertBoard(UserVO vo){				//而ㅻ㎤�뱶 媛앹껜
 			userService.insertUser(vo);					//�벑濡� 泥섎━

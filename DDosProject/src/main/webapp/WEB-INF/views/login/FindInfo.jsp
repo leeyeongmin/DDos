@@ -40,7 +40,7 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card">
-            <div class="card-header text-center"><img class="logo-img" src="assets/images/logo.png" alt="logo"><span class="splash-description">Please enter your user information.</span></div>
+            <div class="card-header text-center"><img class="logo-img" src="assets/images/ddoslogo.png" alt="logo" style="width:50%;"><span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
                 <form action="findPwd">
                     <p>Don't worry, we'll send you an email to reset your password.</p>
@@ -51,11 +51,11 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-                <span>Don't have an account? <a href="joinForm">Sign Up</a></span>
-             </div class="card-footer text-center">
-             <div>
-                <span>Do you want to sign in? <a href="joinForm">Sign In</a></span>
+                <span>Don't have an account? <a href="joinForm">   &nbsp;&nbsp;&nbsp;&nbsp;  Sign Up</a></span>
             </div>
+            <div class="card-footer text-center">
+                <span>Do you want to sign in? <a href="loginForm">   &nbsp;&nbsp;&nbsp;&nbsp;  Sign In</a></span>
+           </div>
         </div>
     </div>
     <!-- ============================================================== -->

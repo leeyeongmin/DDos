@@ -90,10 +90,10 @@
                                                     <div class="user-avatar-address">
                                                         <p class="mb-2">
                                                         	<i class="fa fa-map-marker-alt mr-2  text-primary"></i>
-                                                        	${userList.address } 
+                                                        	${userList.address } &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                                                         	
                                                         	<span class="m-l-10">
-                                                        		ID&npsp;&npsp;:&npsp;&npsp;${userList.id }
+                                                        		&emsp;ID&nbsp;&nbsp;:&emsp;${userList.id }
                                                         	</span>
                                                         	
                                                         </p>
@@ -103,12 +103,12 @@
                                                     </div>
                                                     <div class="mt-3">
                                                       	<span class="m-l-10">
-                                                      	Gender&npsp;&npsp;:&npsp;&npsp;${userList.gender }
+                                                      	&emsp;Gender&nbsp;&nbsp;:&emsp;${userList.gender }
                                                         		<span class="m-l-20">
-                                                        			Phone&npsp;&npsp;:&npsp;&npsp;${userList.phone }
+                                                        			&emsp;Phone&nbsp;&nbsp;:&emsp;${userList.phone }
                                                         		</span>
                                                         		<span class="m-l-20">
-                                                        			Birthday&npsp;&npsp;:&npsp;&npsp;${userList.birth }
+                                                        			&emsp;Birthday&nbsp;&nbsp;:&emsp;${userList.birth }
                                                         		</span>
                                                         	</span>
 													</div>

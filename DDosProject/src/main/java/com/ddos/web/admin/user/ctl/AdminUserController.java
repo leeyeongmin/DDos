@@ -16,19 +16,18 @@ public class AdminUserController {
 	
 	@Autowired UserService userService;
 	
-	//-------------------------------------------------------�쑀��愿�由�----------------------------------
+	//-------------------------------------------------------admin user manager----------------------------------------------
 	
-	//�쑀�� 由ъ뒪�듃 �젙蹂� 議고쉶 & �뤌 遺덈윭�삤湲�
+	@RequestMapping("/UserManageForm")
+	public String loginForm() {
+		return "admin/admin/AdminHome";
+	}
+	
 	@RequestMapping("getUserList")
 	public String getUserList(Model model, UserVO vo){
 		model.addAttribute("userList", userService.getUserList(vo));
 		return "admin/admin/UserList";
 	}
-	
-	/*@RequestMapping("/userListForm")
-	public String userListForm() {
-		return "admin/admin/UserList";
-	}*/
 	
 	
 	@RequestMapping("/userDetail") // http://localhost:8081/app/getBoardList
@@ -48,7 +47,7 @@ public class AdminUserController {
 	}
 	
 	
-	//�넻怨� �뤌 遺덈윭�삤湲�
+	
 	@RequestMapping("/statisticsForm")
 	public String statisticsForm() {
 		return "admin/admin/AdminHome";

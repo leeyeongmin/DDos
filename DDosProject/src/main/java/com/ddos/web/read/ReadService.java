@@ -11,5 +11,5 @@ public interface ReadService {
 	public void timecheck();					//좌석 시간 체크
 	public String seat_useing(String login_id);	//로그인 후 좌석 사용 확인 
 	public Map<String, String> getroomsize(ReadVO vo);		//열람실 크기 확인
-
+	public void return_seat(ReadVO vo);
 }

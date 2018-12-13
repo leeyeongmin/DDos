@@ -9,7 +9,13 @@ public class BookVO {
 	private String bookGenre;	//장르
 	private int bookAmount;		//수량
 	private String bookLoc;		//위치
-	
+	private String dueDate;
+	public String getDueDate() {
+		return dueDate;
+	}
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
+	}
 	//검색
 	private String searchCondition;
 	private String searchKeyword;

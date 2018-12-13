@@ -10,6 +10,8 @@ public class UserVO {
 	private String expDate;
 	private String memSeparation;
 	private int outCount;
+	private String address;
+	private String gender;
 	
 	
 	public String getId() {
@@ -60,11 +62,25 @@ public class UserVO {
 	public void setOutCount(int outCount) {
 		this.outCount = outCount;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", phone=" + phone + ", birth="
-				+ birth + ", expDate=" + expDate + ", memSeparation=" + memSeparation + ", outCount=" + outCount + "]";
+				+ birth + ", expDate=" + expDate + ", memSeparation=" + memSeparation + ", outCount=" + outCount
+				+ ", address=" + address + ", gender=" + gender + "]";
 	}
+	
 	
 	
 }

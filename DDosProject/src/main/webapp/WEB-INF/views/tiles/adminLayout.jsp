@@ -156,20 +156,18 @@
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav flex-column">
 							<li class="nav-divider">MEMBER</li>
-							<li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
-                                	<i class="fa fa-fw fa-user-circle"></i>
-                                	User 
-                               		<span class="badge badge-success">6</span>
-                                </a>
-                                <div id="submenu-1" class="collapse submenu" style="">
+							
+							
+							<li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-user-circle"></i>User</a>
+                                <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         
                                         <li class="nav-item">
-                                            <a class="nav-link" href="getUserList">Customer List</a>
+                                            <a class="nav-link" href="getUserList" style="margin-top:2%; margin-bottom:2%;">Customer List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="userDetail?id=${login.id}">Manager Information</a>
+                                            <a class="nav-link" href="userDetail?id=${login.id}" style="margin-top:2%; margin-bottom:2%;">Manager Information</a>
                                         </li>
                                         
                                     </ul>

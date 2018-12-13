@@ -33,7 +33,10 @@ public class BookDAOMybatis {
 	}
 	
 		// 도서 수정
+	public void updateBook(BookVO vo) {
+		System.out.println("Mybatis updateBook 실행");
+		Mybatis.update("book.updateBook", vo);
 
-
+}
 }
 

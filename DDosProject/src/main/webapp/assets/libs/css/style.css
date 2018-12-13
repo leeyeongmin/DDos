@@ -1812,19 +1812,19 @@ Leftsidebar - dark
 }
 
 .sidebar-dark .nav-divider {
-    color: #a4aadb;
+    color: #dfdcca;
     font-size: 12px;
     letter-spacing: 1px;
 }
 
 .sidebar-dark.nav-left-sidebar .nav-link i {
-    color: #7a80b4;
+    color: #dfdcca;
 }
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-item {}
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link {
-    color: #7a80b4;
+    color: #dfdcca;
 }
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link:focus,
@@ -1844,7 +1844,7 @@ Leftsidebar - dark
 .sidebar-dark.nav-left-sidebar .submenu .nav .nav-item .nav-link:hover {
     color: #fff;
     border-radius: 2px;
-    background-color: #003973;
+    background-color: #ffd452;
 }
 
 .sidebar-dark.nav-left-sidebar .navbar-nav .nav-item .badge{

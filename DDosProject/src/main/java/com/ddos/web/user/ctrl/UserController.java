@@ -26,32 +26,32 @@ public class UserController {
 	
 	
 	//-------------------------------------------------------------------로그인---------------------------------------------------
-	// 로그인 폼 불러오기
+	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
 		return "no/login/Login";
 	}
 
-	//로그인 처리
+	
 	@RequestMapping("login")
-	public String login(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		//UserVO 를 jsp에서 user로 사용
-		//id 단건 조회
+	public String login(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		
+		
 		
 		UserVO uservo = userService.getUser(vo);
         
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
 		
-		//해당 아이디가 존재 할 경우 password 비교
-		if(uservo == null) {		//id가 없는 경우
+		
+		if(uservo == null) {
 			
-            out.println("<script>alert('회원 정보가 존재하지 않습니다. 회원 가입을 해주세요.');</script>");
+            out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
             out.flush();
 			
 			return "no/login/Login";
-		}else if(! vo.getPassword().equals(uservo.getPassword())) {		//password 오류
+		}else if(! vo.getPassword().equals(uservo.getPassword())) {		//password �삤瑜�
 			
-			out.println("<script>alert('비밀번호가 틀렸습니다. 비밀번호를 확인해주세요.');</script>");
+			out.println("<script>alert('아이디 비밀번호가 일치하지 않습니다. 다시 한번 확인해 주세요.');</script>");
             out.flush();
             
 			return "no/login/Login";
@@ -68,18 +68,18 @@ public class UserController {
 		}
 	}
 
-	//-------------------------------------------------------------------비번찾기-----------------------------------------------------------
+	//-------------------------------------------------------------------鍮꾨쾲李얘린-----------------------------------------------------------
 	
-	// 비번찾기 폼 불러오기
+	
 	@RequestMapping("/findForm")
 	public String findForm() {
 		return "no/login/FindInfo";
 	}
 	
-	//비밀번호찾기 처리
+	
 		@RequestMapping("findPwd")
-		public String findPwd(@ModelAttribute("fpwd") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		//UserVO 를 jsp에서 user로 사용
-			//id 단건 조회
+		public String findPwd(@ModelAttribute("fpwd") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		//UserVO 瑜� jsp�뿉�꽌 user濡� �궗�슜
+			
 			
 			UserVO uservo = userService.findPwd(vo);
 			
@@ -89,10 +89,10 @@ public class UserController {
 			response.setContentType("text/html; charset=UTF-8");
 		       PrintWriter out = response.getWriter();
 			
-			//해당 아이디가 존재 할 경우 password 비교
-			if(uservo == null) {		//id가 없는 경우
+			
+			if(uservo == null) {		
 				
-		           out.println("<script>alert('회원 정보가 존재하지 않습니다. 회원 가입을 해주세요.');</script>");
+		           out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
 		           out.flush();
 				
 				return "no/login/Login";
@@ -103,10 +103,10 @@ public class UserController {
 			}
 		}
 	
-	//-------------------------------------------------------------------회원가입-----------------------------------------------------------
+	//-------------------------------------------------------------------�쉶�썝媛��엯-----------------------------------------------------------
 	
 		
-	//회원가입 폼 불러오기
+
 	@RequestMapping("/joinForm")
 	public String joinForm() {
 		return "no/login/SignUp";
@@ -114,7 +114,7 @@ public class UserController {
 	
 	//id check
 	@RequestMapping(value = "checkId", method = { RequestMethod.GET, RequestMethod.POST})
-    public @ResponseBody int idCheck(UserVO vo) {
+    public @ResponseBody int idCheck(UserVO vo, Model model) {
 		
 		if(vo.getId().equals("")) {
 			return 2;
@@ -126,10 +126,10 @@ public class UserController {
     }
 
 	
-	// 등록 처리
+
 		@RequestMapping("join")
-		public String insertBoard(UserVO vo){				//커맨드 객체
-			userService.insertUser(vo);					//등록 처리
+		public String insertBoard(UserVO vo){				//而ㅻ㎤�뱶 媛앹껜
+			userService.insertUser(vo);					//�벑濡� 泥섎━
 			return "no/login/Login";					
 		}
 

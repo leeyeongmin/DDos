@@ -56,11 +56,7 @@
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="password" name="password" type="password" placeholder="Password" value="${user.password}">
                     </div>
-                    <div class="form-group">
-                        <label class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
-                        </label>
-                    </div>
+                    
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>

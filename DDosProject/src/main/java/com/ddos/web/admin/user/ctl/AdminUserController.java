@@ -16,22 +16,20 @@ public class AdminUserController {
 	
 	@Autowired UserService userService;
 	
-	//-------------------------------------------------------유저관리----------------------------------
+	//-------------------------------------------------------admin user manager----------------------------------------------
 	
-	//유저 리스트 정보 조회 & 폼 불러오기
+	@RequestMapping("/UserManageForm")
+	public String loginForm() {
+		return "admin/admin/AdminHome";
+	}
+	
 	@RequestMapping("getUserList")
 	public String getUserList(Model model, UserVO vo){
 		model.addAttribute("userList", userService.getUserList(vo));
 		return "admin/admin/UserList";
 	}
 	
-	/*@RequestMapping("/userListForm")
-	public String userListForm() {
-		return "admin/admin/UserList";
-	}*/
 	
-	
-	// 관리자 정보 조회 & 폼 불러오기
 	@RequestMapping("/userDetail") // http://localhost:8081/app/getBoardList
 	public String getUser(Model model, UserVO vo) {
 		
@@ -49,7 +47,7 @@ public class AdminUserController {
 	}
 	
 	
-	//통계 폼 불러오기
+	
 	@RequestMapping("/statisticsForm")
 	public String statisticsForm() {
 		return "admin/admin/AdminHome";

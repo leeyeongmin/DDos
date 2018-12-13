@@ -29,11 +29,11 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h3 class="mb-2">User List </h3>
+                                <h3 class="mb-2">Costomer List </h3>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">DDos</a></li>
+                                            <li class="breadcrumb-item">User</li>
                                             <li class="breadcrumb-item active" aria-current="page">Costomer List</li>
                                         </ol>
                                     </nav>
@@ -88,20 +88,27 @@
                                                         </div>
                                                     </div>
                                                     <div class="user-avatar-address">
-                                                    	<span class="m-l-10">
-                                                        	${userList.id }
-                                                        </span>
                                                         <p class="mb-2">
                                                         	<i class="fa fa-map-marker-alt mr-2  text-primary"></i>
-                                                        	Salt Lake City, UT 
+                                                        	${userList.address } &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                                        	
+                                                        	<span class="m-l-10">
+                                                        		&emsp;ID&nbsp;&nbsp;:&emsp;${userList.id }
+                                                        	</span>
+                                                        	
                                                         </p>
+                                                        
+                                                        
                                                         <div class="mt-3">
                                                     </div>
                                                     <div class="mt-3">
                                                       	<span class="m-l-10">
-                                                        		Male
+                                                      	&emsp;Gender&nbsp;&nbsp;:&emsp;${userList.gender }
                                                         		<span class="m-l-20">
-                                                        			${userList.birth }
+                                                        			&emsp;Phone&nbsp;&nbsp;:&emsp;${userList.phone }
+                                                        		</span>
+                                                        		<span class="m-l-20">
+                                                        			&emsp;Birthday&nbsp;&nbsp;:&emsp;${userList.birth }
                                                         		</span>
                                                         	</span>
 													</div>

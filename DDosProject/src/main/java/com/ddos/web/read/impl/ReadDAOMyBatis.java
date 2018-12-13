@@ -38,8 +38,8 @@ public class ReadDAOMyBatis {
 		mybatis.update("read.timecheck");
 	}
 	
-	public String useing_seat(String login_id) {
-		return mybatis.selectOne("read.seat_useing", login_id);
+	public String useing_seat(ReadVO vo) {
+		return mybatis.selectOne("read.seat_useing", vo.getLoginId());
 	}
 	
 	public Map<String, String> getroomsize(ReadVO vo){
@@ -49,5 +49,17 @@ public class ReadDAOMyBatis {
 	public void return_seat(ReadVO vo) {
 		mybatis.update("read.return_seat", vo);
 	}
+	
+	public String remaining(ReadVO vo) {
+		return mybatis.selectOne("read.remaining", vo.getLoginId());
+	}
 
+	public void extension(ReadVO vo) {
+		mybatis.update("read.extension", vo);
+	}
+	
+	public String usetimer(ReadVO vo) {
+		return mybatis.selectOne("read.usetimer", vo.getLoginId());
+	}
+	
 }

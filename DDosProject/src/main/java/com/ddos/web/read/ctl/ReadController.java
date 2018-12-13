@@ -40,6 +40,12 @@ public class ReadController {
 		return "user/ReadSelect";
 	}
 	
+	/*@RequestMapping(value = "overlap", method = { RequestMethod.POST})
+	@ResponseBody
+	public ReadVO overlap(ReadVO vo) {
+		return readserivce.overlap(vo);
+	}*/
+	
 	@RequestMapping(value = "overlap", method = { RequestMethod.POST})
 	@ResponseBody
 	public ReadVO overlap(ReadVO vo) {
@@ -60,8 +66,10 @@ public class ReadController {
 	
 	@RequestMapping("useing_seat")
 	@ResponseBody
-	public String useing_seat(ReadVO vo) {			//로그인 후 자리 확인
-		return readserivce.seat_useing(vo.getLoginId());
+	public String useing_seat(Model model, ReadVO vo) {			//로그인 후 자리 확인
+		System.out.println(vo.getLoginId());
+		//model.addAttribute("timer", readserivce.usetimer(vo));
+		return readserivce.seat_useing(vo);
 	}
 	
 	@RequestMapping("return_seat")
@@ -70,4 +78,24 @@ public class ReadController {
 		readserivce.return_seat(vo);
 	}
 	
+	@RequestMapping("remaining")
+	@ResponseBody
+	public String remaining(ReadVO vo) {
+		System.out.println(vo.getLoginId());
+		return readserivce.remaining(vo);
+	}
+	
+	@RequestMapping("extension")
+	@ResponseBody
+	public void extension(ReadVO vo) {
+		readserivce.extension(vo);
+	}
+	
+	
+	@RequestMapping("usetimer")
+	@ResponseBody
+	public String usetimer(ReadVO vo) {
+		System.out.println("sss : " + readserivce.usetimer(vo));
+		return readserivce.usetimer(vo);
+	}
 }

@@ -2,9 +2,41 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="review">
+<mapper namespace="review">
 
- 
+	<!-- 리뷰 조회 -->
+	<select id="getReviewList" resultType="review">
+		parameterType="review">
+		SELECT * FROM BOOK INNER JOIN REVIEW
+		ON
+		BOOK.ISBN = REVIEW.ISBN
+		WHERE REVIEW.ISBN=#{isbn};
+		<![CDATA[
+		WHERE RN <= #{pageUnit}
+		]]>
+	</select>
 
- 
- </mapper>
+	<!-- 리뷰 등록 -->
+	<select id="insertReview" parameterType="review">
+		INSERT INTO REVIEW(ISBN,
+		REVIEW_TITLE,
+		REVIEW_CONT, REVIEW_POINT,
+		MEMBER_ID)
+		VALUES (#{isbn}, #{review_title}, #{review_cont},
+		#{review_point}, #{member_id})
+	</select>
+
+	<!-- 리뷰 수정 -->
+	<update id="updateReview" parameterType="review">
+		UPDATE REVIEW SET
+		REVIEW_TITLE=#{review_title},
+		REVIEW_CONT=#{review_cont},
+		REVIEW_POINT=#{review_point}
+		WHERE MEMBER_ID=#{member_id} AND ISBN=#{isbn}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="deleteReview" parameterType="review">
+		DELETE FROM REVIEW WHERE MEMBER_ID= #{member_id} AND ISBN= #{isbn}
+	</delete>
+</mapper>

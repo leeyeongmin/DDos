@@ -1,4 +1,4 @@
-package com.ddos.web.review.ctrl;
+package com.ddos.web.book.ctrl;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ddos.web.review.ReviewService;
-import com.ddos.web.review.ReviewVO;
+import com.ddos.web.book.ReviewService;
+import com.ddos.web.book.ReviewVO;
 
 @Controller
 public class ReviewController {

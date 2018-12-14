@@ -60,10 +60,7 @@
 												<h2 class="mb-3">${book.bookTitle}</h2>
 												<div class="product-rating d-inline-block float-right">
 													<!-- 별점 평균 넣기 -->
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i> <i class="fa fa-fw fa-star"></i>
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i>
+
 												</div>
 												<h3 class="mb-0 text-primary">${book.bookWriter}</h3>
 											</div>
@@ -98,7 +95,6 @@
 													<td>${book.bookLoc}</td>
 													<td>${book.bookAmount}</td>
 													<td>${book.dueDate}</td>
-											
 											</thead>
 										</table>
 
@@ -108,38 +104,29 @@
 											class="btn btn-primary btn-block btn-default" style="">수정</a>
 									</div>
 								</div>
-
-
 							</div>
+
 							<div
 								class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
 								<div class="simple-card">
 									<ul class="nav nav-tabs" id="myTab5" role="tablist">
-										<li class="nav-item"><a
-											class="nav-link active border-left-0" id="product-tab-1"
-											data-toggle="tab" href="#tab-1" role="tab"
-											aria-controls="product-tab-1" aria-selected="true">내용</a></li>
-										<li class="nav-item"><a class="nav-link"
+										<li class="nav-item"><a class="nav-link border-left-0"
+											id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab"
+											aria-controls="product-tab-1" aria-selected="false">내용</a></li>
+										<li class="nav-item"><a class="nav-link active show"
 											id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab"
-											aria-controls="product-tab-2" aria-selected="false">Reviews</a></li>
+											aria-controls="product-tab-2" aria-selected="true">리뷰</a></li>
 									</ul>
 									<div class="tab-content" id="myTabContent5">
-									<p>${book.bookCont}</p>
-										<div class="tab-pane fade show active" id="tab-1"
-											role="tabpanel" aria-labelledby="product-tab-1">
-											
+										<div class="tab-pane fade" id="tab-1" role="tabpanel"
+											aria-labelledby="product-tab-1">
+											<p>${book.bookCont}</p>
 										</div>
-										<div class="tab-pane fade" id="tab-2" role="tabpanel"
-											aria-labelledby="product-tab-2">
+										<div class="tab-pane fade active show" id="tab-2"
+											role="tabpanel" aria-labelledby="product-tab-2">
 											<div class="review-block">
-												<p class="review-text font-italic m-0">리뷰 내용</p>
-												<div class="rating-star mb-4">
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i> <i class="fa fa-fw fa-star"></i>
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i>
-												</div>
-												<span class="text-dark font-weight-bold">회원 id</span>
+												<p class="review-text font-italic m-0">${review.reviewTitle}</p>
+												<span class="text-dark font-weight-bold">${review.memberId}</span>
 											</div>
 										</div>
 									</div>
@@ -151,6 +138,5 @@
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

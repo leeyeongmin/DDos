@@ -68,7 +68,7 @@
 
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">ISBN</label> 
-						<input name="isbn" type="text" class="form-control"  value="${book.isbn}">
+						<input name="isbn" type="text" class="form-control"  value="${book.isbn}" readonly>
 					</div>
 
 

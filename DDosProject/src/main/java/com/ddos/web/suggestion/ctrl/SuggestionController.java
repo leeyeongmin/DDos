@@ -23,9 +23,6 @@ public class SuggestionController {
 	// 등록 처리
 	@RequestMapping("insertSuggestion")
 	public String insertSuggestion(SuggestionVO vo, HttpSession session) {
-		String memberId = (String) session.getAttribute("userId");
-		vo.setMemberId(memberId);
-		suggestionService.create(vo);
 		suggestionService.insertSuggestion(vo);		// 등록 처리
 		return "redirect:getSuggestionList";	// 목록 요청
 	}

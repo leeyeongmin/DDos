@@ -47,8 +47,8 @@
 										</tr>
 									</table>
 								</div>
-								<c:if test="${login.id == suggestion.memberId}"> 
-								<a href="getNoticeList" class="btn btn-primary btn-sm" style="margin-top: 30px">목록</a> 
+								<a href="getNoticeList" class="btn btn-primary btn-sm" style="margin-top: 30px">목록</a>
+								<c:if test="${login.id == suggestion.memberId}">  
 								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="margin-top: 30px">수정</a>
 								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="margin-top: 30px">삭제</a>
 								</c:if>

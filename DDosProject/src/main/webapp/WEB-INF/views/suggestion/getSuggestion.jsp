@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
 								</div>
 								<a href="getSuggestionList" class="btn btn-primary btn-sm"
 									style="margin-top: 30px">목록</a>
-								<c:if test="${sessionScope.login.id == SuggestionVO.memberId}"> 
+								<c:if test="${login.id == suggestion.memberId}"> 
 								<a href="./updateSuggestionform?sugNum=${suggestion.sugNum}"
 									class="btn btn-primary btn-sm" style="margin-top: 30px">수정</a>
 								<a href="./deleteSuggestion?sugNum=${suggestion.sugNum}"

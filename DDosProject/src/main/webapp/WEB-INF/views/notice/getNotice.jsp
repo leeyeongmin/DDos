@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,9 +47,11 @@
 										</tr>
 									</table>
 								</div>
+								<c:if test="${login.id == suggestion.memberId}"> 
 								<a href="getNoticeList" class="btn btn-primary btn-sm" style="margin-top: 30px">목록</a> 
 								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="margin-top: 30px">수정</a>
 								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="margin-top: 30px">삭제</a>
+								</c:if>
 							</div>
 							<!-- end card-body -->
 						</div>

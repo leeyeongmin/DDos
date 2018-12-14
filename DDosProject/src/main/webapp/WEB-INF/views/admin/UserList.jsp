@@ -118,8 +118,20 @@
                                             </div>
                                             <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12">
                                                 <div class="float-xl-right float-none mt-xl-0 mt-4">
-                                                    <a href="#" class="btn-wishlist m-r-10"><i class="far fa-star"></i></a>
-                                                    <a href="userDetail?id=${userList.id}" class="btn btn-secondary">Show User</a>
+                                                
+                                                <c:if test="${userList.memSeparation == 'user'}">
+                                                <a href="userTypeChangeForm?id=${userList.id}" class="btn-wishlist m-r-10"><i class="far fa-star"></i></a>
+                                                </c:if>
+                                                
+                                                <c:if test="${userList.memSeparation == 'iuser'}">
+                                                <a href="userTypeChangeForm?id=${userList.id}" class="btn-wishlist-iuser m-r-10"><i class="far fa-star"></i></a>
+                                                </c:if>
+                                                
+                                                <c:if test="${userList.memSeparation == 'buser'}">
+                                                <a href="userTypeChangeForm?id=${userList.id}" class="btn-wishlist-buser m-r-10"><i class="far fa-star"></i></a>
+                                                </c:if>
+                                                
+                                                 <a href="userDetail?id=${userList.id}" class="btn btn-secondary">Show User</a>
                                                 </div>
                                             </div>
                                         </div>

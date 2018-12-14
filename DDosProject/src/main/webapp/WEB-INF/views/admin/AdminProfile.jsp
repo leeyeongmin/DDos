@@ -136,17 +136,6 @@ margin-left:15%;
 
 					});
 </script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script>
-	$(function() {
-		$("#birth").datepicker({
-			dateFormat : 'yy-mm-dd'
-		});
-	});
-</script>
 </head>
 
 <body>
@@ -262,7 +251,7 @@ margin-left:15%;
 								role="tabpanel" aria-labelledby="pills-campaign-tab">
 								<div class="row">
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-										<form class="joinForm" action="updateAdminInfo"
+										<form class="joinForm" action="updateUserInfo"
 											method="post">
 											<div class="card">
 												<div class="card-body location">
@@ -297,7 +286,7 @@ margin-left:15%;
 														<input class="form-control form-control-lg inform" type="text"
 															name="birth" id="birth" required=""
 															placeholder="Your Birthday" autocomplete="off"
-															value="${user.birth }">
+															value="${user.birth }" readonly>
 													</div>
 													<div class="form-group">
 														<input class="form-control form-control-lg inform" type="text"

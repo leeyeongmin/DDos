@@ -855,6 +855,7 @@ html body .display-7 {
 Background Color / Color
 -------------------------*/
 
+
 .bg-primary {
     background-color: #5969ff !important;
     color: #fff !important;
@@ -2622,9 +2623,33 @@ clip-path: polygon(10% 25%, 10% 0, 35% 0%, 65% 0%, 90% 0, 90% 25%, 90% 50%, 91% 
     text-align: center;
     line-height: 1.7;
 }
+.btn-wishlist-iuser {
+    background-color: #ffc108;
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+    padding: 5px 3px;
+    display: inline-block;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.7;
+}
+.btn-wishlist-buser {
+    background-color: #000000;
+    border-radius: 100px;
+    height: 30px;
+    width: 30px;
+    padding: 5px 3px;
+    display: inline-block;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.7;
+}
 
 .btn-wishlist:hover {
-    background-color: #ff407b;
+    background-color: #ffc108;
     color: #fff;
 }
 

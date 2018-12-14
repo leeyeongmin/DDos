@@ -23,7 +23,7 @@
 
 		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER
 		FROM MEMBER
-		WHERE MEM_SEPARATION = 'user'
+		WHERE MEM_SEPARATION != 'admin'
 	</select>
 	
 	
@@ -62,17 +62,17 @@
 	
 	
 	<update id="updateUser" parameterType="user">
-	
-		UPDATE MEMBER SET
-			PASSWORD = #{password},
-			NAME = #{name},
-			PHONE = #{phone},
-			BIRTH = #{birth},
-			ADDRESS = #{address}
-			
-			<if test="outCount.equals('')">
-      			,OUT_COUNT = #{outCount}
-      		</if> 
+      	
+		UPDATE MEMBER
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="password != null">PASSWORD = #{password},</if>
+			<if test="name != null">NAME = #{name},</if>
+			<if test="phone != null">PHONE = #{phone},</if>
+			<if test="birth != null">BIRTH = #{birth},</if>
+			<if test="address != null">ADDRESS = #{address},</if>
+			<if test="memSeparation != null">MEM_SEPARATION = #{memSeparation},</if>
+			<if test="outCount != null">OUT_COUNT = #{outCount},</if>
+		</trim>
 			
 		WHERE ID = 	#{id}
 	

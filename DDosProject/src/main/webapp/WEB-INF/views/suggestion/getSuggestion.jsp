@@ -41,17 +41,24 @@
 											<td>${suggestion.sugCnt}</td>
 										</tr>
 										<tr>
+											<td>작성자</td>
+											<td>${suggestion.memberId}</td>
+										</tr>
+										<tr>
 											<td>내용</td>
 											<td>${suggestion.sugCont}</td>
+											<td>${sessionScope.id}</td>
 										</tr>
 									</table>
 								</div>
 								<a href="getSuggestionList" class="btn btn-primary btn-sm"
-									style="margin-top: 30px">목록</a> <a
-									href="./updateSuggestionform?sugNum=${suggestion.sugNum}"
+									style="margin-top: 30px">목록</a>
+								<c:if test="${sessionScope.login.id == SuggestionVO.memberId}"> 
+								<a href="./updateSuggestionform?sugNum=${suggestion.sugNum}"
 									class="btn btn-primary btn-sm" style="margin-top: 30px">수정</a>
 								<a href="./deleteSuggestion?sugNum=${suggestion.sugNum}"
 									class="btn btn-primary btn-sm" style="margin-top: 30px">삭제</a>
+								</c:if>
 							</div>
 							<!-- end card-body -->
 						</div>

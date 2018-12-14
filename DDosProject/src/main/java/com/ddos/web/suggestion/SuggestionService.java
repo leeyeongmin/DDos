@@ -9,4 +9,5 @@ public interface SuggestionService {
 	public void increaseCnt(SuggestionVO vo);
 	public SuggestionVO getSuggestion(SuggestionVO vo);
 	public List<SuggestionVO> getSuggestionList(SuggestionVO vo);
+	public void create(SuggestionVO vo);
 }

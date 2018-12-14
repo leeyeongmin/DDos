@@ -1,5 +1,7 @@
 package com.ddos.web.suggestion.ctrl;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,10 @@ public class SuggestionController {
 	
 	// 등록 처리
 	@RequestMapping("insertSuggestion")
-	public String insertSuggestion(SuggestionVO vo) {
+	public String insertSuggestion(SuggestionVO vo, HttpSession session) {
+		String memberId = (String) session.getAttribute("userId");
+		vo.setMemberId(memberId);
+		suggestionService.create(vo);
 		suggestionService.insertSuggestion(vo);		// 등록 처리
 		return "redirect:getSuggestionList";	// 목록 요청
 	}

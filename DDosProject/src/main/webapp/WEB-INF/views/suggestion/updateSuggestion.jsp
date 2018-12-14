@@ -32,14 +32,14 @@
 											<tr>
 												<td>제목</td>
 												<td><input type="text" name="sugTitle"
-												value="${suggestion.sugTitle}" style="width:100%"></td>
+												value="${suggestion.sugTitle}" style="width:100%" required></td>
 											</tr>
 											<tr>
 												<td>내용</td>
-												<td><textarea rows="20" cols="20" name="sugCont" style="width: 100%">${suggestion.sugCont}</textarea></td>
+												<td><textarea rows="20" cols="20" name="sugCont" style="width: 100%" required>${suggestion.sugCont}</textarea></td>
 											</tr>
-											<button class="btn btn-primary btn-sm"
-												style="margin-bottom: 30px">수정 완료</button>
+											<input type="submit" class="btn btn-primary btn-sm"
+													style="margin-bottom: 30px" value="수정완료">
 										</form>
 									</table>
 								</div>

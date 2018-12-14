@@ -21,7 +21,8 @@
 				SUG_TITLE,
 				SUG_DATE,
 				SUG_CONT,
-				SUG_CNT
+				SUG_CNT,
+				MEMBER_ID
 		FROM SUGGESTION
 		WHERE SUG_NUM = #{sugNum}
 	</select>

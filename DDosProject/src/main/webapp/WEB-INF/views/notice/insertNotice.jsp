@@ -32,14 +32,14 @@
 											</tr>
 											<tr>
 												<td>제목</td>
-												<td><input type="text" name="noticeTitle" style="width: 100%"></td>
+												<td><input type="text" name="noticeTitle" style="width: 100%" required></td>
 											</tr>
 											<tr>
 												<td>내용</td>
-												<td><textarea rows="20" cols="40" name="noticeCont" style="width: 100%"></textarea></td>
+												<td><textarea rows="20" cols="40" name="noticeCont" style="width: 100%" required></textarea></td>
 											</tr>
-											<button class="btn btn-primary btn-sm"
-												style="margin-bottom: 30px" onclick="check()">등록</button>
+											<input type="submit" class="btn btn-primary btn-sm"
+													style="margin-bottom: 30px" value="등록">
 										</form>
 									</table>
 								</div>

@@ -84,6 +84,8 @@ div.card {
 										</thead>
 										<tbody id=noticelist>
 											<c:forEach items="${noticeList}" var="notice">
+											<c:set var="grant" value="${notice.memberId}"></c:set>
+											<input type="hidden" value="${notice.memberId}">
 												<tr>
 													<td>${notice.noticeNum}</td>
 													<td><a
@@ -94,8 +96,10 @@ div.card {
 											</c:forEach>
 										</tbody>
 									</table>
+									<c:if test="${login.id == 'admin@gmail.com'}">
 									<a href="insertNoticeform" class="btn btn-secondary"
 										style="margin-top: 30px">등록</a>
+									</c:if>
 								</div>
 							</div>
 						</div>

@@ -6,14 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <title>도서 수정</title>
-<script type="text/javascript">
-$(document).ready(function(){
-	if($(this)).val()==${book.bookLoc}){
-	$(this).attr("총류", "철학 및 역사", "과학", "예술", "언어 및 문학"
-			}
-});
-})
-</script>
+
 </head>
 <body>
 <div class="dashboard-main-wrapper">
@@ -80,8 +73,9 @@ $(document).ready(function(){
 
 
 					<div class="form-group">
-						<label for="input-select">위치</label> <select class="form-control"
-							name="${book.bookLoc}">
+						<label for="input-select">위치</label> 
+						<select class="form-control" value="${book.bookLoc}">
+							<option value="${book.bookLoc}">${book.bookLoc}</option>
 							<option value="총류">총류</option>
 							<option value="철학 및 역사">철학 및 역사</option>
 							<option value="과학">과학</option>
@@ -93,6 +87,7 @@ $(document).ready(function(){
 					<div class="form-group">
 						<label for="input-select">장르</label> <select class="form-control"
 							name="bookGenre"  value="${book.bookGenre}">
+							<option value="${book.bookGenre}">${book.bookGenre}</option>
 							<option value="총류">총류</option>
 							<option value="철학 및 역사">철학 및 역사</option>
 							<option value="과학">과학</option>
@@ -104,7 +99,7 @@ $(document).ready(function(){
 
 					<div class="form-group">
 						<label for="exampleFormControlTextarea1">도서 내용</label>
-						<textarea class="form-control" name="bookCont" rows="3" value="${book.bookCont}"></textarea>
+						<textarea class="form-control" name="bookCont" rows="3" value="${book.bookCont}">${book.bookCont}</textarea>
 					</div>
 					<div class="form-group row text-right">
 						<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">

@@ -39,7 +39,7 @@ public class BookController {
 	public String getBook(Model model, BookVO vo) {
 		System.out.println(vo);
 		model.addAttribute("book", bookservice.getBook(vo));
-		return "book/getBook";
+		return "book/getBook";	
 	}
 
 	// 등록 폼

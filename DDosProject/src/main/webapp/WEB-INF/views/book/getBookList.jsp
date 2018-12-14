@@ -34,7 +34,8 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Book Catalog</a>
+										<li class="breadcrumb-item active" aria-current="page">Book
+											Catalog</a>
 										</li>
 									</ol>
 								</nav>
@@ -45,56 +46,66 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-			<c:if test="${empty sessionScope.login}">
+				<c:if test="${empty sessionScope.login}">
 					<a href="LoginForm">로그인</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.login}">
 		${sessionScope.login.id} 님<a href="Logout">로그아웃</a>
 				</c:if>
-					<!-- 도서 검색 창 -->
-					<form name="frm">
-						<select name="searchCondition">
-							<option value="booktitle">도서명
-							<option value="bookwriter">저자
-							<option value="bookcomp">출판사
-						</select> <input type="text" name="searchKeyword">
-						<button>검색</button>
-					</form>
-
-
-					<div class="card">
-						<h5 class="card-header">소장 자료</h5>
-						<div class="card-body">
-							<table class="table" id="getBookList">
-
-								<thead>
-									<tr>
-										<th>도서명</th>
-										<th>저자</th>
-										<th>출판사</th>
-										<th>ISBN</th>
-										<th>위치</th>
-									</tr>
-								</thead>
-								<tbody id=booklist>
-									<c:forEach items="${bookList}" var="book">
-										<tr>
-											<td><a href="./getBook?isbn=${book.isbn}">${book.bookTitle}</a></td>
-											<td>${book.bookWriter}</td>
-											<td>${book.bookComp}</td>
-											<td>${book.isbn}</td>
-											<td>${book.bookLoc}&nbsp;자료실</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-
-							</table>
-						</div>
-						</div>
-
-						<button>
-							<a href="./insertBookform" class="btn btn-secondary" >등록</a>
-						</button>
-				</body>
+				<!-- 도서 검색 창 -->
+				<span style="float: right">
+					<input type="button" onclick="location.href='./insertBookform'" value="등록" class="btn btn-secondary">
+				</span>
+				<form name="frm">
 				
+					<select name="searchCondition">
+						<option value="booktitle">도서명
+						<option value="bookwriter">저자
+						<option value="bookcomp">출판사
+					</select> <input type="text" name="searchKeyword">
+					<button>검색</button>
+					
+					
+				</form>
+				
+
+
+				<div class="card">
+					<h5 class="card-header">소장 자료</h5>
+					<div class="card-body">
+						<table class="table" id="getBookList">
+
+							<thead>
+								<tr>
+									<th>도서명</th>
+									<th>저자</th>
+									<th>출판사</th>
+									<th>ISBN</th>
+									<th>위치</th>
+								</tr>
+							</thead>
+							<tbody id=booklist>
+								<c:forEach items="${bookList}" var="book">
+									<tr>
+										<td><a href="./getBook?isbn=${book.isbn}">${book.bookTitle}</a></td>
+										<td>${book.bookWriter}</td>
+										<td>${book.bookComp}</td>
+										<td>${book.isbn}</td>
+										<td>${book.bookLoc}&nbsp;자료실</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+
+				
+			</div>
+		</div>
+		</div>
+		
+</body>
+
+
 </html>

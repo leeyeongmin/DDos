@@ -44,7 +44,7 @@ public class BookController {
 
 	// 등록 폼
 	@RequestMapping("insertBookform")
-	public String insertBookfrom(Model model, BookVO vo) {
+	public String insertBookform(Model model, BookVO vo) {
 		return "book/insertBook";
 	}
 

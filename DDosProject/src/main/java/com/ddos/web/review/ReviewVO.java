@@ -1,4 +1,4 @@
-package com.ddos.web.book;
+package com.ddos.web.review;
 
 public class ReviewVO {
 

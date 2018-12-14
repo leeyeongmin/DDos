@@ -50,4 +50,10 @@ public class SuggestionServiceImpl implements SuggestionService {
 		return sugDAO.getSuggestionList(vo);
 	}
 
+	@Override
+	public void create(SuggestionVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

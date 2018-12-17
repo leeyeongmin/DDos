@@ -14,4 +14,5 @@ public interface UserService {
 	public void deleteUser(UserVO vo);
 	public List<UserVO> getInterestUserList(UserVO vo);
 	public List<UserVO> getBlackUserList(UserVO vo);
+	public List<UserVO> getNormalUserList(UserVO vo);
 }

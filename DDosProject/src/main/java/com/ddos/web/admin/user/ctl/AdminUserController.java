@@ -95,16 +95,22 @@ public class AdminUserController {
 	}
 	
 	
+	@RequestMapping("getNormalUserList")
+	public String getNormalUserList(Model model, UserVO vo) {
+		model.addAttribute("userSList", userService.getNormalUserList(vo));
+		return "admin/admin/NormalUser";
+	}
+	
 	@RequestMapping("getInterestUserList")
 	public String getInterestUserList(Model model, UserVO vo) {
 		model.addAttribute("userSList", userService.getInterestUserList(vo));
-		return "admin/admin/SpecialUser";
+		return "admin/admin/InterestUser";
 	}
 	
 	@RequestMapping("getBlackUserList")
 	public String getBlackUserList(Model model, UserVO vo) {
 		model.addAttribute("userSList", userService.getBlackUserList(vo));
-		return "admin/admin/SpecialUser";
+		return "admin/admin/BlackUser";
 	}
 	
 	

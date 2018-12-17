@@ -20,8 +20,19 @@
 
 
 <script>
+	$(document).ready(function() {
+		$('#sortCol').children().each(function(e, i) {
+			var value = $(i).val();
+			if (location.search.indexOf(value) > 0) {
+				i.defaultSelected = true;
+			} else {
+				i.defaultSelected = false;
+			}
+		});
+	});
+	
 	function check() {
-		if (document.searchUser.searchUserKeyword.value == "") {
+		if (document.getElementById("searchUserKeyword").value == "") {
 			alert("원하시는 검색 타입을 설정하시고 검색어를 입력하세요");
 			document.searchUser.searchUserKeyword.focus();
 			return;
@@ -70,29 +81,34 @@
 				<!-- content -->
 				<!-- ============================================================== -->
 				<div class="row">
-					<!-- ============================================================== -->
+				<!-- ============================================================== -->
 					<!-- search bar  -->
 					<!-- ============================================================== -->
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
 								<form name="SearchUser" onsubmit="check()">
-									<select class="form-control" name="searchType" style="text-align:center; width:15%; height:45px; display:inline-block;">
+									<select class="form-control" name="searchType"
+										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
 										<option value="id">Id
-										<option value="name">name
-									</select> 
-									<input class="form-control form-control-lg" style="width:70%; margin-left:1%; display:inline-block;" type="text" name="searchUserKeyword" placeholder="Search">
+										<option value="name">Name
+									</select> <input class="form-control form-control-lg"
+										style="width: 75%; margin-left: 1%; display: inline-block;"
+										id="searchUserKeyword" type="text" name="searchUserKeyword"
+										placeholder="Search">
 									<button class="btn btn-primary search-btn" type="submit">Search</button>
 								</form>
+
+
 							</div>
 						</div>
 					</div>
 					<!-- ============================================================== -->
 					<!-- end search bar  -->
 					<!-- ============================================================== -->
-
+				
 					<div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
-
+					
 						<c:forEach items="${userSList }" var="userList">
 							<!-- ()안에 model""이거 -->
 
@@ -166,13 +182,16 @@
 								</div>
 								<div class="border-top user-social-box">
 									<div class="user-social-media d-xl-inline-block ">
-										<span class="mr-2 twitter-color"> 대여 횟수 : </span><span>20</span>
+										<span class="mr-2 twitter-color"> Rental : </span><span>20</span>
 									</div>
 									<div class="user-social-media d-xl-inline-block">
-										<span class="mr-2  pinterest-color"> 열림실 사용 횟수 : </span><span>19</span>
+										<span class="mr-2  pinterest-color"> ReadingRoom history : </span><span>19</span>
 									</div>
 									<div class="user-social-media d-xl-inline-block">
-										<span class="mr-2 instagram-color"> 리뷰 횟수 : </span><span>12</span>
+										<span class="mr-2 instagram-color"> Review : </span><span>12</span>
+									</div>
+									<div class="user-social-media d-xl-inline-block">
+										<span class="mr-2 instagram-color"> Out Count : </span><span>${userList.outCount}</span>
 									</div>
 								</div>
 							</div>
@@ -195,13 +214,18 @@
 						<div class="card">
 							<div class="card-body">
 								<h3 class="font-16">Sorting By</h3>
-								<select class="form-control">
-									<option>Followers</option>
-									<option>Followers</option>
-								</select>
-							</div>
-							<div class="card-body border-top">
-								<a href="#" class="btn btn-secondary btn-lg btn-block">Submit</a>
+								
+								<!--TODO: value값 적기  -->
+								<form action="getNormalUserList" name="changeSort">
+									<select class="form-control" id="sortCol" name="sortCol" onchange="document.changeSort.submit()">										
+									<option value="" selected>SELECT</option>
+										<option value="OUT_COUNT">OUT&nbsp;COUNT</option>
+										<option value="EXP_DATE">EXP&nbsp;DATE</option>
+										<option value="">RENTAL</option>
+										<option value="">OVERDUE</option>
+										<option value="">REVIEW</option>
+									</select>
+								</form>
 							</div>
 						</div>
 
@@ -241,7 +265,6 @@
 		<!-- ============================================================== -->
 		<!-- end wrapper  -->
 		<!-- ============================================================== -->
-
 
 
 

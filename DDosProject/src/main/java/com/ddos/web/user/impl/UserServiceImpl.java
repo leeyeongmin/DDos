@@ -63,4 +63,9 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> getBlackUserList(UserVO vo) {
 		return dao.getBUserList(vo);
 	}
+
+	@Override
+	public List<UserVO> getNormalUserList(UserVO vo) {
+		return dao.getNUserList(vo);
+	}
 }

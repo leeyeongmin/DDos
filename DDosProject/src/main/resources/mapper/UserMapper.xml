@@ -29,19 +29,48 @@
 		</where>
 		
 		<choose>
-         <when test="sortCol != null and sortCol !=''" >
-         	<if test="sortCol == 'EXP_DATE'">
-         		ORDER BY ${sortCol} ASC
-         	</if>
-         	<if test="sortCol != 'EXP_DATE'">
-         		ORDER BY ${sortCol} DESC
-         	</if>
-         </when>
-         <!-- <otherwise>
-            ORDER BY SEQ DESC
-         </otherwise> -->
+        	<when test="sortCol != null and sortCol !=''" >
+         		<if test="sortCol == 'EXP_DATE'">
+         			ORDER BY ${sortCol} ASC
+         		</if>
+         		<if test="sortCol != 'EXP_DATE'">
+         			ORDER BY ${sortCol} DESC
+         		</if>
+        	</when>
+      	</choose>
+		
+	</select>
+	
+	<select id="getNUserList" resultType="user">
 
-      </choose>
+		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER
+		FROM MEMBER
+		
+		<where>
+			<if test="memSeparation != null">
+				AND MEM_SEPARATION = #{memSeparation}
+			</if>
+			<if test="searchType != null and searchType == 'id'">
+				MEM_SEPARATION = 'user'
+				AND ID LIKE '%' || #{searchUserKeyword} || '%' 
+			</if>
+			<if test="searchType != null and searchType == 'name'">
+				MEM_SEPARATION = 'user'
+				AND NAME LIKE '%' || #{searchUserKeyword} || '%' 
+			</if>
+		</where>
+		
+		<choose>
+        	<when test="sortCol != null and sortCol !=''" >
+        		WHERE MEM_SEPARATION = 'user'
+         		<if test="sortCol == 'EXP_DATE'">
+         			ORDER BY ${sortCol} ASC
+         		</if>
+         		<if test="sortCol != 'EXP_DATE'">
+         			ORDER BY ${sortCol} DESC
+         		</if>
+        	</when>
+      	</choose>
 		
 	</select>
 	
@@ -64,6 +93,18 @@
 			</if>
 		</where>
 		
+		<choose>
+        	<when test="sortCol != null and sortCol !=''" >
+        	WHERE MEM_SEPARATION = 'iuser'
+         		<if test="sortCol == 'EXP_DATE'">
+         			ORDER BY ${sortCol} ASC
+         		</if>
+         		<if test="sortCol != 'EXP_DATE'">
+         			ORDER BY ${sortCol} DESC
+         		</if>
+        	</when>
+      	</choose>
+		
 	</select>
 	
 	<select id="getBUserList" resultType="user">
@@ -84,6 +125,18 @@
 				AND NAME LIKE '%' || #{searchUserKeyword} || '%' 
 			</if>
 		</where>
+		
+		<choose>
+        	<when test="sortCol != null and sortCol !=''" >
+        	WHERE MEM_SEPARATION = 'buser'
+         		<if test="sortCol == 'EXP_DATE'">
+         			ORDER BY ${sortCol} ASC
+         		</if>
+         		<if test="sortCol != 'EXP_DATE'">
+         			ORDER BY ${sortCol} DESC
+         		</if>
+        	</when>
+      	</choose>
 		
 	</select>
 	

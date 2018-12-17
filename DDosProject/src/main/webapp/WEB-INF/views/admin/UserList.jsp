@@ -108,9 +108,9 @@
 									<select class="form-control" name="searchType"
 										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
 										<option value="id">Id
-										<option value="name">name
+										<option value="name">Name
 									</select> <input class="form-control form-control-lg"
-										style="width: 70%; margin-left: 1%; display: inline-block;"
+										style="width: 75%; margin-left: 1%; display: inline-block;"
 										id="searchUserKeyword" type="text" name="searchUserKeyword"
 										placeholder="Search">
 									<button class="btn btn-primary search-btn" type="submit">Search</button>
@@ -256,7 +256,7 @@
 									Member</a>
 							</div>
 							<div class="card-body border-top" style="margin-top: 5%;">
-								<a href="getInterestUserList?memSeparation=user"
+								<a href="getNormalUserList?memSeparation=user"
 									class="btn btn-outline-info btn-block">Basic Member</a>
 							</div>
 							<div class="card-body border-top" style="margin-top: 5%;">

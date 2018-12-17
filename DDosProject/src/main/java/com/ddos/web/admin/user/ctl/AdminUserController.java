@@ -37,11 +37,10 @@ public class AdminUserController {
 
 	@RequestMapping("getUserList")
 	public String getUserList(Model model, UserVO vo) {
+		model.addAttribute("userList", userService.getUserList(vo));
 		
 		System.out.println(vo);
 		
-		
-		model.addAttribute("userList", userService.getUserList(vo));
 		return "admin/admin/UserList";
 	}
 

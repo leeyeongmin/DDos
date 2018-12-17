@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<!doctype html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!doctype html>
 <html>
 
 <head>
@@ -20,6 +20,11 @@
 <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
+<script>
+	$('#exampleModal').modal(options)
+</script>
+
+
 </head>
 
 <!-- ============================================================== -->
@@ -34,10 +39,6 @@
 <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
 <!-- main js -->
 <script src="assets/libs/js/main-js.js"></script>
-
-<script>
-	$('#exampleModal').modal(options)
-</script>
 
 
 
@@ -82,12 +83,6 @@
 						<!-- ============================================================== -->
 						<!-- Ongoing Event -->
 						<!-- ============================================================== -->
-
-						<%-- <c:forEach items="${userList }" var="userList"> --%>
-
-
-						<%-- </c:forEach> --%>
-
 						<div class="row">
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<div class="section-block" id="image-card">
@@ -97,69 +92,21 @@
 										the image in a card.</p>
 								</div>
 							</div>
+							<c:forEach items="${ongoingEvent}" var="ongoingList">
+							
 							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 								<div class="card">
-									<img class="card-img-top img-fluid p-2"
-										src="assets/images/card-img.jpg" alt="Card image cap">
+									<img class="card-img-top img-fluid p-2" src="assets/images/card-img.jpg" alt="Card image cap">
 									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">Card title</h3>
-										<p class="card-text">Faucibus orci luctus et ultrices
-											lorem posuere cubilia Cuquis ipsum in augue posuere congue.</p>
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModal">Show
-											Event</button>
+										<h3 class="card-title">${ongoingEvent.title}</h3>
+										<p class="card-text">${ongoingEvent.content}</p>
+										<a href="eventDetail?eventNo=1" data-target="#exampleModal" data-toggle="modal" class="btn btn-primary showEvent" data-id="my_id_value">Show Event</a>
+										
 									</div>
 								</div>
 							</div>
 
-
-							<!-- --------------------------------------------------------------- -->
-							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-								<div class="card">
-									<img class="card-img-top img-fluid p-2"
-										src="assets/images/card-img.jpg" alt="Card image cap">
-									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">Card title</h3>
-										<p class="card-text">Faucibus orci luctus et ultrices
-											lorem posuere cubilia Cuquis ipsum in augue posuere congue.</p>
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModal">Show
-											Event</button>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-								<div class="card">
-									<img class="card-img-top img-fluid p-2"
-										src="assets/images/card-img.jpg" alt="Card image cap">
-									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">Card title</h3>
-										<p class="card-text">Faucibus orci luctus et ultrices
-											lorem posuere cubilia Cuquis ipsum in augue posuere congue.</p>
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModal">Show
-											Event</button>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-								<div class="card">
-									<img class="card-img-top img-fluid p-2"
-										src="assets/images/card-img.jpg" alt="Card image cap">
-									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">Card title</h3>
-										<p class="card-text">Faucibus orci luctus et ultrices
-											lorem posuere cubilia Cuquis ipsum in augue posuere congue.</p>
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModal">Show
-											Event</button>
-									</div>
-								</div>
-							</div>
-
-
-
-
+							</c:forEach>
 							<!-- ============================================================== -->
 							<!-- Going Ahead Event -->
 							<!-- ============================================================== -->
@@ -172,66 +119,23 @@
 										the image in a card.</p>
 								</div>
 							</div>
+							<c:forEach items="${aheadEvent}" var="aheadList">
+							
 							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 								<div class="card">
 									<img class="card-img-top img-fluid p-2"
 										src="assets/images/card-img.jpg" alt="Card image cap">
 									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">Card title</h3>
-										<p class="card-text">Faucibus orci luctus et ultrices
-											lorem posuere cubilia Cuquis ipsum in augue posuere congue.</p>
-										<button type="button" class="btn btn-primary"
+										<h3 class="card-title">${aheadEvent.title}</h3>
+										<p class="card-text">${aheadEvent.content}</p>
+										<button type="button" class="btn btn-primary" 
 											data-toggle="modal" data-target="#exampleModal">Show
 											Event</button>
 									</div>
 								</div>
 							</div>
 
-
-							<!-- --------------------------------------------------------------- -->
-							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-								<div class="card">
-									<img class="card-img-top img-fluid p-2"
-										src="assets/images/card-img.jpg" alt="Card image cap">
-									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">Card title</h3>
-										<p class="card-text">Faucibus orci luctus et ultrices
-											lorem posuere cubilia Cuquis ipsum in augue posuere congue.</p>
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModal">Show
-											Event</button>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-								<div class="card">
-									<img class="card-img-top img-fluid p-2"
-										src="assets/images/card-img.jpg" alt="Card image cap">
-									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">Card title</h3>
-										<p class="card-text">Faucibus orci luctus et ultrices
-											lorem posuere cubilia Cuquis ipsum in augue posuere congue.</p>
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModal">Show
-											Event</button>
-									</div>
-								</div>
-							</div>
-							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-								<div class="card">
-									<img class="card-img-top img-fluid p-2"
-										src="assets/images/card-img.jpg" alt="Card image cap">
-									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">Card title</h3>
-										<p class="card-text">Faucibus orci luctus et ultrices
-											lorem posuere cubilia Cuquis ipsum in augue posuere congue.</p>
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModal">Show
-											Event</button>
-									</div>
-								</div>
-							</div>
-
+							</c:forEach>
 
 						</div>
 
@@ -267,14 +171,16 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>여기에 이벤트 데이터 띄울거야</p>
-					<p>꺼져</p>
+				
+					<p>ppppppppppppppppppppppppp</p>
+					
+					<p>${eventDetail.eventNo }</p>
+					<p>${eventDetail.title }</p>
+					
+				
+				
 				</div>
 				<div class="modal-footer">
-
-					<!-- <a id="kakao-link-btn" href="javascript:;"> <img
-						src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
-					</a> -->
 
 					<a id="kakao-link-btn" href="javascript:;"><button
 							type="button" class="btn btn-primary">KaKao Share</button></a>
@@ -291,7 +197,7 @@
 		Kakao.init('4e34fd015dcb3287cbdac98a3d2fda30');
 		// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 		Kakao.Link
-				.createDefaultButton({		
+				.createDefaultButton({
 					container : '#kakao-link-btn',
 					objectType : 'feed',
 					content : {

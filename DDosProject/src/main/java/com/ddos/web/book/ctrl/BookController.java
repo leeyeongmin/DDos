@@ -2,6 +2,8 @@ package com.ddos.web.book.ctrl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -102,14 +104,13 @@ public class BookController {
 		// 리뷰 등록 폼
 		@RequestMapping("insertReviewform")
 		public String insertReviewform(Model model, ReviewVO rvo) {
-			System.out.println("리뷰 컨트롤 등록 폼");
-			return "book/insertReview";
+						return "book/insertReview";
 			
 		
 		}
 		// 리뷰 등록 처리
 		@RequestMapping("insertReview")
-			public String insertReview(ReviewVO rvo) {
+			public String insertReview(ReviewVO rvo, HttpSession session) {
 			System.out.println("리뷰 컨트롤 등록 처리");
 			reviewservice.insertReview(rvo);
 			return "redirect:getBook";

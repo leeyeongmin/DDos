@@ -115,7 +115,7 @@
                                             <!-- <div class="review-block"> -->
 
                                             <h5 class="card-header">
-                                                <a href="./insertReviewform?" class="btn btn-primary">리뷰쓰기</a>
+                                                <a href="./insertReviewform?isbn=${book.isbn}" class="btn btn-primary">리뷰쓰기</a>
                                             </h5>
                                             <div class="card-body">
                                                 <ul class="list-unstyled">

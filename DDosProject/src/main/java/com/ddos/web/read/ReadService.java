@@ -15,4 +15,10 @@ public interface ReadService {
 	public String remaining(ReadVO vo);			//남은 시간 체크 	(분 단위)
 	public void extension(ReadVO vo);			//좌석 시간 연장
 	public String usetimer(ReadVO vo);			//남은 시간 확인 	(시,분,초 단위)
+	
+	/*	-------------------------------  */
+	public List<ReadVO> test(ReadVO vo);
+	public ReadVO testMax(ReadVO vo);
+	
+	public void settingroom(ReadVO vo);				//좌석 수 설정 
 }

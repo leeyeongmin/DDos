@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="read">
+
 	<select id="setRoom" resultType="read">		<!-- 열람실 room 선택 -->
 		select SEAT_NUM,
 		to_number(SUBSTR(seat_num,2,2)) as "row",
@@ -96,5 +97,25 @@
 		and MEMBER_ID = #{loginId}
 		AND to_char(end_time,'YYYYMMDDHH24MISS') > TO_CHAR (SYSDATE, 'YYYYMMDDHH24MISS')
 	</update>
+	
+
+	<select id="test" resultType="read">
+	 select SEAT_NUM,
+		to_number(SUBSTR(seat_num,2,2)) as "row",
+		to_number(SUBSTR(seat_num,4,2)) as "col",
+		STATUS,
+    	(select to_number(max(SUBSTR(seat_num,2,2))) as "row" from readingroom where seat_num like #{room} || '%') rmax,
+    	(select to_number(max(SUBSTR(seat_num,4,2))) as "col" from readingroom where seat_num like #{room} || '%') cmax  
+		from READINGROOM
+		where SEAT_NUM like #{room} || '%'
+	</select>
+	
+	<insert id="settingroom" statementType="CALLABLE"  parameterType="read">
+		{call P_readingroom_setting(#{room, mode=IN, jdbcType=VARCHAR, javaType=string},
+						    #{row, mode=IN, jdbcType=VARCHAR, javaType=string},
+						    #{col, mode=IN, jdbcType=VARCHAR, javaType=string})
+						    
+	</insert>
+	
  
 </mapper>

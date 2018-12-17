@@ -1,5 +1,7 @@
 package com.ddos.web.read.ctl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +20,13 @@ public class ReadController {
 	
 	@RequestMapping("read")			//메인에서 화면 변경 
 	public String read() {
-		return "user/ReadChoose";
+		return "read/Setting";
 	}
 	
 	@RequestMapping("setRoom")		//열람실 선택시 나타나는 화면 (좌석배치)
 	public String setRoom(Model model, ReadVO vo) {
 		model.addAttribute("setList", readserivce.setRoom(vo));
+		model.addAttribute("roomsize", readserivce.getroomsize(vo));
 		return "read/Setting";
 	}
 	
@@ -35,8 +38,8 @@ public class ReadController {
 	
 	@RequestMapping("getRoom")		//열람실 선택 (유저)
 	public String getRoom(Model model, ReadVO vo) {
-		model.addAttribute("setList", readserivce.setRoom(vo));
-		model.addAttribute("roomsize", readserivce.getroomsize(vo));
+		model.addAttribute("setList", readserivce.setRoom(vo));					//자리
+		model.addAttribute("roomsize", readserivce.getroomsize(vo));			//룸크기
 		return "user/ReadSelect";
 	}
 	
@@ -98,4 +101,20 @@ public class ReadController {
 		System.out.println("sss : " + readserivce.usetimer(vo));
 		return readserivce.usetimer(vo);
 	}
+	
+	
+	
+	
+	@RequestMapping("testRoom")		//열람실 선택시 나타나는 화면 (좌석배치)
+	@ResponseBody
+	public List<ReadVO> testRoom(Model model, ReadVO vo) {
+		return readserivce.test(vo);
+	}
+
+	@RequestMapping("settingroom")
+	@ResponseBody
+	public void settingroom(ReadVO vo) {
+		readserivce.settingroom(vo);
+	}
+	
 }

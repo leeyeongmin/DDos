@@ -13,6 +13,25 @@ public class ReadVO {
 	private String row;
 	
 	private String endTime;
+	
+	private String rmax;
+	private String cmax;
+
+	public String getRmax() {
+		return rmax;
+	}
+
+	public void setRmax(String rmax) {
+		this.rmax = rmax;
+	}
+
+	public String getCmax() {
+		return cmax;
+	}
+
+	public void setCmax(String cmax) {
+		this.cmax = cmax;
+	}
 
 	public String getEndTime() {
 		return endTime;

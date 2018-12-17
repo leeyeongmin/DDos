@@ -84,5 +84,26 @@ public class ReadServiceImpl implements ReadService{
 	}
 
 
+	@Override
+	public List<ReadVO> test(ReadVO vo) {
+		// TODO Auto-generated method stub
+		return dao.test(vo);
+	}
+
+
+	@Override
+	public ReadVO testMax(ReadVO vo) {
+		// TODO Auto-generated method stub
+		return dao.testMax(vo);
+	}
+
+
+	@Override
+	public void settingroom(ReadVO vo) {
+		// TODO Auto-generated method stub
+		dao.settingroom(vo);
+	}
+
+
 
 }

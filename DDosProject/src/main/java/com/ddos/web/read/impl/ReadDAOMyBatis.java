@@ -62,4 +62,18 @@ public class ReadDAOMyBatis {
 		return mybatis.selectOne("read.usetimer", vo.getLoginId());
 	}
 	
+	
+	
+	public List<ReadVO> test(ReadVO vo){
+		return mybatis.selectList("read.test", vo);
+	}
+	
+	public ReadVO testMax(ReadVO vo) {
+		return mybatis.selectOne("read.testMax", vo);
+	}
+	
+	public void settingroom(ReadVO vo) {
+		mybatis.update("read.settingroom", vo);
+	}
+	
 }

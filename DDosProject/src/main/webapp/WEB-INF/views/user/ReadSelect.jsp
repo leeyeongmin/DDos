@@ -177,8 +177,8 @@
 			  var diffSec  = timeGap.getSeconds();      // 초
 			  var time_end = diffHour + "시간 " + diffMin + "분 "  + diffSec + "초 ";
 			  console.log(time_end);   
-
-			  if(diffHour == "2" && diffMin=="10" && diffSec=="20"){
+			  $("#use").html(time_end);
+			  if(diffHour == "0" && diffMin=="0" && diffSec=="0"){
 				  clearInterval(timer_start);
 			  }
 			  

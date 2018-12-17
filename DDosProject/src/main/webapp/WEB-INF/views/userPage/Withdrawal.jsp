@@ -91,7 +91,7 @@
 												type="password" name="password" id="password" required
 												placeholder="Your password">
 										</div>
-										<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " style="margin-top:3%; margin-bottom:2%;">
+										<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " style="width:50%; margin-top:3%; margin-bottom:2%;">
 											<button class="btn btn-block btn-primary inform"
 												type="submit">Withdrawal</button>
 										</div>

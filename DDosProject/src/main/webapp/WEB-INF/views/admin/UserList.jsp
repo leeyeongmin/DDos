@@ -200,13 +200,16 @@
 								</div>
 								<div class="border-top user-social-box">
 									<div class="user-social-media d-xl-inline-block ">
-										<span class="mr-2 twitter-color"> 대여 횟수 : </span><span>20</span>
+										<span class="mr-2 twitter-color"> Rental : </span><span>20</span>
 									</div>
 									<div class="user-social-media d-xl-inline-block">
-										<span class="mr-2  pinterest-color"> 열림실 사용 횟수 : </span><span>19</span>
+										<span class="mr-2  pinterest-color"> ReadingRoom history : </span><span>19</span>
 									</div>
 									<div class="user-social-media d-xl-inline-block">
-										<span class="mr-2 instagram-color"> 리뷰 횟수 : </span><span>12</span>
+										<span class="mr-2 instagram-color"> Review : </span><span>12</span>
+									</div>
+									<div class="user-social-media d-xl-inline-block">
+										<span class="mr-2 instagram-color"> Out Count : </span><span>${userList.outCount}</span>
 									</div>
 								</div>
 							</div>

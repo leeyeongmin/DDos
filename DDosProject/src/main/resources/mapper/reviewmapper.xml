@@ -5,15 +5,15 @@
 <mapper namespace="review">
 
 	<!-- 리뷰 조회 -->
-	<select id="getReviewList" resultType="review">
-		parameterType="review">
+	<select id="getReviewList" resultType="review"	parameterType="review">
+		<!-- SELECT REVIEW_TITLE, MEMBER_ID FROM REVIEW WHERE ISBN = #{isbn} -->
 		SELECT * FROM BOOK INNER JOIN REVIEW
 		ON
 		BOOK.ISBN = REVIEW.ISBN
-		WHERE REVIEW.ISBN=#{isbn};
-		<![CDATA[
+		WHERE REVIEW.ISBN=#{isbn}
+		<!-- <![CDATA[
 		WHERE RN <= #{pageUnit}
-		]]>
+		]]> -->
 	</select>
 
 	<!-- 리뷰 등록 -->
@@ -22,21 +22,20 @@
 		REVIEW_TITLE,
 		REVIEW_CONT, REVIEW_POINT,
 		MEMBER_ID)
-		VALUES (#{isbn}, #{review_title}, #{review_cont},
-		#{review_point}, #{member_id})
+		VALUES (#{isbn}, #{reviewTitle}, #{reviewCont}, #{reviewPoint}, #{memberId})
 	</select>
 
 	<!-- 리뷰 수정 -->
 	<update id="updateReview" parameterType="review">
 		UPDATE REVIEW SET
-		REVIEW_TITLE=#{review_title},
-		REVIEW_CONT=#{review_cont},
-		REVIEW_POINT=#{review_point}
-		WHERE MEMBER_ID=#{member_id} AND ISBN=#{isbn}
+		REVIEW_TITLE=#{reviewTitle},
+		REVIEW_CONT=#{reviewCont},
+		REVIEW_POINT=#{reviewPoint}
+		WHERE MEMBER_ID=#{memberId} AND ISBN=#{isbn}
 	</update>
 
 	<!-- 삭제 -->
 	<delete id="deleteReview" parameterType="review">
-		DELETE FROM REVIEW WHERE MEMBER_ID= #{member_id} AND ISBN= #{isbn}
+		DELETE FROM REVIEW WHERE MEMBER_ID= #{memberId} AND ISBN= #{isbn}
 	</delete>
 </mapper>

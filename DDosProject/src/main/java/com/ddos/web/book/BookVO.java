@@ -10,6 +10,8 @@ public class BookVO {
 	private int bookAmount;		//수량
 	private String bookLoc;		//위치
 	private String dueDate;
+	
+	
 	public String getDueDate() {
 		return dueDate;
 	}

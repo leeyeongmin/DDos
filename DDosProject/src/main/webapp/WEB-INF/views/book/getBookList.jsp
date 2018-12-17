@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	document.getElementByID("booklist").click = clickfunc;
+	//document.getElementById("booklist").click = clickfunc;
 	function clickfunc(e) {
 		var tdele = e.target.parentNode.children[x].innerHTML;
 		var trele = e.target.parentNode;
@@ -50,13 +50,15 @@
 					<a href="LoginForm">로그인</a>
 				</c:if>
 				<c:if test="${not empty sessionScope.login}">
-		${sessionScope.login.id} 님<a href="Logout">로그아웃</a>
+		${sessionScope.login.id} 님
 				</c:if>
 				<!-- 도서 검색 창 -->
+				
 				<span style="float: right">
 					<input type="button" onclick="location.href='./insertBookform'" value="등록" class="btn btn-secondary">
 				</span>
-				<form name="frm">
+				
+				<form name="frm" >
 				
 					<select name="searchCondition">
 						<option value="booktitle">도서명

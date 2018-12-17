@@ -2,15 +2,24 @@ package com.ddos.web.book;
 
 public class ReviewVO {
 
-	private int isbn;	//도서 isbn
-	private String reviewTitle;	//리뷰 내용
+	private String isbn;	//도서 isbn
+	private String reviewTitle;	//리뷰 제목
+	private String reviewCont; //리뷰 내용
 	private int reviewPoint;	//별점
 	private String memberId;	//회원id
 	private int pageUnit;	//페이징처리
-	public int getIsbn() {
+	
+	
+	public String getReviewCont() {
+		return reviewCont;
+	}
+	public void setReviewCont(String reviewCont) {
+		this.reviewCont = reviewCont;
+	}
+	public String getIsbn() {
 		return isbn;
 	}
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 	public String getReviewTitle() {

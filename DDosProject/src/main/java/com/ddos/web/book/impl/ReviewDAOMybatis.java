@@ -15,15 +15,15 @@ public class ReviewDAOMybatis {
 	private SqlSessionTemplate sqlsession;
 
 	// 전체 조회
-	public List<ReviewVO> getReviewList(ReviewVO vo) {
+	public List<ReviewVO> getReviewList(ReviewVO rvo) {
 		System.out.println("sqlsession getReviewList 실행");
-		return sqlsession.selectList("review.getReviewList", vo);
+		return sqlsession.selectList("review.getReviewList", rvo);
 
 }
 	// 입력
-	public void insertReview(ReviewVO vo) {
+	public void insertReview(ReviewVO rvo) {
 		System.out.println("sqlsession insertReview 실행");
-		sqlsession.insert("review.insertReview", vo);
+		sqlsession.update("review.insertReview", rvo);
 	}
 
 	// 수정
@@ -33,10 +33,16 @@ public class ReviewDAOMybatis {
 	}
 
 	// 삭제
-	public void deleteReview(ReviewVO vo) {
+	public void deleteReview(ReviewVO rvo) {
 		System.out.println("sqlsession deleteReview 실행");
-		sqlsession.delete("review.deleteReview", vo);
+		sqlsession.delete("review.deleteReview", rvo);
 
+	}
+	
+	//리뷰 단권 조회
+	public ReviewVO getReview(ReviewVO rvo) {
+		System.out.println("sqlsession getReview 실행");
+		return sqlsession.selectOne("review.getReview", rvo);
 	}
 
 }

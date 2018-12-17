@@ -11,4 +11,7 @@ public interface UserService {
 	public UserVO findPwd(UserVO vo);
 	public List<UserVO> getUserList(UserVO vo);
 	public void updateUser(UserVO vo);
+	public void deleteUser(UserVO vo);
+	public List<UserVO> getInterestUserList(UserVO vo);
+	public List<UserVO> getBlackUserList(UserVO vo);
 }

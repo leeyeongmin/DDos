@@ -26,6 +26,15 @@
 <link rel="stylesheet" type="text/css"
 	href="assets/vendor/daterangepicker/daterangepicker.css" />
 <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+
+<style>
+.logoutbtn{
+margin-left:2%;
+margin-rigth:2%;
+margin-top:2%;
+}
+
+</style>
 </head>
 <body>
 	<!-- ============================================================== -->
@@ -37,7 +46,7 @@
 		<!-- ============================================================== -->
 		<div class="dashboard-header">
 			<nav class="navbar navbar-expand-lg bg-white fixed-top">
-				<a class="navbar-brand" href="index.html">DDOS</a>
+				<a class="navbar-brand" href="userHome">DDOS</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -45,7 +54,7 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse " id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto navbar-right-top">
+					<ul class="navbar-nav navbar-right-top" style="margin-left:70%;">
 						<li class="nav-item">
 							<div id="custom-search" class="top-search-bar">
 								<input class="form-control" type="text" placeholder="Search..">
@@ -74,43 +83,8 @@
 														<div class="notification-date">2 min ago</div>
 													</div>
 												</div>
-											</a> <a href="#" class="list-group-item list-group-item-action">
-												<div class="notification-info">
-													<div class="notification-list-user-img">
-														<img src="assets/images/avatar-3.jpg" alt=""
-															class="user-avatar-md rounded-circle">
-													</div>
-													<div class="notification-list-user-block">
-														<span class="notification-list-user-name">John
-															Abraham </span>is now following you
-														<div class="notification-date">2 days ago</div>
-													</div>
-												</div>
-											</a> <a href="#" class="list-group-item list-group-item-action">
-												<div class="notification-info">
-													<div class="notification-list-user-img">
-														<img src="assets/images/avatar-4.jpg" alt=""
-															class="user-avatar-md rounded-circle">
-													</div>
-													<div class="notification-list-user-block">
-														<span class="notification-list-user-name">Monaan
-															Pechi</span> is watching your main repository
-														<div class="notification-date">2 min ago</div>
-													</div>
-												</div>
-											</a> <a href="#" class="list-group-item list-group-item-action">
-												<div class="notification-info">
-													<div class="notification-list-user-img">
-														<img src="assets/images/avatar-5.jpg" alt=""
-															class="user-avatar-md rounded-circle">
-													</div>
-													<div class="notification-list-user-block">
-														<span class="notification-list-user-name">Jessica
-															Caruso</span>accepted your invitation to join the team.
-														<div class="notification-date">2 min ago</div>
-													</div>
-												</div>
-											</a>
+											</a> 
+											
 										</div>
 									</div>
 								</li>
@@ -121,24 +95,12 @@
 								</li>
 							</ul></li>
 						
-						<li class="nav-item dropdown nav-user"><a
-							class="nav-link nav-user-img" href="#"
-							id="navbarDropdownMenuLink2" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"><img
-								src="assets/images/avatar-1.jpg" alt=""
-								class="user-avatar-md rounded-circle"></a>
-							<div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
-								aria-labelledby="navbarDropdownMenuLink2">
-								<div class="nav-user-info">
-									<h5 class="mb-0 text-white nav-user-name">John Abraham</h5>
-									<span class="status"></span><span class="ml-2">Available</span>
-								</div>
-								<a class="dropdown-item" href="#"><i
-									class="fas fa-user mr-2"></i>Account</a> <a class="dropdown-item"
-									href="#"><i class="fas fa-cog mr-2"></i>Setting</a> <a
-									class="dropdown-item" href="#"><i
-									class="fas fa-power-off mr-2"></i>Logout</a>
-							</div></li>
+						
+						
+						
+						<li class="nav-item dropdown nav-user logoutbtn">
+							<a href="logout" class="btn btn-rounded btn-dark">Log&nbsp;Out</a>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -154,7 +116,7 @@
 				<nav class="navbar navbar-expand-lg navbar-light">
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav flex-column">
-							<li class="nav-divider">MEMBER</li>
+							<li class="nav-divider">MY PAGE</li>
 							<li class="nav-item ">
                                 <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
                                 	<i class="fa fa-fw fa-user-circle"></i>
@@ -165,10 +127,10 @@
                                     <ul class="nav flex-column">
                                         
                                         <li class="nav-item">
-                                            <a class="nav-link" href="userListForm">Customer List</a>
+                                            <a class="nav-link" href="myDetail?id=${login.id}" style="margin-top:2%; margin-bottom:2%;">My Information</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="adminDetail">Manager Information</a>
+                                            <a class="nav-link" href="withdrawalForm" style="margin-top:2%; margin-bottom:2%;">Withdrawal</a>
                                         </li>
                                         
                                     </ul>

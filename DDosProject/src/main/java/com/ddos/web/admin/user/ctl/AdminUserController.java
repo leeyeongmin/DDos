@@ -37,6 +37,10 @@ public class AdminUserController {
 
 	@RequestMapping("getUserList")
 	public String getUserList(Model model, UserVO vo) {
+		
+		System.out.println(vo);
+		
+		
 		model.addAttribute("userList", userService.getUserList(vo));
 		return "admin/admin/UserList";
 	}
@@ -88,6 +92,19 @@ public class AdminUserController {
 		model.addAttribute("user", userService.getUser(vo));
 
 		return "admin/admin/UserTypeChange";
+	}
+	
+	
+	@RequestMapping("getInterestUserList")
+	public String getInterestUserList(Model model, UserVO vo) {
+		model.addAttribute("userSList", userService.getInterestUserList(vo));
+		return "admin/admin/SpecialUser";
+	}
+	
+	@RequestMapping("getBlackUserList")
+	public String getBlackUserList(Model model, UserVO vo) {
+		model.addAttribute("userSList", userService.getBlackUserList(vo));
+		return "admin/admin/SpecialUser";
 	}
 	
 	

@@ -51,10 +51,10 @@
             
                 <form action="login">
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="id" name="id" type="email" placeholder="UserEmail" value="${user.id}">
+                        <input class="form-control form-control-lg" id="id" name="id" type="email" placeholder="UserEmail" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="password" name="password" type="password" placeholder="Password" value="${user.password}">
+                        <input class="form-control form-control-lg" id="password" name="password" type="password" placeholder="Password" required>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>

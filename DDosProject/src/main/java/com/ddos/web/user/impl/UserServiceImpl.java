@@ -48,4 +48,19 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 		
 	}
+
+	@Override
+	public void deleteUser(UserVO vo) {
+		dao.deleteUser(vo);
+	}
+
+	@Override
+	public List<UserVO> getInterestUserList(UserVO vo) {
+		return dao.getIUserList(vo);
+	}
+
+	@Override
+	public List<UserVO> getBlackUserList(UserVO vo) {
+		return dao.getBUserList(vo);
+	}
 }

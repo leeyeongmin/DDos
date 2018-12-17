@@ -12,7 +12,13 @@ public class UserVO {
 	private int outCount;
 	private String address;
 	private String gender;
+	// 검색
+	private String searchType;
+	private String searchUserKeyword;
 	
+	//정렬
+	private String sortCol;
+
 	
 	public String getId() {
 		return id;
@@ -74,6 +80,29 @@ public class UserVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getSearchUserKeyword() {
+		return searchUserKeyword;
+	}
+	public void setSearchUserKeyword(String searchUserKeyword) {
+		this.searchUserKeyword = searchUserKeyword;
+	}
+	
+	
+	public String getSortCol() {
+		return sortCol;
+	}
+	public void setSortCol(String sortCol) {
+		this.sortCol = sortCol;
+	}
+	
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", phone=" + phone + ", birth="

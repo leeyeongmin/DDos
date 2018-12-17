@@ -33,8 +33,6 @@
 
 <script>
 $(function() {
-    
-	
 	//사용안함
     $("#okay").click(function(){
     	
@@ -93,37 +91,36 @@ $(function() {
 	}
 </style> -->
 <body>
-
-    <div id="wrapper">
-    <form id="addForm" action="./insertStudy" method="post" target="studylist.do">
-		<p>스터디 명:<input type="text" name="studyName"></p>
-		<p>스터디 주제:<input type="text" name="studySubject"></p>
-		<p>스터디 룸:
-		<select name="studyroomNumber" id="studyroomNumber">
-			<option>-선택-</option>
-			<option value="1">1번방</option>
-			<option value="2">2번방</option>
-		</select>
-		</p>
-		<p id="studyTime">스터디 시간:
-		
-		</p>
-		
-		
-		<p>시작 일자: <%=month %>월 <%=day %>일</p>
-		<% String studyDate = month+"/"+day; %>
-		<input type=hidden value="<%=studyDate%>" name="studyDate">
-		<p>마감 기한:<input type="text" id="testDatepicker" name="recruitEnd" size="10"></p>
-		<p>모집 인원:<input type="text" id="recruitPerson" name="recruitPerson" maxlength="2" size="2"></p>
-		<input type="hidden" value="모집중" name="status">
-		스터디장:<input type="hidden" value="${sessionScope.login.id}" name="memberId">
-		<br>
-    	<input type="submit" value="예약" onclick="window.close()">
-    	<input type="reset" value="리셋">
-    	<input type="button" value="취소" onclick="self.close()">
-
-	 </form>
+<div>
+    <div id="studyList-b">
+	    <form id="addForm" action="./insertStudy" method="post" target="studylist.do">
+			<p>스터디 명:<input type="text" name="studyName"></p>
+			<p>스터디 주제:<input type="text" name="studySubject"></p>
+			<p>스터디 룸:
+			<select name="studyroomNumber" id="studyroomNumber">
+				<option>-선택-</option>
+				<option value="1">1번방</option>
+				<option value="2">2번방</option>
+			</select>
+			</p>
+			<p id="studyTime">스터디 시간:
+			
+			</p>
+			<p>시작 일자: <%=month %>월 <%=day %>일</p>
+			<% String studyDate = month+"/"+day; %>
+			<input type=hidden value="<%=studyDate%>" name="studyDate">
+			<p>마감 기한:<input type="text" id="testDatepicker" name="recruitEnd" size="10"></p>
+			<p>모집 인원:<input type="text" id="recruitPerson" name="recruitPerson" maxlength="2" size="2"></p>
+			<input type="hidden" value="모집중" name="status">
+			스터디장:<input type="hidden" value="${sessionScope.login.id}" name="memberId">
+			<br>
+		 </form>
 	 </div>
-	
+	 <div id="studyList-f">
+	 	<input type="submit" value="예약" onclick="window.close()">
+   	 	<input type="reset" value="리셋">
+     	<input type="button" value="취소" onclick="self.close()">
+     </div>
+</div>
 </body>
 </html>

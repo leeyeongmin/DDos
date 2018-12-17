@@ -17,121 +17,140 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ddos.web.user.UserService;
 import com.ddos.web.user.UserVO;
 
-
-
 @Controller
 public class UserController {
 
-	@Autowired UserService userService;
-	
-	
-	//-------------------------------------------------------------------로그인---------------------------------------------------
-	
+	@Autowired
+	UserService userService;
+
+	// -------------------------------------------------------------------로그인---------------------------------------------------
+
 	@RequestMapping("/loginForm")
 	public String loginForm() {
 		return "no/login/Login";
 	}
 
-	
 	@RequestMapping("login")
-	public String login(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		
-		
-		
+	public String login(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response)
+			throws IOException {
+
 		UserVO uservo = userService.getUser(vo);
-        
+
 		response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-		
-		
-		if(uservo == null) {
-			
-            out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
-            out.flush();
-			
+		PrintWriter out = response.getWriter();
+
+		if (uservo == null) {
+
+			out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
+			out.flush();
+
 			return "no/login/Login";
-		}else if(! vo.getPassword().equals(uservo.getPassword())) {		//password �삤瑜�
-			
+		} else if (!vo.getPassword().equals(uservo.getPassword())) { // password �삤瑜�
+
 			out.println("<script>alert('아이디 비밀번호가 일치하지 않습니다. 다시 한번 확인해 주세요.');</script>");
-            out.flush();
-            
+			out.flush();
+
 			return "no/login/Login";
-		}else {
-			
+		} else {
+
 			session.setAttribute("login", uservo);
-			
-			if(uservo.getId().equals("admin@gmail.com")) {
+
+			if (uservo.getId().equals("admin@gmail.com")) {
 				return "admin/admin/AdminHome";
-			}
-			else {
+			} else {
 				return "user/UserHome";
 			}
 		}
 	}
 
-	//-------------------------------------------------------------------鍮꾨쾲李얘린-----------------------------------------------------------
-	
-	
+	@RequestMapping("logout")
+	public String logout(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response){
+		session.removeAttribute("login");
+		return "no/login/Login";
+
+	}
+
+	// -------------------------------------------------------------------鍮꾨쾲李얘린-----------------------------------------------------------
+
 	@RequestMapping("/findForm")
 	public String findForm() {
 		return "no/login/FindInfo";
 	}
-	
-	
-		@RequestMapping("findPwd")
-		public String findPwd(@ModelAttribute("fpwd") UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {		//UserVO 瑜� jsp�뿉�꽌 user濡� �궗�슜
-			
-			
-			UserVO uservo = userService.findPwd(vo);
-			
-			System.out.println(vo);
-			System.out.println(uservo);
-		       
-			response.setContentType("text/html; charset=UTF-8");
-		       PrintWriter out = response.getWriter();
-			
-			
-			if(uservo == null) {		
-				
-		           out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
-		           out.flush();
-				
-				return "no/login/Login";
-			}else {
-				out.println("<script>alert("+"'"+ uservo.getPassword() + "'" +");</script>");
-				out.flush();
-				return "no/login/Login";
-			}
+
+	@RequestMapping("findPwd")
+	public String findPwd(@ModelAttribute("fpwd") UserVO vo, HttpSession session, HttpServletResponse response)
+			throws IOException { // UserVO 瑜� jsp�뿉�꽌 user濡� �궗�슜
+
+		UserVO uservo = userService.findPwd(vo);
+
+		System.out.println(vo);
+		System.out.println(uservo);
+
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		if (uservo == null) {
+
+			out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
+			out.flush();
+
+			return "no/login/Login";
+		} else {
+			out.println("<script>alert(" + "'" + uservo.getPassword() + "'" + ");</script>");
+			out.flush();
+			return "no/login/Login";
 		}
-	
-	//-------------------------------------------------------------------�쉶�썝媛��엯-----------------------------------------------------------
-	
-		
+	}
+
+	// -------------------------------------------------------------------�쉶�썝媛��엯-----------------------------------------------------------
 
 	@RequestMapping("/joinForm")
 	public String joinForm() {
 		return "no/login/SignUp";
 	}
-	
-	//id check
-	@RequestMapping(value = "checkId", method = { RequestMethod.GET, RequestMethod.POST})
-    public @ResponseBody int idCheck(UserVO vo, Model model) {
-		
-		if(vo.getId().equals("")) {
+
+	// id check
+	@RequestMapping(value = "checkId", method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody int idCheck(UserVO vo, Model model) {
+
+		if (vo.getId().equals("")) {
 			return 2;
 		}
-		
+
 		else {
 			return userService.checkId(vo);
 		}
-    }
+	}
 
+	@RequestMapping("join")
+	public String insertUser(UserVO vo) { // 而ㅻ㎤�뱶 媛앹껜
+		userService.insertUser(vo); // �벑濡� 泥섎━
+		return "no/login/Login";
+	}
+
+	// ------------------------------------------user my page------------------------------------
 	
+	@RequestMapping("/userHome")
+	public String adminHome() {
+		return "user/UserHome";
+	}
 
-		@RequestMapping("join")
-		public String insertBoard(UserVO vo){				//而ㅻ㎤�뱶 媛앹껜
-			userService.insertUser(vo);					//�벑濡� 泥섎━
-			return "no/login/Login";					
-		}
+	@RequestMapping("/myDetail") // http://localhost:8081/app/getBoardList
+	public String getUser(Model model, UserVO vo) {
 
+		model.addAttribute("user", userService.getUser(vo));
+		return "userPage/UserInfo";
+	}
 	
+	@RequestMapping("/withdrawalForm") // http://localhost:8081/app/getBoardList
+	public String withsrawalForm(Model model, UserVO vo) {
+		return "userPage/Withdrawal";
+	}
+	
+	@RequestMapping("withdrawal")
+	public String withdrawal(UserVO vo) { // 而ㅻ㎤�뱶 媛앹껜
+		userService.deleteUser(vo); // �벑濡� 泥섎━
+		return "no/login/Login";
+	}
+
 }

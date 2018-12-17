@@ -7,14 +7,6 @@
 		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS,GENDER
 		FROM MEMBER
 		
-		<!-- <if test="searchKeyword != null and searchKeyword ==''">
-      		WHERE ${searchCondition} like '%' || #{searchKeyword} || '%'
-      	</if> -->
-      	
-      	<!-- <if test="outCount.equals('')">
-      			WHERE OUT_COUNT = #{outCount}
-      	</if> --> 
-		
 		WHERE ID = #{id}
 	
 	</select>
@@ -23,14 +15,82 @@
 
 		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER
 		FROM MEMBER
-		WHERE MEM_SEPARATION != 'admin'
+		
+		<where>
+			<if test="id == 'admin@gmail.com'">
+				AND MEM_SEPARATION != 'admin'
+			</if>
+			<if test="searchType != null and searchType == 'id'">
+				MEM_SEPARATION != 'admin'
+				AND ID LIKE '%' || #{searchUserKeyword} || '%' </if>
+			<if test="searchType != null and searchType == 'name'">
+				MEM_SEPARATION != 'admin'
+				AND NAME LIKE '%' || #{searchUserKeyword} || '%' </if>
+		</where>
+		
+		<choose>
+         <when test="sortCol != null and sortCol !=''" >
+         	<if test="sortCol == 'EXP_DATE'">
+         		ORDER BY ${sortCol} ASC
+         	</if>
+         	<if test="sortCol != 'EXP_DATE'">
+         		ORDER BY ${sortCol} DESC
+         	</if>
+         </when>
+         <!-- <otherwise>
+            ORDER BY SEQ DESC
+         </otherwise> -->
+
+      </choose>
+		
 	</select>
 	
+	<select id="getIUserList" resultType="user">
+
+		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER
+		FROM MEMBER
+		
+		<where>
+			<if test="memSeparation != null">
+				AND MEM_SEPARATION = #{memSeparation}
+			</if>
+			<if test="searchType != null and searchType == 'id'">
+				MEM_SEPARATION = 'iuser'
+				AND ID LIKE '%' || #{searchUserKeyword} || '%' 
+			</if>
+			<if test="searchType != null and searchType == 'name'">
+				MEM_SEPARATION = 'iuser'
+				AND NAME LIKE '%' || #{searchUserKeyword} || '%' 
+			</if>
+		</where>
+		
+	</select>
+	
+	<select id="getBUserList" resultType="user">
+
+		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER
+		FROM MEMBER
+		
+		<where>
+			<if test="memSeparation != null">
+				AND MEM_SEPARATION = #{memSeparation}
+			</if>
+			<if test="searchType != null and searchType == 'id'">
+				MEM_SEPARATION = 'buser'
+				AND ID LIKE '%' || #{searchUserKeyword} || '%' 
+			</if>
+			<if test="searchType != null and searchType == 'name'">
+				MEM_SEPARATION = 'buser'
+				AND NAME LIKE '%' || #{searchUserKeyword} || '%' 
+			</if>
+		</where>
+		
+	</select>
 	
 	<insert id="insertUser" parameterType="user">
 	
 		INSERT INTO MEMBER(ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER) 
-		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, ADD_MONTHS(TO_date(sysdate, ‘YY-MON-DD’),12),'user',0, #{address}, #{gender})
+		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, ADD_MONTHS(sysdate,+12),'user',0, #{address}, #{gender})
 	
 	</insert>
 	
@@ -77,6 +137,11 @@
 		WHERE ID = 	#{id}
 	
 	</update>
+	
+	<delete id="deleteUser" parameterType="user">
+		DELETE FROM MEMBER
+		WHERE ID = #{id}
+	</delete>
 	
 
 </mapper> 

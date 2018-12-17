@@ -43,5 +43,15 @@ public class UserDAOMybatis {
 		public void updateUser(UserVO vo) {
 			mybatis.update("user.updateUser",vo);
 		}
+		public void deleteUser(UserVO vo) {
+			mybatis.delete("user.deleteUser",vo);
+			
+		}
+		public List<UserVO> getIUserList(UserVO vo) {
+			return mybatis.selectList("user.getIUserList", vo);
+		}
+		public List<UserVO> getBUserList(UserVO vo) {
+			return mybatis.selectList("user.getBUserList", vo);
+		}
 		
 }

@@ -32,7 +32,9 @@ public class ReviewServiceImpl implements ReviewService {
 	//리뷰 삭제
 	@Override
 	public void deleteReview(ReviewVO rvo) {
+		System.out.println("impl 삭제 처리");
 		dao.deleteReview(rvo);
+		
 	}
 	// 리뷰  단권 조회
 	@Override

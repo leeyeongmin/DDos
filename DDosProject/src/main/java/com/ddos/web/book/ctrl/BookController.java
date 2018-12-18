@@ -85,11 +85,12 @@ public class BookController {
 		bookservice.updateBook(vo);
 		return "redirect:getBookList";
 	}
-
+////////////////////////////////////// 리뷰  컨트롤러 /////////////////////////////////////////////////
+	
+	
 	// 리뷰 조회
 		@RequestMapping("getReviewList")
 		public List<ReviewVO> getReviewList(ReviewVO rvo){
-			rvo.setPageUnit(5);
 			return reviewservice.getReviewList(rvo);
 		}
 
@@ -103,38 +104,61 @@ public class BookController {
 		}
 		// 리뷰 등록 폼
 		@RequestMapping("insertReviewform")
-		public String insertReviewform(Model model, ReviewVO rvo) {
-						return "book/insertReview";
+		public String insertReviewform(Model model, BookVO vo, ReviewVO rvo) {
+			System.out.println(rvo);
+			model.addAttribute("review", rvo.getIsbn());
+			model.addAttribute("book", bookservice.getBook(vo));
+			System.out.println("리뷰 컨트롤 등록 폼");
+		return "book/insertReview";
 			
 		
 		}
 		// 리뷰 등록 처리
 		@RequestMapping("insertReview")
-			public String insertReview(ReviewVO rvo, HttpSession session) {
+			public String insertReview(Model model, BookVO vo, ReviewVO rvo, HttpSession session) {
 			System.out.println("리뷰 컨트롤 등록 처리");
-			reviewservice.insertReview(rvo);
-			return "redirect:getBook";
-		}
-		// 리뷰 수정
-		@RequestMapping("updateReviewform")
-		public String updateReview(Model model, ReviewVO rvo) {
-			model.addAttribute("book", reviewservice.getReviewList(rvo));
-			return "book/updateReview";
+			reviewservice.insertReview(rvo);			
+			vo.setIsbn(rvo.getIsbn());
+			model.addAttribute("book", bookservice.getBook(vo));
+			model.addAttribute("review", reviewservice.getReviewList(rvo));
 			
+			return "book/getBook";
+			//return "redirect:getBook";
+		}
+		// 리뷰 수정 폼
+		@RequestMapping("updateReviewform")
+		public String updateReview(Model model, BookVO vo, ReviewVO rvo) {
+			System.out.println(rvo);
+			model.addAttribute("review", rvo.getIsbn());
+			model.addAttribute("book", reviewservice.getReviewList(rvo));
+			System.out.println("리뷰 수정 컨트롤 폼");
+			System.out.println(rvo);
+			return "book/updateReview";
+		}
+		
+		//리뷰 수정 처리
+		@RequestMapping("/updateReview")
+		public String updateReview(Model model, BookVO vo, ReviewVO rvo,  HttpSession session) {
+			System.out.println("리뷰 컨트롤 수정 처리");
+			reviewservice.updateReview(rvo);
+			vo.setIsbn(rvo.getIsbn());
+			model.addAttribute("book", bookservice.getBook(vo));
+			model.addAttribute("review", reviewservice.getReviewList(rvo));
+			return "redirect:getBook";
 		}
 		
 		// 리뷰 삭제
 		@RequestMapping("deleteReview")
-		
 		public String deleteReview(Model model, ReviewVO rvo) {
+			System.out.println("리뷰 컨트롤 삭제 처리");
 			reviewservice.deleteReview(rvo);
 			//return "redirect:getbook";
 			BookVO vo = new BookVO();
 			vo.setIsbn(rvo.getIsbn());
-			model.addAttribute("book", bookservice.getBook(vo));
-//			model.addAttribute("review", reviewservice.getReviewList(rvo));
-			
-			return "book/getBook";
+			//model.addAttribute("book", bookservice.getBook(vo));
+			model.addAttribute("review", reviewservice.getReviewList(rvo));
+			//model.addAttribute("book", reviewservice.getReviewList(rvo));
+			return "redirect:getBook";
 		}
 		
 		

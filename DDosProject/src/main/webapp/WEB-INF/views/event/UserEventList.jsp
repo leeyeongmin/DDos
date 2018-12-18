@@ -75,7 +75,7 @@ function shareEvent(){
 			description : eventCont,
 			imageUrl : 'http://preimage.hankookilbo.com/i.aspx?Guid=b0ecee4d1faa46b49675f93b0835d6c1&Month=DirectUpload&size=400',
 			link : {
-				mobileWebUrl : 'https://developers.kakao.com',
+				mobileWebUrl : 'http://localhost:8081/app/eventList',
 				webUrl : 'https://developers.kakao.com'
 			}
 		},

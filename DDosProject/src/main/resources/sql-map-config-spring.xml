@@ -20,6 +20,7 @@
 		<typeAlias alias="rental" type="com.ddos.web.rental.RentalVO"/>	
 		<typeAlias alias="review" type="com.ddos.web.book.ReviewVO"/>
 		<typeAlias alias="event" type="com.ddos.web.event.EventVO"/>
+		<typeAlias alias="wishbook" type="com.ddos.web.book.WishBookVO"/>
 	
 	</typeAliases>
 	

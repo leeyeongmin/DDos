@@ -150,14 +150,13 @@ public class BookController {
 		// 리뷰 삭제
 		@RequestMapping("deleteReview")
 		public String deleteReview(Model model, ReviewVO rvo) {
-			System.out.println("리뷰 컨트롤 삭제 처리");
+			
+			System.out.println(rvo);
+			
 			reviewservice.deleteReview(rvo);
-			//return "redirect:getbook";
 			BookVO vo = new BookVO();
 			vo.setIsbn(rvo.getIsbn());
-			//model.addAttribute("book", bookservice.getBook(vo));
 			model.addAttribute("review", reviewservice.getReviewList(rvo));
-			//model.addAttribute("book", reviewservice.getReviewList(rvo));
 			return "redirect:getBook";
 		}
 		

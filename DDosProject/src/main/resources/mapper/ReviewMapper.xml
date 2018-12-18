@@ -42,7 +42,6 @@
 
 	<!-- 삭제 -->
 	<delete id="deleteReview" parameterType="review">
-		DELETE REVIEW WHERE
-		MEMBER_ID=#{memberId} AND REVIEW_NUM=#{reviewNum}
+		DELETE REVIEW WHERE REVIEW_NUM=#{reviewNum}
 	</delete>
 </mapper>

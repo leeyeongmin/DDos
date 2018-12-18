@@ -32,10 +32,12 @@
 	<!-- 리뷰 수정 -->
 	<update id="updateReview" parameterType="review">
 		UPDATE 	REVIEW SET
+				MEMBER_ID = #{memberId},
 				REVIEW_TITLE=#{reviewTitle},
 				REVIEW_CONT=#{reviewCont},
 				REVIEW_POINT=#{reviewPoint}
-		WHERE 	MEMBER_ID=#{memberId} AND ISBN=${isbn} AND REVIEW_NUM=#{reviewNum}
+				REVIEW_DATE = sysdate
+		WHERE 	ISBN=${isbn} AND REVIEW_NUM=#{reviewNum}
 	</update>
 
 	<!-- 삭제 -->

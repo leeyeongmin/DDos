@@ -151,11 +151,13 @@
 																			<td>${review.reviewCont}</td>
 																			<td>${review.reviewPoint}</td>
 																			<td>${review.reviewDate}</td>
-																			<td colspan="2"><a
-																				href="./updateReviewform?memberId=${review.memberId}&isbn=${review.isbn}&reviewNum=${review.reviewNum}"
-																				class="btn btn-primary">수정</a> <a
-																				href="./deleteReview?memberId=${review.memberId}&isbn=${review.isbn}&reviewNum=${review.reviewNum}"
+																			<!-- <c:if test="${login.id == review.memberId}">  -->
+																			<td colspan="2">
+																			<a href="./updateReviewform?isbn=${review.isbn}&reviewNum=${review.reviewNum}"
+																				class="btn btn-primary">수정</a> 
+																			<a href="./deleteReview?reviewNum=${review.reviewNum}"
 																				class="btn btn-space btn-secondary">삭제</a></td>
+																			<!-- </c:if> -->
 																		</tr>
 																	</tbody>
 																</table>

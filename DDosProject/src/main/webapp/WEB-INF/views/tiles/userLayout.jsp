@@ -175,13 +175,6 @@ margin-top:2%;
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">
-									<i class="fas fa-f fa-folder"></i>
-									Messenger
-								</a>
-							</li>
-							
-							<li class="nav-item">
 								<a class="nav-link" href="getNoticeList">
 									<i class="fas fa-bullhorn"></i>
 									Notice

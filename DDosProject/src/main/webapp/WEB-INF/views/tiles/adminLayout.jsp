@@ -184,12 +184,6 @@ margin-top:2%;
 									Events
 								</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									<i class="fas fa-f fa-folder"></i>
-									Messenger
-								</a>
-							</li>
 							
 							<!-- <li class="nav-item">
 								<a class="nav-link" href="#">

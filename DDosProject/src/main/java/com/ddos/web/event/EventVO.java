@@ -2,38 +2,30 @@ package com.ddos.web.event;
 
 public class EventVO {
 	
-	private String eventNo;
-	private String id;
-	private String title;
-	private String content;
+	private String eventNum;
+	private String eventTitle;
+	private String eventCont;
 	private String startDate;
 	private String endDate;
-	private String date;
-	
-	
-	public String getEventNo() {
-		return eventNo;
+	private String writeDate;
+	private String memberId;
+	public String getEventNum() {
+		return eventNum;
 	}
-	public void setEventNo(String eventNo) {
-		this.eventNo = eventNo;
+	public void setEventNum(String eventNum) {
+		this.eventNum = eventNum;
 	}
-	public String getId() {
-		return id;
+	public String getEventTitle() {
+		return eventTitle;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setEventTitle(String eventTitle) {
+		this.eventTitle = eventTitle;
 	}
-	public String getTitle() {
-		return title;
+	public String getEventCont() {
+		return eventCont;
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setEventCont(String eventCont) {
+		this.eventCont = eventCont;
 	}
 	public String getStartDate() {
 		return startDate;
@@ -47,17 +39,25 @@ public class EventVO {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public String getDate() {
-		return date;
+	public String getWriteDate() {
+		return writeDate;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setWriteDate(String writeDate) {
+		this.writeDate = writeDate;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	@Override
 	public String toString() {
-		return "EventVO [eventNo=" + eventNo + ", id=" + id + ", title=" + title + ", content=" + content
-				+ ", startDate=" + startDate + ", endDate=" + endDate + ", date=" + date + "]";
+		return "EventVO [eventNum=" + eventNum + ", eventTitle=" + eventTitle + ", eventCont=" + eventCont
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", writeDate=" + writeDate + ", memberId="
+				+ memberId + "]";
 	}
+	
 	
 	
 }

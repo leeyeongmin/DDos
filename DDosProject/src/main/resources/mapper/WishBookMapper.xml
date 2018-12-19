@@ -1,55 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wishbook">
 
 <!-- 희망도서 전체 조회 -->
 
-<!-- 	<select id="getWishBookList" parameterType="wishbook" resultType="wishBook">
-		SELECT	WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP,
-			WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_STATUS, WISH_PRICE
-		FROM	WHISH_BOOK;
-		<where>
-			<if
-				test="searchCondition != null and searchCondition == 'wishbooktitle'"> view 페이지 명
-				and WISH_TITLE like '%' || #{searchKeyword} || '%' </if>
+	<select id="getWishBookList" parameterType="wishbook" resultType="wishbook">
+	SELECT 	WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, 
+			WISH_STATUS, WISH_PRICE 
+	FROM WISH_BOOK
+
+ <where>
+		 <if test= "${session.loginId}!= null" >
+			 AND MEMBER_ID = #{memberId}
+		</if>
 		<if
-			test="searchCondition != null and searchCondition == 'wishbookwriter'">
+			test="searchCondition != null and searchCondition == 'wishTitle'">
+			and WISH_TITLE like '%' || #{searchKeyword} || '%' </if>
+		<if
+			test="searchCondition != null and searchCondition == 'wishWriter'">
 			and WISH_WRITER like '%' || #{searchKeyword} || '%' </if>
-	</where>
-	</select>
+		<if test="searchCondition != null and searchCondition == 'isbn'">
+			and ISBN like '%' || #{searchKeyword} || '%' </if>
+	</where> 
+</select>
 
-희망도서 1건 조회
+<!-- 희망도서 1건 조회-->
 	<select id="getWishBook" parameterType="wishbook" resultType="wishbook">
-		SELECT	WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP,
-				WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_STATUS, WISH_PRICE
-		FROM	WHISH_BOOK
-		WHERE	MEMBER_ID=#{memberId}
-	</select>
+	SELECT * FROM WHISH_BOOK
+	WHERE SIBN=#{isbn}
 
-희망도서 등록
-	<insert id="insertwishbook" parameterType="wishbook">
+</select>
+
+<!-- 희망도서 등록-->
+	<insert id="insertWishBook" parameterType="wishbook">
 		<selectKey keyProperty="wishNum" resultType="integer" order="BEFORE">
-			SELECT NVL(MAX(WISH_NUM), 0) + 1 FROM REVIEW
+			SELECT NVL(MAX(WISH_NUM), 0) + 1 FROM WISB_BOOK
 		</selectKey>
 			INSERT INTO WISH_BOOK(WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER,
 				WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_PRICE)
-			VALUES (#{wishNum}, ${isbn}, #{wishTitle}, #{wishWriter}, #{wishComp}, 
-				#{wishGenre}, #{memberId}, #{wishReson}, #{wishPrice})
+			VALUES(#{wishNum}, ${isbn}, #{wishTitle}, #{wishWriter}, #{wishComp}, 
+				#{wishGenre}, #{memberId}, #{wishReason}, #{wishPrice})
 	</insert>
 
-희망도서 수정
-	<update id="updatewishBook" parameterType="wishbook">
-		UPDATE WISH_BOOK SET WISH_TITLE= #{wishTitle}, WISH_WRITER= #{wishWriter}, WISH_COMP= #{bookWriter}, WISH_COMP= #{wishComp},
-						 	WISH_GENRE= #{wishGenre}, BOOK_AMOUNT= #{bookAmount}, BOOK_LOC= #{bookLoc}
-		WHERE 	ISBN = #{isbn} AND MEMBER_ID=#{memberId}
+<!-- 희망도서 수정-->
+	<update id="updateWishBook" parameterType="wishbook">
+		UPDATE WISH_BOOK SET WISH_TITLE= #{wishTitle}, WISH_WRITER= #{wishWriter}, WISH_COMP= #{wishComp}, 
+							WISH_GENRE= #{wishGenre}, WISH_PRICE= #{wishPrice}
+		WHERE 	MEMBER_Id = #{memberId}
 	</update>
 
-희망도서 삭제
-	<delete id="">
+<!-- 희망도서 삭제-->
+	<delete id="deleteWishBook" parameterType="wishbook">
+		DELETE FROM WISH_BOOK
+		WHERE ISBN = #{isbn}
+	</delete> 
 	
-	</delete> -->
+<!-- 희망도서 선택 삭제 -->
+	<delete id="deleteWishBookList" parameterType="wishbook">
+		DELETE WISH_BOOK
+		<if test="numlist != null and numlist.length>0">
+			WHERE WISH_NUM IN
+			<foreach collection="numlist" item="item" open="(" close=")" separator=",">
+			#{item}
+			</foreach>
+			</if>
+		<if test="numlist == null or not numlist.length=0"> where WISH_NUM=-1</if> 
+			
+	</delete>
 </mapper>
 
 

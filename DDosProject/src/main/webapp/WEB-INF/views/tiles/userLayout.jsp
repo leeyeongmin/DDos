@@ -145,14 +145,25 @@ margin-top:2%;
                                     </ul>
                                 </div>
                             </li>
+                            
 							<li class="nav-divider">Function</li>
 							
-							<li class="nav-item">
-								<a class="nav-link" href="book">
-									<i class="fas fa-fw fa-chart-pie"></i>
-									Book
-								</a>
-							</li>
+							<!-- =============================== -->
+                            
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-book"></i>Library</a>
+                                <div id="submenu-2" class="submenu collapse show" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href=wishbook>WishBook <span class="badge badge-secondary">New</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="book" >Collection</a>
+                                       </ul>
+                                </div>
+                            </li>
+                            <!-- =============================== -->
 							
 							<li class="nav-item ">
 								<a class="nav-link" href="read">

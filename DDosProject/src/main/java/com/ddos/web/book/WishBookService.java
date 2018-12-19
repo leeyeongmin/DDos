@@ -8,7 +8,7 @@ public interface WishBookService {
 		public List<WishBookVO> getWishBookList(WishBookVO vo);
 		
 		// 희망도서 1건 조회
-		public BookVO getWishBook(WishBookVO vo);
+		public WishBookVO getWishBook(WishBookVO vo);
 		
 		//희망 도서 입력
 		public void insertWishBook(WishBookVO vo);
@@ -17,7 +17,10 @@ public interface WishBookService {
 		public void updateWishBook(WishBookVO vo);
 
 		//희망도서 삭제
-		public void deleteWishBook(WishBookVO rvo);
+		public void deleteWishBook(WishBookVO vo);
+
+		//희망도서 선택 삭제
+		public void deleteWishBookList(WishBookVO vo);
 		
 	
 }

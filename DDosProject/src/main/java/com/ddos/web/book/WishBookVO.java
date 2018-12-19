@@ -2,17 +2,56 @@ package com.ddos.web.book;
 
 public class WishBookVO {
 
-	private int wishNum;
-	private String isbn;
-	private String wishTitle;
-	private String wishWriter;
-	private String wishComp;
-	private String wishGenre;
-	private String memberId;
-	private String wishReason;
-	private String wishStarus;
-	private int wishPrice;
+	private int wishNum;	
+	private String isbn;	//isbn
+	private String wishTitle;	//희망도서명
+	private String wishWriter;	//희망도서 저자
+	private String wishComp;	//희망도서 출판사
+	private String wishGenre;	//희망도서 장르
+	private String memberId;	//회원id
+	private String wishReason;	//신청 사유
+	private String wishStatus;	// 신청상태 : 신청중, 주문중, 취소, 처리완료 
+	private int wishPrice;	//희망도서 가격
+	private String loginId;
 	
+	// 검색
+	private String searchCondition;
+	private String searchKeyword;
+	
+	//페이징 처리
+	private int First;
+	private int Last;
+	
+	public String getLoginId() {
+		return loginId;
+	}
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
+	public int getFirst() {
+		return First;
+	}
+	public void setFirst(int first) {
+		First = first;
+	}
+	public int getLast() {
+		return Last;
+	}
+	public void setLast(int last) {
+		Last = last;
+	}
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	public int getWishNum() {
 		return wishNum;
 	}
@@ -61,11 +100,12 @@ public class WishBookVO {
 	public void setWishReason(String wishReason) {
 		this.wishReason = wishReason;
 	}
-	public String getWishStarus() {
-		return wishStarus;
+	
+	public String getWishStatus() {
+		return wishStatus;
 	}
-	public void setWishStarus(String wishStarus) {
-		this.wishStarus = wishStarus;
+	public void setWishStatus(String wishStatus) {
+		this.wishStatus = wishStatus;
 	}
 	public int getWishPrice() {
 		return wishPrice;
@@ -77,8 +117,10 @@ public class WishBookVO {
 	public String toString() {
 		return "WishBookVO [wishNum=" + wishNum + ", isbn=" + isbn + ", wishTitle=" + wishTitle + ", wishWriter="
 				+ wishWriter + ", wishComp=" + wishComp + ", wishGenre=" + wishGenre + ", memberId=" + memberId
-				+ ", wishReason=" + wishReason + ", wishStarus=" + wishStarus + ", wishPrice=" + wishPrice + "]";
+				+ ", wishReason=" + wishReason + ", wishStatus=" + wishStatus + ", wishPrice=" + wishPrice
+				+ ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + "]";
 	}
+
 	
 	
 }

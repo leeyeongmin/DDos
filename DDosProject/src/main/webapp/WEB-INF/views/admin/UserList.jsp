@@ -115,8 +115,6 @@
 										placeholder="Search">
 									<button class="btn btn-primary search-btn" type="submit">Search</button>
 								</form>
-
-
 							</div>
 						</div>
 					</div>

@@ -40,9 +40,11 @@ div.card {
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="#"
+										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Notice</a></li>
+										<li class="breadcrumb-item"><a href="getNoticeList"
+											class="breadcrumb-link">Notice</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Show Notice</li>
 									</ol>
 								</nav>
 							</div>
@@ -52,24 +54,25 @@ div.card {
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<c:if test="${empty sessionScope.login}">
-					<a href="loginForm">로그인</a>
-				</c:if>
-				<c:if test="${not empty sessionScope.login}">
-		${sessionScope.login.id} 님<a href="./">로그아웃</a>
-				</c:if>
-				<div class="row">
+				<div class="row" style="margin-top:5%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<!-- 검색 -->
-							<form name="search">
-								<select name="searchType">
-									<option value="noticeTitle">제목
-									<option value="noticeCont">내용
-								</select> 
-								<input type="text" name="searchKeyword"> 
-								<button class="btn btn-primary btn-sm">검색</button>
-							</form>
+							<div class="card-body">
+								<form name="search" onsubmit="check()">
+									<select class="form-control" name="searchType"
+										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
+										<option value="noticeTitle">제목
+										<option value="noticeCont">내용
+									</select> <input class="form-control form-control-lg"
+										style="width: 75%; margin-left: 1%; display: inline-block;"
+										id="searchUserKeyword" type="text" name="searchKeyword"
+										placeholder="Search">
+									<button class="btn btn-primary" style="margin-left:1%; width:7%; height:48px;">검색</button>
+								</form>
+							</div>
+
+
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="getNoticeList" width="100%"
@@ -84,8 +87,8 @@ div.card {
 										</thead>
 										<tbody id=noticelist>
 											<c:forEach items="${noticeList}" var="notice">
-											<c:set var="grant" value="${notice.memberId}"></c:set>
-											<input type="hidden" value="${notice.memberId}">
+												<c:set var="grant" value="${notice.memberId}"></c:set>
+												<input type="hidden" value="${notice.memberId}">
 												<tr>
 													<td>${notice.noticeNum}</td>
 													<td><a
@@ -97,8 +100,8 @@ div.card {
 										</tbody>
 									</table>
 									<c:if test="${login.id == 'admin@gmail.com'}">
-									<a href="insertNoticeform" class="btn btn-secondary"
-										style="margin-top: 30px">등록</a>
+										<a href="insertNoticeform" class="btn btn-secondary"
+										style="width:20%; height:48px; margin-left:38%; margin-top:5%; font-weight:bold; padding-top:1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
 									</c:if>
 								</div>
 							</div>

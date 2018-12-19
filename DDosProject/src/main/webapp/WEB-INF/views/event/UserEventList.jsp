@@ -76,8 +76,13 @@ function shareEvent(){
 			description : eventCont,
 			imageUrl : 'http://preimage.hankookilbo.com/i.aspx?Guid=b0ecee4d1faa46b49675f93b0835d6c1&Month=DirectUpload&size=400',
 			link : {
+<<<<<<< HEAD
 				mobileWebUrl : 'https://http://localhost:8081/ddos/eventList',
 				webUrl : 'https://http://localhost:8081/ddos/eventList'
+=======
+				mobileWebUrl : 'http://localhost:8081/app/eventList',
+				webUrl : 'https://developers.kakao.com'
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 			}
 		},
 	});

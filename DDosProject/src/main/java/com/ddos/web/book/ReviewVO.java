@@ -8,14 +8,8 @@ public class ReviewVO {
 	private int reviewPoint;	//별점
 	private String memberId;	//회원id
 	private int pageUnit;	//페이징처리
-	
-	
-	public String getReviewCont() {
-		return reviewCont;
-	}
-	public void setReviewCont(String reviewCont) {
-		this.reviewCont = reviewCont;
-	}
+	private int reviewNum;
+	private String reviewDate;
 	public String getIsbn() {
 		return isbn;
 	}
@@ -27,6 +21,12 @@ public class ReviewVO {
 	}
 	public void setReviewTitle(String reviewTitle) {
 		this.reviewTitle = reviewTitle;
+	}
+	public String getReviewCont() {
+		return reviewCont;
+	}
+	public void setReviewCont(String reviewCont) {
+		this.reviewCont = reviewCont;
 	}
 	public int getReviewPoint() {
 		return reviewPoint;
@@ -46,10 +46,23 @@ public class ReviewVO {
 	public void setPageUnit(int pageUnit) {
 		this.pageUnit = pageUnit;
 	}
+	public int getReviewNum() {
+		return reviewNum;
+	}
+	public void setReviewNum(int reviewNum) {
+		this.reviewNum = reviewNum;
+	}
+	public String getReviewDate() {
+		return reviewDate;
+	}
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
+	}
 	@Override
 	public String toString() {
-		return "ReviewVO [isbn=" + isbn + ", reviewTitle=" + reviewTitle + ", reviewPoint=" + reviewPoint
-				+ ", memberId=" + memberId + ", pageUnit=" + pageUnit + "]";
+		return "ReviewVO [isbn=" + isbn + ", reviewTitle=" + reviewTitle + ", reviewCont=" + reviewCont
+				+ ", reviewPoint=" + reviewPoint + ", memberId=" + memberId + ", pageUnit=" + pageUnit + ", reviewNum="
+				+ reviewNum + ", reviewDate=" + reviewDate + "]";
 	}
 
 }

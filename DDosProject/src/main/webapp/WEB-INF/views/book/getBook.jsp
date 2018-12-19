@@ -134,7 +134,6 @@
 																<table class="table">
 																	<thead>
 																		<tr>
-																			<th scope="col">#</th>
 																			<th scope="row">아이디</th>
 																			<th scope="row">제목</th>
 																			<th scope="row">내용</th>
@@ -145,7 +144,6 @@
 																	</thead>
 																	<tbody>
 																		<tr>
-																			<td>${review.reviewNum}</td>
 																			<td>${review.memberId}</td>
 																			<td>${review.reviewTitle}</td>
 																			<td>${review.reviewCont}</td>
@@ -153,7 +151,7 @@
 																			<td>${review.reviewDate}</td>
 																			<!-- <c:if test="${login.id == review.memberId}">  -->
 																			<td colspan="2">
-																			<a href="./updateReviewform?isbn=${review.isbn}&reviewNum=${review.reviewNum}"
+																			<a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
 																				class="btn btn-primary">수정</a> 
 																			<a href="./deleteReview?reviewNum=${review.reviewNum}"
 																				class="btn btn-space btn-secondary">삭제</a></td>

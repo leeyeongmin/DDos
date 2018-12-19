@@ -46,61 +46,96 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<c:if test="${empty sessionScope.login}">
-					<a href="LoginForm">로그인</a>
-				</c:if>
 				<c:if test="${not empty sessionScope.login}">
 		${sessionScope.login.id} 님
 				</c:if>
 
-				<!-- 도서 검색창 -->
-
-				<a href="insertWishBook?memberId=${wishbook.memberId}"
-					class="btn btn-outline-light float-right">신청하기</a>
-				<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
-					<div class="card">
-						<div class="card-body p-0">
-							<div class="table-responsive">
-								<table class="table">
-									<thead class="bg-light">
-										<tr class="border-0">
-											<td class="border-0">#</td>
-											<th class="border-0">번호</th>
-											<th class="border-0">ISBN</th>
-											<th class="border-0">도서명</th>
-											<th class="border-0">저자</th>
-											<th class="border-0">출판사</th>
-											<th class="border-0">상태</th>
-											<th></th>
-										</tr>
-									</thead>
-
-									<tbody id=wishBookList>
-										<c:forEach items="${wishBookList}" var="wishbook">
-											<tr>
-												<td><input type="checkbox" name="numlist"
-													value="${wishbook.wishNum}"></td>
-												<td>${wishbook.wishNum}</td>
-												<td>${wishbook.isbn}</td>
-												<td>${wishbook.wishTitle}</td>
-												<td>${wishbook.wishWriter}</td>
-												<td>${wishbook.wishComp}</td>
-												<td><span class="badge-dot badge-brand mr-1"></span>${wishbook.wishStatus}</td>
-												<td>
-													<button class="btn btn-sm btn-outline-light">
-														<i class="far fa-trash-alt"></i>
-													</button>
-												</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+				<div class="row">
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="mb-0">희망도서 상세보기</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <form class="needs-validation">
+                                                <div class="row">
+                                                    <%--           <div class="col-md-6 mb-3">
+                                              <label for="memberId">회원 ID </label>
+                                                        <input type="text" class="form-control" id="memberId" value="${sessionScope.login.id}" >                                                        <div class="invalid-feedback">
+                                                        
+                                                        </div> --%>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="isbn">ISBN</label>
+                                                        <input type="text" class="form-control" id="isbn" value="${wishbook.isbn}">
+                                                        <div class="invalid-feedback">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="wishTitle">도서명</label>
+                                                        <input type="text" class="form-control" id="wishTitle" value="${wishbook.wishTitle}" >
+                                                        <div class="invalid-feedback">
+                                                         
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="wishWriter">저자</label>
+                                                        <input type="text" class="form-control" id="wishWriter" value="${wishbook.wishWriter}">
+                                                        <div class="invalid-feedback">
+                                                           
+                                                        </div>
+                                                    </div>
+													 <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="wishComp">출판사</label>
+                                                        <input type="text" class="form-control" id="wishComp" value="${wishbook.wishComp}" >
+                                                        <div class="invalid-feedback">
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="wishPrice">가격</label>
+                                                        <input type="text" class="form-control" id="wishPrice" value="${wishbook.wishPrice}" >
+                                                        <div class="invalid-feedback">
+                                                          
+                                                        </div>
+                                                    </div>
+													 <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="wishGenre">장르</label>
+                                                        <input type="text" class="form-control" id="wishGenre" placeholder="" value="${wishbook.wishGenre}"  required="">
+                                                        <div class="invalid-feedback">
+                                                          
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="wishReason">사유</label>
+                                                        <input type="text" class="form-control" id="wishReason" placeholder="" value="${wishbook.wishReason}"  required="">
+                                                        <div class="invalid-feedback">
+                                                        
+                                                        </div>
+                                                    </div>
+													<div class="form-group">
+									<label for="exampleFormControlTextarea1">사유</label>
+									<textarea class="form-control" name="wishReason" rows="3"></textarea>
+								</div>
+                                                </div>
+                                                </div>
+                                                <hr class="mb-4">
+												<a href="#" class="btn btn-primary">수정</a>
+                                                <a href="#" class="btn btn-brand">삭제</a>
+												<a href="#" class="btn btn-secondary">취소</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </body>
+                                </html>
+                               
+                              

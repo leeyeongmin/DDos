@@ -45,7 +45,7 @@
 						<div class="card-body">
 							<form action="insertWishBook" method="post">
 								<div class="form-group">
-									<label for="inputText3" class="col-form-label">회원ID</label><input
+									<label for="inputText3" class="col-form-label">회원ID&nbsp;</label><input
 										name="memberId" type="hidden" value="${sessionScope.login.id}">${sessionScope.login.id}
 								</div>
 								<div class="form-group">

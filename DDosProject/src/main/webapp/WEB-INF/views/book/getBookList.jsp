@@ -58,7 +58,7 @@
 					<input type="button" onclick="location.href='./insertBookform'" value="등록" class="btn btn-secondary">
 				</span>
 				
-				<form name="frm" >
+				<form name="frm"  onsubmit="check()">
 				
 					<select name="searchCondition">
 						<option value="booktitle">도서명

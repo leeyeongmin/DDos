@@ -60,7 +60,7 @@
 				<input type="button" onclick="location.href='./insertWishBookform'" value="신청하기" class="btn btn-outline-light float-right">
 				</span>
 
-					<form name="frm" >
+					<form name="frm" onsubmit="check()" >
 					<select name="searchCondition">
 						<option value="wishTitle">도서명
 						<option value="wishWriter">저자
@@ -95,7 +95,7 @@
 												<td>${wishbook.wishNum}</td>
 												<td>${wishbook.loginId}</td>
 												<td>${wishbook.isbn}</td>
-												<td>${wishbook.wishTitle}</td>
+												<td><a href="./getWishBook?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>
 												<td>${wishbook.wishWriter}</td>
 												<td>${wishbook.wishComp}</td>
 												<td><span class="badge-dot badge-brand mr-1"></span>${wishbook.wishStatus}</td>

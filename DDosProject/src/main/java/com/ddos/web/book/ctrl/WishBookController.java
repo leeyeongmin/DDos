@@ -42,27 +42,30 @@ public class WishBookController {  //희망도서 controller
 	@RequestMapping("getWishBook")
 	public String getWishBook(Model model, WishBookVO vo) {
 		model.addAttribute("wishbook", wishBookService.getWishBook(vo));
+		System.out.println("컨트롤 희망도서 단건 조회");
 		return "book/getWishBook";
 	}
 	
 	//희망도서 등록 폼
 	@RequestMapping("insertWishBookform")
-	public String insertWishBookform() {
+	public String insertWishBookform(Model model, WishBookVO vo) {
+		System.out.println("희망도서 컨트롤 등록폼");
 		return "book/insertWishBook";
 	}
 	
 	//희망도서 등록처리
 	@RequestMapping("insertWishBook")
-	public String insertWishBook(WishBookVO vo, HttpServletRequest request) {
+	public String insertWishBook(WishBookVO vo) {
 		wishBookService.insertWishBook(vo);
+		System.out.println("희망도서 컨트롤 등록처리");
 		return "book/getWishBookList";
 	}
 	
 	
 	//희망도서 수정폼
 	@RequestMapping("updateWishBookform")
-	public String updateWishBookform(Model model,WishBookVO vo) {
-		model.addAttribute("wishbook", wishBookService.getWishBookList(vo));
+	public String updateWishBookform(Model model, WishBookVO vo) {
+		model.addAttribute("wishbook", wishBookService.getWishBook(vo));
 		return "book/updateWishBook";
 	}
 	//희망도서 수정처리

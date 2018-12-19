@@ -11,7 +11,7 @@
 	FROM WISH_BOOK
 
  <where>
-		 <if test= "${session.loginId}!= null" >
+		 <if test=" memberId != null" >
 			 AND MEMBER_ID = #{memberId}
 		</if>
 		<if
@@ -27,15 +27,17 @@
 
 <!-- 희망도서 1건 조회-->
 	<select id="getWishBook" parameterType="wishbook" resultType="wishbook">
-	SELECT * FROM WHISH_BOOK
-	WHERE SIBN=#{isbn}
+	SELECT ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, 
+			WISH_STATUS, WISH_PRICE
+	FROM WISH_BOOK
+	WHERE ISBN=#{isbn}
 
 </select>
 
 <!-- 희망도서 등록-->
 	<insert id="insertWishBook" parameterType="wishbook">
 		<selectKey keyProperty="wishNum" resultType="integer" order="BEFORE">
-			SELECT NVL(MAX(WISH_NUM), 0) + 1 FROM WISB_BOOK
+			SELECT MAX(WISH_NUM)+ 1 FROM WISh_BOOK
 		</selectKey>
 			INSERT INTO WISH_BOOK(WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER,
 				WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_PRICE)

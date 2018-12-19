@@ -20,11 +20,69 @@
 <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
+
 <script>
-	$('#exampleModal').modal(options)
+var eventNum, eventTitle, eventCont, startDate, endDate, writeDate;
+
+$(function() {
+	$(".identifyingClass").click(function() {
+		var my_id_value = $(this).data('id');
+		$(".modal-body #hiddenValue").val(my_id_value);
+	})
+});
+
+function eventDetail(eventNum) {
+	var modal = $('#eventDetail');
+	
+	$.ajax({
+			url: "eventDetail?eventNum="+ eventNum,
+			success: function(data){
+				
+				eventNum = data.eventNum;
+				eventTitle = data.eventTitle;
+				eventCont = data.eventCont;
+				startDate = data.startDate;
+				endDate = data.endDate;
+				writeDate = data.writeDate;
+			}
+	}).done(function(response) {
+		$('#resultShow').text(eventNum);
+		$('#resultShow').append('<br>');
+		$('#resultShow').append(eventTitle);
+		$('#resultShow').append('<br>');
+		$('#resultShow').append(eventCont);
+		$('#resultShow').append('<br>');
+		$('#resultShow').append(startDate);
+		$('#resultShow').append('<br>');
+		$('#resultShow').append(endDate);
+		$('#resultShow').append('<br>');
+		$('#resultShow').append(writeDate);
+		
+		
+		$('#eventDetail').modal('show');
+	});
+	
+}
+
+function shareEvent(){
+	// // 사용할 앱의 JavaScript 키를 설정해 주세요.
+	Kakao.init('4e34fd015dcb3287cbdac98a3d2fda30');
+	// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+	Kakao.Link.createDefaultButton({
+		container : '#kakao-link-btn',
+		objectType : 'feed',
+		content : {
+			title : eventTitle,
+			description : eventCont,
+			imageUrl : 'http://preimage.hankookilbo.com/i.aspx?Guid=b0ecee4d1faa46b49675f93b0835d6c1&Month=DirectUpload&size=400',
+			link : {
+				mobileWebUrl : 'https://http://localhost:8081/ddos/eventList',
+				webUrl : 'https://http://localhost:8081/ddos/eventList'
+			}
+		},
+	});
+}
 </script>
-
-
 </head>
 
 <!-- ============================================================== -->
@@ -92,19 +150,27 @@
 										the image in a card.</p>
 								</div>
 							</div>
-							<c:forEach items="${ongoingEvent}" var="ongoingList">
-							
-							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-								<div class="card">
-									<img class="card-img-top img-fluid p-2" src="assets/images/card-img.jpg" alt="Card image cap">
-									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">${ongoingEvent.title}</h3>
-										<p class="card-text">${ongoingEvent.content}</p>
-										<a href="eventDetail?eventNo=1" data-target="#exampleModal" data-toggle="modal" class="btn btn-primary showEvent" data-id="my_id_value">Show Event</a>
-										
+							<c:forEach items="${ongoingEvent}" var="ongoingEvent">
+
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+									<div class="card">
+										<img class="card-img-top img-fluid p-2"
+											src="assets/images/card-img.jpg" alt="Card image cap">
+										<div class="card-body" style="text-align: center;">
+											<h3 class="card-title">${ongoingEvent.eventTitle}</h3>
+											<p class="card-text">${ongoingEvent.eventCont}</p>
+
+
+
+											<button type="button" class="btn btn-primary"
+												data-toggle="modal" data-target="#eventDetail"
+												onclick="eventDetail(${ongoingEvent.eventNum})">Show
+												Event</button>
+
+
+										</div>
 									</div>
 								</div>
-							</div>
 
 							</c:forEach>
 							<!-- ============================================================== -->
@@ -119,21 +185,22 @@
 										the image in a card.</p>
 								</div>
 							</div>
-							<c:forEach items="${aheadEvent}" var="aheadList">
-							
-							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-								<div class="card">
-									<img class="card-img-top img-fluid p-2"
-										src="assets/images/card-img.jpg" alt="Card image cap">
-									<div class="card-body" style="text-align: center;">
-										<h3 class="card-title">${aheadEvent.title}</h3>
-										<p class="card-text">${aheadEvent.content}</p>
-										<button type="button" class="btn btn-primary" 
-											data-toggle="modal" data-target="#exampleModal">Show
-											Event</button>
+							<c:forEach items="${aheadEvent}" var="aheadEvent">
+
+								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+									<div class="card">
+										<img class="card-img-top img-fluid p-2"
+											src="assets/images/card-img.jpg" alt="Card image cap">
+										<div class="card-body" style="text-align: center;">
+											<h3 class="card-title">${aheadEvent.eventTitle}</h3>
+											<p class="card-text">${aheadEvent.eventCont}</p>
+											<button type="button" class="btn btn-primary"
+												data-toggle="modal" data-target="#eventDetail"
+												onclick="eventDetail(${aheadEvent.eventNum})">Show
+												Event</button>
+										</div>
 									</div>
 								</div>
-							</div>
 
 							</c:forEach>
 
@@ -159,62 +226,33 @@
 	</div>
 
 	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+	<div class="modal" tabindex="-1" role="dialog" id="eventDetail">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					<h5 class="modal-title">Event information</h5>
 				</div>
-				<div class="modal-body">
-				
-					<p>ppppppppppppppppppppppppp</p>
-					
-					<p>${eventDetail.eventNo }</p>
-					<p>${eventDetail.title }</p>
-					
-				
-				
+				<div class="modal-body" id="modal-body">
+
+					<div class="card-text" id="resultShow"></div>
+
+
 				</div>
-				<div class="modal-footer">
-
-					<a id="kakao-link-btn" href="javascript:;"><button
-							type="button" class="btn btn-primary">KaKao Share</button></a>
-
+				<div class="modal-footer" id="modal-footer">
+				
+				
+					<!-- <a id="kakao-link-btn" href="javascript:;">
+						<button type="button" class="btn btn-primary" onclick="shareEvent()">KaKao Share</button>
+					</a> -->
+					<button id="kakao-link-btn" type="button" class="btn btn-primary" onclick="shareEvent()">KaKao Share</button>
+					
+					
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-
 				</div>
 			</div>
 		</div>
 	</div>
-	<script type='text/javascript'>
-		// // 사용할 앱의 JavaScript 키를 설정해 주세요.
-		Kakao.init('4e34fd015dcb3287cbdac98a3d2fda30');
-		// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-		Kakao.Link
-				.createDefaultButton({
-					container : '#kakao-link-btn',
-					objectType : 'feed',
-					content : {
-						title : '딸기 치즈 케익',
-						description : '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
-						imageUrl : 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-						link : {
-							mobileWebUrl : 'http://localhost:8081/ddos/eventList',
-							webUrl : 'http://localhost:8081/ddos/eventList'
-						}
-					},
-					social : {
-						likeCount : 286,
-						commentCount : 45,
-						sharedCount : 845
-					},
-				});
-	</script>
 </body>
 </html>

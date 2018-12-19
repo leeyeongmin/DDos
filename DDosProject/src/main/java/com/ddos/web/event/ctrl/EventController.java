@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddos.web.event.EventService;
 import com.ddos.web.event.EventVO;
@@ -16,12 +17,10 @@ public class EventController {
 
 	// show event list
 	@RequestMapping("eventDetail")
-	public String eventDetail(Model model, EventVO vo) {
-		model.addAttribute("eventDetail", eventService.getEventDetail(vo));
+	@ResponseBody
+	public EventVO eventDetail(Model model, EventVO vo) {
 		
-		System.out.println(vo);
-		
-		return "event/UserEventList";
+		return eventService.getEventDetail(vo);
 	}
 
 	// show event list

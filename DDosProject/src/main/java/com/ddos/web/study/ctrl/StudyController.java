@@ -25,7 +25,7 @@ public class StudyController {
 	//스터디 등록 창
 	@RequestMapping("makeStudy")
 	public String makeStudy() {
-		return "no/study/makeStudy";	
+		return "study/makeStudy";	
 	}
 
 	//스터디 삭제

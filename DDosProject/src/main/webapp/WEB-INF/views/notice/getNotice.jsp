@@ -20,6 +20,26 @@
 				<!-- ============================================================== -->
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="page-header">
+							<h3 class="mb-2">Insert Notice</h3>
+							<div class="page-breadcrumb">
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item"><a href="adminHome"
+											class="breadcrumb-link">DDos</a></li>
+										<li class="breadcrumb-item">Notice</li>
+										<li class="breadcrumb-item active" aria-current="page">Show Notice</li>
+									</ol>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ============================================================== -->
+				<!-- end pageheader  -->
+				<!-- ============================================================== -->
+				<div class="row" style="margin-top:2%;">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
@@ -47,10 +67,10 @@
 										</tr>
 									</table>
 								</div>
-								<a href="getNoticeList" class="btn btn-primary btn-sm" style="margin-top: 30px">목록</a>
+								<a href="getNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
 								<c:if test="${login.id == suggestion.memberId}">  
-								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="margin-top: 30px">수정</a>
-								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="margin-top: 30px">삭제</a>
+								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
+								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
 								</c:if>
 							</div>
 							<!-- end card-body -->

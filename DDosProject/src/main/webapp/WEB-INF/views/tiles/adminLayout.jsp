@@ -150,6 +150,13 @@ margin-top:2%;
 								</a>
 							</li>
 							
+							<li class="nav-item">
+								<a class="nav-link" href="book">
+									<i class="fas fa-fw fa-chart-pie"></i>
+									WishBook
+								</a>
+							</li>
+							
 							<li class="nav-item ">
 								<a class="nav-link" href="read">
 									<i class="fab fa-fw fa-wpforms"></i>
@@ -182,12 +189,6 @@ margin-top:2%;
 								<a class="nav-link" href="#">
 									<i class="fas fa-fw fa-columns"></i>
 									Events
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">
-									<i class="fas fa-f fa-folder"></i>
-									Messenger
 								</a>
 							</li>
 							

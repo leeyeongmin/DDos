@@ -20,6 +20,27 @@
 				<!-- ============================================================== -->
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="page-header">
+							<h3 class="mb-2">Show Suggestion</h3>
+							<div class="page-breadcrumb">
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item"><a href="adminHome"
+											class="breadcrumb-link">DDos</a></li>
+										<li class="breadcrumb-item"><a href="getSuggestionList"
+											class="breadcrumb-link">Suggestion</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Show Suggestion</li>
+									</ol>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ============================================================== -->
+				<!-- end pageheader  -->
+				<!-- ============================================================== -->
+				<div class="row" style="margin-top:2%;">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
@@ -48,17 +69,16 @@
 										<tr>
 											<td>내용</td>
 											<td>${suggestion.sugCont}</td>
-											<td>${sessionScope.id}</td>
 										</tr>
 									</table>
 								</div>
 								<a href="getSuggestionList" class="btn btn-primary btn-sm"
-									style="margin-top: 30px">목록</a>
+									style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
 								<c:if test="${login.id == suggestion.memberId}"> 
 								<a href="./updateSuggestionform?sugNum=${suggestion.sugNum}"
-									class="btn btn-primary btn-sm" style="margin-top: 30px">수정</a>
+									class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
 								<a href="./deleteSuggestion?sugNum=${suggestion.sugNum}"
-									class="btn btn-primary btn-sm" style="margin-top: 30px">삭제</a>
+									class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
 								</c:if>
 							</div>
 							<!-- end card-body -->

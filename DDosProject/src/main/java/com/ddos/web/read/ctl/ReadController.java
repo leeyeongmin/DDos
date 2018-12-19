@@ -20,7 +20,7 @@ public class ReadController {
 	
 	@RequestMapping("read")			//메인에서 화면 변경 
 	public String read() {
-		return "read/Setting";
+		return "user/ReadSelect";
 	}
 	
 	@RequestMapping("setRoom")		//열람실 선택시 나타나는 화면 (좌석배치)
@@ -32,7 +32,9 @@ public class ReadController {
 	
 	@RequestMapping("saveSeat")		//좌석 저장 (관리자)
 	public String saveSeat(ReadVO vo) {
+		System.out.println("asdsasdsfdfdsfdsfdsfdfdsfda : " + vo.getSeat().length);
 		readserivce.saveSeat(vo);
+		
 		return "read/ReadChoose";		
 	}
 	
@@ -56,9 +58,10 @@ public class ReadController {
 	}
 	
 	@RequestMapping("updateSeat")
-	public String updateSeat(ReadVO vo) {
+	@ResponseBody
+	public void updateSeat(ReadVO vo) {
 		readserivce.updateSeat(vo);
-		return "redirect:getRoom?room="+vo.getRoom();
+		//return "redirect:getRoom?room="+vo.getRoom();
 	}
 
 	
@@ -72,6 +75,7 @@ public class ReadController {
 	public String useing_seat(Model model, ReadVO vo) {			//로그인 후 자리 확인
 		System.out.println(vo.getLoginId());
 		//model.addAttribute("timer", readserivce.usetimer(vo));
+		System.out.println("tttttttttttttt : " + readserivce.seat_useing(vo));
 		return readserivce.seat_useing(vo);
 	}
 	
@@ -102,10 +106,7 @@ public class ReadController {
 		return readserivce.usetimer(vo);
 	}
 	
-	
-	
-	
-	@RequestMapping("testRoom")		//열람실 선택시 나타나는 화면 (좌석배치)
+	@RequestMapping("Roomshow")		//열람실 선택시 나타나는 화면 (좌석배치)
 	@ResponseBody
 	public List<ReadVO> testRoom(Model model, ReadVO vo) {
 		return readserivce.test(vo);
@@ -113,8 +114,17 @@ public class ReadController {
 
 	@RequestMapping("settingroom")
 	@ResponseBody
-	public void settingroom(ReadVO vo) {
+	public String settingroom(ReadVO vo) {
 		readserivce.settingroom(vo);
+		System.out.println(vo);
+		return vo.getRoom();
 	}
 	
+	@RequestMapping("timecheck")
+	@ResponseBody
+	public void timecheck() {
+		readserivce.timecheck();
+	}
+	
+
 }

@@ -1,5 +1,7 @@
 package com.ddos.web.read;
 
+import java.util.Arrays;
+
 public class ReadVO {
 	private String seatNum;		//seat_num => _는 대문자로 변경 seatNum	mapUnderscoreToCamelCase
 	private String status;
@@ -107,9 +109,10 @@ public class ReadVO {
 
 	@Override
 	public String toString() {
-		return "ReadVO [seat_num=" + seatNum + ", status=" + status + "]" + "selectSeat : " + selectSeat + endTime;
+		return "ReadVO [seatNum=" + seatNum + ", status=" + status + ", room=" + room + ", seat="
+				+ Arrays.toString(seat) + ", selectSeat=" + selectSeat + ", loginId=" + loginId + ", col=" + col
+				+ ", row=" + row + ", endTime=" + endTime + ", rmax=" + rmax + ", cmax=" + cmax + "]";
 	}
-	
-	
+
 	
 }

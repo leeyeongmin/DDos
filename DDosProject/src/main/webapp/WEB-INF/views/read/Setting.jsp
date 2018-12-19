@@ -26,20 +26,18 @@
 		      modal: true,	
 		      buttons: {
 		        "배치": function() {
-		        	var test = dialog.find("form").serialize();
-		      
-		        	alert(($(".nav-link").hasClass("active")))
-		        	/* 	$.ajax({
-		        			type : "post",
-		        			url : "setting?room="+room,
-		        			success:function(result){
-		        				
-		        			}
-		        	}); */
-		        	
+		        	var params = dialog.find("form").serialize();
+		      		$.get("settingroom", params,
+		    				function(room_num) {
+		      					console.log(room_num + "tttt");
+		      					//localStorage.setItem("room_num", room_num);
+		      					room_show(room_num);
+		    				}); 
+		      		
+		        	dialog.dialog("close");
 			    }, 
 			    "취소": function() {
-				     $( this ).dialog( "close" );
+				     $( this ).dialog("close");
 				}
 		      }
 		 });
@@ -62,7 +60,7 @@
 	function check_num(num){
 			if(num > 50){
 				num = 50;
-			}else if(num == 0){
+			}else if(num < 0){
 				num = 1;
 			}
 		return num;
@@ -91,13 +89,17 @@
 			}
 		}
 
-		location.href="saveSeat?seat="+$save;
+		alert($('input[name=room]').attr("value"));
+		
+		var num = $('input[name=room]').attr("value");
+		
+		location.href="saveSeat?seat="+$save+"&room="+num;
 	}
 	
 	function room_show(num){
 		$.ajax({
 			type : "post",
-			url : "testRoom?room="+num,
+			url : "Roomshow?room="+num,
 			success:function(result){
 				
 				$("#show").empty();
@@ -132,10 +134,11 @@
 				}	//for
 					
 				$(add).prependTo("#show");
-
+				
 			}
 						
 		});
+		$('input[name=room]').attr('value',num);
 	}
 	
 	function room_ck(room_num){
@@ -246,25 +249,21 @@
 				</tr>
 			</c:forEach>
 		</table> --%>
-	
+		
 	</div>
 	
 	<div style="float : center">
-		<input type="button" value="저장"  id="save_set"> 
+		<input type="button" value="저장"  onclick="save_set()"> 
 	</div>
 	
 	<div id="dialog_input" title="값을 입력하세요">
 		<form>
-		
+		<p><input type="hidden" id="room" name="room" value=""></p>
 		<p> 행 : <input type="text" id="col" name="col" numberOnly> </p>
 		<p> 열 : <input type="text" id="row" name="row" numberOnly> </p>
 		<p>1-50까지 입력가능 합니다.</p>
 		</form>
 	</div>
 	
-	
-	<script>
-	
-	</script>
 </body>
 </html>

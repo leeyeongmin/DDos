@@ -18,23 +18,50 @@
 		from readingroom
 		where seat_num like #{room} || '%'
 	</select>
+
+
 	
 	<update id="saveSeat" parameterType="read">		<!-- 좌석 저장(관리자) -->
+	
+	
 		update READINGROOM
 		set STATUS = '1'
-		where  SEAT_NUM in
+		where SEAT_NUM in
 		<foreach collection="seat" item="item" open="(" close=")" separator=",">
-				#{item}
+					#{item}
 		</foreach>
+		and seat_num like #{room} || '%'
+		<!-- <where>
+			<choose>
+		        <when test="seat==null ">
+		            1 = 0 a test returning false, to adapt depending on you DB vendor
+		        </when>
+		        <otherwise>
+		            seat_num IN <foreach collection="seat" item="item" open="(" close=")" separator=",">#{item}</foreach>
+		        </otherwise>
+	    	</choose>
+		 -->
+			<!-- <if test=" seat.size() != 0 ">
+		 	SEAT_NUM in
+			<foreach collection="seat" item="item" open="(" close=")" separator=",">
+					#{item}
+			</foreach>
+		</if> 
+		</where>-->
+		
+		
 	</update>
 	
 	<update id="releaseSeat" parameterType="read">		<!-- 좌석 해제(관리자) -->
+	<!-- <if test=" seat != '' and seat != null "> -->
 		update READINGROOM
 		set STATUS = '0'
 		where  SEAT_NUM not in
-		<foreach collection="seat" item="item" open="(" close=")" separator=",">
+			<foreach collection="seat" item="item" open="(" close=")" separator=",">
 				#{item}
-		</foreach>
+			</foreach>
+	<!-- 	</if> -->
+		and seat_num like #{room} || '%'
 	</update>
 	
 	<select id="overlap" resultType="read"> 		<!-- 중복 좌석 확인 -->
@@ -53,7 +80,7 @@
 	<insert id="insertUsing" parameterType="read">							<!-- 좌석 로그 입력 -->
 		insert into 
 		READINGROOM_HISTORY(READINGROOM_NUM, END_TIME, MEMBER_ID, SEAT_NUM, START_TIME)
-					 values(READING_SEQ.NEXTVAL, sysdate+1/24, #{loginId}, #{selectSeat}, sysdate)
+					 values(READING_SEQ.NEXTVAL, sysdate+10/(24*60), #{loginId}, #{selectSeat}, sysdate)
 	</insert>
 	
 
@@ -79,8 +106,8 @@
 	
 	
 	<insert id="return_seat" statementType="CALLABLE"  parameterType="read">
-		{call P_return_seat(#{selectSeat, mode=IN, jdbcType=VARCHAR, javaType=string},
-						    #{loginId, mode=IN, jdbcType=VARCHAR, javaType=string})
+		{call P_return_seat(#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
+							#{selectSeat, mode=IN, jdbcType=VARCHAR, javaType=string})
 	</insert>
 	
 	<select id="remaining" resultType="string">

@@ -3,7 +3,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
-
+	<!-- 리뷰 단건 조회 -->
+	<select id="getReview" resultType="review">
+		SELECT 
+			REVIEW_TITLE,
+			REVIEW_CONT,
+			REVIEW_DATE
+		FROM REVIEW
+		WHERE REVIEW_NUM = #{reviewNum} AND ISBN = #{isbn}
+	</select>	
+	
 	<!-- 리뷰 조회 -->
 	<select id="getReviewList" resultType="review"
 		parameterType="review">
@@ -14,6 +23,7 @@
 		FROM	BOOK JOIN REVIEW
 		ON		BOOK.ISBN = REVIEW.ISBN
 		WHERE 	REVIEW.ISBN=#{isbn}
+		ORDER BY REVIEW_DATE DESC
 
 		<!-- <![CDATA[ WHERE RN <= #{pageUnit} ]]> -->
 	</select>
@@ -37,7 +47,7 @@
 				REVIEW_CONT=#{reviewCont},
 				REVIEW_POINT=#{reviewPoint}
 				REVIEW_DATE = sysdate
-		WHERE 	ISBN=${isbn} AND REVIEW_NUM=#{reviewNum}
+		WHERE 	<!-- REVIEW.ISBN=${isbn} AND --> REVIEW_NUM=#{reviewNum}
 	</update>
 
 	<!-- 삭제 -->

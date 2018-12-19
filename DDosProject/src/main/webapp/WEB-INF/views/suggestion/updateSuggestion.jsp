@@ -59,8 +59,13 @@
 												<td>내용</td>
 												<td><textarea rows="20" cols="20" name="sugCont" style="width: 100%" required>${suggestion.sugCont}</textarea></td>
 											</tr>
-											<input type="submit" class="btn btn-primary btn-sm"
-													style="margin-bottom: 30px" value="수정완료">
+											<tr>
+												<td colspan="2">
+												<input type="submit" class="btn btn-primary btn-sm"
+													style="width:20%; height:48px; font-weight:bold; "
+													value="수정완료">
+												</td>
+											</tr>
 										</form>
 									</table>
 								</div>

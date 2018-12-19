@@ -67,10 +67,10 @@
 										</tr>
 									</table>
 								</div>
-								<a href="getNoticeList" class="btn btn-primary btn-sm" style="margin-top: 30px">목록</a>
+								<a href="getNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
 								<c:if test="${login.id == suggestion.memberId}">  
-								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="margin-top: 30px">수정</a>
-								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="margin-top: 30px">삭제</a>
+								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
+								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
 								</c:if>
 							</div>
 							<!-- end card-body -->

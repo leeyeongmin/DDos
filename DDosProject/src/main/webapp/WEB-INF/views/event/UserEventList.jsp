@@ -76,13 +76,8 @@ function shareEvent(){
 			description : eventCont,
 			imageUrl : 'http://preimage.hankookilbo.com/i.aspx?Guid=b0ecee4d1faa46b49675f93b0835d6c1&Month=DirectUpload&size=400',
 			link : {
-<<<<<<< HEAD
 				mobileWebUrl : 'https://http://localhost:8081/ddos/eventList',
 				webUrl : 'https://http://localhost:8081/ddos/eventList'
-=======
-				mobileWebUrl : 'http://localhost:8081/app/eventList',
-				webUrl : 'https://developers.kakao.com'
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 			}
 		},
 	});
@@ -259,29 +254,5 @@ function shareEvent(){
 			</div>
 		</div>
 	</div>
-	<!-- kakao -->
-	<!-- <script type='text/javascript'>
-		// // 사용할 앱의 JavaScript 키를 설정해 주세요.
-		Kakao.init('4e34fd015dcb3287cbdac98a3d2fda30');
-		// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-		Kakao.Link.createDefaultButton({
-			container : '#kakao-link-btn',
-			objectType : 'feed',
-			content : {
-				title : '제발',
-				description : '그만 하자....',
-				imageUrl : 'C:/Users/User/Desktop/yaho.jpg',
-				link : {
-					mobileWebUrl : 'http://localhost:8081/ddos/eventList',
-					webUrl : 'http://localhost:8081/ddos/eventList'
-				}
-			},
-			social : {
-				likeCount : 286,
-				commentCount : 45,
-				sharedCount : 845
-			},
-		});
-	</script> -->
 </body>
 </html>

@@ -42,9 +42,7 @@ div.card {
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item"><a href="getNoticeList"
-											class="breadcrumb-link">Notice</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Show Notice</li>
+										<li class="breadcrumb-item active" aria-current="page">Notice</li>
 									</ol>
 								</nav>
 							</div>

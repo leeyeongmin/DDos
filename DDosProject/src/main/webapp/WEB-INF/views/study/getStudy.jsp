@@ -26,8 +26,9 @@
 		<%-- <input type="hidden" name="memberId" value="<%= memberId %>">
 		 --%>
 		 <input class="btn btn-primary" type="submit" value="가입신청">
-		 <input class="btn btn-secondary" type="button" value="취소" id="btn" onclick="history.back()"> 
-		
+<!-- 	 <input class="btn btn-secondary" type="button" value="취소" id="btn" onclick="javascript:self.close();"> 
+		 -->
+		 <button type="button" data-dismiss="modal">취소</button>
 	</form>
 </c:if>
 
@@ -36,8 +37,7 @@
 <c:if test="${sessionScope.login.id == study.memberId}">
 	<form action="./deleteStudy" method="post" id="studyCaptin">
 		<input type="hidden" name="studyNumber" value="${study.studyNumber}">
-		 <input  class="btn btn-secondary" type="submit" value="삭제">
-		 <input class="btn btn-secondary" type="button" value="취소" id="btn" onclick="history.back()"> 
-		 
+		<input class="btn btn-secondary" type="submit" value="삭제">
+		<button type="button" data-dismiss="modal">취소</button>
 	</form>
 </c:if>

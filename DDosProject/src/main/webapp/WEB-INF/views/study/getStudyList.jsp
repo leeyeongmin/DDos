@@ -13,6 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  -->
 <title>Insert title here</title>
+
 </head>
 <style>
 #wrapper {
@@ -72,6 +73,8 @@
 			modal.modal('toggle');	
 		});
 		
+	    $("#testDatepicker").datepicker({
+	    });
 	}
 </script>
 
@@ -79,6 +82,7 @@
 
 <body>
 	<div id="wrapper">
+	
 		<%
 			String prevStudy[] = new String[31];
 			String curStudy[] = new String[31];

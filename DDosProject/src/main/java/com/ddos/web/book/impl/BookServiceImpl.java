@@ -36,6 +36,11 @@ public class BookServiceImpl implements BookService {
 		dab.updateBook(vo);
 
 	}
+	
+	@Override
+	public int getCount(BookVO vo) {
+		return dab.getCount(vo);
+	}
 }
 	
 	

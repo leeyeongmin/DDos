@@ -32,22 +32,24 @@ public class WishBookServiceImpl implements WishBookService {
 		wbd.insertWishBook(vo);
 	}
 
-	//희망도서 등록
+	//희망도서 수정
 	@Override
 	public void updateWishBook(WishBookVO vo) {
 		wbd.updateWishBook(vo);
 	}
 
-	//희망도서 삭제
-	@Override
-	public void deleteWishBook(WishBookVO rvo) {
-		wbd.deleteWishbook(vo);
-		
-	}
+	
 
+	//희망도서 선택 삭제
 	@Override
 	public void deleteWishBookList(WishBookVO vo) {
 		wbd.deleteWishBookList(vo);
+		
+	}
+	//희망도서 삭제
+	@Override
+	public void deleteWishBook(WishBookVO vo) {
+		wbd.deleteWishbook(vo);
 		
 	}
 }

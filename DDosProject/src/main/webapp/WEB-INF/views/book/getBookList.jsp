@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	//document.getElementById("booklist").click = clickfunc;
+	document.getElementById("booklist").click = clickfunc;
 	function clickfunc(e) {
 		var tdele = e.target.parentNode.children[x].innerHTML;
 		var trele = e.target.parentNode;
@@ -46,30 +46,29 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<c:if test="${empty sessionScope.login}">
-					<a href="LoginForm">로그인</a>
-				</c:if>
+				
 				<c:if test="${not empty sessionScope.login}">
 		${sessionScope.login.id} 님
 				</c:if>
 				<!-- 도서 검색 창 -->
-				
-				<span style="float: right">
-					<input type="button" onclick="location.href='./insertBookform'" value="등록" class="btn btn-secondary">
+
+				<span style="float: right"> <input type="button"
+					onclick="location.href='./insertBookform'" value="등록"
+					class="btn btn-secondary">
 				</span>
-				
-				<form name="frm"  onsubmit="check()">
-				
+
+				<form name="frm" onsubmit="check()">
+
 					<select name="searchCondition">
 						<option value="booktitle">도서명
 						<option value="bookwriter">저자
 						<option value="bookcomp">출판사
 					</select> <input type="text" name="searchKeyword">
 					<button>검색</button>
-					
-					
+
+
 				</form>
-				
+
 
 
 				<div class="card">
@@ -99,14 +98,28 @@
 							</tbody>
 
 						</table>
+
+
 					</div>
 				</div>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                        <my:paging paging="${paging}">
+                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item active"><a class="page-link " href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                      </my:paging>
+                                        </ul>
+                                    </nav>
+                                </div>
 
-				
 			</div>
 		</div>
-		</div>
-		
+	</div>
+
 </body>
 
 

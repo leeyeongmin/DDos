@@ -1,18 +1,15 @@
 package com.ddos.web.book.ctrl;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ddos.web.book.WishBookService;
 import com.ddos.web.book.WishBookVO;
+import com.ddos.web.user.UserVO;
 
 
 @Controller
@@ -22,21 +19,23 @@ public class WishBookController {  //희망도서 controller
 	WishBookService wishBookService;
 	
 
-	// 메인에서 희망도서로
-	@RequestMapping("wishbook")
-	public String wishbook(Model model, WishBookVO vo) {
+	// 메인에서  전체희망도서로
+	@RequestMapping("/wishbook")
+	public String wishbook(Model model, WishBookVO vo, HttpSession session) {
+		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("wishBookList", wishBookService.getWishBookList(vo));
 		return "book/getWishBookList";
 		
 	}
 	
-	// 희망도서 전체 조회
-	@RequestMapping("getWishBookList" )
-	public List<WishBookVO> getWishBookList(WishBookVO vo, HttpServletRequest request) {
+	/*// 희망도서 전체 조회
+	@RequestMapping("/getWishBookList" )
+	public String getWishBookList(Model model, WishBookVO vo) {
+		model.addAttribute("wishBookList", wishBookService.getWishBookList(vo));
 		System.out.println("컨트롤 희망도서 전체 조회");
-		return wishBookService.getWishBookList(vo);
+		return "book/getWishBookList";
 
-	}
+	}*/
 	
 	//희망도서 단건 조회
 	@RequestMapping("getWishBook")
@@ -58,7 +57,7 @@ public class WishBookController {  //희망도서 controller
 	public String insertWishBook(WishBookVO vo) {
 		wishBookService.insertWishBook(vo);
 		System.out.println("희망도서 컨트롤 등록처리");
-		return "book/getWishBookList";
+		return "redirect:wishbook";
 	}
 	
 	
@@ -66,26 +65,31 @@ public class WishBookController {  //희망도서 controller
 	@RequestMapping("updateWishBookform")
 	public String updateWishBookform(Model model, WishBookVO vo) {
 		model.addAttribute("wishbook", wishBookService.getWishBook(vo));
+		System.out.println("희망도서 컨트롤 수정 폼");
 		return "book/updateWishBook";
 	}
 	//희망도서 수정처리
 	@RequestMapping("updateWishBook")
 	public String updateWishBook(WishBookVO vo) {
 		wishBookService.updateWishBook(vo);
-		return "book/getWishBookList";
+		System.out.println(vo);
+		System.out.println("희망도서 컨트롤 수정처리");
+		return "redirect:wishbook";
 	}
 	
 	//희망도서 삭제
 	@RequestMapping("deleteWishBook")
 	public String deleteWishBook(WishBookVO vo) {
 		wishBookService.deleteWishBook(vo);
-		return "book/getwishBookList";
+		System.out.println("희망도서 컨트롤 삭제");
+		return "redirect:wishbook";
 	}
 	
 	//희망도서 선택 삭제
 	@RequestMapping("deleteWishBookList")
 	public String deleteWishBookList(WishBookVO vo) {
 		wishBookService.deleteWishBookList(vo);
-		return "book/getWishBookList";
+		System.out.println("희망도서 컨트롤 선택 삭제");
+		return "redirenct:wishbook";
 	}
 }

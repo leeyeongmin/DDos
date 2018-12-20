@@ -156,7 +156,7 @@ margin-top:2%;
                                 <div id="submenu-2" class="submenu collapse show" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href=wishbook>WishBook <span class="badge badge-secondary">New</span></a>
+                                            <a class="nav-link" href="wishbook?loginId=${login.id}">WishBook <span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="book" >Collection</a>

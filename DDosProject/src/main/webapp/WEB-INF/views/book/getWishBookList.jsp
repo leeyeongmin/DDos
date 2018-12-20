@@ -36,7 +36,8 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Admin Wish Book List</a>
+										<li class="breadcrumb-item active" aria-current="page">Admin
+											Wish Book List</a>
 										</li>
 									</ol>
 								</nav>
@@ -47,73 +48,69 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<c:if test="${empty sessionScope.login}">
-					<a href="LoginForm">로그인</a>
-				</c:if>
+				
 				<c:if test="${not empty sessionScope.login}">
 		${sessionScope.login.id} 님
 				</c:if>
 
 				<!-- 도서 검색창 -->
 				<!-- 관리자 페이지로 넣어야될꺼 같은데...음 -->
-				<span style="float: right">
-				<input type="button" onclick="location.href='./insertWishBookform'" value="신청하기" class="btn btn-outline-light float-right">
-				</span>
 
-					<form name="frm" onsubmit="check()" >
+
+				<form name="frm" onsubmit="check()">
 					<select name="searchCondition">
 						<option value="wishTitle">도서명
 						<option value="wishWriter">저자
 						<option value="isbn">ISBN
-				</select> <input type="text" name="searchKeyword">
+					</select> <input type="text" name="searchKeyword">
 					<button>검색</button>
-			</form>
-				
-				<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
-					<div class="card">
-						<div class="card-body p-0">
-							<div class="table-responsive">
-								<table class="table">
-									<thead class="bg-light">
-										<tr class="border-0">
-											<td class="border-0">#</td>
-											<th class="border-0">번호</th>
-											<th class="border-0">회원ID &nbsp; </th>
-											<th class="border-0">ISBN</th>
-											<th class="border-0">도서명</th>
-											<th class="border-0">저자</th>
-											<th class="border-0">출판사</th>
-											<th class="border-0">상태</th>
-											<th></th>
-										</tr>
-									</thead>
+				</form>
 
-									<tbody id=wishBookList>
-										<c:forEach items="${wishBookList}" var="wishbook">
-											<tr>
-												<td><input type="checkbox" name="numlist" value="${wishbook.wishNum}"></td>
-												<td>${wishbook.wishNum}</td>
-												<td>${wishbook.loginId}</td>
-												<td>${wishbook.isbn}</td>
-												<td><a href="./getWishBook?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>
-												<td>${wishbook.wishWriter}</td>
-												<td>${wishbook.wishComp}</td>
-												<td><span class="badge-dot badge-brand mr-1"></span>${wishbook.wishStatus}</td>
-												<td><div class="btn-group ml-auto">
-                                            <button class="btn btn-sm btn-outline-light">Edit</button>
-                                            <button class="btn btn-sm btn-outline-light">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
-                                        </div></td>
+				<input type="button" style="float: right"
+					onclick="location.href='./insertWishBookform'" value="신청하기"
+					class="btn btn-primary">
+				<form action="deleteWishBookList">
+					<input type="button" style="float: right" value="선택삭제"
+						class="btn btn-brand">
+
+					<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+						<div class="card">
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table">
+										<thead class="bg-light">
+											<tr class="border-0">
+												<td class="border-0">#</td>
+												<th class="border-0">회원ID &nbsp;</th>
+												<th class="border-0">ISBN</th>
+												<th class="border-0">도서명</th>
+												<th class="border-0">저자</th>
+												<th class="border-0">출판사</th>
+												<th class="border-0">상태</th>
+												<th></th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								
-								</table>
+										</thead>
+
+										<tbody id=wishBookList>
+											<c:forEach items="${wishBookList}" var="wishbook">
+												<tr>
+													<td><input type="checkbox" name="numlist"
+														value="${wishbook.wishNum}"></td>
+													<td>${wishbook.memberId}</td>
+													<td>${wishbook.isbn}</td>
+													<td><a href="./getWishBook?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>
+													<td>${wishbook.wishWriter}</td>
+													<td>${wishbook.wishComp}</td>
+													<td><span class="badge-dot badge-brand mr-1"></span>${wishbook.wishStatus}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>

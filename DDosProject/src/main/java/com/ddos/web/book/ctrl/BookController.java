@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.ddos.web.book.BookService;
 import com.ddos.web.book.BookVO;
 import com.ddos.web.book.ReviewService;
 import com.ddos.web.book.ReviewVO;
+import com.ddos.web.paging.PagingVO;
 
 // 도서 controller
 @Controller
@@ -35,12 +38,31 @@ public class BookController {
 	}
 
 	// 도서 전체 목록 조회
-	@RequestMapping("getBookList")
+	/*	@RequestMapping("getBookList")
 	public String getBookList(Model model, BookVO vo) {
 		model.addAttribute("bookList", bookservice.getBookList(vo));
 		return "book/getBookList";
-	}
+	}*/
+	
+@RequestMapping(value="/getBookList")
+	public ModelAndView getBookList(Model model, BookVO vo, PagingVO paging) {
+	ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+			}
+		paging.setPageUnit(5);
+//first.last
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
 
+//전체 레코드 건수
+		paging.setTotalRecord(bookservice.getCount(vo));
+
+		mv.addObject("paging", paging);
+		mv.addObject("getBookList", bookservice.getBookList(vo));
+		mv.setViewName("book/getBookList");
+		return mv;
+	}
 	// 도서 1건 조회 및 isbn으로 리뷰 조회
 	@RequestMapping("getBook")
 	public String getBook(Model model, BookVO vo, ReviewVO rvo) {

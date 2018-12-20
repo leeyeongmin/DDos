@@ -21,6 +21,7 @@ public interface WishBookService {
 
 		//희망도서 선택 삭제
 		public void deleteWishBookList(WishBookVO vo);
-		
+
+	
 	
 }

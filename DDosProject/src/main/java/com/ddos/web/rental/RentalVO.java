@@ -7,7 +7,24 @@ public class RentalVO {
 	private String returnDate;
 	private int rentalIsbn;
 	private String memberId;
+	private String loginId;
+	private String dueDate;
 	
+	public String getDueDate() {
+		return dueDate;
+	}
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
+	}
+	public String getLoginId() {
+		return loginId;
+	}
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
+	public void setRentalIsbn(int rentalIsbn) {
+		this.rentalIsbn = rentalIsbn;
+	}
 	public int getRentalNum() {
 		return rentalNum;
 	}
@@ -41,8 +58,9 @@ public class RentalVO {
 	@Override
 	public String toString() {
 		return "RentalVO [rentalNum=" + rentalNum + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
-				+ ", rentalIsbn=" + rentalIsbn + ", memberId=" + memberId + "]";
+				+ ", rentalIsbn=" + rentalIsbn + ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate="
+				+ dueDate + "]";
 	}
-	
+
 	
 }

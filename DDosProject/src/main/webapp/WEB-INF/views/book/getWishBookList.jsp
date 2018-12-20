@@ -73,8 +73,8 @@
 					<input type="button" style="float: right" value="선택삭제"
 						class="btn btn-brand">
 
-					<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
-						<div class="card">
+					<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" >
+						<div class="card" style="width: 100%;">
 							<div class="card-body p-0">
 								<div class="table-responsive">
 									<table class="table">

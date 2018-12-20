@@ -45,7 +45,7 @@
 
 				<div class="row">
 					<div class="col-md-8">
-						<div class="card">
+						<div class="card"  style="width: 1000px;">
 							<div class="card-header">
 								<h4 class="mb-0">희망도서 수정</h4>
 							</div>

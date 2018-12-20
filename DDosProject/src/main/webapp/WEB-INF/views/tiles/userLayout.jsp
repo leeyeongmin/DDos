@@ -160,6 +160,10 @@ margin-top:2%;
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="book" >Collection</a>
+                                              </li>
+                                              <li class="nav-item">
+                                            <a class="nav-link" href="rental?loginId=${login.id}" >borrow</a>
+                                              </li>
                                        </ul>
                                 </div>
                             </li>

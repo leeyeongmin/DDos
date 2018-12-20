@@ -42,7 +42,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="insertSuggestion" width="100%"
+									<table id="insertSuggestion" style="width: 100%;"
 										class="table table-bordered table-hover text-center">
 											<tr>
 											<td><input type="hidden" name="reviewNum" value="${review.reviewNum}">

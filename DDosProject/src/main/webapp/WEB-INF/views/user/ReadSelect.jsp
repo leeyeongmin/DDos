@@ -58,7 +58,7 @@
 		        "연장": function() {
 		        	$.ajax({
 		    			type : "post",
-		    			url : "extension?loginId=${login.id}",
+		    			url : "extension?loginId=${login.id}&selectSeat="+localStorage.getItem('seating'),
 		    			success : function() {
 		    				dialog.dialog("close");
 		    				room_show(localStorage.getItem("room"));
@@ -70,16 +70,13 @@
 		    			type : "post",
 		    			url : "return_seat?loginId=${login.id}"+"&selectSeat"+localStorage.getItem('seating'),
 		    			success : function() {
-		    				//location.reload();
-		    				//var today = new Date();
-		    				//location.href="getRoom?room="+ "${readVO.room}"+"&time="+today.getTime();
 		    				localStorage.removeItem("seating");
 		    				localStorage.removeItem("time_ck");
+		    				room_show(localStorage.getItem("room"));	
 		    			}
 		        	})
 		        	dialog.dialog( "close" );
-		        	room_show(localStorage.getItem("room"));	
-		        	
+	
 			    }, 
 			    "취소": function() {
 			    		alert($(this));
@@ -100,14 +97,13 @@
 		    			type : "post",
 		    			url : "return_seat?loginId=${login.id}&selectSeat"+localStorage.getItem('seating'),
 		    			success : function() {
-		    				//var today = new Date();
-		    				//location.href="getRoom?room="+ "${readVO.room}"+"&time="+today.getTime();
+		    				room_show(localStorage.getItem("room"));
 		    				localStorage.removeItem("seating");
 		    				localStorage.removeItem("time_ck");
 		    			}
 		        	})
 		        	dialog2.dialog("close");
-		        	room_show(localStorage.getItem("room"));
+		        	
 			    }, 
 			    "취소": function() {
 				          $(this).dialog( "close" );
@@ -124,7 +120,7 @@
 			type : "post",
 			url : "updateSeat?selectSeat=" + seat + "&loginId=${login.id}",
 			success : function() {
-				alert(localStorage.getItem("room"));
+				//alert(localStorage.getItem("room"));
 				room_show(localStorage.getItem("room"));
 			}
 		});
@@ -151,8 +147,6 @@
 				
 				$("#" + room_num ).attr("aria-selected", true);
 				$("#" + room_num).attr("class","nav-link active");
-				
-				console.log("start : " + localStorage.getItem("room"));
 				
 				room_show(room_num);
 				
@@ -227,7 +221,7 @@
 		
 		if($(choose).hasClass("myseat")){
 			//남은 시간 확인 
-			console.log("${login.id}")
+			console.log("${login.id}");
 			$.ajax({
 				type : "post",
 				url : "remaining?loginId=${login.id}",
@@ -265,14 +259,23 @@
 				type : "post",
 				url : "usetimer?loginId="+"${login.id}",
 				success : function(result) {
-					localStorage.setItem("time_ck", result);
+					localStorage.setItem("time_ck", result);		//끝나는 시간
 				}
 			});
 			
 			var timer_start = setInterval(function(){
-				var now = new Date(Date.now());
-				var get_time = new Date(localStorage.getItem("time_ck"));
-				var a = now - get_time;
+				  var now;
+
+				   $.ajax({
+					  type : "post",
+						url : "servertime",
+						async: false,
+						success : function(result) {
+							now = new Date(result);		//서버시간
+						}
+				  });
+				   
+				  var get_time = new Date(localStorage.getItem("time_ck"));
 				  var timeGap = new Date(0, 0, 0, 0, 0, 0, get_time - now); 
 				  var diffHour = timeGap.getHours();       // 시간 
 				  var diffMin  = timeGap.getMinutes();      // 분

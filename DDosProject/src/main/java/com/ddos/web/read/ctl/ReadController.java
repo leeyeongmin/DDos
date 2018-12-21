@@ -1,5 +1,7 @@
 package com.ddos.web.read.ctl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,11 @@ public class ReadController {
 
 	@Autowired
 	ReadService readserivce;
+	
+	@RequestMapping("adminread")
+	public String adminread() {
+		return "read/Setting";
+	}
 	
 	@RequestMapping("read")			//메인에서 화면 변경 
 	public String read() {
@@ -60,6 +67,9 @@ public class ReadController {
 	@RequestMapping("updateSeat")
 	@ResponseBody
 	public void updateSeat(ReadVO vo) {
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		vo.setStarttime(format.format(date));
 		readserivce.updateSeat(vo);
 		//return "redirect:getRoom?room="+vo.getRoom();
 	}
@@ -73,9 +83,9 @@ public class ReadController {
 	@RequestMapping("useing_seat")
 	@ResponseBody
 	public String useing_seat(Model model, ReadVO vo) {			//로그인 후 자리 확인
-		System.out.println(vo.getLoginId());
-		//model.addAttribute("timer", readserivce.usetimer(vo));
-		System.out.println("tttttttttttttt : " + readserivce.seat_useing(vo));
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		vo.setStarttime(format.format(date));
 		return readserivce.seat_useing(vo);
 	}
 	
@@ -88,13 +98,18 @@ public class ReadController {
 	@RequestMapping("remaining")
 	@ResponseBody
 	public String remaining(ReadVO vo) {
-		System.out.println(vo.getLoginId());
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		vo.setStarttime(format.format(date));
 		return readserivce.remaining(vo);
 	}
 	
 	@RequestMapping("extension")
 	@ResponseBody
 	public void extension(ReadVO vo) {
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		vo.setStarttime(format.format(date));
 		readserivce.extension(vo);
 	}
 	
@@ -102,7 +117,9 @@ public class ReadController {
 	@RequestMapping("usetimer")
 	@ResponseBody
 	public String usetimer(ReadVO vo) {
-		System.out.println("sss : " + readserivce.usetimer(vo));
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		vo.setStarttime(format.format(date));
 		return readserivce.usetimer(vo);
 	}
 	
@@ -116,15 +133,26 @@ public class ReadController {
 	@ResponseBody
 	public String settingroom(ReadVO vo) {
 		readserivce.settingroom(vo);
-		System.out.println(vo);
 		return vo.getRoom();
 	}
 	
 	@RequestMapping("timecheck")
 	@ResponseBody
 	public void timecheck() {
-		readserivce.timecheck();
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+		readserivce.timecheck(format.format(date));
 	}
+	
+	@RequestMapping("servertime")
+	@ResponseBody
+	public String servertime() {
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		return format.format(date); 
+	}
+	
 	
 
 }

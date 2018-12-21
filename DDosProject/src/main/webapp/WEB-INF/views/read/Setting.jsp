@@ -27,14 +27,19 @@
 		      buttons: {
 		        "배치": function() {
 		        	var params = dialog.find("form").serialize();
-		      		$.get("settingroom", params,
-		    				function(room_num) {
-		      					console.log(room_num + "tttt");
-		      					//localStorage.setItem("room_num", room_num);
-		      					room_show(room_num);
-		    				}); 
+		        	if($("#col").val() == "" || $("#row").val() == "") {
+		        		alert("숫자를 입력하세요.");
+		        	}else{
+		        		$.get("settingroom", params,
+			    				function(room_num) {
+			      					console.log(room_num + "tttt");
+			      					//localStorage.setItem("room_num", room_num);
+			      					room_show(room_num);
+			    				}); 
+			      		
+			        	dialog.dialog("close");
+		        	}
 		      		
-		        	dialog.dialog("close");
 			    }, 
 			    "취소": function() {
 				     $( this ).dialog("close");
@@ -58,11 +63,13 @@
 	});			//$()
 	
 	function check_num(num){
-			if(num > 50){
-				num = 50;
-			}else if(num < 0){
-				num = 1;
+			if(num > 20){
+				num = 20;
+			}else if(num.length == 1){
+				if(num == 0)
+					num = 1;
 			}
+			
 		return num;
 			
 	}
@@ -88,12 +95,18 @@
 			
 			}
 		}
-
-		alert($('input[name=room]').attr("value"));
 		
 		var num = $('input[name=room]').attr("value");
 		
-		location.href="saveSeat?seat="+$save+"&room="+num;
+		$.ajax({
+			type : "post",
+			url : "saveSeat?seat="+$save+"&room="+num,
+			success : function(num) {
+				alert("저장이 완료 되었습니다.");
+				show_room(num);
+				
+			}
+		})
 	}
 	
 	function room_show(num){
@@ -261,7 +274,7 @@
 		<p><input type="hidden" id="room" name="room" value=""></p>
 		<p> 행 : <input type="text" id="col" name="col" numberOnly> </p>
 		<p> 열 : <input type="text" id="row" name="row" numberOnly> </p>
-		<p>1-50까지 입력가능 합니다.</p>
+		<p>1-20까지 입력가능 합니다.</p>
 		</form>
 	</div>
 	

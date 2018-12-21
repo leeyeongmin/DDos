@@ -158,7 +158,7 @@ margin-top:2%;
 							</li>
 							
 							<li class="nav-item ">
-								<a class="nav-link" href="read">
+								<a class="nav-link" href="adminread">
 									<i class="fab fa-fw fa-wpforms"></i>
 									Seat Setting
 								</a>

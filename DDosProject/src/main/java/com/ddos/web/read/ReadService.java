@@ -8,7 +8,7 @@ public interface ReadService {
 	public void saveSeat(ReadVO vo);			//좌석 배치 저장 
 	public ReadVO overlap(ReadVO vo);			//중복 좌석 확인
 	public void updateSeat(ReadVO vo);			//좌석 사용 변경
-	public void timecheck();					//좌석 시간 체크
+	public void timecheck(String time);					//좌석 시간 체크
 	public String seat_useing(ReadVO vo);	//로그인 후 좌석 사용 확인 
 	public Map<String, String> getroomsize(ReadVO vo);		//열람실 크기 확인
 	public void return_seat(ReadVO vo);			//자리 반환 

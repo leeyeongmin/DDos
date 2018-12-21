@@ -21,4 +21,5 @@ public interface ReadService {
 	public ReadVO testMax(ReadVO vo);
 	
 	public void settingroom(ReadVO vo);				//좌석 수 설정 
+	public String setting_change_ck(ReadVO vo);
 }

@@ -25,7 +25,7 @@
 	href="assets/vendor/charts/morris-bundle/morris.css">
 <link rel="stylesheet" type="text/css"
 	href="assets/vendor/daterangepicker/daterangepicker.css" />
-<title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+<title>DDos</title>
 
 <style>
 .logoutbtn{
@@ -127,8 +127,8 @@ margin-top:2%;
 							
 							
 							<li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-user-circle"></i>User</a>
-                                <div id="submenu-2" class="collapse submenu" style="">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>User</a>
+                                <div id="submenu-1" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         
                                         <li class="nav-item">
@@ -143,19 +143,22 @@ margin-top:2%;
                             </li>
 							<li class="nav-divider">Function</li>
 							
-							<li class="nav-item">
-								<a class="nav-link" href="book">
-									<i class="fas fa-fw fa-chart-pie"></i>
-									Book
-								</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="book">
-									<i class="fas fa-fw fa-chart-pie"></i>
-									WishBook
-								</a>
-							</li>
+						 <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-book"></i>Library</a>
+                                <div id="submenu-2" class="submenu collapse show" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="adminwishbook?loginId=${login.id}">WishBook <span class="badge badge-secondary">New</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="admincollection" >Collection</a>
+                                              </li>
+                                                  <li class="nav-item">
+                                            <a class="nav-link" href="adminreturn" >Return</a>
+                                              </li>
+                                       </ul>
+                                </div>
+                            </li>
 							
 							<li class="nav-item ">
 								<a class="nav-link" href="adminread">
@@ -191,16 +194,41 @@ margin-top:2%;
 									Events
 								</a>
 							</li>
-							
-							<!-- <li class="nav-item">
-								<a class="nav-link" href="#">
-									<i class="fas fa-fw fa-map-marker-alt"></i>
-									Maps
+							<li class="nav-divider">STATISTICS</li>
+							<li class="nav-item">
+								<a class="nav-link" href="GenreForm">
+									<i class="fas fa-fw fa-columns"></i>
+									Book
 								</a>
 							</li>
-							 -->
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									<i class="fas fa-fw fa-columns"></i>
+									Reading Room
+								</a>
+							</li>
+							
+							<li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-3"><i class="fa fa-fw fa-user-circle"></i>Assets</a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="expenditureForm" style="margin-top:2%; margin-bottom:2%;">Expenditure</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="incomeForm" style="margin-top:2%; margin-bottom:2%;">Income</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="totalAssetsForm" style="margin-top:2%; margin-bottom:2%;">Total</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
 							
 						</ul>
+						
 					</div>
 				</nav>
 			</div>

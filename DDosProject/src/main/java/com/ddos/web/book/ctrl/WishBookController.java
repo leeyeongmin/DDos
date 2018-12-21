@@ -18,6 +18,81 @@ public class WishBookController {  //희망도서 controller
 	@Autowired
 	WishBookService wishBookService;
 	
+	//admin
+	//메인에서 희망으로
+	@RequestMapping("adminwishbook")
+	public String adminWishBookList(Model model, WishBookVO vo, HttpSession session) {
+		//vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
+		model.addAttribute("adminWishBookList", wishBookService.adminWishBookList(vo));
+		System.out.println("컨트롤 희망도서 전체 조회");
+		return "admin/book/adminWishBookList";
+		
+	}
+	
+	@RequestMapping("/adminWishBookDetail")
+	public String adminWishBookDetail(Model model, WishBookVO vo) {
+		model.addAttribute("wishbook", wishBookService.adminWishBookDetail(vo));
+		System.out.println("컨트롤 희망도서 단건 조회");
+		return "admin/book/adminWishBookDetail";
+	}
+	
+	//희망도서 등록 폼
+	@RequestMapping("adminInsertWishBookform")
+	public String adminInsertWishBookform(Model model, WishBookVO vo) {
+		System.out.println("희망도서 컨트롤 등록폼");
+		return "book/adminInsertWishBookform";
+	}
+	
+	//희망도서 등록처리
+	@RequestMapping("adminInsertWishBook")
+	public String adminInsertWishBook(WishBookVO vo) {
+		wishBookService.adminInsertWishBook(vo);
+		System.out.println("희망도서 컨트롤 등록처리");
+		return "redirect:adminwishbook";
+	}
+	
+	
+	//희망도서 수정폼
+	@RequestMapping("adminUpdateWishBookform")
+	public String adminUpdateWishBookform(Model model, WishBookVO vo) {
+		model.addAttribute("wishbook", wishBookService.getWishBook(vo));
+		System.out.println("희망도서 컨트롤 수정 폼");
+		return "admin/book/adminUpdateWishBook";
+	}
+	//희망도서 수정처리
+	@RequestMapping("adminUpdateWishBook")
+	public String adminUpdateWishBook(WishBookVO vo) {
+		wishBookService.adminUpdateWishBook(vo);
+		System.out.println(vo);
+		System.out.println("희망도서 컨트롤 수정처리");
+		return "redirect:adminwishbook";
+	}
+	
+	//희망도서 삭제
+	@RequestMapping("adminDeleteWishBook")
+	public String adminDeleteWishBook(WishBookVO vo) {
+		wishBookService.adminDeleteWishBook(vo);
+		System.out.println("희망도서 컨트롤 삭제");
+		return "redirect:adminwishbook";
+	}
+	
+	//희망도서 선택 삭제
+	@RequestMapping("adminDeleteWishBookList")
+	public String adminDeleteWishBookList(WishBookVO vo) {
+		wishBookService.adminDeleteWishBookList(vo);
+		System.out.println("희망도서 컨트롤 선택 삭제");
+		return "redirenct:adminwishbook";
+	}
+
+	
+	/*// 희망도서 전체 조회
+	@RequestMapping("/getWishBookList" )
+	public String getWishBookList(Model model, WishBookVO vo) {
+		model.addAttribute("wishBookList", wishBookService.getWishBookList(vo));
+		System.out.println("컨트롤 희망도서 전체 조회");
+		return "book/getWishBookList";
+
+	}*/
 
 	// 메인에서  전체희망도서로
 	@RequestMapping("/wishbook")
@@ -28,17 +103,8 @@ public class WishBookController {  //희망도서 controller
 		
 	}
 	
-	/*// 희망도서 전체 조회
-	@RequestMapping("/getWishBookList" )
-	public String getWishBookList(Model model, WishBookVO vo) {
-		model.addAttribute("wishBookList", wishBookService.getWishBookList(vo));
-		System.out.println("컨트롤 희망도서 전체 조회");
-		return "book/getWishBookList";
-
-	}*/
-	
 	//희망도서 단건 조회
-	@RequestMapping("getWishBook")
+	@RequestMapping("/getWishBook")
 	public String getWishBook(Model model, WishBookVO vo) {
 		model.addAttribute("wishbook", wishBookService.getWishBook(vo));
 		System.out.println("컨트롤 희망도서 단건 조회");
@@ -61,12 +127,12 @@ public class WishBookController {  //희망도서 controller
 	}
 	
 	
-	//희망도서 수정폼
+	/*//희망도서 수정폼
 	@RequestMapping("updateWishBookform")
 	public String updateWishBookform(Model model, WishBookVO vo) {
 		model.addAttribute("wishbook", wishBookService.getWishBook(vo));
 		System.out.println("희망도서 컨트롤 수정 폼");
-		return "book/updateWishBook";
+		return "admin/book/updateWishBook";
 	}
 	//희망도서 수정처리
 	@RequestMapping("updateWishBook")
@@ -74,7 +140,7 @@ public class WishBookController {  //희망도서 controller
 		wishBookService.updateWishBook(vo);
 		System.out.println(vo);
 		System.out.println("희망도서 컨트롤 수정처리");
-		return "redirect:wishbook";
+		return "redirect:admin/wishbook";
 	}
 	
 	//희망도서 삭제
@@ -82,7 +148,7 @@ public class WishBookController {  //희망도서 controller
 	public String deleteWishBook(WishBookVO vo) {
 		wishBookService.deleteWishBook(vo);
 		System.out.println("희망도서 컨트롤 삭제");
-		return "redirect:wishbook";
+		return "redirect:admin/wishbook";
 	}
 	
 	//희망도서 선택 삭제
@@ -90,6 +156,6 @@ public class WishBookController {  //희망도서 controller
 	public String deleteWishBookList(WishBookVO vo) {
 		wishBookService.deleteWishBookList(vo);
 		System.out.println("희망도서 컨트롤 선택 삭제");
-		return "redirenct:wishbook";
-	}
+		return "redirenct:admin/wishbook";
+	}*/
 }

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DDos</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -68,37 +68,7 @@
 				<option value="15">15:00~18:00</option>
 			</select>
 			</p>
-			
-<%-- <script>
-    //스터디룸별 사용 가능한 스터디 시간 구하는 함수
-    $("#studyroomNumber").on("change",function(){
-		var roomNum=document.getElementById("studyroomNumber").value;
-		var opt = document.getElementById("studyTime");
-		opt.innerHTML='스터디시간:';
-		if(roomNum == 1)
-		{
-			opt.innerHTML+='<select name="studyTime" id="studyTime">'
-			+ '<%	if(ary[0][0]==1){	%>'
-			+ '<option value="9">09:00~12:00</option>'
-			+ '<%	}if(ary[0][1]==1){	%>'
-			+ '<option value="12">12:00~15:00</option>'
-			+ '<%	}if(ary[0][2]==1){		%>'
-			+ '<option value="15">15:00~18:00</option>'
-			+ '<%} %>	</select>';					
-		}
-		else if(roomNum==2){
-			opt.innerHTML+='<select name="studyTime" id="studyTime">'
-			+ '<%	if(ary[1][0]==1){	%>'
-			+ '<option value="9">09:00~12:00</option>'
-			+ '<%	}if(ary[1][1]==1){	%>'
-			+ '<option value="12">12:00~15:00</option>'
-			+ '<%	}if(ary[1][2]==1){		%>'
-			+ '<option value="15">15:00~18:00</option>'
-			+ '<%} %>	</select>';					
-		}
-	 });
 
-</script> --%>
 			<p>시작 일자: <%=month %>월 <%=day %>일</p>
 			<% String studyDate = month+"/"+day; %>
 			<input type=hidden value="<%=studyDate%>" name="studyDate">
@@ -107,14 +77,13 @@
 			<input type="hidden" value="모집중" name="status">
 			<input type="hidden" value="${sessionScope.login.id}" name="memberId">
 			<br>
-			<br>
-			<input type="submit" value="예약">
-   	 		<input type="reset" value="리셋">
-     		<br>
+			
+			<button type="submit" class="btn btn-secondary" style="margin-left:50%;">Insert</button>
+			<button type="reset" class="btn btn-warning">Reset</button>
+     		<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
      	</form>
 	 </div>
-	 <div id="studyList-f">
-     </div>
+	 <div id="studyList-f"></div>
 </div>
 </body>
 </html>

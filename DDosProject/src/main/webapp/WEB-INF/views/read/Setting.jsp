@@ -51,16 +51,22 @@
 		    $(this).val(check_num($(this).val().replace(/[^0-9]/g,"")));
 		});
 
-		
-	    $( "#seat_arrangement" ).on( "click", function() {
-	        dialog.dialog("open");
+	   /*  $( "#seat_arrangement" ).on( "click", function() {
+	    	dialog.dialog("open");
 	        $('#col').val('1');
 	        $('#row').val('1');
-	      });
+	      }); */
 	    
 	    room_show('A');
 		
 	});			//$()
+	
+	function dialog_open(){
+		$("#dialog_input").dialog("open");
+        $('#col').val('1');
+        $('#row').val('1');
+	}
+	
 	
 	function check_num(num){
 			if(num > 20){
@@ -97,17 +103,40 @@
 		}
 		
 		var num = $('input[name=room]').attr("value");
-		
+			
 		$.ajax({
 			type : "post",
 			url : "saveSeat?seat="+$save+"&room="+num,
 			success : function(num) {
 				alert("저장이 완료 되었습니다.");
-				show_room(num);
-				
+				show_room(num);	
 			}
-		})
+		});
+
 	}
+	
+	function change_ck(event){
+		var num = $('input[name=room]').attr("value");
+		var type;
+		$.ajax({
+			type : "post",
+			url : "setting_change_ck?room="+num,
+			async: false,
+			success : function(num) {
+				if(num == "false"){
+					alert("사용중인 좌석이 있습니다.");
+				}else{
+					if(event == "save"){
+						save_set()
+					}else{
+						dialog_open();
+					}
+				}
+			}
+		});
+		
+	}
+	
 	
 	function room_show(num){
 		$.ajax({
@@ -209,7 +238,7 @@
 								<h3 class="section-title">열람실</h3>
 							</div>
 							<div style="float: right">
-								<input type="button" value="좌석 배치"  id="seat_arrangement"> 
+								<input type="button" value="좌석 배치" onclick="change_ck('seat')">
 							</div>
 						</div>
 						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -266,7 +295,7 @@
 	</div>
 	
 	<div style="float : center">
-		<input type="button" value="저장"  onclick="save_set()"> 
+		<input type="button" value="저장"  onclick="change_ck('save')">
 	</div>
 	
 	<div id="dialog_input" title="값을 입력하세요">

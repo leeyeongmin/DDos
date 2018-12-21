@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+<title>DDos</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="assets/vendor/bootstrap/css/bootstrap.min.css">

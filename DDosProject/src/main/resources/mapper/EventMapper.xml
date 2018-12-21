@@ -33,6 +33,64 @@
 		AND SYSDATE <![CDATA[ < ]]> START_DATE
 
 	</select>
+	
+	<!-- ================관리자용================== -->
+	<!-- 전체 조회 -->
+	<select id="getEventList" resultType="event">
+		SELECT * FROM EVENT
+		ORDER BY START_DATE DESC
+	</select>
+	
+	<!-- 단건 조회 -->
+	<select id="getEvent" resultType="event">
+		SELECT EVENT_TITLE,
+			EVENT_CONT,
+			START_DATE,
+			END_DATE,
+			WRITE_DATE
+		FROM EVENT
+		WHERE EVENT_NUM = #{eventNum}
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="insertEvent" parameterType="event">
+		<selectKey keyProperty="eventNum" resultType="integer" order="BEFORE">
+			SELECT MAX(EVENT_NUM)+1 FROM EVENT
+		</selectKey>
+		INSERT INTO EVENT (
+			EVENT_NUM,
+			EVENT_TITLE,
+			EVENT_CONT, 
+			START_DATE,
+			END_DATE,
+			WRITE_DATE,
+			MEMBER_ID)
+		VALUES (
+			#{eventNum},
+			#{eventTitle},
+			#{eventCont},
+			#{startDate},
+			#{endDate},
+			sysdate,
+			#{memberId})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateEvent" parameterType="event">
+		UPDATE EVENT SET
+			EVENT_TITLE = #{eventTitle},
+			EVENT_CONT = #{eventCont},
+			START_DATE = #{startDate},
+			END_DATE = #{endDate},
+			WRITE_DATE = sysdate
+		WHERE EVENT_NUM = #{eventNum}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteEvent" parameterType="event">
+		DELETE EVENT
+		WHERE EVENT_NUM = #{eventNum}
+	</delete>
 </mapper>
 	
 	

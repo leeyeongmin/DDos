@@ -12,15 +12,25 @@ public class ReadVO {
 	private String loginId;		//로그인ID 이름
 	
 	private String col;
-	private String row;
+	private String row;				
 	
-	private String endTime;
+	private String endTime;			//끝나는 시간 
 	
-	private String rmax;
-	private String cmax;
+	private String rmax;			//row max
+	private String cmax;			//col max
 	
-	private String starttime;
+	private String starttime;		//현재 시간 
 	
+	private String ck;				//true, false <out>;
+
+	public String getCk() {
+		return ck;
+	}
+
+	public void setCk(String ck) {
+		this.ck = ck;
+	}
+
 	public String getStarttime() {
 		return starttime;
 	}

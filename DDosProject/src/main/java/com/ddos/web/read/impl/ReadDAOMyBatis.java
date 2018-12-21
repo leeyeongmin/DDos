@@ -75,4 +75,8 @@ public class ReadDAOMyBatis {
 		mybatis.update("read.settingroom", vo);
 	}
 	
+	public String setting_change_ck(ReadVO vo) {
+		return mybatis.selectOne("read.setting_change_ck", vo);
+	}
+	
 }

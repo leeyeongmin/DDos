@@ -23,13 +23,13 @@ public class ReviewDAOMybatis {
 	// 입력
 	public void insertReview(ReviewVO rvo) {
 		System.out.println("sqlsession insertReview 실행");
-		sqlsession.update("review.insertReview", rvo);
+		sqlsession.insert("review.insertReview", rvo);
 	}
 
 	// 수정
-	public void updateReview(ReviewVO vo) {
+	public void updateReview(ReviewVO rvo) {
 		System.out.println("sqlsession updateReview 실행");
-		sqlsession.update("review.updateReview", vo);
+		sqlsession.update("review.updateReview", rvo);
 	}
 
 	// 삭제

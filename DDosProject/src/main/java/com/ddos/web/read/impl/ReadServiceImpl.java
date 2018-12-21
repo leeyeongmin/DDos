@@ -105,5 +105,12 @@ public class ReadServiceImpl implements ReadService{
 	}
 
 
+	@Override
+	public String setting_change_ck(ReadVO vo) {
+		// TODO Auto-generated method stub
+		return dao.setting_change_ck(vo);
+	}
+
+
 
 }

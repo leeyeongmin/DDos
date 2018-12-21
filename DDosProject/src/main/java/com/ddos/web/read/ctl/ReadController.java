@@ -20,9 +20,9 @@ public class ReadController {
 	@Autowired
 	ReadService readserivce;
 	
-	@RequestMapping("adminread")
+	@RequestMapping("adminread")		// 관리자
 	public String adminread() {
-		return "read/Setting";
+		return "admin/read/Setting";
 	}
 	
 	@RequestMapping("read")			//메인에서 화면 변경 
@@ -39,7 +39,6 @@ public class ReadController {
 	
 	@RequestMapping("saveSeat")		//좌석 저장 (관리자)
 	public String saveSeat(ReadVO vo) {
-		System.out.println("asdsasdsfdfdsfdsfdsfdfdsfda : " + vo.getSeat().length);
 		readserivce.saveSeat(vo);
 		
 		return "read/ReadChoose";		
@@ -154,5 +153,14 @@ public class ReadController {
 	}
 	
 	
+	@RequestMapping("setting_change_ck")
+	@ResponseBody
+	public String setting_change_ck(ReadVO vo) {
+		Date date = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		vo.setStarttime(format.format(date));
+		readserivce.setting_change_ck(vo);
+		return vo.getCk();
+	}
 
 }

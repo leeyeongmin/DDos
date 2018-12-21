@@ -68,7 +68,7 @@
 		        "반납": function() {
 		        	$.ajax({
 		    			type : "post",
-		    			url : "return_seat?loginId=${login.id}"+"&selectSeat"+localStorage.getItem('seating'),
+		    			url : "return_seat?loginId=${login.id}"+"&selectSeat="+localStorage.getItem('seating'),
 		    			success : function() {
 		    				localStorage.removeItem("seating");
 		    				localStorage.removeItem("time_ck");
@@ -95,11 +95,11 @@
 		        "반납": function() {
 		        	$.ajax({
 		    			type : "post",
-		    			url : "return_seat?loginId=${login.id}&selectSeat"+localStorage.getItem('seating'),
+		    			url : "return_seat?loginId=${login.id}&selectSeat="+localStorage.getItem('seating'),
 		    			success : function() {
-		    				room_show(localStorage.getItem("room"));
 		    				localStorage.removeItem("seating");
 		    				localStorage.removeItem("time_ck");
+		    				room_show(localStorage.getItem("room"));
 		    			}
 		        	})
 		        	dialog2.dialog("close");

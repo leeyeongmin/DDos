@@ -43,7 +43,7 @@
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="section-block" id="basicform"></div>
 						<div class="card-body">
-							<form action="insertWishBook" method="post">
+							<form action="adminInsertWishBookform" method="post">
 								<div class="form-group">
 									<label for="inputText3" class="col-form-label">회원ID&nbsp;</label><input
 										name="memberId" type="hidden" value="${sessionScope.login.id}">${sessionScope.login.id}

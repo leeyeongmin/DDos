@@ -28,7 +28,7 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Wish
+										<li class="breadcrumb-item active" aria-current="page">Admin Wish
 											Book details</li>
 									</ol>
 								</nav>
@@ -87,11 +87,11 @@
 											<textarea class="form-control" id="wishReason">"${wishbook.wishReason}"</textarea >
 										</div>
 									</div>
-									<c:if test ="${login.id == wishbook.memberId}">
-									<a href="./updateWishBookform?isbn=${wishbook.isbn}" class="btn btn-primary">수정</a> 
-									<a href="./deleteWishBook?wishNum=${wishbook.wishNum}" class="btn btn-brand">삭제</a> 
-									<a href="./wishbook" class="btn btn-secondary">취소</a>
-									</c:if>
+									
+									<a href="./adminUpdateWishBookform?isbn=${wishbook.isbn}" class="btn btn-primary">수정</a> 
+									<a href="./adminDeleteWishBook?wishNum=${wishbook.wishNum}" class="btn btn-brand">삭제</a> 
+									<a href="./adminWishBookList" class="btn btn-secondary">취소</a>
+								
 								</form>
 
 							</div>

@@ -39,9 +39,9 @@
 		<selectKey keyProperty="wishNum" resultType="integer" order="BEFORE">
 			SELECT MAX(WISH_NUM)+ 1 FROM WISh_BOOK
 		</selectKey>
-			INSERT INTO WISH_BOOK(WISH_NUM, WISH_TITLE, WISH_WRITER, ISBN
-				WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_PRICE)
-			VALUES(#{wishNum}, #{wishTitle}, #{wishWriter}, #{wishComp}, #{isbn}
+			INSERT INTO WISH_BOOK(WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER,  
+			WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_PRICE)
+			VALUES(#{wishNum}, #{isbn}, #{wishTitle}, #{wishWriter}, #{wishComp}, 
 				#{wishGenre}, #{memberId}, #{wishReason}, #{wishPrice})
 	</insert>
 	<!-- 희망도서 수정-->
@@ -105,9 +105,9 @@
 		<selectKey keyProperty="wishNum" resultType="integer" order="BEFORE">
 			SELECT MAX(WISH_NUM)+ 1 FROM WISh_BOOK
 		</selectKey>
-			INSERT INTO WISH_BOOK(WISH_NUM, WISH_TITLE, WISH_WRITER, ISBN
-				WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_PRICE)
-			VALUES(#{wishNum}, #{wishTitle}, #{wishWriter}, #{wishComp}, #{isbn}
+			INSERT INTO WISH_BOOK(WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER,  
+			WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_PRICE)
+			VALUES(#{wishNum}, #{isbn}, #{wishTitle}, #{wishWriter}, #{wishComp}, 
 				#{wishGenre}, #{memberId}, #{wishReason}, #{wishPrice})
 	</insert>
 

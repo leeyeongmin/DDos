@@ -23,32 +23,32 @@ public class WishBookDAOMybatis {
 	
 	//단권 조회
 		public WishBookVO adminWishBookDetail(WishBookVO vo) {
-			System.out.println("희망도서 mybatis 단건 조회 실행");
+			System.out.println("admin 희망도서  mybatis 단건 조회 실행");
 			return mybatis.selectOne("wishbook.adminWishBookDetail", vo);
 		}
 
 		//희망도서 입력
 		public void adminInsertWishBook(WishBookVO vo) {
-			System.out.println("희망도서 mybatis 입력 실행");;
-			mybatis.update("wishbook.insertWishBook", vo); 
+			System.out.println("admin  희망도서 mybatis 입력 실행");;
+			mybatis.update("wishbook.adminInsertWishBook", vo); 
 		}
 		
 		//희망도서 수정
 		public void adminUpdateWishBook(WishBookVO vo) {
 			System.out.println(vo);
-			System.out.println("희망도서 mybatis 수정 실행");
-			mybatis.update("wishbook.updateWishBook", vo);
+			System.out.println("admin 희망도서 mybatis 수정 실행");
+			mybatis.update("wishbook.adminUpdateWishBook", vo);
 		}
 		
 		//희망도서 삭제
 		public void adminDeleteWishBook(WishBookVO vo) {
-			System.out.println("희망도서 mybatis 삭제 실행");
-			mybatis.delete("wishbook.deleteWishBook", vo);
+			System.out.println("admin  희망도서 mybatis 삭제 실행");
+			mybatis.delete("wishbook.adminDeleteWishBook", vo);
 		}
 		//희망도서 선택 삭제
 		public void adminDeleteWishBookList(WishBookVO vo) {
-			System.out.println("희망도서 mybatis 선택 삭제 실행");
-			mybatis.delete("wishbook.deleteWishBookList", vo);
+			System.out.println("admin  희망도서 mybatis 선택 삭제 실행");
+			mybatis.delete("wishbook.adminDeleteWishBookList", vo);
 		}
 
 		
@@ -74,7 +74,7 @@ public class WishBookDAOMybatis {
 		mybatis.update("wishbook.insertWishBook", vo); 
 	}
 	
-	//희망도서 수정
+	/*//희망도서 수정
 	public void updateWishBook(WishBookVO vo) {
 		System.out.println(vo);
 		System.out.println("희망도서 mybatis 수정 실행");
@@ -92,5 +92,5 @@ public class WishBookDAOMybatis {
 		mybatis.delete("wishbook.deleteWishBookList", vo);
 	}
 
-	
+	*/
 }

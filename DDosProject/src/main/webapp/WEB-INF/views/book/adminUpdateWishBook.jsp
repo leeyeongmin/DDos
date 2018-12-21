@@ -50,7 +50,7 @@
 								<h4 class="mb-0">희망도서 수정</h4>
 							</div>
 							<div class="card-body">
-								<form class="needs-validation" action ="updateWishBook" method="post">
+								<form class="needs-validation" action ="adminUpdateWishBookform" method="post">
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="isbn">ISBN</label>

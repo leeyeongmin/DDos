@@ -68,7 +68,7 @@
 				</form>
 
 				<input type="button" style="float: right"
-					onclick="location.href='./insertWishBookform'" value="신청하기"
+					onclick="location.href='./adminInsertWishBookform'" value="신청하기"
 					class="btn btn-primary">
 				<form action="deleteWishBookList">
 					<input type="button" style="float: right" value="선택삭제"
@@ -99,7 +99,7 @@
 														value="${wishbook.wishNum}"></td>
 													<td>${wishbook.memberId}</td>
 													<td>${wishbook.isbn}</td>
-													<td><a href="./getWishBook?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>
+													<td><a href="./adminWishBookDetail?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>
 													<td>${wishbook.wishWriter}</td>
 													<td>${wishbook.wishComp}</td>
 													<td><span class="badge-dot badge-brand mr-1"></span>${wishbook.wishStatus}</td>

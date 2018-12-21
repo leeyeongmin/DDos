@@ -16,39 +16,37 @@
 <link rel="stylesheet" href="assets/libs/css/style.css">
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-<title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+<title>DDos</title>
 </head>
 
 <!-- ============================================================== -->
-	<!-- end main wrapper  -->
-	<!-- ============================================================== -->
-	<!-- Optional JavaScript -->
-	<!-- jquery 3.3.1 -->
-	<script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-	<!-- bootstap bundle js -->
-	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-	<!-- slimscroll js -->
-	<script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-	<!-- main js -->
-	<script src="assets/libs/js/main-js.js"></script>
+<!-- end main wrapper  -->
+<!-- ============================================================== -->
+<!-- Optional JavaScript -->
+<!-- jquery 3.3.1 -->
+<script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<!-- bootstap bundle js -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<!-- slimscroll js -->
+<script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+<!-- main js -->
+<script src="assets/libs/js/main-js.js"></script>
 
 <script>
-	
 	$(document).ready(function() {
-	    $('#sortCol').children().each(function (e, i) {
-	    	var value = $(i).val();
-	    	if(location.search.indexOf(value) > 0 ) {
-	    		i.defaultSelected = true;
-	    	} else {
-	    		i.defaultSelected = false;
-	    	}
-	    });
+		$('#sortCol').children().each(function(e, i) {
+			var value = $(i).val();
+			if (location.search.indexOf(value) > 0) {
+				i.defaultSelected = true;
+			} else {
+				i.defaultSelected = false;
+			}
+		});
 	});
 	/* document.ready(function (){
 		
 	}); */
-	
-	
+
 	function check() {
 		if (document.getElementById("searchUserKeyword").value == "") {
 			alert("원하시는 검색 타입을 설정하시고 검색어를 입력하세요");
@@ -57,7 +55,6 @@
 		}
 		document.searchUser.submit();
 	}
-	
 </script>
 
 
@@ -201,7 +198,8 @@
 										<span class="mr-2 twitter-color"> Rental : </span><span>20</span>
 									</div>
 									<div class="user-social-media d-xl-inline-block">
-										<span class="mr-2  pinterest-color"> ReadingRoom history : </span><span>19</span>
+										<span class="mr-2  pinterest-color"> ReadingRoom
+											history : </span><span>19</span>
 									</div>
 									<div class="user-social-media d-xl-inline-block">
 										<span class="mr-2 instagram-color"> Review : </span><span>12</span>
@@ -230,11 +228,12 @@
 						<div class="card">
 							<div class="card-body">
 								<h3 class="font-16">Sorting By</h3>
-								
+
 								<!--TODO: value값 적기  -->
 								<form action="getUserList" name="changeSort">
-									<select class="form-control" id="sortCol" name="sortCol" onchange="document.changeSort.submit()">										
-									<option value="" selected>SELECT</option>
+									<select class="form-control" id="sortCol" name="sortCol"
+										onchange="document.changeSort.submit()">
+										<option value="" selected>SELECT</option>
 										<option value="OUT_COUNT">OUT&nbsp;COUNT</option>
 										<option value="EXP_DATE">EXP&nbsp;DATE</option>
 										<option value="">RENTAL</option>
@@ -279,14 +278,6 @@
 		<!-- ============================================================== -->
 		<!-- end wrapper  -->
 		<!-- ============================================================== -->
-
-
-
-
-
-
-
-
 	</div>
 
 </body>

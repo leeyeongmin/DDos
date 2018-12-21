@@ -25,7 +25,7 @@
 	href="assets/vendor/charts/morris-bundle/morris.css">
 <link rel="stylesheet" type="text/css"
 	href="assets/vendor/daterangepicker/daterangepicker.css" />
-<title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+<title>DDos</title>
 
 <style>
 .logoutbtn{

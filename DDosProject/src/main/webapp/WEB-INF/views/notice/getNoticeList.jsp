@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>getNoticeList.jsp</title>
+<title>DDos</title>
 <script>
 	function check() {
 		if (document.search.searchKeyword.value == "") {

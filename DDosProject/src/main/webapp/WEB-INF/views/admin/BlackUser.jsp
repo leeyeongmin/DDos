@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="assets/libs/css/style.css">
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-<title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+<title>DDos</title>
 
 
 <script>

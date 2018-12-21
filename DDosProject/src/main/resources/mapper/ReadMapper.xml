@@ -136,5 +136,13 @@
 						    
 	</insert>
 	
+	
+	<update id="setting_change_ck" statementType="CALLABLE"  parameterType="read">
+		 {call P_change_setting_ck(#{room, mode=IN, jdbcType=VARCHAR, javaType=string},
+						#{ck, mode=OUT, jdbcType=VARCHAR, javaType=string},
+						#{starttime, mode=IN, jdbcType=VARCHAR, javaType=string})
+	</update>
+	 
+	
  
 </mapper>

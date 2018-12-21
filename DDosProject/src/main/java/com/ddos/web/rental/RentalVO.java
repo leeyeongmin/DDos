@@ -5,11 +5,39 @@ public class RentalVO {
 	private int rentalNum;
 	private String rentalDate;
 	private String returnDate;
-	private int rentalIsbn;
+	private String isbn;
 	private String memberId;
 	private String loginId;
 	private String dueDate;
 	
+	private String searchTitle;
+	private String searchKeyword;
+	private String bookTitle;
+	
+	public String getBookTitle() {
+		return bookTitle;
+	}
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public String getSearchTitle() {
+		return searchTitle;
+	}
+	public void setSearchTitle(String searchTitle) {
+		this.searchTitle = searchTitle;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
 	public String getDueDate() {
 		return dueDate;
 	}
@@ -22,9 +50,7 @@ public class RentalVO {
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
-	public void setRentalIsbn(int rentalIsbn) {
-		this.rentalIsbn = rentalIsbn;
-	}
+
 	public int getRentalNum() {
 		return rentalNum;
 	}
@@ -43,12 +69,7 @@ public class RentalVO {
 	public void setReturnDate(String returnDate) {
 		this.returnDate = returnDate;
 	}
-	public int getRentalIsbn() {
-		return rentalIsbn;
-	}
-	public void setrRntalIsbn(int rentalIsbn) {
-		this.rentalIsbn = rentalIsbn;
-	}
+
 	public String getMemberId() {
 		return memberId;
 	}
@@ -58,7 +79,7 @@ public class RentalVO {
 	@Override
 	public String toString() {
 		return "RentalVO [rentalNum=" + rentalNum + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
-				+ ", rentalIsbn=" + rentalIsbn + ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate="
+				+  ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate="
 				+ dueDate + "]";
 	}
 

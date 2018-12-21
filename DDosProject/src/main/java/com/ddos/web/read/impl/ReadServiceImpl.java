@@ -1,7 +1,6 @@
 package com.ddos.web.read.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +15,10 @@ public class ReadServiceImpl implements ReadService{
 	ReadDAOMyBatis dao;
 	
 	
-	@Override
+/*	@Override
 	public List<ReadVO> setRoom(ReadVO vo) {		//좌석 조회
 		return dao.setRoom(vo);
-	}
+	}*/
 
 
 	@Override
@@ -53,11 +52,11 @@ public class ReadServiceImpl implements ReadService{
 	}
 
 
-	@Override
+/*	@Override
 	public Map<String, String> getroomsize(ReadVO vo) {
 		// TODO Auto-generated method stub
 		return dao.getroomsize(vo);
-	}
+	}*/
 
 
 	@Override
@@ -85,18 +84,10 @@ public class ReadServiceImpl implements ReadService{
 
 
 	@Override
-	public List<ReadVO> test(ReadVO vo) {
+	public List<ReadVO> Roomshow(ReadVO vo) {
 		// TODO Auto-generated method stub
-		return dao.test(vo);
+		return dao.Roomshow(vo);
 	}
-
-
-	@Override
-	public ReadVO testMax(ReadVO vo) {
-		// TODO Auto-generated method stub
-		return dao.testMax(vo);
-	}
-
 
 	@Override
 	public void settingroom(ReadVO vo) {

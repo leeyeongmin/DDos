@@ -27,16 +27,16 @@ public class ReadController {
 	
 	@RequestMapping("read")			//메인에서 화면 변경 
 	public String read() {
-		return "user/ReadSelect";
+		return "read/ReadSelect";
 	}
 	
-	@RequestMapping("setRoom")		//열람실 선택시 나타나는 화면 (좌석배치)
+/*	@RequestMapping("setRoom")		//열람실 선택시 나타나는 화면 (좌석배치)
 	public String setRoom(Model model, ReadVO vo) {
 		model.addAttribute("setList", readserivce.setRoom(vo));
 		model.addAttribute("roomsize", readserivce.getroomsize(vo));
 		return "read/Setting";
 	}
-	
+	*/
 	@RequestMapping("saveSeat")		//좌석 저장 (관리자)
 	public String saveSeat(ReadVO vo) {
 		readserivce.saveSeat(vo);
@@ -44,17 +44,11 @@ public class ReadController {
 		return "read/ReadChoose";		
 	}
 	
-	@RequestMapping("getRoom")		//열람실 선택 (유저)
+/*	@RequestMapping("getRoom")		//열람실 선택 (유저)
 	public String getRoom(Model model, ReadVO vo) {
 		model.addAttribute("setList", readserivce.setRoom(vo));					//자리
 		model.addAttribute("roomsize", readserivce.getroomsize(vo));			//룸크기
 		return "user/ReadSelect";
-	}
-	
-	/*@RequestMapping(value = "overlap", method = { RequestMethod.POST})
-	@ResponseBody
-	public ReadVO overlap(ReadVO vo) {
-		return readserivce.overlap(vo);
 	}*/
 	
 	@RequestMapping(value = "overlap", method = { RequestMethod.POST})
@@ -70,15 +64,8 @@ public class ReadController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		vo.setStarttime(format.format(date));
 		readserivce.updateSeat(vo);
-		//return "redirect:getRoom?room="+vo.getRoom();
 	}
 
-	
-/*	@RequestMapping("timecheck")
-	public void timecheck() {
-		readserivce.timecheck();
-	}*/
-	
 	@RequestMapping("useing_seat")
 	@ResponseBody
 	public String useing_seat(Model model, ReadVO vo) {			//로그인 후 자리 확인
@@ -124,8 +111,8 @@ public class ReadController {
 	
 	@RequestMapping("Roomshow")		//열람실 선택시 나타나는 화면 (좌석배치)
 	@ResponseBody
-	public List<ReadVO> testRoom(Model model, ReadVO vo) {
-		return readserivce.test(vo);
+	public List<ReadVO> Roomshow(ReadVO vo) {
+		return readserivce.Roomshow(vo);
 	}
 
 	@RequestMapping("settingroom")

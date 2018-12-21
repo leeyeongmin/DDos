@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="read">
 
-	<select id="setRoom" resultType="read">		<!-- 열람실 room 선택 -->
+<!-- 	<select id="setRoom" resultType="read">		
 		select SEAT_NUM,
 		to_number(SUBSTR(seat_num,2,2)) as "row",
 		 to_number(SUBSTR(seat_num,4,2)) as "col",
@@ -18,7 +18,7 @@
 		from readingroom
 		where seat_num like #{room} || '%'
 	</select>
-
+ -->
 
 	
 	<update id="saveSeat" parameterType="read">		<!-- 좌석 저장(관리자) -->
@@ -60,10 +60,7 @@
 		where SEAT_NUM = #{selectSeat}
 	</update>
 	
-	<insert id="insertUsing" parameterType="read">							<!-- 좌석 로그 입력 -->
-		<!-- insert into 
-		READINGROOM_HISTORY(READINGROOM_NUM, END_TIME, MEMBER_ID, SEAT_NUM, START_TIME)
-					 values(READING_SEQ.NEXTVAL, sysdate+10/(24*60), #{loginId}, #{selectSeat}, sysdate) -->	 
+	<insert id="insertUsing" parameterType="read">							<!-- 좌석 로그 입력 -->	 
 		{call P_TIME_CK(#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
 						'inserting',
 						#{selectSeat, mode=IN, jdbcType=VARCHAR, javaType=string},
@@ -105,12 +102,6 @@
 	</select>
 	
 	<update id="extension">
-		<!-- update readingroom_history
-		set end_time = sysdate + 3/24
-		where to_char(end_time,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
-		and MEMBER_ID = #{loginId}
-		AND to_char(end_time,'YYYYMMDDHH24MISS') > TO_CHAR (SYSDATE, 'YYYYMMDDHH24MISS')
-		 -->
 		 {call P_TIME_CK(#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
 						'update',
 						#{selectSeat, mode=IN, jdbcType=VARCHAR, javaType=string},
@@ -118,7 +109,7 @@
 	</update>
 	
 
-	<select id="test" resultType="read">
+	<select id="Roomshow" resultType="read">
 	 select SEAT_NUM,
 		to_number(SUBSTR(seat_num,2,2)) as "row",
 		to_number(SUBSTR(seat_num,4,2)) as "col",

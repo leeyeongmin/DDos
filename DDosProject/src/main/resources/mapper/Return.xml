@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rental">
+	
+	<select id="rentalSearch" resultType="rental">
+		SELECT B.book_title, R.isbn, R.rental_date, R.due_date, R.member_id
+		FROM  Rental R , 
+		<choose>
+			<when test="searchTitle != null and (searchTitle == 'book_title' or searchTitle == 'isbn')">
+				 (select book_title from book where ${searchTitle} like #{searchKeyword} || '%') B
+				  where r.return_date is null
+			</when>
+			
+			<when test="searchTitle != null and searchTitle == 'memeber_id'">
+				Book B
+				where member_id = #{searchKeyword}
+				and R.return_date is null
+				and B.isbn = R.isbn
+			</when>	
+		</choose>
+	</select>
+	 
+</mapper>

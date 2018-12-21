@@ -81,7 +81,7 @@
 	}
 
 	function click_set(seatnum){			//좌석 선택 시 
-	
+		alert(seatnum.style.backgroundColor);
 		if(seatnum.style.backgroundColor == "rgb(0, 255, 0)"){
 			seatnum.style.background = "#ffffff";
 		}else{

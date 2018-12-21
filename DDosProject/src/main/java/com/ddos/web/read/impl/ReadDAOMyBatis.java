@@ -1,7 +1,6 @@
 package com.ddos.web.read.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,9 @@ public class ReadDAOMyBatis {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public List<ReadVO> setRoom(ReadVO vo){
+/*	public List<ReadVO> setRoom(ReadVO vo){
 		return mybatis.selectList("read.setRoom", vo);
-	}
+	}*/
 	
 	public void saveSeat(ReadVO vo) {
 		mybatis.update("read.saveSeat", vo);			//지정된 자리
@@ -42,9 +41,9 @@ public class ReadDAOMyBatis {
 		return mybatis.selectOne("read.seat_useing", vo);
 	}
 	
-	public Map<String, String> getroomsize(ReadVO vo){
+/*	public Map<String, String> getroomsize(ReadVO vo){
 		return mybatis.selectOne("read.getroomsize", vo);
-	}
+	}*/
 	
 	public void return_seat(ReadVO vo) {
 		System.out.println("logIn : " + vo.getLoginId());
@@ -63,14 +62,10 @@ public class ReadDAOMyBatis {
 		return mybatis.selectOne("read.usetimer", vo);
 	}
 	
-	public List<ReadVO> test(ReadVO vo){
-		return mybatis.selectList("read.test", vo);
+	public List<ReadVO> Roomshow(ReadVO vo){
+		return mybatis.selectList("read.Roomshow", vo);
 	}
-	
-	public ReadVO testMax(ReadVO vo) {
-		return mybatis.selectOne("read.testMax", vo);
-	}
-	
+
 	public void settingroom(ReadVO vo) {
 		mybatis.update("read.settingroom", vo);
 	}

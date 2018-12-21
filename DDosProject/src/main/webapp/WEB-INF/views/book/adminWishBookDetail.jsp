@@ -88,7 +88,8 @@
 										</div>
 									</div>
 									<c:if test ="${login.id == wishbook.memberId}">
-									 
+									<a href="./updateWishBookform?isbn=${wishbook.isbn}" class="btn btn-primary">수정</a> 
+									<a href="./deleteWishBook?wishNum=${wishbook.wishNum}" class="btn btn-brand">삭제</a> 
 									<a href="./wishbook" class="btn btn-secondary">취소</a>
 									</c:if>
 								</form>

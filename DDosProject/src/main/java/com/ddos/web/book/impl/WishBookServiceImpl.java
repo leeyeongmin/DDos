@@ -11,45 +11,49 @@ import com.ddos.web.book.WishBookVO;
 @Service
 public class WishBookServiceImpl implements WishBookService {
 
-	@Autowired WishBookDAOMybatis wbd;
+	@Autowired
+	WishBookDAOMybatis wbd;
 	private WishBookVO vo;
-	
-	//전체 조회
+
+	// admin 계정
+	// 전제 조회
+
 	@Override
-	public List<WishBookVO> getWishBookList(WishBookVO vo){
+	public List<WishBookVO> adminWishBookList(WishBookVO vo) {
+		
+		return  wbd.adminWishBookList(vo);
+	}
+	@Override
+	public WishBookVO adminWishBookDetail(WishBookVO vo) {
+		return wbd.adminWishBookDetail(vo);
+	}
+	@Override
+	public void adminInsertWishBook(WishBookVO vo) {
+		wbd.adminInsertWishBook(vo);
+	}
+	@Override
+	public void adminUpdateWishBook(WishBookVO vo) {
+		wbd.adminUpdateWishBook(vo);
+	}
+	@Override
+	public void adminDeleteWishBook(WishBookVO vo) {
+		wbd.adminDeleteWishBook(vo);
+	}
+	@Override
+	public void adminDeleteWishBookList(WishBookVO vo) {
+		wbd.adminDeleteWishBookList(vo);
+	}
+	@Override
+	public List<WishBookVO> getWishBookList(WishBookVO vo) {
 		return wbd.getWishBookList(vo);
 	}
-	
-	// 단건조회
 	@Override
-	public  WishBookVO getWishBook(WishBookVO vo) {
+	public WishBookVO getWishBook(WishBookVO vo) {
 		return wbd.getWishBook(vo);
 	}
-
-	//희망도서 등록
 	@Override
 	public void insertWishBook(WishBookVO vo) {
 		wbd.insertWishBook(vo);
-	}
-
-	//희망도서 수정
-	@Override
-	public void updateWishBook(WishBookVO vo) {
-		wbd.updateWishBook(vo);
-	}
-
-	
-
-	//희망도서 선택 삭제
-	@Override
-	public void deleteWishBookList(WishBookVO vo) {
-		wbd.deleteWishBookList(vo);
-		
-	}
-	//희망도서 삭제
-	@Override
-	public void deleteWishBook(WishBookVO vo) {
-		wbd.deleteWishbook(vo);
 		
 	}
 }

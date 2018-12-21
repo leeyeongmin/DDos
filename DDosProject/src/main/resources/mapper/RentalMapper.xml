@@ -8,14 +8,14 @@
 	resultType="rental">
 
 	SELECT	 R.RENTAL_NUM, B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER, R.RENTAL_DATE,
-			R.RETURN_DATE
+			R.RETURN_DATE, R.MEMBER_ID
 	FROM	 BOOK B JOIN RENTAL R
 	ON 		(B.ISBN=R.ISBN)
 
 
 	<where>
 		<if test=" loginId != null">
-			AND MEMBER_ID = #{loginId} AND WHERE RENTURN_DATE IS NULL
+			AND RETURN_DATE IS NULL AND MEMBER_ID = #{loginId}
 		</if>
 	</where>
 </select>

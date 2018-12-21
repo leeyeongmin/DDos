@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이용자 희망도서 목록</title>
+<title>Insert title here</title>
 <script type="text/javascript">
 	document.getElementById("wishbook").click = clickfunc;
 	function clickfunc(e) {
@@ -36,7 +36,8 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Wish Book List</a>
+										<li class="breadcrumb-item active" aria-current="page">Admin
+											Wish Book List</a>
 										</li>
 									</ol>
 								</nav>
@@ -61,6 +62,7 @@
 						<option value="wishTitle">도서명
 						<option value="wishWriter">저자
 						<option value="isbn">ISBN
+						<option value="memberId">회원ID
 					</select> <input type="text" name="searchKeyword">
 					<button>검색</button>
 				</form>
@@ -68,7 +70,10 @@
 				<input type="button" style="float: right"
 					onclick="location.href='./insertWishBookform'" value="신청하기"
 					class="btn btn-primary">
-				
+				<form action="deleteWishBookList">
+					<input type="button" style="float: right" value="선택삭제"
+						class="btn btn-brand">
+
 					<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" >
 						<div class="card" style="width: 100%;">
 							<div class="card-body p-0">
@@ -77,7 +82,7 @@
 										<thead class="bg-light">
 											<tr class="border-0">
 												<td class="border-0">#</td>
-												 <th class="border-0">회원ID &nbsp;</th> 
+												<th class="border-0">회원ID &nbsp;</th>
 												<th class="border-0">ISBN</th>
 												<th class="border-0">도서명</th>
 												<th class="border-0">저자</th>
@@ -87,12 +92,12 @@
 											</tr>
 										</thead>
 
-										<tbody id=wishBookList>
-											<c:forEach items="${wishBookList}" var="wishbook">
+										<tbody id=adminWishBookList>
+											<c:forEach items="${adminWishBookList}" var="wishbook">
 												<tr>
 													<td><input type="checkbox" name="numlist"
 														value="${wishbook.wishNum}"></td>
-													 <td>${wishbook.memberId}</td>
+													<td>${wishbook.memberId}</td>
 													<td>${wishbook.isbn}</td>
 													<td><a href="./getWishBook?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>
 													<td>${wishbook.wishWriter}</td>

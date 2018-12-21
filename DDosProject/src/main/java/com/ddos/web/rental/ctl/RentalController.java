@@ -21,6 +21,7 @@ public class RentalController {
 	public String  rental(Model model, RentalVO vo, HttpSession session) {
 		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("getRentalList", rentalService.getRentalList(vo));
+		System.out.println(vo + "대출이력 컨트롤러");
 		return "rental/getRentalList";
 	}
 	

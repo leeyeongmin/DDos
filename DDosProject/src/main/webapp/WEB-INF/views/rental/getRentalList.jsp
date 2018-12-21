@@ -41,9 +41,28 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+			<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+                            <div class="section-block">
+                                <h5 class="section-title">대출현황</h5>
+                                
+                            </div>
+                            <div class="tab-regular">
+                                <ul class="nav nav-tabs " id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">대출현황</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">대출이력</a>
+                                    </li>
+                                   
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <p class="lead">대출현황 리스트</p><small>현재 대출중인 책의 목록을 보여드립니다.</small>
+                                        <p>
+										<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Basic Table</h5>
+                                <h5 class="card-header">대출현황</h5>
                                 <div class="card-body">
                                     <table class="table">
                                         <thead>
@@ -62,7 +81,7 @@
 										<c:forEach items="${getRentalList}" var="rental">
                                             <tr>
                                                 <td><input type="checkbox" name="rnum" value="${rental.rentalNum}"></td>
-                                                <td>${book.bookTitle}"/td>
+                                                <td>${book.bookTitle}"</td>
                                                 <td>${rental.rentalIsbn}</td>
 												 <td>${book.bookWriter}</td>
 												  <td>${book.bookComp}</td>
@@ -75,7 +94,16 @@
                                 </div>
                             </div>
                         </div>
-				
+										</p>
+                                    </div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <h3>대출이력 리스트</h3>
+                                        <p>대출이력 목록을 보여드립니다.</p>
+                                     <a href="#" class="btn btn-secondary">내려받기</a>
+									</div>
+                                </div>
+                            </div>
+                        </div>
 				
 				
 				</div>

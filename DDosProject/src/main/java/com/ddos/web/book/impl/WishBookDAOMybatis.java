@@ -34,6 +34,7 @@ public class WishBookDAOMybatis {
 	
 	//희망도서 수정
 	public void updateWishBook(WishBookVO vo) {
+		System.out.println(vo);
 		System.out.println("희망도서 mybatis 수정 실행");
 		mybatis.update("wishbook.updateWishBook", vo);
 	}

@@ -6,13 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	//document.getElementById("booklist").click = clickfunc;
-	function clickfunc(e) {
-		var tdele = e.target.parentNode.children[x].innerHTML;
-		var trele = e.target.parentNode;
-	}
-</script>
+
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
@@ -34,9 +28,8 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Book
-											Catalog</a>
-										</li>
+										<li class="breadcrumb-item active" aria-current="page">Wish
+											Book details</li>
 									</ol>
 								</nav>
 							</div>
@@ -47,95 +40,67 @@
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
 				<c:if test="${not empty sessionScope.login}">
-		${sessionScope.login.id} 님
+				${sessionScope.login.id} 님
 				</c:if>
 
 				<div class="row">
-                                <div class="col-md-8">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4 class="mb-0">희망도서 상세보기</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <form class="needs-validation">
-                                                <div class="row">
-                                                    <%--           <div class="col-md-6 mb-3">
-                                              <label for="memberId">회원 ID </label>
-                                                        <input type="text" class="form-control" id="memberId" value="${sessionScope.login.id}" >                                                        <div class="invalid-feedback">
-                                                        
-                                                        </div> --%>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="isbn">ISBN</label>
-                                                        <input type="text" class="form-control" id="isbn" value="${wishbook.isbn}">
-                                                        <div class="invalid-feedback">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="wishTitle">도서명</label>
-                                                        <input type="text" class="form-control" id="wishTitle" value="${wishbook.wishTitle}" >
-                                                        <div class="invalid-feedback">
-                                                         
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="wishWriter">저자</label>
-                                                        <input type="text" class="form-control" id="wishWriter" value="${wishbook.wishWriter}">
-                                                        <div class="invalid-feedback">
-                                                           
-                                                        </div>
-                                                    </div>
-													 <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="wishComp">출판사</label>
-                                                        <input type="text" class="form-control" id="wishComp" value="${wishbook.wishComp}" >
-                                                        <div class="invalid-feedback">
-                                                           
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="wishPrice">가격</label>
-                                                        <input type="text" class="form-control" id="wishPrice" value="${wishbook.wishPrice}" >
-                                                        <div class="invalid-feedback">
-                                                          
-                                                        </div>
-                                                    </div>
-													 <div class="row">
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="wishGenre">장르</label>
-                                                        <input type="text" class="form-control" id="wishGenre" placeholder="" value="${wishbook.wishGenre}"  required="">
-                                                        <div class="invalid-feedback">
-                                                          
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-3">
-                                                        <label for="wishReason">사유</label>
-                                                        <input type="text" class="form-control" id="wishReason" placeholder="" value="${wishbook.wishReason}"  required="">
-                                                        <div class="invalid-feedback">
-                                                        
-                                                        </div>
-                                                    </div>
-													<div class="form-group">
-									<label for="exampleFormControlTextarea1">사유</label>
-									<textarea class="form-control" name="wishReason" rows="3"></textarea>
-								</div>
-                                                </div>
-                                                </div>
-                                                <hr class="mb-4">
-												<a href="#" class="btn btn-primary">수정</a>
-                                                <a href="#" class="btn btn-brand">삭제</a>
-												<a href="#" class="btn btn-secondary">취소</a>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                </body>
-                                </html>
-                               
-                              
+					<div class="col-md-8">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="mb-0">희망도서 상세보기</h4>
+							</div>
+							<div class="card-body">
+								<form class="needs-validation">
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="isbn">ISBN</label>
+											<div class="form-control" id="isbn">${wishbook.isbn}</div>
+										</div>
+										<div class="col-md-6 mb-3">
+											<label for="wishTitle">도서명</label>
+											<div class="form-control" id="wishTitle">${wishbook.wishTitle}</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="wishWriter">저자</label>
+											<div class="form-control" id="wishWriter">"${wishbook.wishWriter}</div>
+										</div>
+										<div class="col-md-6 mb-3">
+											<label for="wishComp">출판사</label>
+											<div class="form-control" id="wishComp">"${wishbook.wishComp}"</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="wishPrice">가격</label>
+											<div class="form-control" id="wishPrice">"${wishbook.wishPrice}"</div>
+										</div>
+										<div class="col-md-6 mb-3">
+										<label for="wishGenre">장르</label>
+										<div class="form-control" id="wishGenre">"${wishbook.wishGenre}"</div>
+									</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 mb-3">
+											<label for="wishReason">사유</label>
+											<textarea class="form-control" id="wishReason">"${wishbook.wishReason}"</textarea >
+										</div>
+									</div>
+									<c:if test ="${login.id == wishbook.memberId}">
+									<a href="./updateWishBookform?isbn=${wishbook.isbn}" class="btn btn-primary">수정</a> 
+									<a href="./deleteWishBook?wishNum=${wishbook.wishNum}" class="btn btn-brand">삭제</a> 
+									<a href="./wishbook" class="btn btn-secondary">취소</a>
+									</c:if>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

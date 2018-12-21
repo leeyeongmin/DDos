@@ -13,6 +13,10 @@ public class BookDAOMybatis {
 	@Autowired
 	private SqlSessionTemplate Mybatis;
 
+	// 전체 건수 조회
+	public int getCount(BookVO vo) {
+		return Mybatis.selectOne("book.getCount", vo);
+	}
 	// 전체 조회
 	public List<BookVO> getBookList(BookVO vo) {
 		System.out.println("Mybatis getBookList 실행");

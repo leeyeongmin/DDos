@@ -15,7 +15,9 @@ public interface BookService {
 	
 	// 도서 수정
 	public void updateBook(BookVO vo);
-
+	
+	// 전체 건수
+	public int getCount(BookVO vo);
 	
 
 }

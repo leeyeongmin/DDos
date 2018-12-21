@@ -18,6 +18,16 @@ public class ReadVO {
 	
 	private String rmax;
 	private String cmax;
+	
+	private String starttime;
+	
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
 
 	public String getRmax() {
 		return rmax;

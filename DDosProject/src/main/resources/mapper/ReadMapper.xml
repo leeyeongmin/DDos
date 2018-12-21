@@ -22,46 +22,29 @@
 
 	
 	<update id="saveSeat" parameterType="read">		<!-- 좌석 저장(관리자) -->
-	
-	
+
 		update READINGROOM
 		set STATUS = '1'
-		where SEAT_NUM in
-		<foreach collection="seat" item="item" open="(" close=")" separator=",">
-					#{item}
-		</foreach>
-		and seat_num like #{room} || '%'
-		<!-- <where>
-			<choose>
-		        <when test="seat==null ">
-		            1 = 0 a test returning false, to adapt depending on you DB vendor
-		        </when>
-		        <otherwise>
-		            seat_num IN <foreach collection="seat" item="item" open="(" close=")" separator=",">#{item}</foreach>
-		        </otherwise>
-	    	</choose>
-		 -->
-			<!-- <if test=" seat.size() != 0 ">
-		 	SEAT_NUM in
+		where seat_num like #{room} || '%'
+		<if test=" seat != null and seat.length > 0 ">
+			and SEAT_NUM in
 			<foreach collection="seat" item="item" open="(" close=")" separator=",">
-					#{item}
+						#{item}
 			</foreach>
-		</if> 
-		</where>-->
-		
-		
+		</if> 	
 	</update>
 	
 	<update id="releaseSeat" parameterType="read">		<!-- 좌석 해제(관리자) -->
-	<!-- <if test=" seat != '' and seat != null "> -->
+	
 		update READINGROOM
 		set STATUS = '0'
-		where  SEAT_NUM not in
+		where seat_num like #{room} || '%'
+		 <if test=" seat != null and seat.length > 0 "> 
+		 and SEAT_NUM not in
 			<foreach collection="seat" item="item" open="(" close=")" separator=",">
 				#{item}
 			</foreach>
-	<!-- 	</if> -->
-		and seat_num like #{room} || '%'
+		</if> 
 	</update>
 	
 	<select id="overlap" resultType="read"> 		<!-- 중복 좌석 확인 -->
@@ -78,22 +61,26 @@
 	</update>
 	
 	<insert id="insertUsing" parameterType="read">							<!-- 좌석 로그 입력 -->
-		insert into 
+		<!-- insert into 
 		READINGROOM_HISTORY(READINGROOM_NUM, END_TIME, MEMBER_ID, SEAT_NUM, START_TIME)
-					 values(READING_SEQ.NEXTVAL, sysdate+10/(24*60), #{loginId}, #{selectSeat}, sysdate)
+					 values(READING_SEQ.NEXTVAL, sysdate+10/(24*60), #{loginId}, #{selectSeat}, sysdate) -->	 
+		{call P_TIME_CK(#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
+						'inserting',
+						#{selectSeat, mode=IN, jdbcType=VARCHAR, javaType=string},
+						#{starttime, mode=IN, jdbcType=VARCHAR, javaType=string})
 	</insert>
 	
 
 	<insert id="timecheck" statementType="CALLABLE">		<!-- 프로시저는 insert,update, delete 사용 가능 -->
-		{call P_readingroom_timeck()}	
+		{call P_readingroom_timeck(#{value,mode=IN, jdbcType=VARCHAR, javaType=string})	
 	</insert>
 	
 	<select id="seat_useing" parameterType="string" resultType="string">		<!-- 본인 좌석 확인 -->
 		select SEAT_NUM
 		from READINGROOM_HISTORY
 		where to_char(end_time,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
-		and MEMBER_ID = #{value}
-		AND to_char(end_time,'YYYYMMDDHH24MISS') > TO_CHAR (SYSDATE, 'YYYYMMDDHH24MISS')
+		and MEMBER_ID = #{loginId}
+		AND to_char(end_time,'YYYY/MM/DD HH24:MI:SS') > #{starttime}
 	</select>
 	
 	<select id="usetimer" resultType="string" parameterType="string">				<!-- 남은 시간 (시,분,초) -->
@@ -101,7 +88,7 @@
 		from READINGROOM_HISTORY
 		where to_char(end_time,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
 		and MEMBER_ID =  #{loginId}
-		AND to_char(end_time,'YYYYMMDDHH24MISS') > TO_CHAR (SYSDATE, 'YYYYMMDDHH24MISS')	
+		AND to_char(end_time,'YYYY/MM/DD HH24:MI:SS') > #{starttime}
 	</select>
 	
 	
@@ -111,18 +98,23 @@
 	</insert>
 	
 	<select id="remaining" resultType="string">
-		select floor((( to_date(to_char(end_time,'yyyymmdd hh24:mi:ss'),'yyyymmdd hh24:mi:ss') - sysdate)*24*60))
+		select EXTRACT(HOUR from end_time - to_timestamp(#{starttime},'yyyy/mm/dd hh24:mi:ss'))*60 + EXTRACT(MINUTE from end_time - to_timestamp(#{starttime},'yyyy/mm/dd hh24:mi:ss'))
 		from   readingroom_history
-		where  member_id = #{value}
-		AND to_char(end_time,'YYYYMMDDHH24MISS') > TO_CHAR (SYSDATE, 'YYYYMMDDHH24MISS')
+		where  member_id = #{loginId}
+		AND to_char(end_time,'YYYY/MM/DD HH24:MI:SS') > #{starttime}
 	</select>
 	
 	<update id="extension">
-		update readingroom_history
+		<!-- update readingroom_history
 		set end_time = sysdate + 3/24
 		where to_char(end_time,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
 		and MEMBER_ID = #{loginId}
 		AND to_char(end_time,'YYYYMMDDHH24MISS') > TO_CHAR (SYSDATE, 'YYYYMMDDHH24MISS')
+		 -->
+		 {call P_TIME_CK(#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
+						'update',
+						#{selectSeat, mode=IN, jdbcType=VARCHAR, javaType=string},
+						#{starttime, mode=IN, jdbcType=VARCHAR, javaType=string})
 	</update>
 	
 

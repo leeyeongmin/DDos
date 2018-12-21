@@ -43,7 +43,11 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
+<<<<<<< HEAD
 									<table id="updateReview" width="100%"
+=======
+									<table id="insertSuggestion" style="width: 100%;"
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 										class="table table-bordered table-hover text-center">
 										<form action="updateReview" width="100%">
 										<tr>

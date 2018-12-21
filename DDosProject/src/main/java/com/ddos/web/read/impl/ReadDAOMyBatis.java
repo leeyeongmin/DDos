@@ -34,12 +34,12 @@ public class ReadDAOMyBatis {
 	}
 
 	
-	public void timecheck() {
-		mybatis.update("read.timecheck");
+	public void timecheck(String time) {
+		mybatis.update("read.timecheck", time);
 	}
 	
 	public String useing_seat(ReadVO vo) {
-		return mybatis.selectOne("read.seat_useing", vo.getLoginId());
+		return mybatis.selectOne("read.seat_useing", vo);
 	}
 	
 	public Map<String, String> getroomsize(ReadVO vo){
@@ -47,11 +47,12 @@ public class ReadDAOMyBatis {
 	}
 	
 	public void return_seat(ReadVO vo) {
+		System.out.println("logIn : " + vo.getLoginId());
 		mybatis.update("read.return_seat", vo);
 	}
 	
 	public String remaining(ReadVO vo) {
-		return mybatis.selectOne("read.remaining", vo.getLoginId());
+		return mybatis.selectOne("read.remaining", vo);
 	}
 
 	public void extension(ReadVO vo) {
@@ -59,10 +60,8 @@ public class ReadDAOMyBatis {
 	}
 	
 	public String usetimer(ReadVO vo) {
-		return mybatis.selectOne("read.usetimer", vo.getLoginId());
+		return mybatis.selectOne("read.usetimer", vo);
 	}
-	
-	
 	
 	public List<ReadVO> test(ReadVO vo){
 		return mybatis.selectList("read.test", vo);

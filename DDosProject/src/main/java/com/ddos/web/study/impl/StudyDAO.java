@@ -39,7 +39,7 @@ public class StudyDAO {
 	//이전,현재,다음 달의 스터디리스트를 받아옴
 	public String[] studyListCalender(int year,int month) {
 
-		String sql = "select to_number(to_char(study_date,'dd')) as day,study_time,study_name,studyroom_num,study_num"
+		String sql = "select to_number(to_char(study_date,'dd')) as day,study_time,study_name,studyroom_num,study_num,recruit_end"
 				+ " from study where to_number(to_char(study_date,'yyyy'))=? "
 				+ "and to_number(to_char(study_date,'mm'))=?";
 
@@ -66,8 +66,8 @@ public class StudyDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				day = rs.getInt("day");
-				ary[day] = ary[day] + "<br>" + rs.getInt("study_time") +" "+rs.getString("study_name")+"("
-							+rs.getString("studyroom_num")+"번방)"+","+rs.getInt("study_num")+",\t";
+				ary[day] = ary[day] + rs.getInt("study_time") +" "+rs.getString("study_name")+"("
+							+rs.getString("studyroom_num")+"번방)"+","+rs.getInt("study_num")+","+rs.getString("recruit_end")+",\t";
 				System.out.println(ary[day]);
 			}
 		} catch (Exception e) {

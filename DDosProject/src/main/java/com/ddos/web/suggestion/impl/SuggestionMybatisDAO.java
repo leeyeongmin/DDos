@@ -48,4 +48,14 @@ public class SuggestionMybatisDAO {
 		System.out.println("my batis spring jdbc 다중 조회");
 		return mybatis.selectList("suggestion.getSuggestionList", vo);
 	}
+
+	// 관리자 단건 조회
+	public SuggestionVO AdmingetSuggestion(SuggestionVO vo) {
+		return mybatis.selectOne("suggestion.getSuggestion", vo);
+	}
+
+	// 관리자 전체 조회
+	public List<SuggestionVO> AdmingetSuggestionList(SuggestionVO vo) {
+		return mybatis.selectList("suggestion.getSuggestionList", vo);
+	}
 }

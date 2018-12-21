@@ -43,11 +43,22 @@ public class NoticeMybatisDAO {
 		return mybatis.selectOne("notice.getNotice", vo);
 	}
 	
+	// 사용자 단건 조회
+	public NoticeVO UsergetNotice(NoticeVO vo) {
+		System.out.println("my batis spring jdbc 단건 조회");
+		return mybatis.selectOne("notice.getNotice", vo);
+	}
+	
 	// 전체 조회
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
 		System.out.println("my batis spring jdbc 다중 조회");
 		return mybatis.selectList("notice.getNoticeList", vo);
-		
 	}
+	
+	// 사용자 전체 조회
+	public List<NoticeVO> UsergetNoticeList(NoticeVO vo) {
+		System.out.println("my batis spring jdbc 다중 조회");
+		return mybatis.selectList("notice.getNoticeList", vo);
+	} 
 }
                                                                                                                                                                                                                                                                                                                                                                                                                              

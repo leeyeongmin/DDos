@@ -10,4 +10,6 @@ public interface SuggestionService {
 	public SuggestionVO getSuggestion(SuggestionVO vo);
 	public List<SuggestionVO> getSuggestionList(SuggestionVO vo);
 	public void create(SuggestionVO vo);
+	public SuggestionVO AdmingetSuggestion(SuggestionVO vo);
+	public List<SuggestionVO> AdmingetSuggestionList(SuggestionVO vo);
 }

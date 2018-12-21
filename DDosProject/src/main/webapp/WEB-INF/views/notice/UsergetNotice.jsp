@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>DDos</title>
+<title>공지사항</title>
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
@@ -43,7 +43,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getNotice" width="100%"
+									<table id="UsergetNotice" width="100%"
 										class="table table-bordered table-hover text-center">
 										<tr>
 											<td width="20%">글번호</td>
@@ -67,11 +67,7 @@
 										</tr>
 									</table>
 								</div>
-								<a href="getNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
-								<c:if test="${login.id == 'admin@gmail.com'}">  
-								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
-								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
-								</c:if>
+								<a href="UsergetNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
 							</div>
 							<!-- end card-body -->
 						</div>

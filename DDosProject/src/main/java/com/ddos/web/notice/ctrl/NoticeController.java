@@ -47,7 +47,7 @@ public class NoticeController {
 	}
 	
 	
-	// 단건 조회
+	// 관리자 단건 조회
 	@RequestMapping("getNotice")
 	public String getNotice(Model model, NoticeVO vo) {
 		noticeService.increaseCnt(vo);
@@ -55,10 +55,25 @@ public class NoticeController {
 		return "notice/getNotice";
 	}
 	
-	// 전체 조회
+	// 사용자 단건 조회
+	@RequestMapping("UsergetNotice")
+	public String UsergetNotice(Model model, NoticeVO vo) {
+		noticeService.increaseCnt(vo);
+		model.addAttribute("notice", noticeService.UsergetNotice(vo));
+		return "notice/UsergetNotice";
+	}
+	
+	// 관리자 전체 조회
 	@RequestMapping("getNoticeList")
 	public String getNoticeList(Model model, NoticeVO vo) {
 		model.addAttribute("noticeList", noticeService.getNoticeList(vo));
 		return "notice/getNoticeList";
+	}
+	
+	// 사용자 전체 조회
+	@RequestMapping("UsergetNoticeList")
+	public String UsergetNoticeList(Model model, NoticeVO vo) {
+		model.addAttribute("noticeList", noticeService.UsergetNoticeList(vo));
+		return "notice/UsergetNoticeList";
 	}
 }

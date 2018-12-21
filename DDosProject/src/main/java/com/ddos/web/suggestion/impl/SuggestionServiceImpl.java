@@ -56,4 +56,16 @@ public class SuggestionServiceImpl implements SuggestionService {
 		
 	}
 
+	// 관리자 상세 보기
+	@Override
+	public SuggestionVO AdmingetSuggestion(SuggestionVO vo) {
+		return sugDAO.AdmingetSuggestion(vo);
+	}
+
+	// 관리자 목록 보기
+	@Override
+	public List<SuggestionVO> AdmingetSuggestionList(SuggestionVO vo) {
+		return sugDAO.AdmingetSuggestionList(vo);
+	}
+
 }

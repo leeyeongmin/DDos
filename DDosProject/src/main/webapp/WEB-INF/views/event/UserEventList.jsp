@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="assets/libs/css/style.css">
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-<title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+<title>DDos</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 
@@ -76,8 +76,8 @@ function shareEvent(){
 			description : eventCont,
 			imageUrl : 'http://preimage.hankookilbo.com/i.aspx?Guid=b0ecee4d1faa46b49675f93b0835d6c1&Month=DirectUpload&size=400',
 			link : {
-				mobileWebUrl : 'https://http://localhost:8081/ddos/eventList',
-				webUrl : 'https://http://localhost:8081/ddos/eventList'
+				mobileWebUrl : 'http://180.71.250.243:8081/ddos/eventList',
+				webUrl : 'http://localhost:8081/ddos/eventList'
 			}
 		},
 	});

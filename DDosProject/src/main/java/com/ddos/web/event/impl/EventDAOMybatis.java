@@ -33,6 +33,7 @@ public class EventDAOMybatis {
 	
 	// 수정
 	public void updateEvent(EventVO vo) {
+		System.out.println("my batis updateEvent() 기능 처리");
 		mybatis.update("event.updateEvent", vo);
 	}
 	

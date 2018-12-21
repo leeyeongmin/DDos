@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>DDos</title>
+<title>getSuggestionList.jsp</title>
 <script>
 	function check() {
 		if (document.search.searchKeyword.value == "") {
@@ -36,13 +36,13 @@ div.card {
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Notice</h3>
+							<h3 class="mb-2">Suggestion</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Notice</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Suggestion</li>
 									</ol>
 								</nav>
 							</div>
@@ -52,26 +52,30 @@ div.card {
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<c:if test="${empty sessionScope.login}">
-					<a href="LoginForm">로그인</a>
-				</c:if>
-				<c:if test="${not empty sessionScope.login}">
-		${sessionScope.login.id} 님<a href="Logout">로그아웃</a>
-				</c:if>
-				<div class="row">
+
+				<div class="row" style="margin-top: 5%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
-							<form action="search" name="search" method="post">
-								<select name="searchType">
-									<option value="noticeTitle"
-										<c:if test="${'noticeTitle' == searchType}"> selected </c:if>>제목</option>
-								</select> <input type="text" name="searchKeyword"
-									value="${searchKeyword}"> <input type="button"
-									value="검색" class="btn btn-primary btn-sm" onclick="click()">
-							</form>
+
+							<div class="card-body">
+								<form action="search" name="search" method="post"
+									onsubmit="check()">
+									<select class="form-control" name="searchType"
+										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
+										<option value="sugTitle"
+											<c:if test="${'sugTitle' == searchType}"> selected </c:if>>제목</option>
+									</select> <input class="form-control form-control-lg"
+										style="width: 75%; margin-left: 1%; display: inline-block;"
+										type="text" name="searchKeyword" value="${searchKeyword}"
+										placeholder="Search"> <input class="btn btn-primary"
+										style="margin-left: 1%; width: 7%; height: 47px;"
+										type="button" value="검색" onclick="click()">
+								</form>
+							</div>
+
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="AdmingetNoticeList" width="100%"
+									<table id="AdmingetSuggestionList" width="100%"
 										class="table table-bordered table-hover text-center">
 										<thead>
 											<tr>
@@ -81,19 +85,17 @@ div.card {
 												<th width="10%">조회수</th>
 											</tr>
 										</thead>
-										<tbody id=noticelist>
-											<c:forEach items="${noticeList}" var="notice">
+										<tbody id="AdminsuggestionList">
+											<c:forEach items="${suggestionList}" var="suggestion">
 												<tr>
-													<td>${notice.noticeNum}</td>
+													<td>${suggestion.sugNum}</td>
 													<td><a
-														href="./getNotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle}</a></td>
-													<td>${notice.noticeDate}</td>
-													<td>${notice.noticeCnt}</td>
+														href="./AdmingetSuggestion?sugNum=${suggestion.sugNum}">${suggestion.sugTitle}</a></td>
+													<td>${suggestion.sugDate}</td>
+													<td>${suggestion.sugCnt}</td>
 												</tr>
 											</c:forEach>
-										</tbody>
 									</table>
-										<a href="insertNoticeform" class="btn btn-secondary" style="margin-top: 30px">등록</a>
 								</div>
 							</div>
 						</div>
@@ -102,6 +104,5 @@ div.card {
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

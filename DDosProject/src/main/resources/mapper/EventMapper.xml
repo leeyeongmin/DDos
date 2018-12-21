@@ -38,12 +38,13 @@
 	<!-- 전체 조회 -->
 	<select id="getEventList" resultType="event">
 		SELECT * FROM EVENT
-		ORDER BY START_DATE DESC
+		ORDER BY EVENT_NUM DESC
 	</select>
 	
 	<!-- 단건 조회 -->
 	<select id="getEvent" resultType="event">
-		SELECT EVENT_TITLE,
+		SELECT	EVENT_NUM, 
+			EVENT_TITLE,
 			EVENT_CONT,
 			START_DATE,
 			END_DATE,

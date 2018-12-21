@@ -155,12 +155,14 @@ public class BookController {
 	}
 
 	// 리뷰 수정 처리
-	@RequestMapping("/updateReview")
-	public String updateReview(Model model, ReviewVO rvo, HttpSession session) {
-		System.out.println("리뷰 컨트롤 수정 처리");
+	@RequestMapping("updateReview")
+	public String updateReview(Model model, BookVO vo, ReviewVO rvo, HttpSession session) {
 		reviewservice.updateReview(rvo);
+		System.out.println(rvo);
+		vo.setIsbn(rvo.getIsbn());
+		model.addAttribute("book", bookservice.getBook(vo));
 		model.addAttribute("review", reviewservice.getReviewList(rvo));
-		return "redirect:getBookList";
+		return "book/getBook";
 	}
 
 	// 리뷰 삭제

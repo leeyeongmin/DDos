@@ -43,42 +43,48 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-<<<<<<< HEAD
-									<table id="updateReview" width="100%"
-=======
-									<table id="insertSuggestion" style="width: 100%;"
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
-										class="table table-bordered table-hover text-center">
-										<form action="updateReview" width="100%">
-										<tr>
-											<td>제목</td>
-											<td><input type="text" name="reviewTitle"
-												value="${review.reviewTitle}" style="width: 100%" required></td>
-										</tr>
-										<tr>
-											<td>내용</td>
-											<td><textarea rows="20" cols="20" name="reviewCont"
-													style="width: 100%" required>${review.reviewCont}</textarea></td>
-										</tr>
-										<tr>
-											<td>별점</td>
-											<td><select class="form-control" name="reviewPoint"
-												value="${review.reviewPoint}">
-													<option value="${review.reviewPoint}">${review.reviewPoint}</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td><input type="submit" class="btn btn-primary btn-sm"
-												style="width: 20%; height: 48px; font-weight: bold;"
-												value="수정완료"></td>
-										</tr>
-										</form>
-									</table>
+									<form action="updateReview" width="100%">
+										<table width="100%"
+											class="table table-bordered table-hover text-center">
+											<tr>
+												<td>ISBN</td>
+												<td><input type="text" name="isbn"
+													value="${review.isbn}" style="width: 100%" required></td>
+											</tr>
+											<tr>
+												<td>번호</td>
+												<td><input type="text" name="reviewNum"
+													value="${review.reviewNum}" style="width: 100%" required></td>
+											</tr>
+											<tr>
+												<td>제목</td>
+												<td><input type="text" name="reviewTitle"
+													value="${review.reviewTitle}" style="width: 100%" required></td>
+											</tr>
+											<tr>
+												<td>내용</td>
+												<td><textarea rows="20" cols="20" name="reviewCont"
+														style="width: 100%" required>${review.reviewCont}</textarea></td>
+											</tr>
+											<tr>
+												<td>별점</td>
+												<td><select class="form-control" name="reviewPoint"
+													value="${review.reviewPoint}">
+														<option value="${review.reviewPoint}">${review.reviewPoint}</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+												</select></td>
+											</tr>
+											<tr>
+												<td><input type="submit" class="btn btn-primary btn-sm"
+													style="width: 20%; height: 48px; font-weight: bold;"
+													value="수정완료"></td>
+											</tr>
+										</table>
+									</form>
 								</div>
 							</div>
 						</div>

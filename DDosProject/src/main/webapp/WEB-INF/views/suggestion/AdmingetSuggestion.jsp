@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>DDos</title>
+<title>건의사항</title>
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
@@ -21,14 +21,15 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Insert Notice</h3>
+							<h3 class="mb-2">Show Suggestion</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item">Notice</li>
-										<li class="breadcrumb-item active" aria-current="page">Show Notice</li>
+										<li class="breadcrumb-item"><a href="getSuggestionList"
+											class="breadcrumb-link">Suggestion</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Show Suggestion</li>
 									</ol>
 								</nav>
 							</div>
@@ -43,35 +44,38 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getNotice" width="100%"
+									<table id="Admingetsuggestion" width="100%"
 										class="table table-bordered table-hover text-center">
 										<tr>
 											<td width="20%">글번호</td>
-											<td>${notice.noticeNum}</td>
+											<td>${suggestion.sugNum}</td>
 										</tr>
 										<tr>
-											<td width="10%">등록일</td>
-											<td>${notice.noticeDate}</td>
+											<td width="20%">제목</td>
+											<td>${suggestion.sugTitle}</td>
 										</tr>
 										<tr>
-											<td width="10%">조회수</td>
-											<td>${notice.noticeCnt}</td>
+											<td>등록일</td>
+											<td>${suggestion.sugDate}</td>
 										</tr>
 										<tr>
-											<td width="10%">제목</td>
-											<td>${notice.noticeTitle}</td>
+											<td>조회수</td>
+											<td>${suggestion.sugCnt}</td>
 										</tr>
 										<tr>
-											<td width="10%">내용</td>
-											<td>${notice.noticeCont}</td>
+											<td>작성자</td>
+											<td>${suggestion.memberId}</td>
+										</tr>
+										<tr>
+											<td>내용</td>
+											<td>${suggestion.sugCont}</td>
 										</tr>
 									</table>
 								</div>
-								<a href="getNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
-								<c:if test="${login.id == 'admin@gmail.com'}">  
-								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
-								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
-								</c:if>
+								<a href="AdmingetSuggestionList" class="btn btn-primary btn-sm"
+									style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
+								<a href="./deleteSuggestion?sugNum=${suggestion.sugNum}"
+									class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
 							</div>
 							<!-- end card-body -->
 						</div>

@@ -1,16 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰</title>
+<title>getEventList.jsp</title>
+<script>
+	function check() {
+		if (document.search.searchKeyword.value == "") {
+			alert("검색어를 입력하세요");
+			document.search.searchKeyword.focus();
+			return;
+		}
+		document.search.submit();
+	}
+</script>
+<style>
+div.card {
+	padding: 12px 20px 12px 20px;
+}
+</style>
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
 		<!-- ============================================================== -->
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
+
 		<div class="dashboard-finance">
 			<div class="container-fluid dashboard-content">
 				<!-- ============================================================== -->
@@ -19,16 +36,13 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Edit Review</h3>
+							<h3 class="mb-2">Event</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item"><a href="getReviewList"
-											class="breadcrumb-link">Review</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Edit
-											Review</li>
+										<li class="breadcrumb-item active" aria-current="page">Event</li>
 									</ol>
 								</nav>
 							</div>
@@ -38,43 +52,37 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="row" style="margin-top: 2%;">
+				<div class="row" style="margin-top:5%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="updateReview" width="100%"
+									<table id="getEventList" width="100%"
 										class="table table-bordered table-hover text-center">
-										<form action="updateReview" width="100%">
-										<tr>
-											<td>제목</td>
-											<td><input type="text" name="reviewTitle"
-												value="${review.reviewTitle}" style="width: 100%" required></td>
-										</tr>
-										<tr>
-											<td>내용</td>
-											<td><textarea rows="20" cols="20" name="reviewCont"
-													style="width: 100%" required>${review.reviewCont}</textarea></td>
-										</tr>
-										<tr>
-											<td>별점</td>
-											<td><select class="form-control" name="reviewPoint"
-												value="${review.reviewPoint}">
-													<option value="${review.reviewPoint}">${review.reviewPoint}</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-											</select></td>
-										</tr>
-										<tr>
-											<td><input type="submit" class="btn btn-primary btn-sm"
-												style="width: 20%; height: 48px; font-weight: bold;"
-												value="수정완료"></td>
-										</tr>
-										</form>
+										<thead>
+											<tr>
+												<th width="10%">번호</th>
+												<th>제목</th>
+												<th width="20%">시작일</th>
+												<th width="20%">종료일</th>
+											</tr>
+										</thead>
+										<tbody id=eventlist>
+											<c:forEach items="${eventList}" var="event">
+												<c:set var="grant" value="${event.memberId}"></c:set>
+												<input type="hidden" value="${event.memberId}">
+												<tr>
+													<td>${event.eventNum}</td>
+													<td><a
+														href="./getEvent?eventNum=${event.eventNum}">${event.eventTitle}</a></td>
+													<td>${event.startDate}</td>
+													<td>${event.endDate }
+												</tr>
+											</c:forEach>
+										</tbody>
 									</table>
+										<a href="insertEventform" class="btn btn-secondary"
+										style="width:20%; height:48px; margin-left:38%; margin-top:5%; font-weight:bold; padding-top:1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
 								</div>
 							</div>
 						</div>
@@ -83,5 +91,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

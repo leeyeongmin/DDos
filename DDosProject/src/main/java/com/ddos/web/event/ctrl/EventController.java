@@ -35,5 +35,53 @@ public class EventController {
 
 		return "event/UserEventList";
 	}
-
+	
+	// ================= 관리자용 ====================
+	// 등록 폼
+	@RequestMapping("insertEventform")
+	public String insertEvent(Model model, EventVO vo) {
+		return "event/insertEvent";
+	}
+	
+	// 등록 처리
+	@RequestMapping("insertEvent")
+	public String insertEvent(EventVO vo) {
+		eventService.insertEvent(vo);
+		return "redirect:getEventList";
+	}
+	
+	// 수정 폼
+	@RequestMapping("updateEventform")
+	public String updateEvent(Model model, EventVO vo) {
+		model.addAttribute("event", eventService.getService(vo));
+		return "event/updateEvent";
+	}
+	
+	// 수정 처리
+	@RequestMapping("updateEvent")
+	public String updateEvent(EventVO vo) {
+		eventService.updateEvent(vo);
+		return "redirect:getEventList";
+	}
+	
+	// 삭제 처리
+	@RequestMapping("deleteEvent")
+	public String deleteEvent(EventVO vo) {
+		eventService.deleteEvent(vo);
+		return "redirect:getEventList";
+	}
+	
+	// 전체 조회
+	@RequestMapping("getEventList")
+	public String getEventList(Model model, EventVO vo) {
+		model.addAttribute("eventList", eventService.getEventList(vo));
+		return "event/getEventList";
+	}
+	
+	// 단건 조회
+	@RequestMapping("getEvent")
+	public String getEvent(Model model, EventVO vo) {
+		model.addAttribute("event", eventService.getEvent(vo));
+		return "event/getEvent";
+	}
 }

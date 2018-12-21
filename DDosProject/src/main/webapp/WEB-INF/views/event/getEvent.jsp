@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰</title>
+<title>공지사항</title>
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
 		<!-- ============================================================== -->
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
+
 		<div class="dashboard-finance">
 			<div class="container-fluid dashboard-content">
 				<!-- ============================================================== -->
@@ -19,16 +21,14 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Edit Review</h3>
+							<h3 class="mb-2">Insert Notice</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item"><a href="getReviewList"
-											class="breadcrumb-link">Review</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Edit
-											Review</li>
+										<li class="breadcrumb-item">Event</li>
+										<li class="breadcrumb-item active" aria-current="page">Show Event</li>
 									</ol>
 								</nav>
 							</div>
@@ -38,45 +38,44 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="row" style="margin-top: 2%;">
+				<div class="row" style="margin-top:2%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="updateReview" width="100%"
+									<table id="getEvent" width="100%"
 										class="table table-bordered table-hover text-center">
-										<form action="updateReview" width="100%">
 										<tr>
-											<td>제목</td>
-											<td><input type="text" name="reviewTitle"
-												value="${review.reviewTitle}" style="width: 100%" required></td>
+											<td width="20%">글번호</td>
+											<td>${event.eventNum}</td>
 										</tr>
 										<tr>
-											<td>내용</td>
-											<td><textarea rows="20" cols="20" name="reviewCont"
-													style="width: 100%" required>${review.reviewCont}</textarea></td>
+											<td width="10%">등록일</td>
+											<td>${event.writeDate}</td>
 										</tr>
 										<tr>
-											<td>별점</td>
-											<td><select class="form-control" name="reviewPoint"
-												value="${review.reviewPoint}">
-													<option value="${review.reviewPoint}">${review.reviewPoint}</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-											</select></td>
+											<td width="10%">시작일</td>
+											<td>${event.startDate}</td>
+											<td width="10%">종료일</td>
+											<td>${event.endDate}</td>
 										</tr>
 										<tr>
-											<td><input type="submit" class="btn btn-primary btn-sm"
-												style="width: 20%; height: 48px; font-weight: bold;"
-												value="수정완료"></td>
+											<td width="10%">제목</td>
+											<td>${event.eventTitle}</td>
 										</tr>
-										</form>
+										<tr>
+											<td width="10%">내용</td>
+											<td>${event.eventCont}</td>
+										</tr>
 									</table>
 								</div>
+								<a href="getEventList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
+								<c:if test="${login.id == 'admin@gmail.com'}">  
+								<a href="./updateEventform?eventNum=${event.eventNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
+								<a href="./deleteEvent?eventNum=${event.eventNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
+								</c:if>
 							</div>
+							<!-- end card-body -->
 						</div>
 					</div>
 				</div>
@@ -85,3 +84,6 @@
 	</div>
 </body>
 </html>
+
+
+

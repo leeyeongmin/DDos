@@ -5,7 +5,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>getEventList.jsp</title>
+<script>
+	function check() {
+		if (document.search.searchKeyword.value == "") {
+			alert("검색어를 입력하세요");
+			document.search.searchKeyword.focus();
+			return;
+		}
+		document.search.submit();
+	}
+</script>
+<style>
+div.card {
+	padding: 12px 20px 12px 20px;
+}
+</style>
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
@@ -21,14 +36,13 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Insert Notice</h3>
+							<h3 class="mb-2">Event</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item">Notice</li>
-										<li class="breadcrumb-item active" aria-current="page">Show Notice</li>
+										<li class="breadcrumb-item active" aria-current="page">Event</li>
 									</ol>
 								</nav>
 							</div>
@@ -38,50 +52,45 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="row" style="margin-top:2%;">
+				<div class="row" style="margin-top:5%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getNotice" width="100%"
+									<table id="getEventList" width="100%"
 										class="table table-bordered table-hover text-center">
-										<tr>
-											<td width="20%">글번호</td>
-											<td>${notice.noticeNum}</td>
-										</tr>
-										<tr>
-											<td width="10%">등록일</td>
-											<td>${notice.noticeDate}</td>
-										</tr>
-										<tr>
-											<td width="10%">조회수</td>
-											<td>${notice.noticeCnt}</td>
-										</tr>
-										<tr>
-											<td width="10%">제목</td>
-											<td>${notice.noticeTitle}</td>
-										</tr>
-										<tr>
-											<td width="10%">내용</td>
-											<td>${notice.noticeCont}</td>
-										</tr>
+										<thead>
+											<tr>
+												<th width="10%">번호</th>
+												<th>제목</th>
+												<th width="20%">시작일</th>
+												<th width="20%">종료일</th>
+											</tr>
+										</thead>
+										<tbody id=eventlist>
+											<c:forEach items="${eventList}" var="event">
+												<c:set var="grant" value="${event.memberId}"></c:set>
+												<input type="hidden" value="${event.memberId}">
+												<tr>
+													<td>${event.eventNum}</td>
+													<td><a
+														href="./getEvent?eventNum=${event.eventNum}">${event.eventTitle}</a></td>
+													<td>${event.startDate}</td>
+													<td>${event.endDate }
+												</tr>
+											</c:forEach>
+										</tbody>
 									</table>
+										<a href="insertEventform" class="btn btn-secondary"
+										style="width:20%; height:48px; margin-left:38%; margin-top:5%; font-weight:bold; padding-top:1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
 								</div>
-								<a href="getNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
-								<c:if test="${login.id == 'admin@gmail.com'}">  
-								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
-								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
-								</c:if>
 							</div>
-							<!-- end card-body -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
-
-
-

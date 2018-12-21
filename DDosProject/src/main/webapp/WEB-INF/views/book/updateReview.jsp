@@ -27,7 +27,8 @@
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item"><a href="getReviewList"
 											class="breadcrumb-link">Review</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Edit Review</li>
+										<li class="breadcrumb-item active" aria-current="page">Edit
+											Review</li>
 									</ol>
 								</nav>
 							</div>
@@ -37,46 +38,46 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="row" style="margin-top:2%;">
+				<div class="row" style="margin-top: 2%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
+<<<<<<< HEAD
+									<table id="updateReview" width="100%"
+=======
 									<table id="insertSuggestion" style="width: 100%;"
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 										class="table table-bordered table-hover text-center">
-											<tr>
-											<td><input type="hidden" name="reviewNum" value="${review.reviewNum}">
-											<input type="hidden" name="memberId" value="${reveiw.memberId}"></td> 
-											</tr>
-											<tr>
-												<td>제목</td>
-												<td><input type="text" name="reviewTitle"
-													value="${review.reviewTitle}" style="width: 100%" required></td>
-											</tr>
-											<tr>
-												<td>내용</td>
-												<td><textarea rows="20" cols="20" name="reviewCont" style="width: 100%" required>${review.reviewCont}</textarea></td>
-											</tr>
-											<tr>
-												<td>날짜</td>
-												<td><input type="text" name="reviewDate" value="${review.reviewDate}" style="width:100%" required></td>
-											</tr>
-											<tr>
-												<td>별점</td>
-												<td><select	class="form-control" name="reviewPoint" value="${review.reviewPoint}">
+										<form action="updateReview" width="100%">
+										<tr>
+											<td>제목</td>
+											<td><input type="text" name="reviewTitle"
+												value="${review.reviewTitle}" style="width: 100%" required></td>
+										</tr>
+										<tr>
+											<td>내용</td>
+											<td><textarea rows="20" cols="20" name="reviewCont"
+													style="width: 100%" required>${review.reviewCont}</textarea></td>
+										</tr>
+										<tr>
+											<td>별점</td>
+											<td><select class="form-control" name="reviewPoint"
+												value="${review.reviewPoint}">
 													<option value="${review.reviewPoint}">${review.reviewPoint}</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>
 													<option value="4">4</option>
 													<option value="5">5</option>
-													</select>
-												</td>
-											<tr>
-												<td><input type="submit" class="btn btn-primary btn-sm"
-													style="width:20%; height:48px; font-weight:bold; " value="수정완료">
-												</td>
-											</tr>
+											</select></td>
+										</tr>
+										<tr>
+											<td><input type="submit" class="btn btn-primary btn-sm"
+												style="width: 20%; height: 48px; font-weight: bold;"
+												value="수정완료"></td>
+										</tr>
+										</form>
 									</table>
 								</div>
 							</div>

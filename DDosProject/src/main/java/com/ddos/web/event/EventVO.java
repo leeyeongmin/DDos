@@ -2,17 +2,18 @@ package com.ddos.web.event;
 
 public class EventVO {
 	
-	private String eventNum;
+	private int eventNum;
 	private String eventTitle;
 	private String eventCont;
 	private String startDate;
 	private String endDate;
 	private String writeDate;
 	private String memberId;
-	public String getEventNum() {
+	
+	public int getEventNum() {
 		return eventNum;
 	}
-	public void setEventNum(String eventNum) {
+	public void setEventNum(int eventNum) {
 		this.eventNum = eventNum;
 	}
 	public String getEventTitle() {

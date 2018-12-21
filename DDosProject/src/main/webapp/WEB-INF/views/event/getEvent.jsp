@@ -27,8 +27,8 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item">Notice</li>
-										<li class="breadcrumb-item active" aria-current="page">Show Notice</li>
+										<li class="breadcrumb-item">Event</li>
+										<li class="breadcrumb-item active" aria-current="page">Show Event</li>
 									</ol>
 								</nav>
 							</div>
@@ -43,34 +43,36 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getNotice" width="100%"
+									<table id="getEvent" width="100%"
 										class="table table-bordered table-hover text-center">
 										<tr>
 											<td width="20%">글번호</td>
-											<td>${notice.noticeNum}</td>
+											<td>${event.eventNum}</td>
 										</tr>
 										<tr>
 											<td width="10%">등록일</td>
-											<td>${notice.noticeDate}</td>
+											<td>${event.writeDate}</td>
 										</tr>
 										<tr>
-											<td width="10%">조회수</td>
-											<td>${notice.noticeCnt}</td>
+											<td width="10%">시작일</td>
+											<td>${event.startDate}</td>
+											<td width="10%">종료일</td>
+											<td>${event.endDate}</td>
 										</tr>
 										<tr>
 											<td width="10%">제목</td>
-											<td>${notice.noticeTitle}</td>
+											<td>${event.eventTitle}</td>
 										</tr>
 										<tr>
 											<td width="10%">내용</td>
-											<td>${notice.noticeCont}</td>
+											<td>${event.eventCont}</td>
 										</tr>
 									</table>
 								</div>
-								<a href="getNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
+								<a href="getEventList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
 								<c:if test="${login.id == 'admin@gmail.com'}">  
-								<a href="./updateNoticeform?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
-								<a href="./deleteNotice?noticeNum=${notice.noticeNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
+								<a href="./updateEventform?eventNum=${event.eventNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
+								<a href="./deleteEvent?eventNum=${event.eventNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
 								</c:if>
 							</div>
 							<!-- end card-body -->

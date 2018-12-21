@@ -190,7 +190,7 @@ margin-top:2%;
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="getNoticeList">
+								<a class="nav-link" href="UsergetNoticeList">
 									<i class="fas fa-bullhorn"></i>
 									Notice
 								</a>

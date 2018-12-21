@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>건의사항</title>
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
@@ -21,14 +21,15 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Insert Notice</h3>
+							<h3 class="mb-2">Show Suggestion</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item">Event</li>
-										<li class="breadcrumb-item active" aria-current="page">Show Event</li>
+										<li class="breadcrumb-item"><a href="getSuggestionList"
+											class="breadcrumb-link">Suggestion</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Show Suggestion</li>
 									</ol>
 								</nav>
 							</div>
@@ -43,37 +44,38 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getEvent" width="100%"
+									<table id="Admingetsuggestion" width="100%"
 										class="table table-bordered table-hover text-center">
 										<tr>
 											<td width="20%">글번호</td>
-											<td>${event.eventNum}</td>
+											<td>${suggestion.sugNum}</td>
 										</tr>
 										<tr>
-											<td width="10%">등록일</td>
-											<td>${event.writeDate}</td>
+											<td width="20%">제목</td>
+											<td>${suggestion.sugTitle}</td>
 										</tr>
 										<tr>
-											<td width="10%">시작일</td>
-											<td>${event.startDate}</td>
+											<td>등록일</td>
+											<td>${suggestion.sugDate}</td>
 										</tr>
 										<tr>
-											<td width="10%">종료일</td>
-											<td>${event.endDate}</td>
+											<td>조회수</td>
+											<td>${suggestion.sugCnt}</td>
 										</tr>
 										<tr>
-											<td width="10%">제목</td>
-											<td>${event.eventTitle}</td>
+											<td>작성자</td>
+											<td>${suggestion.memberId}</td>
 										</tr>
 										<tr>
-											<td width="10%">내용</td>
-											<td>${event.eventCont}</td>
+											<td>내용</td>
+											<td>${suggestion.sugCont}</td>
 										</tr>
 									</table>
 								</div>
-								<a href="getEventList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
-								<a href="./updateEventform?eventNum=${event.eventNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
-								<a href="./deleteEvent?eventNum=${event.eventNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
+								<a href="AdmingetSuggestionList" class="btn btn-primary btn-sm"
+									style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
+								<a href="./deleteSuggestion?sugNum=${suggestion.sugNum}"
+									class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
 							</div>
 							<!-- end card-body -->
 						</div>

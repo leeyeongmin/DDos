@@ -24,6 +24,12 @@ public class NoticeServiceImpl implements NoticeService {
 	public NoticeVO getNotice(NoticeVO vo) {
 		return noticeDAO.getNotice(vo);
 	}
+	
+	// 사용자 상세 조회
+	@Override
+	public NoticeVO UsergetNotice(NoticeVO vo) {
+		return noticeDAO.UsergetNotice(vo);
+	}
 
 	
 	// 수정
@@ -48,6 +54,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void increaseCnt(NoticeVO vo) {
 		noticeDAO.increaseCnt(vo);
+	}
+
+	@Override
+	public List<NoticeVO> UsergetNoticeList(NoticeVO vo) {
+		return noticeDAO.UsergetNoticeList(vo);
 	}
 
 }

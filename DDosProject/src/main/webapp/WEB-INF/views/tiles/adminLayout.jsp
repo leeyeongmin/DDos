@@ -179,7 +179,7 @@ margin-top:2%;
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="getSuggestionList">
+								<a class="nav-link" href="AdmingetSuggestionList">
 									<i class="fas fa-fw fa-columns"></i>
 									Suggestion
 								</a>

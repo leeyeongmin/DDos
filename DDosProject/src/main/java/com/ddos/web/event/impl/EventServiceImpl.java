@@ -10,7 +10,6 @@ import com.ddos.web.event.EventVO;
 
 @Service
 public class EventServiceImpl implements EventService {
-
 	@Autowired
 	EventDAOMybatis dao;
 
@@ -39,25 +38,25 @@ public class EventServiceImpl implements EventService {
 	// 이벤트 수정
 	@Override
 	public void updateEvent(EventVO vo) {
-
+		dao.updateEvent(vo);
 	}
 
 	// 이벤트 삭제
 	@Override
 	public void deleteEvent(EventVO vo) {
-
+		dao.deleteEvent(vo);
 	}
 
 	// 이벤트 전체 조회
 	@Override
 	public List<EventVO> getEventList(EventVO vo) {
-		return null;
+		return dao.getEventList(vo);
 	}
 
 	// 이벤트 상세 조회
 	@Override
 	public Object getEvent(EventVO vo) {
-		return null;
+		return dao.getEvent(vo);
 	}
 
 	@Override

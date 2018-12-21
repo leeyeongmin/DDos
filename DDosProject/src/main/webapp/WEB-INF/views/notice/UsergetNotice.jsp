@@ -27,8 +27,8 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item">Event</li>
-										<li class="breadcrumb-item active" aria-current="page">Show Event</li>
+										<li class="breadcrumb-item">Notice</li>
+										<li class="breadcrumb-item active" aria-current="page">Show Notice</li>
 									</ol>
 								</nav>
 							</div>
@@ -43,37 +43,31 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getEvent" width="100%"
+									<table id="UsergetNotice" width="100%"
 										class="table table-bordered table-hover text-center">
 										<tr>
 											<td width="20%">글번호</td>
-											<td>${event.eventNum}</td>
+											<td>${notice.noticeNum}</td>
 										</tr>
 										<tr>
 											<td width="10%">등록일</td>
-											<td>${event.writeDate}</td>
+											<td>${notice.noticeDate}</td>
 										</tr>
 										<tr>
-											<td width="10%">시작일</td>
-											<td>${event.startDate}</td>
-										</tr>
-										<tr>
-											<td width="10%">종료일</td>
-											<td>${event.endDate}</td>
+											<td width="10%">조회수</td>
+											<td>${notice.noticeCnt}</td>
 										</tr>
 										<tr>
 											<td width="10%">제목</td>
-											<td>${event.eventTitle}</td>
+											<td>${notice.noticeTitle}</td>
 										</tr>
 										<tr>
 											<td width="10%">내용</td>
-											<td>${event.eventCont}</td>
+											<td>${notice.noticeCont}</td>
 										</tr>
 									</table>
 								</div>
-								<a href="getEventList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
-								<a href="./updateEventform?eventNum=${event.eventNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">수정</a>
-								<a href="./deleteEvent?eventNum=${event.eventNum}" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">삭제</a>
+								<a href="UsergetNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
 							</div>
 							<!-- end card-body -->
 						</div>

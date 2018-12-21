@@ -5,7 +5,9 @@
 <mapper namespace="review">
 	<!-- 리뷰 단건 조회 -->
 	<select id="getReview" resultType="review">
-		SELECT 
+		SELECT
+			ISBN,
+			REVIEW_NUM,
 			REVIEW_TITLE,
 			REVIEW_CONT,
 			REVIEW_DATE
@@ -42,10 +44,9 @@
 	<!-- 리뷰 수정 -->
 	<update id="updateReview" parameterType="review">
 		UPDATE 	REVIEW SET
-				MEMBER_ID = #{memberId},
 				REVIEW_TITLE=#{reviewTitle},
 				REVIEW_CONT=#{reviewCont},
-				REVIEW_POINT=#{reviewPoint}
+				REVIEW_POINT=#{reviewPoint},
 				REVIEW_DATE = sysdate
 		WHERE 	<!-- REVIEW.ISBN=${isbn} AND --> REVIEW_NUM=#{reviewNum}
 	</update>

@@ -53,7 +53,8 @@ public class EventController {
 	// 수정 폼
 	@RequestMapping("updateEventform")
 	public String updateEvent(Model model, EventVO vo) {
-		model.addAttribute("event", eventService.getService(vo));
+		System.out.println(vo);
+		model.addAttribute("event", eventService.getEvent(vo));
 		return "event/updateEvent";
 	}
 	

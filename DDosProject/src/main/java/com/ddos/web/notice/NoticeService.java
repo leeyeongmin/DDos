@@ -9,4 +9,6 @@ public interface NoticeService {
 	public void increaseCnt(NoticeVO vo);
 	public NoticeVO getNotice(NoticeVO vo);
 	public List<NoticeVO> getNoticeList(NoticeVO vo);
+	public NoticeVO UsergetNotice(NoticeVO vo);
+	public List<NoticeVO> UsergetNoticeList(NoticeVO vo);
 }

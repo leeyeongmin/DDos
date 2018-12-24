@@ -25,12 +25,7 @@ public class ReturnBookController {
 	@RequestMapping("rentalSearch")
 	@ResponseBody
 	public List<RentalVO> rental_search(RentalVO vo){
-		returnbookserivce.rentalSearch(vo);
-		
-		System.out.println(vo.getBookTitle());
-		System.out.println(vo.getIsbn());
-		return null;
-		
+		return returnbookserivce.rentalSearch(vo);
 	}
 	
 }

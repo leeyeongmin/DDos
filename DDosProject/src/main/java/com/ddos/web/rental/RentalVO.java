@@ -99,8 +99,11 @@ public class RentalVO {
 		return "RentalVO [rentalNum=" + rentalNum + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
 				+ ", isbn=" + isbn + ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate=" + dueDate
 				+ ", searchTitle=" + searchTitle + ", searchKeyword=" + searchKeyword + ", bookTitle=" + bookTitle
+<<<<<<< HEAD
 				+ ", bookWriter=" + bookWriter + ", bookComp=" + bookComp + "]";
+=======
+				+ "]";
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 	}
 
-	
 }

@@ -4,22 +4,27 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rental">
 	
-	<select id="rentalSearch" resultType="rental">
-		SELECT B.book_title, R.isbn, R.rental_date, R.due_date, R.member_id
-		FROM  Rental R , 
+	<select id="rentalSearch" resultType="rental" parameterType="rental">
+		SELECT B.book_title, R.isbn , R.rental_date , R.due_date , R.member_id 
+		FROM  Rental R LEFT OUTER JOIN Book B
+    	on (R.isbn = B.isbn)
 		<choose>
-			<when test="searchTitle != null and (searchTitle == 'book_title' or searchTitle == 'isbn')">
-				 (select book_title from book where ${searchTitle} like #{searchKeyword} || '%') B
-				  where r.return_date is null
+			<when test="searchTitle != null and searchTitle == 'book_title' ">
+				  where ${searchTitle} like '%' || #{searchKeyword} || '%'
+				  and r.return_date is null
 			</when>
 			
-			<when test="searchTitle != null and searchTitle == 'memeber_id'">
-				Book B
-				where member_id = #{searchKeyword}
-				and R.return_date is null
-				and B.isbn = R.isbn
+			<when test="searchTitle != null and searchTitle == 'isbn' ">
+			      where R.${searchTitle} = #{searchKeyword} 
+				  and R.return_date is null 
 			</when>	
+		
+			<otherwise>
+				where member_id = #{searchKeyword} 
+				and R.return_date is null
+			</otherwise>	
 		</choose>
+		
 	</select>
 	 
 </mapper>

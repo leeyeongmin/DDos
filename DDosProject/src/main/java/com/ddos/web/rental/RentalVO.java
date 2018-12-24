@@ -79,9 +79,9 @@ public class RentalVO {
 	@Override
 	public String toString() {
 		return "RentalVO [rentalNum=" + rentalNum + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
-				+  ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate="
-				+ dueDate + "]";
+				+ ", isbn=" + isbn + ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate=" + dueDate
+				+ ", searchTitle=" + searchTitle + ", searchKeyword=" + searchKeyword + ", bookTitle=" + bookTitle
+				+ "]";
 	}
 
-	
 }

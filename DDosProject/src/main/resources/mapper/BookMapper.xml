@@ -3,6 +3,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="book">
+
+<!-- 전체 조회 -->
+	<select id="adminGetBookList" parameterType="book" resultType="book">
+		SELECT BOOK_TITLE, BOOK_WRITER, BOOK_COMP, BOOK_LOC, ISBN
+		FROM BOOK
+		<where> <if test="searchCondition != null and searchCondition == 'booktitle'"> <!-- view 페이지 명 -->
+					and book_Title like '%' || #{searchKeyword} || '%' </if><!-- db 칼럼 명, #vo -->
+				 <if test="searchCondition != null and searchCondition == 'bookwriter'"> 
+			 		and book_Writer like '%' || #{searchKeyword} || '%' </if> 
+			 	<if test="searchCondition != null and searchCondition == 'bookcomp'"> 
+			 		and book_Comp like '%' || #{searchKeyword} || '%' </if> 
+		</where> 
+	</select>
+	
+	<!-- 1건 조회 -->
+	<select id="adminGetBook" parameterType="book" resultType="book">
+		SELECT 	ISBN, BOOK_TITLE, BOOK_CONT, BOOK_WRITER, BOOK_COMP,
+				BOOK_GENRE, BOOK_AMOUNT, BOOK_LOC, DUE_DATE
+	FROM	(SELECT B.ISBN, B.BOOK_TITLE, B.BOOK_CONT, B.BOOK_WRITER, B.BOOK_COMP,
+					B.BOOK_GENRE, B.BOOK_AMOUNT, B.BOOK_LOC, TO_CHAR(R.DUE_DATE, 'YYYY/MM/DD HH24:MI:SS')AS DUE_DATE
+			FROM 	RENTAL R, BOOK B
+			WHERE	R.ISBN = B.ISBN
+			AND 	R.DUE_DATE = (SELECT MAX(DUE_DATE) 
+				FROM RENTAL 
+				WHERE ISBN = #{isbn})
+	UNION
+	SELECT	B.ISBN, B.BOOK_TITLE, B.BOOK_CONT, B.BOOK_WRITER, B.BOOK_COMP,
+			B.BOOK_GENRE, B.BOOK_AMOUNT, B.BOOK_LOC, TO_CHAR(R.DUE_DATE, 'YYYY/MM/DD HH24:MI:SS')AS DUE_DATE
+	FROM 	RENTAL R, BOOK B
+	WHERE 	R.ISBN(+) = B.ISBN
+	AND 	B.ISBN = #{isbn})
+	WHERE	 ROWNUM = 1
+	</select>
 	
 	<!-- 전체 조회 -->
 	<select id="getBookList" parameterType="book" resultType="book">
@@ -30,7 +63,7 @@
 				WHERE ISBN = #{isbn})
 	UNION
 	SELECT	B.ISBN, B.BOOK_TITLE, B.BOOK_CONT, B.BOOK_WRITER, B.BOOK_COMP,
-				B.BOOK_GENRE, B.BOOK_AMOUNT, B.BOOK_LOC, R.DUE_DATE
+			B.BOOK_GENRE, B.BOOK_AMOUNT, B.BOOK_LOC, R.DUE_DATE
 	FROM 	RENTAL R, BOOK B
 	WHERE 	R.ISBN(+) = B.ISBN
 	AND 	B.ISBN = #{isbn})
@@ -38,7 +71,7 @@
 	</select>
 
 <!-- 도서 입력 -->
-	<insert id="insertBook"  parameterType="book" >
+	<insert id="adminInsertBook"  parameterType="book" >
 		INSERT INTO BOOK (ISBN, BOOK_TITLE, BOOK_CONT, BOOK_WRITER, BOOK_COMP,
 						 BOOK_GENRE, BOOK_AMOUNT, BOOK_LOC)
 		VALUES		(#{isbn}, #{bookTitle}, #{bookCont}, #{bookWriter}, #{bookComp}, #{bookGenre},
@@ -47,7 +80,7 @@
 
 
 <!-- 수정 -->
-	<update id="updateBook" parameterType="book">
+	<update id="adminUpdateBook" parameterType="book">
 		UPDATE BOOK SET 	BOOK_TITLE= #{bookTitle}, BOOK_CONT= #{bookCont}, BOOK_WRITER= #{bookWriter}, BOOK_COMP= #{bookComp},
 						 	BOOK_GENRE= #{bookGenre}, BOOK_AMOUNT= #{bookAmount}, BOOK_LOC= #{bookLoc}
 		WHERE 			ISBN = #{isbn}

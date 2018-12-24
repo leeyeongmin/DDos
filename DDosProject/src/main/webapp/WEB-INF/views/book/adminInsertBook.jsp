@@ -45,7 +45,7 @@
 				<!-- <h3 class="section-title">도서 등록</h3> -->
 			</div>
 			<div class="card-body">
-				<form action="insertBook" method="post">
+				<form action="adminInsertBook" method="post">
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">도서명</label> 
 						<input	name="bookTitle" type="text" class="form-control">

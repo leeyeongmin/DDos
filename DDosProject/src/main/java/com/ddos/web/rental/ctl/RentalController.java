@@ -23,7 +23,7 @@ public class RentalController {
 		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("getRentalList", rentalService.getRentalList(vo));
 		System.out.println(vo);
-		System.out.println("대출 이력 조회");
+		System.out.println("컨트롤 대출 이력 조회");
 		return "rental/getRentalList";
 	}
 	

@@ -14,8 +14,16 @@
     <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     
 </head>
+<script>
+	
+		/* function openForm(){
+			window.open("popup.html", "test", "width=100", "height=100");
+		} */
+			
+	
+</script>
 
-<body>
+<body> <!-- onload="openForm()" -->
      user여라!.
 </body>
 </html>

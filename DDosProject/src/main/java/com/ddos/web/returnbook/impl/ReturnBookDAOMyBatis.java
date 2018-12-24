@@ -18,4 +18,8 @@ public class ReturnBookDAOMyBatis {
 		return mybatis.selectList("rental.rentalSearch", vo);
 	}
 	
+	public void returnBook(RentalVO vo) {
+		mybatis.update("rental.returnBook", vo);
+	}
+	
 }

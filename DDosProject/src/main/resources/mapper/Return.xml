@@ -24,7 +24,14 @@
 				and R.return_date is null
 			</otherwise>	
 		</choose>
-		
 	</select>
+	
+   <insert id="returnBook">      <!-- 프로시저는 insert,update, delete 사용 가능 -->
+      {call P_return(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
+      			     #{rentalDate, mode=IN, jdbcType=VARCHAR, javaType=string},
+      				 #{memberId, mode=IN, jdbcType=VARCHAR, javaType=string})
+      }
+   </insert>
+	
 	 
 </mapper>

@@ -67,10 +67,9 @@
 						#{starttime, mode=IN, jdbcType=VARCHAR, javaType=string})
 	</insert>
 	
-
-	<insert id="timecheck" statementType="CALLABLE">		<!-- 프로시저는 insert,update, delete 사용 가능 -->
-		{call P_readingroom_timeck(#{value,mode=IN, jdbcType=VARCHAR, javaType=string})	
-	</insert>
+	<insert id="timecheck" statementType="CALLABLE">      <!-- 프로시저는 insert,update, delete 사용 가능 -->
+      {call P_readingroom_timeck(#{value,mode=IN, jdbcType=VARCHAR, javaType=string})   
+   </insert>
 	
 	<select id="seat_useing" parameterType="string" resultType="string">		<!-- 본인 좌석 확인 -->
 		select SEAT_NUM

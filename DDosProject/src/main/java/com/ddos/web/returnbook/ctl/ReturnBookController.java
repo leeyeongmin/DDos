@@ -28,4 +28,11 @@ public class ReturnBookController {
 		return returnbookserivce.rentalSearch(vo);
 	}
 	
+	@RequestMapping("returnBook")
+	@ResponseBody
+	public void ReturnBook(RentalVO vo) {
+		returnbookserivce.returnBook(vo);
+	}
+	
+	
 }

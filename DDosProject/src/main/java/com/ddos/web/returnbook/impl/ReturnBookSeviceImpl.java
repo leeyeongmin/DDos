@@ -20,4 +20,9 @@ public class ReturnBookSeviceImpl implements ReturnBookService{
 		return dao.rentalSearch(vo);
 	}
 
+	@Override
+	public void returnBook(RentalVO vo) {
+		dao.returnBook(vo);
+	}
+
 }

@@ -24,7 +24,7 @@
 				 	$("#searchData").empty(); 
 					for(var i=0; i<datas.length; i++){
 						$add += "<tr>";
-						$add += "<td><input type=checkbox></td>";
+						$add += "<td><input type=checkbox name=check></td>";
 						$add += "<td>"+ datas[i].bookTitle + "</td>" + 
 								"<td>" + datas[i].isbn + "</td>" + 
 								"<td>" + datas[i].rentalDate + "</td>" + 
@@ -50,14 +50,34 @@
 	}
 	
 	function returnBook(){
-		const Item = NamedStruct('rental_date','isbn', 'id');
 		
+		var checkbox = $("input[name=check]:checked");
 		
+		// 체크된 체크박스 값을 가져온다
+		checkbox.each(function(i) {
+
+			// checkbox.parent() : checkbox의 부모는 <td>이다.
+			// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+			var tr = checkbox.parent().parent().eq(i);
+			var td = tr.children();
+
+			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+			var isbn = td.eq(2).text();
+			var rental_date = td.eq(3).text();
+			var login = td.eq(5).text();
+	
+			var params = {isbn : isbn, rentalDate : rental_date, memberId : login };
+			
+			$.ajax({
+				url : "returnBook",
+				type : "post",
+				dataType : "json",
+				data : params,
+				async: false
+			})
+		});
 		
-		var myItems = [
-		    Item(1, 'john', 'au'),
-		    Item(2, 'mary', 'us')
-		];
+		check();
 	}
 	
 </script>
@@ -137,7 +157,7 @@
 											<td>책제목</td>
 											<td>ISBN</td>
 											<td>대여일자</td>
-											<td>반납일자</td>
+											<td>반납예정일</td>
 											<td>대출자</td>
 										</tr>
 										<tbody id="searchData">

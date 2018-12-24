@@ -7,11 +7,10 @@
 	<select id="getRentalList" parameterType="rental"
 	resultType="rental">
 
-	SELECT	 R.RENTAL_NUM, B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER, R.RENTAL_DATE,
+	SELECT	 R.RENTAL_NUM, B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER, TO_CHAR(R.RENTAL_DATE, 'YYYY/MM/DD'),
 			R.RETURN_DATE, R.MEMBER_ID
 	FROM	 BOOK B JOIN RENTAL R
 	ON 		(B.ISBN=R.ISBN)
-
 
 	<where>
 		<if test=" loginId != null">
@@ -20,7 +19,6 @@
 	</where>
 </select>
 
-	<!-- 대출이력 -->
 
 
 </mapper>

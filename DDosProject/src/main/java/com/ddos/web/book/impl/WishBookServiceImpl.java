@@ -20,7 +20,6 @@ public class WishBookServiceImpl implements WishBookService {
 
 	@Override
 	public List<WishBookVO> adminWishBookList(WishBookVO vo) {
-		
 		return  wbd.adminWishBookList(vo);
 	}
 	@Override
@@ -43,6 +42,7 @@ public class WishBookServiceImpl implements WishBookService {
 	public void adminDeleteWishBookList(WishBookVO vo) {
 		wbd.adminDeleteWishBookList(vo);
 	}
+	
 	@Override
 	public List<WishBookVO> getWishBookList(WishBookVO vo) {
 		return wbd.getWishBookList(vo);

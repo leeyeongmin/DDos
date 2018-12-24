@@ -14,6 +14,23 @@ public class RentalVO {
 	private String searchKeyword;
 	private String bookTitle;
 	
+	//
+	private String bookWriter;
+	private String bookComp;
+	//
+	public String getBookWriter() {
+		return bookWriter;
+	}
+	public void setBookWriter(String bookWriter) {
+		this.bookWriter = bookWriter;
+	}
+	public String getBookComp() {
+		return bookComp;
+	}
+	public void setBookComp(String bookComp) {
+		this.bookComp = bookComp;
+	}
+	//
 	public String getBookTitle() {
 		return bookTitle;
 	}
@@ -76,11 +93,13 @@ public class RentalVO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+	//
 	@Override
 	public String toString() {
 		return "RentalVO [rentalNum=" + rentalNum + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
-				+  ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate="
-				+ dueDate + "]";
+				+ ", isbn=" + isbn + ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate=" + dueDate
+				+ ", searchTitle=" + searchTitle + ", searchKeyword=" + searchKeyword + ", bookTitle=" + bookTitle
+				+ ", bookWriter=" + bookWriter + ", bookComp=" + bookComp + "]";
 	}
 
 	

@@ -85,7 +85,7 @@
 									<th>위치</th>
 								</tr>
 							</thead>
-							<tbody id=booklist>
+							<tbody id=bookList>
 								<c:forEach items="${bookList}" var="book">
 									<tr>
 										<td><a href="./getBook?isbn=${book.isbn}">${book.bookTitle}</a></td>

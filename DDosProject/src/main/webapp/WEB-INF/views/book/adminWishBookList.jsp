@@ -67,14 +67,12 @@
 					<button>검색</button>
 				</form>
 
-				<input type="button" style="float: right"
-					onclick="location.href='./adminInsertWishBookform'" value="신청하기"
-					class="btn btn-primary">
-				<form action="deleteWishBookList">
-					<input type="button" style="float: right" value="선택삭제"
-						class="btn btn-brand">
+				<input type="button" style="float: right" onclick="location.href='./adminInsertWishBookform'" value="신청하기"
+					class="btn btn-primary"> 
+				<input type="button" style="float: right" onclick="location.href='./adminDeleteWishBookList'" value="선택삭제"
+					class="btn btn-brand">
 
-					<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" >
+				<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" >
 						<div class="card" style="width: 100%;">
 							<div class="card-body p-0">
 								<div class="table-responsive">
@@ -95,7 +93,7 @@
 										<tbody id=adminWishBookList>
 											<c:forEach items="${adminWishBookList}" var="wishbook">
 												<tr>
-													<td><input type="checkbox" name="numlist"
+												<td><input type="checkbox" name="numlist"
 														value="${wishbook.wishNum}"></td>
 													<td>${wishbook.memberId}</td>
 													<td>${wishbook.isbn}</td>
@@ -111,7 +109,6 @@
 							</div>
 						</div>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>

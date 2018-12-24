@@ -48,24 +48,24 @@
 	<update id="adminUpdateWishBook" parameterType="wishbook">
 		UPDATE WISH_BOOK SET WISH_TITLE= #{wishTitle}, WISH_WRITER= #{wishWriter}, WISH_COMP= #{wishComp}, 
 							WISH_GENRE= #{wishGenre}, WISH_PRICE= #{wishPrice}
-		WHERE 	isbn = ${isbn}
+		WHERE 	ISBN= ${isbn}
 	</update>
 
 <!-- 희망도서 삭제-->
 	<delete id="adminDeleteWishBook" parameterType="wishbook">
-	DELETE WISH_BOOK WHERE WISH_NUM=#{wishNum}
+	DELETE WISH_BOOK WHERE ISBN=#{isbn}
 	</delete> 
 	
 <!-- 희망도서 선택 삭제 -->
 	<delete id="adminDeleteWishBookList" parameterType="wishbook">
 		DELETE WISH_BOOK
-		<if test="numlist != null and numlist.length>0">
-			WHERE WISH_NUM IN
-			<foreach collection="numlist" item="item" open="(" close=")" separator=",">
+		<if test="wishNum != null and wishNum.length>0">
+			AND WISH_NUM IN
+			<foreach collection="wishNum" item="item" index="index" open="("  separator="," close=")">
 			#{item}
 			</foreach>
 			</if>
-		<if test="numlist == null or not numlist.length=0"> where WISH_NUM=-1</if> 
+		<if test="wishNum == null or not wishNum.length=0"> where WISH_NUM=-1</if> 
 			
 	</delete>
 

@@ -13,17 +13,15 @@ public class RentalServiceImpl implements RentalService{
 	
 	@Autowired 
 	RentalDAOMybatis rda;
-	private RentalVO vo;
 
+	//대출 현황
 	@Override
 	public List<RentalVO> getRentalList(RentalVO vo) {
-		
 		return rda.getRentalList(vo);
 	}
 
 	@Override
 	public RentalVO getRental(RentalVO vo) {
-		
 		return null;
 	}
 

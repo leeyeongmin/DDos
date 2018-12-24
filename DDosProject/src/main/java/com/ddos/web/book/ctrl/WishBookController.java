@@ -40,11 +40,11 @@ public class WishBookController {  //희망도서 controller
 	@RequestMapping("adminInsertWishBookform")
 	public String adminInsertWishBookform(Model model, WishBookVO vo) {
 		System.out.println("희망도서 컨트롤 등록폼");
-		return "book/adminInsertWishBook";
+		return "admin/book/adminInsertWishBook";
 	}
 	
 	//희망도서 등록처리
-	@RequestMapping("adminInsertWishBook")
+	@RequestMapping("/adminInsertWishBook")
 	public String adminInsertWishBook(WishBookVO vo) {
 		wishBookService.adminInsertWishBook(vo);
 		System.out.println("희망도서 컨트롤 등록처리");
@@ -55,22 +55,25 @@ public class WishBookController {  //희망도서 controller
 	//희망도서 수정폼
 	@RequestMapping("adminUpdateWishBookform")
 	public String adminUpdateWishBookform(Model model, WishBookVO vo) {
-		model.addAttribute("wishbook", wishBookService.getWishBook(vo));
+		model.addAttribute("wishbook", wishBookService.adminWishBookDetail(vo));
 		System.out.println("희망도서 컨트롤 수정 폼");
 		return "admin/book/adminUpdateWishBook";
 	}
 	//희망도서 수정처리
 	@RequestMapping("adminUpdateWishBook")
 	public String adminUpdateWishBook(WishBookVO vo) {
-		wishBookService.adminUpdateWishBook(vo);
-		System.out.println(vo);
 		System.out.println("희망도서 컨트롤 수정처리");
+		System.out.println(vo);
+		wishBookService.adminUpdateWishBook(vo);
+		System.out.println("희망도서 컨트롤 수정처리2");
+		//return "admin/book/adminWishBookList";
 		return "redirect:adminwishbook";
 	}
 	
 	//희망도서 삭제
 	@RequestMapping("adminDeleteWishBook")
 	public String adminDeleteWishBook(WishBookVO vo) {
+		System.out.println(vo);
 		wishBookService.adminDeleteWishBook(vo);
 		System.out.println("희망도서 컨트롤 삭제");
 		return "redirect:adminwishbook";
@@ -81,7 +84,7 @@ public class WishBookController {  //희망도서 controller
 	public String adminDeleteWishBookList(WishBookVO vo) {
 		wishBookService.adminDeleteWishBookList(vo);
 		System.out.println("희망도서 컨트롤 선택 삭제");
-		return "redirenct:adminwishbook";
+		return "admin/book/adminWishBookList";
 	}
 
 	// 메인에서  전체희망도서로

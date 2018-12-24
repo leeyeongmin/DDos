@@ -16,7 +16,8 @@ public class RentalDAOMybatis {
 	
 	//대출 이력 조회
 	public List<RentalVO> getRentalList(RentalVO vo){
-		System.out.println(vo + "마이바티스 대출 이력 조회");
+		System.out.println("마이바티스 대출 현황 조회");
+		System.out.println(vo);
 		return mybatis.selectList("rental.getRentalList", vo);
 	}
 

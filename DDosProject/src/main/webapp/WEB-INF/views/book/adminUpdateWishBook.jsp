@@ -50,7 +50,7 @@
 								<h4 class="mb-0">희망도서 수정</h4>
 							</div>
 							<div class="card-body">
-								<form class="needs-validation" action ="adminUpdateWishBookform" method="post">
+								<form class="needs-validation" action ="adminUpdateWishBook" method="post">
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="isbn">ISBN</label>
@@ -95,8 +95,7 @@
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary">저장 </button>
-									<a href="#" class="btn btn-brand">삭제</a> 
-									<a href="#" class="btn btn-secondary">취소</a>
+									<a href="./adminwishbook" class="btn btn-secondary">취소</a>
 								</form>
 
 							</div>

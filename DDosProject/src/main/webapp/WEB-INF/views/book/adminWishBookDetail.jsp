@@ -51,46 +51,48 @@
 							</div>
 							<div class="card-body">
 								<form class="needs-validation">
+								
 									<div class="row">
-										<div class="col-md-6 mb-3">
+											<div class="col-md-6 mb-3">
 											<label for="isbn">ISBN</label>
-											<div class="form-control" id="isbn">${wishbook.isbn}</div>
+											<div class="form-control" name="isbn" id="isbn">${wishbook.isbn}</div>
 										</div>
 										<div class="col-md-6 mb-3">
 											<label for="wishTitle">도서명</label>
-											<div class="form-control" id="wishTitle">${wishbook.wishTitle}</div>
+											<div class="form-control" name="wishTitle" id="wishTitle">${wishbook.wishTitle}</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishWriter">저자</label>
-											<div class="form-control" id="wishWriter">"${wishbook.wishWriter}</div>
+											<div class="form-control" name="wishWriter" id="wishWriter">"${wishbook.wishWriter}</div>
 										</div>
 										<div class="col-md-6 mb-3">
 											<label for="wishComp">출판사</label>
-											<div class="form-control" id="wishComp">"${wishbook.wishComp}"</div>
+											<div class="form-control" name="wishComp" id="wishComp">"${wishbook.wishComp}"</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishPrice">가격</label>
-											<div class="form-control" id="wishPrice">"${wishbook.wishPrice}"</div>
+											<div class="form-control" name="wishPrice" id="wishPrice">"${wishbook.wishPrice}"</div>
 										</div>
 										<div class="col-md-6 mb-3">
 										<label for="wishGenre">장르</label>
-										<div class="form-control" id="wishGenre">"${wishbook.wishGenre}"</div>
+										<div class="form-control" name="wishGenre" id="wishGenre">"${wishbook.wishGenre}"</div>
 									</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishReason">사유</label>
-											<textarea class="form-control" id="wishReason">"${wishbook.wishReason}"</textarea >
+											<textarea class="form-control" name="wishReason" id="wishReason">"${wishbook.wishReason}"</textarea >
 										</div>
 									</div>
 									
+									
 									<a href="./adminUpdateWishBookform?isbn=${wishbook.isbn}" class="btn btn-primary">수정</a> 
-									<a href="./adminDeleteWishBook?wishNum=${wishbook.wishNum}" class="btn btn-brand">삭제</a> 
-									<a href="./adminWishBookList" class="btn btn-secondary">취소</a>
+									<a href="./adminDeleteWishBook?isbn=${wishbook.isbn}" class="btn btn-brand">삭제</a> 
+									<a href="./adminwishbook" class="btn btn-secondary">취소</a>
 								
 								</form>
 

@@ -32,7 +32,7 @@
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="#"
+										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item active" aria-current="page">Book
 											Catalog</a>
@@ -46,80 +46,80 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				
-				<c:if test="${not empty sessionScope.login}">
-		${sessionScope.login.id} 님
-				</c:if>
-				<!-- 도서 검색 창 -->
 
-				<span style="float: right"> <input type="button"
-					onclick="location.href='./insertBookform'" value="등록"
-					class="btn btn-secondary">
-				</span>
+				<div class="row" >
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="card">
+							<!-- 검색 -->
+							<div class="card-body">
+								<form name="frm" onsubmit="check()">
 
-				<form name="frm" onsubmit="check()">
-
-					<select name="searchCondition">
-						<option value="booktitle">도서명
-						<option value="bookwriter">저자
-						<option value="bookcomp">출판사
-					</select> <input type="text" name="searchKeyword">
-					<button>검색</button>
-
-
-				</form>
+									<select class="form-control" name="searchCondition"
+										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
+										<option value="booktitle">도서명
+										<option value="bookwriter">저자
+										<option value="bookcomp">출판사
+									</select> <input class="form-control form-control-lg"
+										style="width: 75%; margin-left: 1%; display: inline-block;"
+										type="text" name="searchKeyword" placeholder="Search">
+									<button class="btn btn-primary"
+										style="margin-left: 1%; width: 7%; height: 48px;">Search</button>
 
 
-
-				<div class="card">
-					<h5 class="card-header">소장 자료</h5>
-					<div class="card-body">
-						<table class="table" id="getBookList">
-
-							<thead>
-								<tr>
-									<th>도서명</th>
-									<th>저자</th>
-									<th>출판사</th>
-									<th>ISBN</th>
-									<th>위치</th>
-								</tr>
-							</thead>
-							<tbody id=bookList>
-								<c:forEach items="${bookList}" var="book">
-									<tr>
-										<td><a href="./getBook?isbn=${book.isbn}">${book.bookTitle}</a></td>
-										<td>${book.bookWriter}</td>
-										<td>${book.bookComp}</td>
-										<td>${book.isbn}</td>
-										<td>${book.bookLoc}&nbsp;자료실</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-
-						</table>
+								</form>
+							</div>
 
 
+							<div class="card">
+								<div class="card-body">
+									<table class="table" id="getBookList">
+
+										<thead>
+											<tr>
+												<th>도서명</th>
+												<th>저자</th>
+												<th>출판사</th>
+												<th>ISBN</th>
+												<th>위치</th>
+											</tr>
+										</thead>
+										<tbody id=booklist>
+											<c:forEach items="${bookList}" var="book">
+												<tr>
+													<td><a href="./getBook?isbn=${book.isbn}">${book.bookTitle}</a></td>
+													<td>${book.bookWriter}</td>
+													<td>${book.bookComp}</td>
+													<td>${book.isbn}</td>
+													<td>${book.bookLoc}&nbsp;자료실</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+
+									</table>
+
+
+								</div>
+							</div>
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination">
+										<my:paging paging="${paging}">
+											<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+											<li class="page-item"><a class="page-link" href="#">1</a></li>
+											<li class="page-item active"><a class="page-link "
+												href="#">2</a></li>
+											<li class="page-item"><a class="page-link" href="#">3</a></li>
+											<li class="page-item"><a class="page-link" href="#">Next</a></li>
+										</my:paging>
+									</ul>
+								</nav>
+							</div>
+						</div>
 					</div>
 				</div>
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                        <my:paging paging="${paging}">
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link " href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                      </my:paging>
-                                        </ul>
-                                    </nav>
-                                </div>
-
 			</div>
 		</div>
 	</div>
-
 </body>
 
 

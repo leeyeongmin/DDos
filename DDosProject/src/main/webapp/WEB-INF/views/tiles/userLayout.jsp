@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,15 +81,14 @@ margin-top:2%;
 									<div class="notification-list">
 										<div class="list-group">
 											<a href="#"
-												class="list-group-item list-group-item-action active">
+												class="list-group-item list-group-item-action active" value="${message.messageTitle}">
 												<div class="notification-info">
-													<div class="notification-list-user-img">
-														<img src="assets/images/avatar-2.jpg" alt=""
-															class="user-avatar-md rounded-circle">
-													</div>
 													<div class="notification-list-user-block">
-														<span class="notification-list-user-name">Jeremy
-															Rakestraw</span>accepted your invitation to join the team.
+														<!-- <span class="notification-list-user-name" id="getMessageList">-->
+															<div><c:forEach items="${messageList}" var="message">
+																<a href="./getMessage?messageNum=${message.messageNum}">${message.messageTitle}</a>
+															</c:forEach></div>
+														<div><td>${message.messageTitle}</td></div>
 														<div class="notification-date">2 min ago</div>
 													</div>
 												</div>

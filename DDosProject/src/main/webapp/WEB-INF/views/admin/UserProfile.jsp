@@ -130,7 +130,7 @@
 
 
 								<li class="nav-item"><a class="nav-link" id="sendMessage"
-									data-toggle="pill" href="#messageForm" role="tab"
+									data-toggle="pill" href="#insertMessageform" role="tab"
 									aria-controls="pills-msg" aria-selected="false">Send
 										Messages</a></li>
 
@@ -239,33 +239,33 @@
 
 
 
-								<div class="tab-pane fade" id="messageForm" role="tabpanel"
+								<div class="tab-pane fade" id="insertMessageform" role="tabpanel"
 									aria-labelledby="pills-msg-tab">
 									<div class="card">
 										<h5 class="card-header">Send Messages</h5>
 										<div class="card-body">
-											<form>
+											<form action="insertMessage">
 												<div class="row">
 													<div
 														class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-3 col-md-12 col-sm-12 col-12 p-4">
+<%-- 														<div class="form-group">
+															<label for="messageNum"></label> <input type="hidden"
+																class="form-control form-control-lg" name="messageNum"
+																value="${message.messageNum}">
+														</div> --%>
 														<div class="form-group">
-															<label for="name">Your Name</label> <input type="text"
-																class="form-control form-control-lg" id="name"
-																value="관리자">
+															<label for="memberId">회원 아이디</label> <input type="email"
+																class="form-control form-control-lg" name="memberId"
+																value="${user.id}">
 														</div>
 														<div class="form-group">
-															<label for="email">Your Email</label> <input type="email"
-																class="form-control form-control-lg" id="email"
-																value="admin@gmail.com">
-														</div>
-														<div class="form-group">
-															<label for="subject">Subject</label> <input type="text"
-																class="form-control form-control-lg" id="subject"
+															<label for="messageTitle">제목</label> <input type="text"
+																class="form-control form-control-lg" name="messageTitle"
 																placeholder="">
 														</div>
 														<div class="form-group">
-															<label for="messages">Messgaes</label>
-															<textarea class="form-control" id="messages" rows="3"></textarea>
+															<label for="messageCont">내용</label>
+															<textarea class="form-control" name="messageCont" rows="3"></textarea>
 														</div>
 														<button type="submit" class="btn btn-primary float-right">Send
 															Message</button>

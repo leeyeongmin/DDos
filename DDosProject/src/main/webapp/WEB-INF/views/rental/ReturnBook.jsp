@@ -77,7 +77,10 @@
 			})
 		});
 		
-		check();
+		if($("input:checkbox[name=check]").length != 0){
+			check();	
+		}
+		
 	}
 	
 </script>

@@ -202,7 +202,7 @@ margin-top:2%;
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">
+								<a class="nav-link" href="readingRoom">
 									<i class="fas fa-fw fa-columns"></i>
 									Reading Room
 								</a>

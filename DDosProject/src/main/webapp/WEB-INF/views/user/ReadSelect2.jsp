@@ -94,12 +94,10 @@
 			seat = $(this).attr("name");
 			if($(this).hasClass("myseat")){
 				//남은 시간 확인 
-				console.log("${login.id}")
 				$.ajax({
 					type : "post",
 					url : "remaining?loginId=${login.id}",
 					success : function(result) {
-						console.log(result);
 						if(result <= 29){		//30분 이하로 남을 시 
 							dialog.dialog("open");
 						}else{
@@ -139,7 +137,6 @@
 			url : "useing_seat?loginId="+id,
 			success:function(result){
 				if(result != ""){
-					console.log(result);
 					$("[name="+result+"]").attr("disabled", false);
 					$("[name="+ result + "]").addClass("myseat");
 					$("input[name!="+result+"]").attr("disabled", true);
@@ -168,7 +165,6 @@
 		})
 			
 		var timer_start = setInterval(function(){
-			console.log(localStorage.getItem("time_ck"));
 			var now = new Date(Date.now());
 			var get_time = new Date(localStorage.getItem("time_ck"));
 			var a = now - get_time;
@@ -177,7 +173,6 @@
 			  var diffMin  = timeGap.getMinutes();      // 분
 			  var diffSec  = timeGap.getSeconds();      // 초
 			  var time_end = diffHour + "시간 " + diffMin + "분 "  + diffSec + "초 ";
-			  console.log(time_end);   
 			  $("#use").html(time_end);
 			  if(diffHour == "0" && diffMin=="0" && diffSec=="0"){
 				  clearInterval(timer_start);

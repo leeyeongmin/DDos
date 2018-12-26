@@ -267,7 +267,7 @@
 				  var now;
 
 				   $.ajax({
-					  type : "post",
+					  	type : "post",
 						url : "servertime",
 						async: false,
 						success : function(result) {

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="message">
+
+	<!-- 등록 -->
+	<insert id="insertMessage" parameterType="message">
+		<selectKey keyProperty="messageNum" resultType="integer"
+			order="BEFORE">
+			SELECT MAX(MESSAGE_NUM)+1 FROM MESSAGE
+		</selectKey>
+		INSERT INTO MESSAGE (
+			MESSAGE_NUM,
+			MESSAGE_TITLE,
+			MESSAGE_CONT,
+			MESSAGE_DATE,
+			MESSAGE_CHECK,
+			MEMBER_ID)
+		VALUES (
+			#{messageNum},
+			#{messageTitle},
+			#{messageCont},
+			sysdate,
+			DEFAULT,
+			#{memberId})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateMessage" parameterType="message">
+		UPDATE MESSAGE SET
+			MESSAGE_CHECK = 'Y'
+		WHERE MESSAGE_NUM = #{messageNum}
+	</update>
+	
+	<!-- 전체 조회 -->
+	<select id="getMessageList" resultType="message">
+		SELECT TITLE FROM MESSAGE
+		ORDER BY MESSAGE_DATE DESC
+	</select>
+</mapper>

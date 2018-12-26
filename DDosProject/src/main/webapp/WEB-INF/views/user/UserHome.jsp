@@ -15,15 +15,36 @@
     
 </head>
 <script>
+
+/* 	function openForm() { 
+		window.open("popup.jsp", "a", "width=400, height=300, left=100, top=50"); 
+	} */
 	
-		/* function openForm(){
-			window.open("popup.html", "test", "width=100", "height=100");
-		} */
-			
+	function openPopup() {		//팝업창 오픈 
+		var cookieCheck = getCookie("popupYN");
+		console.log(cookieCheck);
+		if (cookieCheck != "N") 
+			window.open('popup.jsp', 'a', 'width=400, height=400') 
+	}
+	
+	function getCookie(name) {
+		var cookie = document.cookie;
+		
+		if (document.cookie != "") {
+			var cookie_array = cookie.split("; ");
+			for ( var index in cookie_array) {
+				var cookie_name = cookie_array[index].split("=");
+				if (cookie_name[0] == "popupYN") {
+					return cookie_name[1]; 
+					} 
+				} 
+			} 
+		return ; 
+	} 
 	
 </script>
 
-<body> <!-- onload="openForm()" -->
+<body onload="openPopup()">
      user여라!.
 </body>
 </html>

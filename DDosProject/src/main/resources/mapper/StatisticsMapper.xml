@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Statics">
+
+	<select id="readChart_yester" resultType="map">
+		select nvl(round(use.cnt / readingroom.cnt ,2), 0) "use"  
+		from
+		(select count(*) * 12 cnt from readingroom ) readingroom,
+		(select sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from readingroom_history 
+ 		where to_char(start_time,'yyyy-mm-dd') = to_char(sysdate-1,'yyyy-mm-dd')) use
+	</select>
+
+	<select id="readChart_lastend" resultType="map">
+		select nvl(round(use.cnt / readingroom.cnt ,2),0) "use"  
+		from
+		(select count(*) * 12  * 2 cnt from readingroom ) readingroom,
+		(select sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from readingroom_history 
+		 where to_char(start_time,'yyyy-mm-dd') = TRUNC(sysdate, 'd')
+		 or  to_char(start_time,'yyyy-mm-dd') = TRUNC(sysdate, 'd')-1) use
+	</select>
+
+
+	<select id="readChart_lastweek" resultType="map">
+		select nvl(round(use.cnt / readingroom.cnt ,2), 0) "use"   
+		from
+		(select count(*) * 12  * 5 cnt from readingroom ) readingroom,
+		(select sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from readingroom_history 
+		 where to_char(start_time,'yyyy-mm-dd') between TRUNC(sysdate, 'd')-6
+		 and  TRUNC(sysdate, 'd')-2) use
+	</select>
+
+</mapper> 
+

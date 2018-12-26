@@ -10,6 +10,8 @@ public class BookVO {
 	private int bookAmount; // 수량
 	private String bookLoc; // 위치
 	private String dueDate;
+	private String loginId;
+
 
 	// 검색
 	private String searchCondition;
@@ -123,6 +125,14 @@ public class BookVO {
 		this.bookLoc = bookLoc;
 	}
 
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
 	@Override
 	public String toString() {
 		return "BookVO [Isbn=" + isbn + ", bookTitle=" + bookTitle + ", bookCont=" + bookCont + ", bookWriter="

@@ -53,7 +53,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	
-	
+	// 갯수
 	@Override
 	public int getCount(BookVO vo) {
 		return dab.getCount(vo);

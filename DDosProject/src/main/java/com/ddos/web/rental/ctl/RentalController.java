@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddos.web.rental.RentalService;
 import com.ddos.web.rental.RentalVO;
@@ -28,6 +29,14 @@ public class RentalController {
 	}
 	
 	// 현황조회?
+	
+	//대출
+	@RequestMapping("/rentalBook")
+	@ResponseBody
+	public void rentalBook(RentalVO vo) {
+		rentalService.rentalBook(vo);
+	}
+
 	
 	
 

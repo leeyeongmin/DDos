@@ -14,6 +14,23 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+function rentalBook() {
+
+	$.ajax({
+		url : "rentalBook?loginId=${login.id}",
+		type: "post",
+		dataType:"json",
+		success: function(){
+		alter("대출 완료되었습니다");}
+	})
+	}
+)}
+
+</script>
+
 </head>
 
 <body>
@@ -65,7 +82,7 @@
 											style="font-size: 17px; margin: 25px; border-collapse =separate; border-spacing: 2px;">
 											<thead>
 												<tr>
-													<th>ISBN&nbsp;</th>
+													<th>ISBN &nbsp;</th>
 													<th>${book.isbn}</th>
 												</tr>
 												<tr>
@@ -95,9 +112,7 @@
 										</table>
 
 
-										<a href="#" class="btn btn-primary">대출</a> <a
-											href="./updateBookform?isbn=${book.isbn}"
-											class="btn btn-space btn-secondary">수정</a>
+										<input type="button"  class="btn btn-primary" onclick="rentalBook();" value="대출">
 									</div>
 								</div>
 							</div>

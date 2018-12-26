@@ -23,14 +23,33 @@ public class BookController {
 	BookService bookservice; // service 호출
 	@Autowired
 	ReviewService reviewservice;
+	
+
 
 	// admin
 	// 도서 목록보기
-	@RequestMapping("/admincollection")
+	@RequestMapping(value = "admincollection")
+	public ModelAndView adminGetBookList(Model model, BookVO vo, PagingVO paging) {
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(bookservice.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("adminGetBookList", bookservice.adminGetBookList(vo));
+		mv.setViewName("admin/book/adminGetBookList");
+		return mv;
+		
+	}
+/*	@RequestMapping("/admincollection")
 	public String adminGetBookList(Model model, BookVO vo) {
 		model.addAttribute("adminGetBookList", bookservice.adminGetBookList(vo));
 		return "admin/book/adminGetBookList";
-	}
+	}*/
 
 	// 한건 조회
 	@RequestMapping("adminGetBook")

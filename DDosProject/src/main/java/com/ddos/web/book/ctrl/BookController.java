@@ -95,7 +95,7 @@ public class BookController {
 		if (paging.getPage() == null) {
 			paging.setPage(1);
 		}
-		paging.setPageUnit(5);
+		paging.setPageUnit(10);
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
 

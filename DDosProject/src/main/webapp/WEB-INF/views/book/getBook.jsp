@@ -18,17 +18,15 @@
 <script type="text/javascript">
 
 function rentalBook() {
-
 	$.ajax({
-		url : "rentalBook?loginId=${login.id}",
+		url : "rentalBook",
+		data : {loginId:"${login.id}",isbn:"${book.isbn}"},
 		type: "post",
 		dataType:"json",
 		success: function(){
 		alter("대출 완료되었습니다");}
 	})
 	}
-)}
-
 </script>
 
 </head>

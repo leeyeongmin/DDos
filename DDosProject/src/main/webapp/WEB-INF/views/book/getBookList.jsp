@@ -65,12 +65,11 @@
 										type="text" name="searchKeyword" placeholder="Search">
 									<button class="btn btn-primary"
 										style="margin-left: 1%; width: 7%; height: 48px;">Search</button>
-
+									<input type="hidden" name="page" />
 
 								</form>
 							</div>
 
-<input type="hidden" name="page" />
 							<div class="card">
 								<div class="card-body">
 									<table class="table" id="getBookList">

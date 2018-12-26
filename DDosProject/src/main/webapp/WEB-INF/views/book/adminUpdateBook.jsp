@@ -28,7 +28,7 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Book Update</a>
+										<li class="breadcrumb-item active" aria-current="page">Admin Book Update</a>
 										</li>
 									</ol>
 								</nav>
@@ -46,7 +46,7 @@
 			
 			</div>
 			<div class="card-body">
-				<form action ="updateBook" method="post">
+				<form action ="adminUpdateBook" method="post">
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">도서명</label> 
 						<input	name="bookTitle" type="text" class="form-control" value="${book.bookTitle}">
@@ -74,7 +74,7 @@
 
 					<div class="form-group">
 						<label for="input-select">위치</label> 
-						<select class="form-control" value="${book.bookLoc}">
+						<select class="form-control" name="bookLoc" >
 							<option value="${book.bookLoc}">${book.bookLoc}</option>
 							<option value="총류">총류</option>
 							<option value="철학 및 역사">철학 및 역사</option>
@@ -86,7 +86,7 @@
 
 					<div class="form-group">
 						<label for="input-select">장르</label> <select class="form-control"
-							name="bookGenre"  value="${book.bookGenre}">
+							name="bookGenre" >
 							<option value="${book.bookGenre}">${book.bookGenre}</option>
 							<option value="총류">총류</option>
 							<option value="철학 및 역사">철학 및 역사</option>

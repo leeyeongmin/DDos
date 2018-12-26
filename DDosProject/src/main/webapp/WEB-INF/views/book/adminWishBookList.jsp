@@ -69,8 +69,7 @@
 
 				<input type="button" style="float: right" onclick="location.href='./adminInsertWishBookform'" value="신청하기"
 					class="btn btn-primary"> 
-				<input type="button" style="float: right" onclick="location.href='./adminDeleteWishBookList'" value="선택삭제"
-					class="btn btn-brand">
+				
 
 				<div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12" >
 						<div class="card" style="width: 100%;">

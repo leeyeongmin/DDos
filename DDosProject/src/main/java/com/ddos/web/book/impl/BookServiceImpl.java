@@ -13,6 +13,31 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired BookDAOMybatis dab;
 
+// admin
+	//전체 조회
+	
+	@Override
+	public List<BookVO> adminGetBookList(BookVO vo) {
+		return dab.adminGetBookList(vo);
+	}
+	
+	// 건수
+	@Override
+	public BookVO adminGetBook(BookVO vo) {
+		return dab.adminGetBook(vo);
+	}
+
+	//입력
+	@Override
+	public void adminInsertBook(BookVO vo) {
+		dab.adminInsertBook(vo);
+		
+	}
+	//수정
+	@Override
+	public void adminUpdateBook(BookVO vo) {
+		dab.adminUpdateBook(vo);
+	}
 
 	// 전체 조회
 	@Override
@@ -27,20 +52,15 @@ public class BookServiceImpl implements BookService {
 
 	}
 
-	// 도서 등록
-	public void insertBook(BookVO vo) {
-		dab.insertBook(vo);
-	}
-	// 도서 수정
-	public void updateBook(BookVO vo) {
-		dab.updateBook(vo);
-
-	}
+	
 	
 	@Override
 	public int getCount(BookVO vo) {
 		return dab.getCount(vo);
 	}
+
+	
+		
 }
 	
 	

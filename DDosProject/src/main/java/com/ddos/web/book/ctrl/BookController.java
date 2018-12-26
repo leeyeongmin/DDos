@@ -23,6 +23,49 @@ public class BookController {
 	BookService bookservice; // service 호출
 	@Autowired
 	ReviewService reviewservice;
+	
+	//admin 
+	// 도서 목록보기
+	@RequestMapping("/admincollection")
+	public String adminGetBookList(Model model, BookVO vo) {
+		model.addAttribute("adminGetBookList", bookservice.adminGetBookList(vo));
+		return "admin/book/adminGetBookList";
+	}
+	//한건 조회
+	@RequestMapping("adminGetBook")
+	public String adminGetBook(Model model, BookVO vo, ReviewVO rvo) {
+		model.addAttribute("book", bookservice.adminGetBook(vo));
+		model.addAttribute("review", reviewservice.getReviewList(rvo));
+		return "admin/book/adminGetBook";
+
+	}
+	// 도서 등록 폼
+		@RequestMapping("adminInsertBookform")
+		public String adminInsertBookform(Model model, BookVO vo) {
+			return "admin/book/adminInsertBook";
+		}
+
+		// 도서 등록 처리
+		@RequestMapping("adminInsertBook")
+		public String adminInsertBook(BookVO vo) {
+			bookservice.adminInsertBook(vo);
+			return "redirect:admincollection";
+		}
+
+		// 도서 수정 폼
+		@RequestMapping("adminUpdateBookform")
+		public String adminUpdateBookform(Model model, BookVO vo) {
+			model.addAttribute("book", bookservice.adminGetBook(vo));
+			return "admin/book/adminUpdateBook";
+		}
+
+		// 도서 수정 처리
+		@RequestMapping("adminUpdateBook")
+		public String adminUpdateBook(BookVO vo) {
+			System.out.println(vo);
+			bookservice.adminUpdateBook(vo);
+			return "redirect:admincollection";
+		}
 
 	// 도서 목록에서 테이블 보기
 	@RequestMapping("table")
@@ -80,32 +123,7 @@ public class BookController {
 		 */
 	}
 
-	// 도서 등록 폼
-	@RequestMapping("insertBookform")
-	public String insertBookform(Model model, BookVO vo) {
-		return "book/insertBook";
-	}
-
-	// 도서 등록 처리
-	@RequestMapping("insertBook")
-	public String insertBook(BookVO vo) {
-		bookservice.insertBook(vo);
-		return "redirect:getBookList";
-	}
-
-	// 도서 수정 폼
-	@RequestMapping("updateBookform")
-	public String updateBookform(Model model, BookVO vo) {
-		model.addAttribute("book", bookservice.getBook(vo));
-		return "book/updateBook";
-	}
-
-	// 도서 수정 처리
-	@RequestMapping("/updateBook")
-	public String updateBook(BookVO vo) {
-		bookservice.updateBook(vo);
-		return "redirect:getBookList";
-	}
+	
 	////////////////////////////////////// 리뷰 컨트롤러
 	////////////////////////////////////// /////////////////////////////////////////////////
 

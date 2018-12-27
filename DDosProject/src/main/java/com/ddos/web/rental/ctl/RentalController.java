@@ -28,7 +28,8 @@ public class RentalController {
 		return "rental/getRentalList";
 	}
 	
-	// 현황조회?
+	// 대출반납 전체 이력
+	
 	
 	//대출
 	@RequestMapping("/rentalBook")

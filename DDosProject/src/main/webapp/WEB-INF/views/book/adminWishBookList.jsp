@@ -49,9 +49,7 @@
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
 				
-				<c:if test="${not empty sessionScope.login}">
-		${sessionScope.login.id} 님
-				</c:if>
+		
 
 				<!-- 도서 검색창 -->
 				<!-- 관리자 페이지로 넣어야될꺼 같은데...음 -->
@@ -66,6 +64,8 @@
 					</select> <input type="text" name="searchKeyword">
 					<button>검색</button>
 				<input type="hidden" name="page" />
+				
+				
 				</form>
 
 				<input type="button" style="float: right" onclick="location.href='./adminInsertWishBookform'" value="신청하기"

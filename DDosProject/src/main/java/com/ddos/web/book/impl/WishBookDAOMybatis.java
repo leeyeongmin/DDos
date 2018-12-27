@@ -50,6 +50,11 @@ public class WishBookDAOMybatis {
 			System.out.println("admin  희망도서 mybatis 선택 삭제 실행");
 			mybatis.delete("wishbook.adminDeleteWishBookList", vo);
 		}
+		
+		// 전체 건수 조회
+		public int getCount(WishBookVO vo) {
+			return mybatis.selectOne("wishbook.getCount", vo);
+		}
 
 		
 	

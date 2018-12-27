@@ -24,4 +24,34 @@ public class StatisticsDAOMYBatis {
 	public Map<String, Object> readChart_lastweekday(){
 		return mybatis.selectOne("Statics.readChart_lastweek");
 	}
+	
+	public Map<String, Object> BookChart_history() {
+		// TODO Auto-generated method stub
+		return mybatis.selectOne("Statics.BookChart_history");
+	}
+
+
+	public Map<String, Object> BookChart_total() {
+		// TODO Auto-generated method stub
+		return mybatis.selectOne("Statics.BookChart_total");
+	}
+
+
+	public Map<String, Object> BookChart_art() {
+		// TODO Auto-generated method stub
+		return mybatis.selectOne("Statics.BookChart_art");
+	}
+
+
+	public Map<String, Object> BookChart_science() {
+		// TODO Auto-generated method stub
+		return mybatis.selectOne("Statics.BookChart_science");
+	}
+
+
+	public Map<String, Object> BookChart_language() {
+		// TODO Auto-generated method stub
+		return mybatis.selectOne("Statics.BookChart_language");
+	}
+
 }

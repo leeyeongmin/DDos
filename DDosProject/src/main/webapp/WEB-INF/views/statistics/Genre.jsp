@@ -16,10 +16,12 @@
 <link rel="stylesheet" href="assets/libs/css/style.css">
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="//www.google.com/jsapi"></script>
 <title>DDos</title>
 
 <script>
-window.onload = function () {
+/* window.onload = function () {
 
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
@@ -52,7 +54,58 @@ var chart = new CanvasJS.Chart("chartContainer", {
 });
 chart.render();
 
-}
+} */
+
+	
+	google.load('visualization', '1.0', {'packages':['corechart']});
+	google.setOnLoadCallback(book_chart);
+
+	//chartContainer
+	function book_chart(){
+		
+		
+		$.ajax({
+			url : "bookChart", 	
+			method : "post", 
+			async: false,
+			success : function(datas) {
+				var data = new google.visualization.arrayToDataTable([
+					 ['genre' , '권' , {role : 'style'}],
+					 ["철학 및 역사",  datas.History.cnt, 'blue'],
+				     ["총류",  datas.Total.cnt, 'orange'],
+				     ["예술",  datas.art.cnt, 'yellow'],
+				     ["과학",  datas.Science.cnt, 'red'],
+				     ["언어 및 문학",  datas.Language.cnt, 'green']
+				]);
+			/* 	data.addColumn('string', 'genre');
+				data.addColumn('number', '권');
+				data.addColumn(role ,  'style');
+				
+				data.addRows([
+				        ["철학 및 역사",  datas.History.cnt, 'blue'],
+				        ["총류",  datas.Total.cnt, 'orange'],
+				        ["예술",  datas.art.cnt, 'yellow'],
+				        ["과학",  datas.Science.cnt, 'red'],
+				        ["언어 및 문학",  datas.Language.cnt, 'green']
+				]); */
+				 
+				var options = {
+				          title: '장르별 책 대여 현황 ',
+				          is3D: true,
+				          colors: ['blue', 'gray' , 'yellow', 'red', 'orange'],
+				          vAxis : { format : '0'},
+				          legend : {position : 'none' } // 항목 표시 여부 (현재 설정은 안함)
+				 };
+
+					      var chart = new google.visualization.ColumnChart(
+					        document.getElementById('chartContainer'));
+
+					      chart.draw(data, options);
+			}
+		});//ajax
+
+	}
+	
 </script>
 </head>
 <!-- ============================================================== -->
@@ -126,7 +179,7 @@ chart.render();
 					<!-- end search bar  -->
 					<!-- ============================================================== -->
 					<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+				<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 				</div>
 				<div class="row"
@@ -135,7 +188,7 @@ chart.render();
 					<!-- start list  -->
 					<!-- ============================================================== -->
 					
-					<h3 class="mb-2" style="text-align:center;">Income Statistics</h3>
+					<h3 class="mb-2" style="text-align:center;">도서 대여 횟수 </h3> 
 					
 					
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -148,8 +201,8 @@ chart.render();
 											<tr>
 												<th width="40%">ID</th>
 												<th width="20%">NAME</th>
-												<th width="20%">DATE</th>
-												<th width="40%">PRICE</th>
+												<th width="20%">COUNT</th>
+												<th width="40%">PHONE</th>
 											</tr>
 										</thead>
 										<tbody id=expenditureList>

@@ -24,8 +24,6 @@ public class BookController {
 	@Autowired
 	ReviewService reviewservice;
 	
-
-
 	// admin
 	// 도서 목록보기
 	@RequestMapping(value = "admincollection")

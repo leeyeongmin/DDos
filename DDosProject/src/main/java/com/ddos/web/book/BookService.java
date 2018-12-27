@@ -28,5 +28,6 @@ public interface BookService {
 	// 전체 건수
 	public int getCount(BookVO vo);
 	
+	
 
 }

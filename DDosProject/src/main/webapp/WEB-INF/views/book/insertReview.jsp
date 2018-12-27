@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- bar-rating -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> 
+<link rel="stylesheet" href="/[경로]/fontawesome-stars.css"> 
+
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+<script type="text/javascript" src="main\webapp\WEB-INF\views\book\jquery.barrating.min.js">
 
+</script>
+</head>
 <body>
 	<div class="dashboard-main-wrapper">
 		<!-- ============================================================== -->
@@ -62,8 +68,9 @@
 									<textarea class="form-control" name="reviewCont" rows="3"></textarea>
 								</div>
 								<div class="form-group">
-									<label for="input-select">평점</label> <select
-										class="form-control" name="reviewPoint">
+									<label for="input-select">별점</label> 
+									<select class="form-control" name="reviewPoint" id="reviewPoint">
+										<option value='' selected>-- 선택 --</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>

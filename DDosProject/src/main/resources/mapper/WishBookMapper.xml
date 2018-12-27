@@ -47,7 +47,7 @@
 	<!-- 희망도서 수정-->
 	<update id="adminUpdateWishBook" parameterType="wishbook">
 		UPDATE WISH_BOOK SET WISH_TITLE= #{wishTitle}, WISH_WRITER= #{wishWriter}, WISH_COMP= #{wishComp}, 
-							WISH_GENRE= #{wishGenre}, WISH_PRICE= #{wishPrice}
+							WISH_GENRE= #{wishGenre}, WISH_PRICE= #{wishPrice}, WISH_STATUS= #{wishStatus}
 		WHERE 	ISBN= ${isbn}
 	</update>
 

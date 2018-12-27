@@ -228,6 +228,13 @@
 			<version>12.1.0.2</version>
 		</dependency>
 
+		<!-- 이메일 전송 드라이버 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

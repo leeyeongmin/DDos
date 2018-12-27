@@ -43,22 +43,27 @@
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="section-block" id="basicform"></div>
 						<div class="card-body">
+						<i class="fas fa-star" style="color:red;">필수값을 입력해주세요.</i> 
 							<form action="insertWishBook" method="post">
 								<div class="form-group">
 									<label for="inputText3" class="col-form-label">회원ID&nbsp;</label><input
 										name="memberId" type="hidden" value="${sessionScope.login.id}">${sessionScope.login.id}
 								</div>
 								<div class="form-group">
-									<label for="inputText3" class="col-form-label">ISBN</label> <input
-										name="isbn" type="text" class="form-control" required>
+									<label for="inputText3" class="col-form-label">
+									<i class="fas fa-star" style="color:red;" ></i>
+									ISBN</label> <input
+										name="isbn" type="text" class="form-control" required> 
 								</div>
 								<div class="form-group">
-									<label for="inputText3" class="col-form-label">도서명</label> <input
+									<label for="inputText3" class="col-form-label">
+									<i class="fas fa-star" style="color:red;" ></i>도서명</label> <input
 										name="wishTitle" type="text" class="form-control" required>
 								</div>
 
 								<div class="form-group">
-									<label for="inputText3" class="col-form-label">저자</label> <input
+									<label for="inputText3" class="col-form-label">
+									<i class="fas fa-star" style="color:red;" ></i>저자</label> <input
 										name="wishWriter" type="text" class="form-control" required>
 								</div>
 								<div class="form-group">
@@ -67,7 +72,7 @@
 								</div>
 								<div class="form-group">
 									<label for="inputText3" class="col-form-label">가격</label> <input
-										name="wishPrice" type="text" class="form-control" required>
+										name="wishPrice" type="text" class="form-control">
 								</div>
 								<div class="form-group">
 									<label for="input-select">장르</label> <select

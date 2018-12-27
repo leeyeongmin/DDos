@@ -50,6 +50,7 @@ public class StatisticsController {
 		map.put("yesterday", serivce.readChart_yester());
 		map.put("lastweekend", serivce.readChart_lastWeekend());
 		map.put("lastweekday", serivce.readChart_lastweekday());
+		
 		return map;
 	
 	}

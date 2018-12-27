@@ -20,5 +20,9 @@ public class RentalDAOMybatis {
 		System.out.println(vo);
 		return mybatis.selectList("rental.getRentalList", vo);
 	}
+	
+	public void rentalBook(RentalVO vo) {
+		mybatis.update("rental.rentalBook", vo);
+	}
 
 }

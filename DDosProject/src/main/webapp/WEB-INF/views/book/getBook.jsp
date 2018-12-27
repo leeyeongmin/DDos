@@ -14,6 +14,21 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+function rentalBook() {
+	$.ajax({
+		url : "rentalBook",
+		data : {loginId:"${login.id}",isbn:"${book.isbn}"},
+		type: "post",
+		dataType:"json",
+		success: function(){
+		alter("대출 완료되었습니다");}
+	})
+	}
+</script>
+
 </head>
 
 <body>
@@ -65,7 +80,7 @@
 											style="font-size: 17px; margin: 25px; border-collapse =separate; border-spacing: 2px;">
 											<thead>
 												<tr>
-													<th>ISBN&nbsp;</th>
+													<th>ISBN &nbsp;</th>
 													<th>${book.isbn}</th>
 												</tr>
 												<tr>
@@ -95,9 +110,7 @@
 										</table>
 
 
-										<a href="#" class="btn btn-primary">대출</a> <a
-											href="./updateBookform?isbn=${book.isbn}"
-											class="btn btn-space btn-secondary">수정</a>
+										<input type="button"  class="btn btn-primary" onclick="rentalBook();" value="대출">
 									</div>
 								</div>
 							</div>
@@ -128,13 +141,12 @@
 											</h5>
 											<div class="card-body">
 												<ul class="list-unstyled">
-													<c:forEach items="${review}" var="review">
 														<li class="media">
 															<div class="media-body">
 																<table class="table">
 																	<thead>
 																		<tr>
-																			<th scope="row" width="30%">제목</th>
+																			<th scope="row" style="width:30%">제목</th>
 																			<th scope="row" width="30%">내용</th>
 																			<th scope="row" width="20%">별점</th>
 																			<th scope="row" width="20%">작성일자</th>
@@ -142,13 +154,16 @@
 																		</tr>
 																	</thead>
 																	<tbody>
+																	<c:forEach items="${review}" var="review">
 																		<tr>
 																			<td>${review.reviewTitle}</td>
 																			<td>${review.reviewCont}</td>
 																			<td>${review.reviewPoint}</td>
 																			<td>${review.reviewDate}</td>
 																		</tr>
+																		</c:forEach>
 																	</tbody>
+																	
 																		<!-- <c:if test="${login.id == review.memberId}">  -->
 																			<td colspan="2">
 																			<a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
@@ -156,10 +171,10 @@
 																			<a href="./deleteReview?reviewNum=${review.reviewNum}"
 																				class="btn btn-space btn-secondary">삭제</a></td>
 																			<!-- </c:if> -->
+																			
 																</table>
 															</div>
 														</li>
-													</c:forEach>
 												</ul>
 											</div>
 										</div>

@@ -19,6 +19,10 @@
 	</where>
 </select>
 
-
+	<!--  대출 -->
+	<insert id="rentalBook" statementType="CALLABLE">
+	{call P_rental(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
+					#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string})
+	</insert>
 
 </mapper>

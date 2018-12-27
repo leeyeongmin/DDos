@@ -159,7 +159,7 @@ margin-top:2%;
                                             <a class="nav-link" href="wishbook?loginId=${login.id}">WishBook <span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="book" >Collection</a>
+                                            <a class="nav-link" href="getBookList" >Collection</a>
                                               </li>
                                               <li class="nav-item">
                                             <a class="nav-link" href="rental?loginId=${login.id}" >borrow</a>

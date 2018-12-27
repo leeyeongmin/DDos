@@ -25,4 +25,11 @@ public class RentalServiceImpl implements RentalService{
 		return null;
 	}
 
+	//대출
+	@Override
+	public void rentalBook(RentalVO vo) {
+		rda.rentalBook(vo);
+		
+	}
+
 }

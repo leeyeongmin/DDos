@@ -148,10 +148,10 @@ margin-top:2%;
                                 <div id="submenu-2" class="submenu collapse show" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="adminwishbook">WishBook <span class="badge badge-secondary">New</span></a>
+                                            <a class="nav-link" href="adminwishbook">WishBook<span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="admincollection" >Collection</a>
+                                            <a class="nav-link" href="admincollection">Collection</a>
                                               </li>
                                                   <li class="nav-item">
                                             <a class="nav-link" href="adminreturn" >Return</a>

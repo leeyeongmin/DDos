@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.ddos.web.book.BookVO;
 import com.ddos.web.book.WishBookService;
 import com.ddos.web.book.WishBookVO;
+import com.ddos.web.paging.PagingVO;
 import com.ddos.web.user.UserVO;
 
 
@@ -20,7 +23,7 @@ public class WishBookController {  //희망도서 controller
 	
 	//admin
 	//메인에서 희망으로
-	@RequestMapping("/adminwishbook")
+	@RequestMapping("adminwishbook")
 	public String adminWishBookList(Model model, WishBookVO vo) {
 		//vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("adminWishBookList", wishBookService.adminWishBookList(vo));

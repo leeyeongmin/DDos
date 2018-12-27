@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +65,7 @@
 						<option value="memberId">회원ID
 					</select> <input type="text" name="searchKeyword">
 					<button>검색</button>
+				<input type="hidden" name="page" />
 				</form>
 
 				<input type="button" style="float: right" onclick="location.href='./adminInsertWishBookform'" value="신청하기"
@@ -108,6 +109,13 @@
 							</div>
 						</div>
 					</div>
+					<my:paging paging="${paging}" />
+							<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script>
 			</div>
 		</div>
 	</div>

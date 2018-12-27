@@ -64,42 +64,41 @@
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishWriter">저자</label>
-											<div class="form-control" id="wishWriter">"${wishbook.wishWriter}</div>
+											<div class="form-control" id="wishWriter">${wishbook.wishWriter}</div>
 										</div>
 										<div class="col-md-6 mb-3">
 											<label for="wishComp">출판사</label>
-											<div class="form-control" id="wishComp">"${wishbook.wishComp}"</div>
+											<div class="form-control" id="wishComp">${wishbook.wishComp}</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishPrice">가격</label>
-											<div class="form-control" id="wishPrice">"${wishbook.wishPrice}"</div>
+											<div class="form-control" id="wishPrice">${wishbook.wishPrice}</div>
 										</div>
 										<div class="col-md-6 mb-3">
 										<label for="wishGenre">장르</label>
-										<div class="form-control" id="wishGenre">"${wishbook.wishGenre}"</div>
+										<div class="form-control" id="wishGenre">${wishbook.wishGenre}</div>
 									</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6 mb-3">
 											<label for="wishReason">사유</label>
-											<textarea class="form-control" id="wishReason">"${wishbook.wishReason}"</textarea >
+											<textarea class="form-control" id="wishReason">${wishbook.wishReason}</textarea >
 										</div>
-									</div>
+									
 									<c:if test ="${login.id == wishbook.memberId}">
-									 
 									<a href="./wishbook" class="btn btn-secondary">취소</a>
 									</c:if>
+									
 								</form>
-
+</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
 </body>
 </html>
 

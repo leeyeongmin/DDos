@@ -75,7 +75,7 @@
 										<table class="table">
 											<thead class="bg-light">
 												<tr class="border-0">
-													<td class="border-0">등록 번호</td>
+													
 													<th class="border-0">회원ID &nbsp;</th>
 													<th class="border-0">ISBN</th>
 													<th class="border-0">도서명</th>
@@ -88,8 +88,7 @@
 											<tbody id=wishBookList>
 												<c:forEach items="${wishBookList}" var="wishbook">
 													<tr>
-														<td><input type="checkbox" name="numlist"
-															value="${wishbook.wishNum}"></td>
+														
 														<td>${wishbook.memberId}</td>
 														<td>${wishbook.isbn}</td>
 														<td><a href="./getWishBook?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>

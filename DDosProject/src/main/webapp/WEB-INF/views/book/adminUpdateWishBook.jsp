@@ -77,6 +77,18 @@
 											<input type="text" class="form-control" name="wishPrice" value="${wishbook.wishPrice}">
 										</div>
 										<div class="col-md-6 mb-3">
+										<label for="wishStatus">상태</label> <select class="form-control" name="wishStatus"
+												value="${wishbook.wishStatus}">
+												
+												<option value="${wishbook.wishStatus}">${wishbook.wishStatus}</option>
+												<option value="취소">취소</option>
+												<option value="처리완료">처리완료</option>
+												<option value="주문중">주문중</option>
+											</select>
+									</div>
+									</div>
+									<div class="row">
+									<div class="col-md-6 mb-3">
 										<label for="wishGenre">장르</label> <select class="form-control" name="wishGenre"
 												value="${wishbook.wishGenre}">
 												<option value="${wishbook.wishGenre}">${wishbook.wishGenre}</option>
@@ -87,8 +99,6 @@
 												<option value="언어 및 문학">언어 및 문학</option>
 											</select>
 									</div>
-									</div>
-									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishReason">사유</label>
 											<textarea class="form-control" name="wishReason" value="${wishbook.wishReason}" readonly></textarea >

@@ -24,14 +24,34 @@ public class BookController {
 	@Autowired
 	ReviewService reviewservice;
 	
-	//admin 
+
+
+	// admin
 	// 도서 목록보기
-	@RequestMapping("/admincollection")
+	@RequestMapping(value = "admincollection")
+	public ModelAndView adminGetBookList(Model model, BookVO vo, PagingVO paging) {
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(bookservice.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("adminGetBookList", bookservice.adminGetBookList(vo));
+		mv.setViewName("admin/book/adminGetBookList");
+		return mv;
+		
+	}
+/*	@RequestMapping("/admincollection")
 	public String adminGetBookList(Model model, BookVO vo) {
 		model.addAttribute("adminGetBookList", bookservice.adminGetBookList(vo));
 		return "admin/book/adminGetBookList";
-	}
-	//한건 조회
+	}*/
+
+	// 한건 조회
 	@RequestMapping("adminGetBook")
 	public String adminGetBook(Model model, BookVO vo, ReviewVO rvo) {
 		model.addAttribute("book", bookservice.adminGetBook(vo));
@@ -39,33 +59,34 @@ public class BookController {
 		return "admin/book/adminGetBook";
 
 	}
+
 	// 도서 등록 폼
-		@RequestMapping("adminInsertBookform")
-		public String adminInsertBookform(Model model, BookVO vo) {
-			return "admin/book/adminInsertBook";
-		}
+	@RequestMapping("adminInsertBookform")
+	public String adminInsertBookform(Model model, BookVO vo) {
+		return "admin/book/adminInsertBook";
+	}
 
-		// 도서 등록 처리
-		@RequestMapping("adminInsertBook")
-		public String adminInsertBook(BookVO vo) {
-			bookservice.adminInsertBook(vo);
-			return "redirect:admincollection";
-		}
+	// 도서 등록 처리
+	@RequestMapping("adminInsertBook")
+	public String adminInsertBook(BookVO vo) {
+		bookservice.adminInsertBook(vo);
+		return "redirect:admincollection";
+	}
 
-		// 도서 수정 폼
-		@RequestMapping("adminUpdateBookform")
-		public String adminUpdateBookform(Model model, BookVO vo) {
-			model.addAttribute("book", bookservice.adminGetBook(vo));
-			return "admin/book/adminUpdateBook";
-		}
+	// 도서 수정 폼
+	@RequestMapping("adminUpdateBookform")
+	public String adminUpdateBookform(Model model, BookVO vo) {
+		model.addAttribute("book", bookservice.adminGetBook(vo));
+		return "admin/book/adminUpdateBook";
+	}
 
-		// 도서 수정 처리
-		@RequestMapping("adminUpdateBook")
-		public String adminUpdateBook(BookVO vo) {
-			System.out.println(vo);
-			bookservice.adminUpdateBook(vo);
-			return "redirect:admincollection";
-		}
+	// 도서 수정 처리
+	@RequestMapping("adminUpdateBook")
+	public String adminUpdateBook(BookVO vo) {
+		System.out.println(vo);
+		bookservice.adminUpdateBook(vo);
+		return "redirect:admincollection";
+	}
 
 	// 도서 목록에서 테이블 보기
 	@RequestMapping("table")
@@ -81,31 +102,29 @@ public class BookController {
 	}
 
 	// 도서 전체 목록 조회
-	/*	@RequestMapping("getBookList")
-	public String getBookList(Model model, BookVO vo) {
-		model.addAttribute("bookList", bookservice.getBookList(vo));
-		return "book/getBookList";
-	}*/
-	
-@RequestMapping(value="/getBookList")
+	/*
+	 * @RequestMapping("getBookList") public String getBookList(Model model, BookVO
+	 * vo) { model.addAttribute("bookList", bookservice.getBookList(vo)); return
+	 * "book/getBookList"; }
+	 */
+
+	@RequestMapping(value = "/getBookList")
 	public ModelAndView getBookList(Model model, BookVO vo, PagingVO paging) {
-	ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView();
 		if (paging.getPage() == null) {
 			paging.setPage(1);
-			}
-		paging.setPageUnit(5);
-//first.last
+		}
+		paging.setPageUnit(10);
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
 
-//전체 레코드 건수
 		paging.setTotalRecord(bookservice.getCount(vo));
-
 		mv.addObject("paging", paging);
 		mv.addObject("getBookList", bookservice.getBookList(vo));
 		mv.setViewName("book/getBookList");
 		return mv;
 	}
+
 	// 도서 1건 조회 및 isbn으로 리뷰 조회
 	@RequestMapping("getBook")
 	public String getBook(Model model, BookVO vo, ReviewVO rvo) {
@@ -123,7 +142,6 @@ public class BookController {
 		 */
 	}
 
-	
 	////////////////////////////////////// 리뷰 컨트롤러
 	////////////////////////////////////// /////////////////////////////////////////////////
 
@@ -160,7 +178,7 @@ public class BookController {
 		model.addAttribute("book", bookservice.getBook(vo));
 		model.addAttribute("review", reviewservice.getReviewList(rvo));
 
-		return "book/getBook";
+		return "book/getBook?isbn=" + rvo.getIsbn();
 		// return "redirect:getBook";
 	}
 
@@ -180,13 +198,13 @@ public class BookController {
 		vo.setIsbn(rvo.getIsbn());
 		model.addAttribute("book", bookservice.getBook(vo));
 		model.addAttribute("review", reviewservice.getReviewList(rvo));
-		return "book/getBook";
+		return "book/getBook?isbn=" + rvo.getIsbn();
 	}
 
 	// 리뷰 삭제
 	@RequestMapping("deleteReview")
 	public String deleteReview(Model model, ReviewVO rvo) {
 		reviewservice.deleteReview(rvo);
-		return "redirect:getBookList";
+		return "redirect:getBook?isbn=" + rvo.getIsbn();
 	}
 }

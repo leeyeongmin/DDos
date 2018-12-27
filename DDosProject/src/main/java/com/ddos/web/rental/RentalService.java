@@ -10,5 +10,9 @@ public interface RentalService {
 	
 	//대출 이력 조회
 	public RentalVO getRental(RentalVO vo);
+	
+	//대출
+	public void rentalBook(RentalVO vo);
+
 
 }

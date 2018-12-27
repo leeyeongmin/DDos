@@ -79,7 +79,8 @@
 									<div class="notification-title">Notification</div>
 									<div class="notification-list">
 										<div class="list-group">
-											<a href="#" class="list-group-item list-group-item-action active">
+											<a href="#"
+												class="list-group-item list-group-item-action active">
 												<form action="getMessageList">
 													<c:forEach items="${messageList}" var="message">
 														<div class="notification-info">
@@ -144,9 +145,8 @@
 
 							<li class="nav-divider">Function</li>
 
+						
 							<!-- =============================== -->
-
-
 							<li class="nav-item"><a class="nav-link" href="#"
 								data-toggle="collapse" aria-expanded="true"
 								data-target="#submenu-2" aria-controls="submenu-2"><i
@@ -156,13 +156,12 @@
 										<li class="nav-item"><a class="nav-link"
 											href="wishbook?loginId=${login.id}">WishBook <span
 												class="badge badge-secondary">New</span></a></li>
-										<li class="nav-item"><a class="nav-link" href="book">Collection</a>
-										</li>
+										<li class="nav-item"><a class="nav-link"
+											href="getBookList">Collection</a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="rental?loginId=${login.id}">borrow</a></li>
 									</ul>
 								</div></li>
-							<!-- =============================== -->
 
 							<li class="nav-item "><a class="nav-link" href="read"> <i
 									class="fab fa-fw fa-wpforms"></i> Seat Setting
@@ -175,45 +174,19 @@
 							<li class="nav-item"><a class="nav-link" href="eventList">
 									<i class="fas fa-fw fa-columns"></i> Events
 							</a></li>
+
+
+
 							<li class="nav-item"><a class="nav-link"
-								href="UsergetNoticeList"> <i class="fas fa-bullhorn"></i>
+								href="UsergetNoticeList"> <i class="fas fa-bullhorn"></i>Notice
+							</a></li>
 
-									<li class="nav-item"><a class="nav-link" href="#"
-										data-toggle="collapse" aria-expanded="true"
-										data-target="#submenu-2" aria-controls="submenu-2"><i
-											class="fas fa-book"></i>Library</a>
-										<div id="submenu-2" class="submenu collapse show" style="">
-											<ul class="nav flex-column">
-												<li class="nav-item"><a class="nav-link"
-													href="wishbook?loginId=${login.id}">WishBook <span
-														class="badge badge-secondary">New</span></a></li>
-												<li class="nav-item"><a class="nav-link"
-													href="getBookList">Collection</a></li>
-												<li class="nav-item"><a class="nav-link"
-													href="rental?loginId=${login.id}">borrow</a></li>
-											</ul>
-										</div></li> <!-- =============================== -->
 
-									<li class="nav-item "><a class="nav-link" href="read">
-											<i class="fab fa-fw fa-wpforms"></i> Seat Setting
-									</a></li>
-
-									<li class="nav-item"><a class="nav-link"
-										href="getStudyList"> <i class="fas fa-fw fa-file"></i>
-											Study & Study Room
-									</a></li>
-
-									<li class="nav-item"><a class="nav-link" href="eventList">
-											<i class="fas fa-fw fa-columns"></i> Events
-									</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="UsergetNoticeList"> <i class="fas fa-bullhorn"></i>
-									</a></li>
-
-									<li class="nav-item"><a class="nav-link"
-										href="getSuggestionList"> <i class="fas fa-comment-dots"></i>
-											Suggestion
-									</a></li> <!-- <li class="nav-item">
+							<li class="nav-item"><a class="nav-link"
+								href="getSuggestionList"> <i class="fas fa-comment-dots"></i>
+									Suggestion
+							</a></li>
+							<!-- <li class="nav-item">
 								<a class="nav-link" href="#">
 									<i class="fas fa-fw fa-map-marker-alt"></i>
 									Maps

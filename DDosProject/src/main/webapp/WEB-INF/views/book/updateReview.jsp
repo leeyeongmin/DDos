@@ -48,13 +48,13 @@
 											class="table table-bordered table-hover text-center">
 											<tr>
 												<td>ISBN</td>
-												<td><input type="text" name="isbn"
-													value="${review.isbn}" style="width: 100%" required></td>
+												<td><input type="hidden" name="isbn"
+													value="${review.isbn}" style="width: 100%" required>${review.isbn}</td>
 											</tr>
 											<tr>
 												<td>번호</td>
-												<td><input type="text" name="reviewNum"
-													value="${review.reviewNum}" style="width: 100%" required></td>
+												<td><input type="hidden" name="reviewNum"
+													value="${review.reviewNum}" style="width: 100%" required>${review.reviewNum}</td>
 											</tr>
 											<tr>
 												<td>제목</td>
@@ -70,7 +70,6 @@
 												<td>별점</td>
 												<td><select class="form-control" name="reviewPoint"
 													value="${review.reviewPoint}">
-														<option value="${review.reviewPoint}">${review.reviewPoint}</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>

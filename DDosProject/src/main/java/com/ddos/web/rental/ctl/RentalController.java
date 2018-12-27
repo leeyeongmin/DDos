@@ -1,5 +1,7 @@
 package com.ddos.web.rental.ctl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,7 @@ import com.ddos.web.user.UserVO;
 @Controller
 public class RentalController {
 	
-	@Autowired
-	RentalService rentalService;
+	@Autowired 	RentalService rentalService;
 	
 	//메인에서 대출이력조회
 	@RequestMapping("/rental")
@@ -37,6 +38,28 @@ public class RentalController {
 	public void rentalBook(RentalVO vo) {
 		rentalService.rentalBook(vo);
 	}
+	
+	//반납페이지로
+	@RequestMapping("adminreturn")
+	public String adminreturn() {
+		return "admin/rental/ReturnBook";
+	}
+	
+	//반납 리스트
+	@RequestMapping("rentalSearch")
+	@ResponseBody
+	public List<RentalVO> rental_search(RentalVO vo){
+		return rentalService.rentalSearch(vo);
+	}
+	
+	//반납
+	@RequestMapping("returnBook")
+	@ResponseBody
+	public void ReturnBook(RentalVO vo) {
+		rentalService.returnBook(vo);
+	}
+	
+	
 
 	
 	

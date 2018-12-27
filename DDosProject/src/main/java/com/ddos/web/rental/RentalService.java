@@ -13,6 +13,12 @@ public interface RentalService {
 	
 	//대출
 	public void rentalBook(RentalVO vo);
+	
+	//반납
+	public void returnBook(RentalVO vo);	
+
+	//반납 리스트
+	public List<RentalVO> rentalSearch(RentalVO vo);			//검색 된 목록 
 
 
 }

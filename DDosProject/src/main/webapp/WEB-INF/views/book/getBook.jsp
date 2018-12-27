@@ -24,7 +24,8 @@ function rentalBook() {
 		type: "post",
 		dataType:"json",
 		success: function(){
-		alter("대출 완료되었습니다");}
+		alter("대출 완료되었습니다");
+		location.href="./getRentalList"}
 	})
 	}
 </script>

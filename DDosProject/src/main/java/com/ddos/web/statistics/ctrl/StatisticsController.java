@@ -52,7 +52,22 @@ public class StatisticsController {
 		map.put("lastweekday", serivce.readChart_lastweekday());
 		
 		return map;
+	}
 	
+	@RequestMapping("bookChart")
+	@ResponseBody
+	public Map<String, Object> bookChart(){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("History", serivce.BookChart_history());
+		map.put("Total", serivce.BookChart_total());
+		map.put("art", serivce.BookChart_art());
+		map.put("Science", serivce.BookChart_science());
+		map.put("Language", serivce.BookChart_language());
+		
+		return map;
+		
 	}
 	
 }

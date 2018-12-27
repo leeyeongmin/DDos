@@ -30,5 +30,45 @@
 		 and  TRUNC(sysdate, 'd')-2) use
 	</select>
 
+	<select id="BookChart_history" resultType="map">
+		  select  NVL(count(*),0) "cnt"
+   		  from book b , rental r
+   	  	  where b.ISBN = r.ISBN
+   	  	  and rental_date between sysdate-7 and sysdate
+   	  	  and b.book_loc = '철학 및 역사'
+	</select>
+
+	<select id="BookChart_total" resultType="map">
+		  select  NVL(count(*),0) "cnt"
+   		  from book b , rental r
+   	  	  where b.ISBN = r.ISBN
+   	  	  and rental_date between sysdate-7 and sysdate
+   	  	  and b.book_loc = '총류'
+	</select>
+	
+		<select id="BookChart_art" resultType="map">
+		  select  NVL(count(*),0) "cnt"
+   		  from book b , rental r
+   	  	  where b.ISBN = r.ISBN
+   	  	  and rental_date between sysdate-7 and sysdate
+   	  	  and b.book_loc = '예술'
+	</select>
+	
+		<select id="BookChart_science" resultType="map">
+		  select  NVL(count(*),0) "cnt"
+   		  from book b , rental r
+   	  	  where b.ISBN = r.ISBN
+   	  	  and rental_date between sysdate-7 and sysdate
+   	  	  and b.book_loc = '과학'
+	</select>
+	
+		<select id="BookChart_language" resultType="map">
+		  select  NVL(count(*),0) "cnt"
+   		  from book b , rental r
+   	  	  where b.ISBN = r.ISBN
+   	  	  and rental_date between sysdate-7 and sysdate
+   	  	  and b.book_loc = '언어 및 문학'
+	</select>
+
 </mapper> 
 

@@ -4,70 +4,107 @@
 <mapper namespace="Statics">
 
 	<select id="readChart_yester" resultType="map">
-		select nvl(round(use.cnt / readingroom.cnt ,2), 0) "use"  
+		select
+		nvl(round(use.cnt / readingroom.cnt ,2), 0) "use"
 		from
 		(select count(*) * 12 cnt from readingroom ) readingroom,
-		(select sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from readingroom_history 
- 		where to_char(start_time,'yyyy-mm-dd') = to_char(sysdate-1,'yyyy-mm-dd')) use
+		(select
+		sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from
+		readingroom_history
+		where to_char(start_time,'yyyy-mm-dd') = to_char(sysdate-1,'yyyy-mm-dd'))
+		use
 	</select>
 
 	<select id="readChart_lastend" resultType="map">
-		select nvl(round(use.cnt / readingroom.cnt ,2),0) "use"  
+		select
+		nvl(round(use.cnt / readingroom.cnt ,2),0) "use"
 		from
-		(select count(*) * 12  * 2 cnt from readingroom ) readingroom,
-		(select sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from readingroom_history 
-		 where to_char(start_time,'yyyy-mm-dd') = TRUNC(sysdate, 'd')
-		 or  to_char(start_time,'yyyy-mm-dd') = TRUNC(sysdate, 'd')-1) use
+		(select count(*) * 12 * 2 cnt from readingroom ) readingroom,
+		(select
+		sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from
+		readingroom_history
+		where to_char(start_time,'yyyy-mm-dd') = TRUNC(sysdate, 'd')
+		or to_char(start_time,'yyyy-mm-dd') = TRUNC(sysdate, 'd')-1) use
 	</select>
 
 
 	<select id="readChart_lastweek" resultType="map">
-		select nvl(round(use.cnt / readingroom.cnt ,2), 0) "use"   
+		select
+		nvl(round(use.cnt / readingroom.cnt ,2), 0) "use"
 		from
-		(select count(*) * 12  * 5 cnt from readingroom ) readingroom,
-		(select sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from readingroom_history 
-		 where to_char(start_time,'yyyy-mm-dd') between TRUNC(sysdate, 'd')-6
-		 and  TRUNC(sysdate, 'd')-2) use
+		(select count(*) * 12 * 5 cnt from readingroom ) readingroom,
+		(select
+		sum(TO_char(end_time, 'HH24')- TO_char(start_time, 'HH24')) cnt from
+		readingroom_history
+		where to_char(start_time,'yyyy-mm-dd') between TRUNC(sysdate, 'd')-6
+		and TRUNC(sysdate, 'd')-2) use
 	</select>
 
 	<select id="BookChart_history" resultType="map">
-		  select  NVL(count(*),0) "cnt"
-   		  from book b , rental r
-   	  	  where b.ISBN = r.ISBN
-   	  	  and rental_date between sysdate-7 and sysdate
-   	  	  and b.book_loc = '철학 및 역사'
+		select NVL(count(*),0) "cnt"
+		from book b , rental r
+		where b.ISBN = r.ISBN
+		and rental_date between sysdate-7 and sysdate
+		and b.book_loc = '철학 및 역사'
 	</select>
 
 	<select id="BookChart_total" resultType="map">
-		  select  NVL(count(*),0) "cnt"
-   		  from book b , rental r
-   	  	  where b.ISBN = r.ISBN
-   	  	  and rental_date between sysdate-7 and sysdate
-   	  	  and b.book_loc = '총류'
+		select NVL(count(*),0) "cnt"
+		from book b , rental r
+		where b.ISBN = r.ISBN
+		and rental_date between sysdate-7 and sysdate
+		and b.book_loc = '총류'
 	</select>
-	
-		<select id="BookChart_art" resultType="map">
-		  select  NVL(count(*),0) "cnt"
-   		  from book b , rental r
-   	  	  where b.ISBN = r.ISBN
-   	  	  and rental_date between sysdate-7 and sysdate
-   	  	  and b.book_loc = '예술'
+
+	<select id="BookChart_art" resultType="map">
+		select NVL(count(*),0) "cnt"
+		from book b , rental r
+		where b.ISBN = r.ISBN
+		and rental_date between sysdate-7 and sysdate
+		and b.book_loc = '예술'
 	</select>
-	
-		<select id="BookChart_science" resultType="map">
-		  select  NVL(count(*),0) "cnt"
-   		  from book b , rental r
-   	  	  where b.ISBN = r.ISBN
-   	  	  and rental_date between sysdate-7 and sysdate
-   	  	  and b.book_loc = '과학'
+
+	<select id="BookChart_science" resultType="map">
+		select NVL(count(*),0) "cnt"
+		from book b , rental r
+		where b.ISBN = r.ISBN
+		and rental_date between sysdate-7 and sysdate
+		and b.book_loc = '과학'
 	</select>
-	
-		<select id="BookChart_language" resultType="map">
-		  select  NVL(count(*),0) "cnt"
-   		  from book b , rental r
-   	  	  where b.ISBN = r.ISBN
-   	  	  and rental_date between sysdate-7 and sysdate
-   	  	  and b.book_loc = '언어 및 문학'
+
+	<select id="BookChart_language" resultType="map">
+		select NVL(count(*),0) "cnt"
+		from book b , rental r
+		where b.ISBN = r.ISBN
+		and rental_date between sysdate-7 and sysdate
+		and b.book_loc = '언어 및 문학'
+	</select>
+
+	<select id="toprental" resultType="map" >
+			
+		select member_id "memberId", book_comp "bookComp", m.name "name", m.phone "phone" 
+		from member m ,
+		(select rank() over(order by book_comp desc) rental_top, book_comp, member_id from (
+		<![CDATA[select count(*) book_comp , member_Id from rental where return_date between sysdate-7 and sysdate -1 group by member_id))
+		where rental_top <= 5
+		and m.id = member_id]]>
+	</select>
+
+	<select id="toprentalbook" resultType="map">
+		select rank_cnt "rankCnt", cnt "cnt", b.book_title "bookTitle", b.book_loc "bookLoc" from book b ,(
+		select rank() over(order by cnt desc) rank_cnt, cnt, isbn from (
+		<![CDATA[select count(*) cnt, isbn from rental where to_char(rental_date, 'yyyy-mm') = to_char(sysdate, 'yyyy-mm') group by isbn)) r 
+		where rank_cnt <= 5
+		and r.isbn = b.isbn]]>
+		
+	</select>
+
+	<select id="rentalCount" resultType="map">
+		select count(*) "cnt", to_char(rental_date,'mm/dd') "day"
+		from rental
+		where to_char(rental_date, 'yyyy/mm') = to_char(sysdate, 'yyyy/mm')
+		group by to_char(rental_date,'mm/dd')  
+		order by 2
 	</select>
 
 </mapper> 

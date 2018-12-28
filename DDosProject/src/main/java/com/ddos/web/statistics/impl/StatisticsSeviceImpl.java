@@ -1,5 +1,6 @@
 package com.ddos.web.statistics.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,24 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	public Map<String, Object> BookChart_language() {
 		// TODO Auto-generated method stub
 		return dao.BookChart_language();
+	}
+
+	@Override
+	public List<Map> toprental() {
+		// TODO Auto-generated method stub
+		return dao.toprental();
+	}
+
+	@Override
+	public List<Map> toprentalbook() {
+		// TODO Auto-generated method stub
+		return dao.toprentalbook();
+	}
+
+	@Override
+	public List<Map> rentalCount() {
+		// TODO Auto-generated method stub
+		return dao.rentalCount();
 	}
 
 

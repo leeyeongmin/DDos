@@ -1,6 +1,6 @@
 package com.ddos.web.statistics.ctrl;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,4 +70,23 @@ public class StatisticsController {
 		
 	}
 	
+	@RequestMapping("toprental")
+	@ResponseBody
+	public List<Map> topRental(){
+		
+		return serivce.toprental();
+	}
+	
+	
+	@RequestMapping("toprentalbook")
+	@ResponseBody
+	public List<Map> toprentalbook(){
+		return serivce.toprentalbook();
+	}
+	
+	@RequestMapping("rentalCount")
+	@ResponseBody
+	public List<Map> rentalCount(){
+		return serivce.rentalCount();
+	}	
 }

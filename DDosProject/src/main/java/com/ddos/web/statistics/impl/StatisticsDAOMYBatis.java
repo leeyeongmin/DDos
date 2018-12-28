@@ -1,10 +1,12 @@
 package com.ddos.web.statistics.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class StatisticsDAOMYBatis {
@@ -54,4 +56,15 @@ public class StatisticsDAOMYBatis {
 		return mybatis.selectOne("Statics.BookChart_language");
 	}
 
+	public List<Map> toprental(){
+		return mybatis.selectList("Statics.toprental");
+	}
+	
+	public List<Map> toprentalbook(){
+		return mybatis.selectList("Statics.toprentalbook");
+	}
+	
+	public List<Map> rentalCount(){
+		return mybatis.selectList("Statics.rentalCount");
+	}
 }

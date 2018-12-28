@@ -27,7 +27,7 @@ public interface BookService {
 	
 	// 전체 건수
 	public int getCount(BookVO vo);
-	
-	
+
+	public List<BookVO> apiBookList(String keyword, int display, int start);	
 
 }

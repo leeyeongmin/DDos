@@ -28,6 +28,13 @@ public class RentalController {
 		System.out.println("컨트롤 대출 이력 조회");
 		return "rental/getRentalList";
 	}
+	// 도서 연장
+	@RequestMapping("renewBook")
+	@ResponseBody
+	public void renewBook(RentalVO vo) {
+		rentalService.renewBook(vo);
+	}
+
 	
 	// 대출반납 전체 이력
 	
@@ -58,7 +65,6 @@ public class RentalController {
 	public void ReturnBook(RentalVO vo) {
 		rentalService.returnBook(vo);
 	}
-	
 	
 
 	

@@ -69,6 +69,7 @@
 								<input class="form-control" type="text" placeholder="Search..">
 							</div>
 						</li>
+						<!-- 별모양 -->
 						<li class="nav-item dropdown notification"><a
 							class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i

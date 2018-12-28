@@ -19,11 +19,23 @@
 	</where>
 </select>
 
+
 	<!--  대출 -->
 	<insert id="rentalBook" statementType="CALLABLE">
 	{call P_rental(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
 					#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string})
 	</insert>
+
+<!-- 연장 -->
+<insert id="renewBook"  statementType="CALLABLE">
+	{call P_rental
+	(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
+	#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
+	#{dueDate, mode=IN, jdbcType=VARCHAR, javaType=string},
+	#{renewCnt, mode=IN, jdbcType=VARCHAR, javaType=string})
+
+</insert>
+
 
 <!-- 반납 리스트-->
 <select id="rentalSearch" resultType="rental" parameterType="rental">

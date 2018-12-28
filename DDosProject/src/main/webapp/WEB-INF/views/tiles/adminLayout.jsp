@@ -143,22 +143,24 @@ margin-top:2%;
                             </li>
 							<li class="nav-divider">Function</li>
 							
-						 <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-book"></i>Library</a>
-                                <div id="submenu-2" class="submenu collapse show" style="">
+						<li class="nav-item">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-book"></i>Library</a>
+                                <div id="submenu-2" class="submenu collapse" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="adminWishBook">WishBook<span class="badge badge-secondary">New</span></a>
+                                            <a class="nav-link" href="adminWishBook">WishBook <span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="admincollection">Collection</a>
-                                              </li>
-                                                  <li class="nav-item">
-                                            <a class="nav-link" href="adminreturn" >Return</a>
-                                              </li>
-                                       </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="adminreturn">Return</a>
+                                        </li>
+                                        
+                                    </ul>
                                 </div>
                             </li>
+							
 							
 							<li class="nav-item ">
 								<a class="nav-link" href="adminread">
@@ -176,14 +178,14 @@ margin-top:2%;
 							
 							<li class="nav-item">
 								<a class="nav-link" href="getNoticeList">
-									<i class="fas fa-fw fa-columns"></i>
+									<i class="fas fa-bullhorn"></i>
 									Notice
 								</a>
 							</li>
 							
 							<li class="nav-item">
 								<a class="nav-link" href="AdmingetSuggestionList">
-									<i class="fas fa-fw fa-columns"></i>
+									<i class="fas fa-comment-dots"></i>
 									Suggestion
 								</a>
 							</li>
@@ -194,7 +196,23 @@ margin-top:2%;
 									Events
 								</a>
 							</li>
-							<li class="nav-divider">STATISTICS</li>
+							
+							
+							<li class="nav-item">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Chart</a>
+                                <div id="submenu-3" class="submenu collapse" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="GenreForm">STATISTICS</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="readingRoom">Reading Room</a>
+                                        </li>
+                                       
+                                    </ul>
+                                </div>
+                            </li>
+							<!-- <li class="nav-divider"></li>
 							<li class="nav-item">
 								<a class="nav-link" href="GenreForm">
 									<i class="fas fa-fw fa-columns"></i>
@@ -207,7 +225,7 @@ margin-top:2%;
 									Reading Room
 								</a>
 							</li>
-							
+							 -->
 							<li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-3"><i class="fa fa-fw fa-user-circle"></i>Assets</a>
                                 <div id="submenu-2" class="collapse submenu" style="">

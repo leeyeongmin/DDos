@@ -12,6 +12,26 @@ public class BookDAOMybatis {
 
 	@Autowired
 	private SqlSessionTemplate Mybatis;
+	
+	// 전체 건수 조회
+		public int getCount(BookVO vo) {
+			return Mybatis.selectOne("book.getCount", vo);
+		}
+		// 전체 조회
+		
+		
+		public List<BookVO> getBookList(BookVO vo) {
+			System.out.println("Mybatis getBookList 실행");
+			return Mybatis.selectList("book.getBookList", vo);
+		}
+
+		// 1건조회
+		public BookVO getBook(BookVO vo) {
+			System.out.println("Mybatis getbook 실행");
+			return Mybatis.selectOne("book.getBook", vo);
+
+		}
+		
 
 	// admin 
 	//전체 조회
@@ -41,22 +61,6 @@ public class BookDAOMybatis {
 	}
 	
 	
-	// 전체 건수 조회
-	public int getCount(BookVO vo) {
-		return Mybatis.selectOne("book.getCount", vo);
-	}
-	// 전체 조회
-	public List<BookVO> getBookList(BookVO vo) {
-		System.out.println("Mybatis getBookList 실행");
-		return Mybatis.selectList("book.getBookList", vo);
-	}
-
-	// 1건조회
-	public BookVO getBook(BookVO vo) {
-		System.out.println("Mybatis getbook 실행");
-		return Mybatis.selectOne("book.getBook", vo);
-
-	}
 	
 }
 

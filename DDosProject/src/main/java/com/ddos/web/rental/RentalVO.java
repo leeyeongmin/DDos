@@ -9,6 +9,7 @@ public class RentalVO {
 	private String memberId;
 	private String loginId;
 	private String dueDate;
+	private String renewCnt;
 	
 	private String searchTitle;
 	private String searchKeyword;
@@ -18,8 +19,16 @@ public class RentalVO {
 	private String bookWriter;
 	private String bookComp;
 	//
+	
+	
 	public String getBookWriter() {
 		return bookWriter;
+	}
+	public String getRenewCnt() {
+		return renewCnt;
+	}
+	public void setRenewCnt(String renewCnt) {
+		this.renewCnt = renewCnt;
 	}
 	public void setBookWriter(String bookWriter) {
 		this.bookWriter = bookWriter;

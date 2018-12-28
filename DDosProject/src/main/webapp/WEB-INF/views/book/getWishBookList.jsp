@@ -67,16 +67,12 @@
 								</form>
 							</div>
 
-							<!-- <input type="button" style="float: right"
-								onclick="location.href='./insertWishBookform'" value="신청하기"
-								class="btn btn-primary"> -->
 							<div class="card" style="width: 95%; margin-left: 2.5%;">
 								<div class="card-body p-0">
 									<div class="table-responsive">
 										<table class="table">
 											<thead class="bg-light">
 												<tr class="border-0">
-
 													<th class="border-0">회원ID &nbsp;</th>
 													<th class="border-0">ISBN</th>
 													<th class="border-0">도서명</th>
@@ -86,8 +82,8 @@
 												</tr>
 											</thead>
 
-											<tbody id=wishBookList>
-												<c:forEach items="${wishBookList}" var="wishbook">
+											<tbody id=getWishBookList>
+												<c:forEach items="${getWishBookList}" var="wishbook">
 													<tr>
 
 														<td>${wishbook.memberId}</td>

@@ -21,4 +21,6 @@ public interface RentalService {
 	public List<RentalVO> rentalSearch(RentalVO vo);			//검색 된 목록 
 
 
+	// 연장
+	public void renewBook(RentalVO vo);
 }

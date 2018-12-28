@@ -32,16 +32,22 @@ public class RentalServiceImpl implements RentalService{
 		rda.rentalBook(vo);
 		
 	}
-
+//반납
 	@Override
 	public void returnBook(RentalVO vo) {
 		rda.rentalBook(vo);
 		
 	}
-
+//반납 리스트
 	@Override
 	public List<RentalVO> rentalSearch(RentalVO vo) {
 		return rda.rentalSearch(vo);
+	}
+// 연장
+	@Override
+	public void renewBook(RentalVO vo) {
+		rda.renewBook(vo);
+		
 	}
 
 	

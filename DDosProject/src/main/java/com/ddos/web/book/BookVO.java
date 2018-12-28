@@ -11,6 +11,7 @@ public class BookVO {
 	private String bookLoc; // 위치
 	private String dueDate;
 	private String loginId;
+	private String bookImg;
 
 
 	// 검색
@@ -21,6 +22,15 @@ public class BookVO {
 	private int First;
 	private int Last;
 
+
+	public String getBookImg() {
+		return bookImg;
+	}
+
+	public void setBookImg(String bookImg) {
+		this.bookImg = bookImg;
+	}
+	
 	public int getFirst() {
 		return First;
 	}
@@ -133,11 +143,15 @@ public class BookVO {
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
+
 	@Override
 	public String toString() {
-		return "BookVO [Isbn=" + isbn + ", bookTitle=" + bookTitle + ", bookCont=" + bookCont + ", bookWriter="
+		return "BookVO [isbn=" + isbn + ", bookTitle=" + bookTitle + ", bookCont=" + bookCont + ", bookWriter="
 				+ bookWriter + ", bookComp=" + bookComp + ", bookGenre=" + bookGenre + ", bookAmount=" + bookAmount
-				+ ", bookLoc=" + bookLoc + "]";
+				+ ", bookLoc=" + bookLoc + ", dueDate=" + dueDate + ", loginId=" + loginId + ", bookImg=" + bookImg
+				+ ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword + ", First=" + First
+				+ ", Last=" + Last + "]";
 	}
+
 
 }

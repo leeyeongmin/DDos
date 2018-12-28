@@ -5,12 +5,12 @@
 
 
 <!--  admin 희망도서 전체 조회 -->
-	<select id="adminWishBookList" parameterType="wishbook"  resultType="wishbook">
-	SELECT 	WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, 
-			WISH_STATUS, WISH_PRICE 
-	FROM WISH_BOOK
-
- <where>
+	<select id="adminWishBookList" parameterType="wishbook" resultType="wishbook">
+	SELECT	B.* FROM (SELECT A.*,  ROWNUM RN FROM (
+			SELECT WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP, WISH_GENRE,
+					MEMBER_ID, WISH_REASON, WISH_STATUS, WISH_PRICE
+	FROM	WISH_BOOK
+	<where>
 		<if
 			test="searchCondition != null and searchCondition == 'wishTitle'">
 			and WISH_TITLE like '%' || #{searchKeyword} || '%' </if>
@@ -19,10 +19,13 @@
 			and WISH_WRITER like '%' || #{searchKeyword} || '%' </if>
 		<if test="searchCondition != null and searchCondition == 'isbn'">
 			and ISBN like '%' || #{searchKeyword} || '%' </if>
-			<if
+		<if
 			test="searchCondition != null and searchCondition == 'memberId'">
 			and MEMBER_ID like '%' || #{searchKeyword} || '%' </if>
-	</where> 
+	</where>
+	ORDER BY WISH_NUM DESC
+	) A) B WHERE RN BETWEEN #{first} and #{last}
+
 </select>
 
 <!-- admin 희망도서 1건 조회-->
@@ -68,16 +71,21 @@
 		<if test="wishNum == null or not wishNum.length=0"> where WISH_NUM=-1</if> 
 			
 	</delete>
+	<!-- 건수 -->
+	<select id="getCount" resultType="int">
+	SELECT COUNT(*)
+	FROM  WISH_BOOK
+	</select>
 
 <!-- user 희망도서 전체 조회 -->
-	<select id="getWishBookList" parameterType="wishbook" resultType="wishbook">
-	SELECT 	WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, 
-			WISH_STATUS, WISH_PRICE 
+	<select id="getWishBookList" parameterType="wishbook" 	resultType="wishbook">
+	SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
+			SELECT WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP, 
+					WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_STATUS, WISH_PRICE
 	FROM WISH_BOOK
-
- <where>
-		 <if test=" loginId != null" >
-			 AND MEMBER_ID = #{loginId}
+	<where>
+		<if test=" loginId != null">
+			AND MEMBER_ID = #{loginId}
 		</if>
 		<if
 			test="searchCondition != null and searchCondition == 'wishTitle'">
@@ -87,7 +95,9 @@
 			and WISH_WRITER like '%' || #{searchKeyword} || '%' </if>
 		<if test="searchCondition != null and searchCondition == 'isbn'">
 			and ISBN like '%' || #{searchKeyword} || '%' </if>
-	</where> 
+	</where>
+	ORDER BY WISH_NUM DESC
+	) A) B WHERE RN BETWEEN #{first} and #{last}
 </select>
 
 <!-- 희망도서 1건 조회-->

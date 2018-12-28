@@ -31,7 +31,7 @@ public class MessageController {
 		@RequestMapping("getMessageList")
 		public String getMessageList(Model model, MessageVO vo) {
 			model.addAttribute("messageList", service.getMessageList(vo));
-			return "userLayout/getMessageList";
+			return "message/getMessageList";
 		}
 		
 		// 수정 처리

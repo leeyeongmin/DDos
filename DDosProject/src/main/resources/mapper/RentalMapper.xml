@@ -7,8 +7,8 @@
 	<select id="getRentalList" parameterType="rental"
 	resultType="rental">
 
-	SELECT	 R.RENTAL_NUM, B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER, TO_CHAR(R.RENTAL_DATE, 'YYYY/MM/DD HH24:MI:SS')AS RENTAL_DATE,
-			R.RETURN_DATE, R.MEMBER_ID
+	SELECT	 R.RENTAL_NUM, B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER, TO_CHAR(R.RENTAL_DATE, 'YYYY/MM/DD')AS RENTAL_DATE,
+			R.RETURN_DATE, R.MEMBER_ID, TO_CHAR(R.DUE_DATE, 'YYYY/MM/DD')AS DUE_DATE
 	FROM	 BOOK B JOIN RENTAL R
 	ON 		(B.ISBN=R.ISBN)
 
@@ -25,4 +25,35 @@
 					#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string})
 	</insert>
 
+<!-- 반납 리스트-->
+<select id="rentalSearch" resultType="rental" parameterType="rental">
+		SELECT B.book_title, R.isbn , R.rental_date , R.due_date , R.member_id 
+		FROM  Rental R LEFT OUTER JOIN Book B
+    	on (R.isbn = B.isbn)
+		<choose>
+			<when test="searchTitle != null and searchTitle == 'book_title' ">
+				  where ${searchTitle} like '%' || #{searchKeyword} || '%'
+				  and r.return_date is null
+			</when>
+			
+			<when test="searchTitle != null and searchTitle == 'isbn' ">
+			      where R.${searchTitle} = #{searchKeyword} 
+				  and R.return_date is null 
+			</when>	
+		
+			<otherwise>
+				where member_id = #{searchKeyword} 
+				and R.return_date is null
+			</otherwise>	
+		</choose>
+	</select>
+	
+	<!-- 반납-->
+   <insert id="returnBook">      <!-- 프로시저는 insert,update, delete 사용 가능 -->
+      {call P_return(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
+      			     #{rentalDate, mode=IN, jdbcType=VARCHAR, javaType=string},
+      				 #{memberId, mode=IN, jdbcType=VARCHAR, javaType=string})
+      }
+   </insert>
+	
 </mapper>

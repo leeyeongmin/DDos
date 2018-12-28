@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +63,7 @@
 										type="text" name="searchKeyword" placeholder="Search">
 									<button class="btn btn-primary"
 										style="margin-left: 1%; width: 7%; height: 48px;">Search</button>
+									<input type="hidden" name="page" />
 								</form>
 							</div>
 
@@ -75,7 +76,7 @@
 										<table class="table">
 											<thead class="bg-light">
 												<tr class="border-0">
-													
+
 													<th class="border-0">회원ID &nbsp;</th>
 													<th class="border-0">ISBN</th>
 													<th class="border-0">도서명</th>
@@ -88,7 +89,7 @@
 											<tbody id=wishBookList>
 												<c:forEach items="${wishBookList}" var="wishbook">
 													<tr>
-														
+
 														<td>${wishbook.memberId}</td>
 														<td>${wishbook.isbn}</td>
 														<td><a href="./getWishBook?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>
@@ -103,12 +104,19 @@
 								</div>
 							</div>
 						</div>
+						<my:paging paging="${paging}" />
+						<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+								</script>
 					</div>
 				</div>
 			</div>
-			<input type="button" style="width:22%; margin-left:44%;"
-					onclick="location.href='./insertWishBookform'" value="신청하기"
-					class="btn btn-primary">
+			<input type="button" style="width: 22%; margin-left: 44%;"
+				onclick="location.href='./insertWishBookform'" value="신청하기"
+				class="btn btn-primary">
 		</div>
 	</div>
 </body>

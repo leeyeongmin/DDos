@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -29,23 +29,22 @@
 <title>DDos</title>
 
 <style>
-.logoutbtn{
-margin-left:2%;
-margin-rigth:2%;
-margin-top:2%;
+.logoutbtn {
+	margin-left: 2%;
+	margin-rigth: 2%;
+	margin-top: 2%;
 }
-
 </style>
 </head>
 <!-- Optional JavaScript -->
-            <!-- jquery 3.3.1 -->
-            <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-            <!-- bootstap bundle js -->
-            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-            <!-- slimscroll js -->
-            <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-            <!-- main js -->
-            <script src="assets/libs/js/main-js.js"></script>
+<!-- jquery 3.3.1 -->
+<script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<!-- bootstap bundle js -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<!-- slimscroll js -->
+<script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+<!-- main js -->
+<script src="assets/libs/js/main-js.js"></script>
 <body>
 	<!-- ============================================================== -->
 	<!-- main wrapper -->
@@ -64,7 +63,7 @@ margin-top:2%;
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse " id="navbarSupportedContent">
-					<ul class="navbar-nav navbar-right-top" style="margin-left:78%;">
+					<ul class="navbar-nav navbar-right-top" style="margin-left: 78%;">
 						<li class="nav-item">
 							<div id="custom-search" class="top-search-bar">
 								<input class="form-control" type="text" placeholder="Search..">
@@ -81,19 +80,18 @@ margin-top:2%;
 									<div class="notification-list">
 										<div class="list-group">
 											<a href="#"
-												class="list-group-item list-group-item-action active" value="${message.messageTitle}">
-												<div class="notification-info">
-													<div class="notification-list-user-block">
-														<!-- <span class="notification-list-user-name" id="getMessageList">-->
-															<div><c:forEach items="${messageList}" var="message">
+												class="list-group-item list-group-item-action active">
+												<form action="getMessageList">
+													<c:forEach items="${messageList}" var="message">
+														<div class="notification-info">
+															<div class="notification-list-user-block">
+																<!-- <span class="notification-list-user-name" id="getMessageList">-->
 																<a href="./getMessage?messageNum=${message.messageNum}">${message.messageTitle}</a>
-															</c:forEach></div>
-														<div><td>${message.messageTitle}</td></div>
-														<div class="notification-date">2 min ago</div>
-													</div>
-												</div>
-											</a> 
-											
+															</div>
+														</div>
+													</c:forEach>
+												</form>
+											</a>
 										</div>
 									</div>
 								</li>
@@ -103,13 +101,12 @@ margin-top:2%;
 									</div>
 								</li>
 							</ul></li>
-						
-						
-						
-						
-						<li class="nav-item dropdown nav-user logoutbtn">
-							<a href="logout" class="btn btn-rounded btn-dark">Log&nbsp;Out</a>
-						</li>
+
+
+
+
+						<li class="nav-item dropdown nav-user logoutbtn"><a
+							href="logout" class="btn btn-rounded btn-dark">Log&nbsp;Out</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -126,83 +123,69 @@ margin-top:2%;
 					<div class="collapse navbar-collapse" id="navbarNav">
 						<ul class="navbar-nav flex-column">
 							<li class="nav-divider">MY PAGE</li>
-							<li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1">
-                                	<i class="fa fa-fw fa-user-circle"></i>
-                                	User 
-                               		<span class="badge badge-success">6</span>
-                                </a>
-                                <div id="submenu-1" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="myDetail?id=${login.id}" style="margin-top:2%; margin-bottom:2%;">My Information</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="withdrawalForm" style="margin-top:2%; margin-bottom:2%;">Withdrawal</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </div>
-                            </li>
-                            
+							<li class="nav-item "><a class="nav-link active" href="#"
+								data-toggle="collapse" aria-expanded="false"
+								data-target="#submenu-1" aria-controls="submenu-1"> <i
+									class="fa fa-fw fa-user-circle"></i> User <span
+									class="badge badge-success">6</span>
+							</a>
+								<div id="submenu-1" class="collapse submenu" style="">
+									<ul class="nav flex-column">
+
+										<li class="nav-item"><a class="nav-link"
+											href="myDetail?id=${login.id}"
+											style="margin-top: 2%; margin-bottom: 2%;">My Information</a>
+										</li>
+										<li class="nav-item"><a class="nav-link"
+											href="withdrawalForm"
+											style="margin-top: 2%; margin-bottom: 2%;">Withdrawal</a></li>
+
+									</ul>
+								</div></li>
+
 							<li class="nav-divider">Function</li>
-							
+
+						
 							<!-- =============================== -->
-                            
-                            
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="true" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-book"></i>Library</a>
-                                <div id="submenu-2" class="submenu collapse show" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="wishbook?loginId=${login.id}">WishBook <span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="getBookList" >Collection</a>
-                                              </li>
-                                              <li class="nav-item">
-                                            <a class="nav-link" href="rental?loginId=${login.id}" >borrow</a>
-                                              </li>
-                                       </ul>
-                                </div>
-                            </li>
-                            <!-- =============================== -->
-							
-							<li class="nav-item ">
-								<a class="nav-link" href="read">
-									<i class="fab fa-fw fa-wpforms"></i>
-									Seat Setting
-								</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="getStudyList">
-									<i class="fas fa-fw fa-file"></i> 
-									Study & Study Room
-								</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="eventList">
-									<i class="fas fa-fw fa-columns"></i>
-									Events
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="UsergetNoticeList">
-									<i class="fas fa-bullhorn"></i>
-									Notice
-								</a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="getSuggestionList">
-									<i class="fas fa-comment-dots"></i>
+							<li class="nav-item"><a class="nav-link" href="#"
+								data-toggle="collapse" aria-expanded="true"
+								data-target="#submenu-2" aria-controls="submenu-2"><i
+									class="fas fa-book"></i>Library</a>
+								<div id="submenu-2" class="submenu collapse show" style="">
+									<ul class="nav flex-column">
+										<li class="nav-item"><a class="nav-link"
+											href="wishbook?loginId=${login.id}">WishBook <span
+												class="badge badge-secondary">New</span></a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="getBookList">Collection</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="rental?loginId=${login.id}">borrow</a></li>
+									</ul>
+								</div></li>
+
+							<li class="nav-item "><a class="nav-link" href="read"> <i
+									class="fab fa-fw fa-wpforms"></i> Seat Setting
+							</a></li>
+
+							<li class="nav-item"><a class="nav-link" href="getStudyList">
+									<i class="fas fa-fw fa-file"></i> Study & Study Room
+							</a></li>
+
+							<li class="nav-item"><a class="nav-link" href="eventList">
+									<i class="fas fa-fw fa-columns"></i> Events
+							</a></li>
+
+
+
+							<li class="nav-item"><a class="nav-link"
+								href="UsergetNoticeList"> <i class="fas fa-bullhorn"></i>Notice
+							</a></li>
+
+
+							<li class="nav-item"><a class="nav-link"
+								href="getSuggestionList"> <i class="fas fa-comment-dots"></i>
 									Suggestion
-								</a>
-							</li>
-							
+							</a></li>
 							<!-- <li class="nav-item">
 								<a class="nav-link" href="#">
 									<i class="fas fa-fw fa-map-marker-alt"></i>
@@ -210,7 +193,6 @@ margin-top:2%;
 								</a>
 							</li>
 							 -->
-							
 						</ul>
 					</div>
 				</nav>
@@ -230,6 +212,6 @@ margin-top:2%;
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

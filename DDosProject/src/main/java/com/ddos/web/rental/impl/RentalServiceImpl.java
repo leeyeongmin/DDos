@@ -20,8 +20,9 @@ public class RentalServiceImpl implements RentalService{
 		return rda.getRentalList(vo);
 	}
 
+	//대출 반납 히스토리
 	@Override
-	public RentalVO getRental(RentalVO vo) {
+	public List<RentalVO> historyList(RentalVO vo) {
 		return null;
 	}
 
@@ -31,5 +32,18 @@ public class RentalServiceImpl implements RentalService{
 		rda.rentalBook(vo);
 		
 	}
+
+	@Override
+	public void returnBook(RentalVO vo) {
+		rda.rentalBook(vo);
+		
+	}
+
+	@Override
+	public List<RentalVO> rentalSearch(RentalVO vo) {
+		return rda.rentalSearch(vo);
+	}
+
+	
 
 }

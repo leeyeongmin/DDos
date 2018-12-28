@@ -9,10 +9,16 @@ public interface RentalService {
 	
 	
 	//대출 이력 조회
-	public RentalVO getRental(RentalVO vo);
+	public List<RentalVO> historyList(RentalVO vo);
 	
 	//대출
 	public void rentalBook(RentalVO vo);
+	
+	//반납
+	public void returnBook(RentalVO vo);	
+
+	//반납 리스트
+	public List<RentalVO> rentalSearch(RentalVO vo);			//검색 된 목록 
 
 
 }

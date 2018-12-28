@@ -21,8 +21,16 @@ public class RentalDAOMybatis {
 		return mybatis.selectList("rental.getRentalList", vo);
 	}
 	
+	//대출
 	public void rentalBook(RentalVO vo) {
 		mybatis.update("rental.rentalBook", vo);
 	}
-
+	//반납 내역조회
+	public List<RentalVO> rentalSearch(RentalVO vo){
+		return mybatis.selectList("rental.rentalSearch", vo);
+	}
+	//반납
+	public void returnBook(RentalVO vo) {
+		mybatis.update("rental.returnBook", vo);
+	}
 }

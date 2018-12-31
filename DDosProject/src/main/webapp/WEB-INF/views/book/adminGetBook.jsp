@@ -43,7 +43,7 @@
 												<div class="carousel-inner">
 													<div class="carousel-item active">
 														<img class="d-block"
-															src="assets/images/eco-slider-img-3.png"
+															src="./bookImg/${book.isbn}.jpg"
 															alt="Third slide">
 													</div>
 												</div>

@@ -52,9 +52,7 @@
 		
 
 				<!-- 도서 검색창 -->
-				<!-- 관리자 페이지로 넣어야될꺼 같은데...음 -->
-
-
+		
 				<form name="frm" onsubmit="check()">
 					<select name="searchCondition">
 						<option value="wishTitle">도서명

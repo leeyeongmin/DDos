@@ -33,4 +33,9 @@ public class RentalDAOMybatis {
 	public void returnBook(RentalVO vo) {
 		mybatis.update("rental.returnBook", vo);
 	}
+	
+	//연장
+	public void renewBook(RentalVO vo) {
+		mybatis.update("rental.renewBook", vo);
+		}
 }

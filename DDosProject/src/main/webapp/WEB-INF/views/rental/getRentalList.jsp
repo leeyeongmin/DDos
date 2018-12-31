@@ -13,7 +13,20 @@
 <link rel="stylesheet" href="assets/libs/css/style.css">
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+<script type="text/javascript">
 
+function renewBook() {
+	$.ajax({
+		url : "renewBook",
+		data : {loginId:"${login.id}",isbn:"${book.isbn}", dueDate:"${rental.dueDate}", dueDate:"${rental.renewCnt}"},
+		type: "post",
+		dataType:"json",
+		success: function(){
+		alter("연장 완료되었습니다");
+		location.href="./getRentalList"}
+	})
+	}
+</script>
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
@@ -75,6 +88,7 @@
 												<th scope="col">출판사</th>
 												<th scope="col">대출일자</th>
 												<th scope="col">반납예정일</th>
+												<th scope="col">연장</th>
 											</tr>
 										</thead>
 										<tbody id=getRentalList>
@@ -88,6 +102,7 @@
 													<td>${rental.bookComp}</td>
 													<td>${rental.rentalDate}</td>
 													<td>${rental.dueDate}</td>
+													<td><input type="button" class="btn btn-brand"  onclick="renewBook();" value="연장"></td>
 												</tr>
 											</c:forEach>
 										</tbody>

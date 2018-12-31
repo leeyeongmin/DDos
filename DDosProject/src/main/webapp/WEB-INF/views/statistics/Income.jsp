@@ -86,7 +86,8 @@
 					<!-- ============================================================== -->
 					<!-- search bar  -->
 					<!-- ============================================================== -->
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> 
+						<h1 align="center">미납자 명단</h1>
 						<div class="card">
 							<div class="card-body">
 								<table id="UnpaidList" width="100%"

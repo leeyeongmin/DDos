@@ -25,7 +25,7 @@
 <script>
 
 
-	var sear_day , sta_leng;
+	var sear_day , sta_leng, max;
 	$(function(){
 		  var s_year = document.getElementById('year').value;
 		  var s_month = document.getElementById('month').value; 
@@ -51,6 +51,7 @@
 
 		function lineChart(sear_day){
 			  arr = new Array();
+			  max = 0;
 			  $.ajax({
 				    url : "rentalCount?day="+ sear_day, 
 					method : "post",
@@ -59,6 +60,9 @@
 						for(var i=0; i<datas.length; i++){
 						   arr[i] = Array();
 						   arr[i] = datas[i];
+						   if(max < arr[i].cnt){
+								max = arr[i].cnt;
+							}
 						}
 						
 						leng = arr.length;
@@ -66,6 +70,7 @@
 						if(leng == "0"){
 							alert("데이터가 없습니다.");
 						}
+						
 						booklistdraw(0);
 						
 					}
@@ -75,7 +80,6 @@
 		}
 
 	function booklistdraw(chg){
-
 		  data1 = new google.visualization.DataTable();
 		  data1.addColumn('string', 'Day');
 		  data1.addColumn('number', 'Guardians of the Galaxy'); 
@@ -93,8 +97,6 @@
 				  leng = leng - chg;
 			  } 
 		  }
-		  
-		  var max = 0;
 
 		  if(leng == "0"){
 			  for(var i=0; i<7; i++){
@@ -103,16 +105,10 @@
 		  }else if(sta < 7){
 			  for(var i=0; i<sta; i++){ 
 				  data1.addRow([arr[i].day, arr[i].cnt]);
-				  if(max < arr[i].cnt){
-					  max = arr[i].cnt;
-				  }
 			  }
 		  }else{
 			  for(var i=leng-7; i<leng; i++){  
 				  data1.addRow([arr[i].day, arr[i].cnt]);
-				  if(max < arr[i].cnt){
-					  max = arr[i].cnt;
-				  }
 			  }
 		  }
 			  
@@ -122,7 +118,7 @@
 			        },
 			        legend : {position : 'none' }, // 항목 표시 여부 (현재 설정은 안함),
 			        height : "400" ,
-			       vAxis: { minValue: 0 , maxValue : max + 3, format : '0'}, 
+			       vAxis: { minValue: 0 , maxValue : max+2, format : '0'}, 
 			       colors: ['gray'],
 			       pointSize: 10,
 			       pointShape: { type: 'star' }
@@ -145,9 +141,8 @@
 				for(var i=0; i<datas.length; i++){
 					$add += "<tr><td>" + datas[i].memberId + "</td>" +
 							"<td>" + datas[i].name + "</td>" + 
-							"<td>" + datas[i].bookComp + "</td>" + 
-							"<td>" + datas[i].phone + "</td></tr>";	
-				}
+							"<td>" + datas[i].bookComp + "</td></tr>" 
+				} 
 				$($add).prependTo("#expenditureList"); 
 			}
 		}) 
@@ -227,8 +222,6 @@
 			 lineChart(sear_day);
 		} 
 		
-		
-		
 	}
 	
 	
@@ -303,9 +296,9 @@
 								<thead>
 											<tr>
 												<th width="40%">ID</th>
-												<th width="20%">NAME</th>
-												<th width="20%">COUNT</th>
-												<th width="40%">PHONE</th>
+												<th width="30%">NAME</th>
+												<th width="30%">COUNT</th>
+												
 											</tr>
 										</thead>
 										<tbody id=expenditureList>
@@ -320,14 +313,14 @@
 				
 				<div class="row" style="margin-top: 2%; ">
 					<div class="col-sm" style="height: 500px;">
-							 <div style="width: 5%; display: inline-block; font-size: 30pt;"><label onclick="booklistdraw(-1)">&lt;</label></div>
+							 <div style="width: 5%; display: inline-block; "><input type="button" value="&lt" onclick="booklistdraw(-1)"></div>
 							 <div style="width: 80%; display: inline-block;" id="BookChartShow">
 								 
 								 <div id="BookChart"></div>
 								
 							
 							</div> 
-							 <div style="width: 5%; display: inline-block; padding-left: 2%" onclick="booklistdraw(1)"> &gt; </div>
+							 <div style="width: 5%; display: inline-block; padding-left: 2%"><input type="button" value="&gt" onclick="booklistdraw(1)"> </div>				 
 					</div>
 					
 					<div class="col-sm">
@@ -339,10 +332,10 @@
 												class="table table-bordered table-hover text-center">
 										<thead>
 													<tr>
-														<th width="20%">RANK</th>
-														<th width="40%">TITLE</th>
-														<th width="40%">GENRE</th>
-														<th width="20%">COUNT</th>
+														<th width="5%">RANK</th>
+														<th width="60%">TITLE</th>
+														<th width="30%">GENRE</th>
+														<th width="10%">COUNT</th>
 													</tr>
 												</thead>
 												<tbody id=bookGenre>

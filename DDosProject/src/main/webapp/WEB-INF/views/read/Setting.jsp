@@ -120,9 +120,10 @@
 			type : "post",
 			url : "setting_change_ck?room="+num,
 			async: false,
-			success : function(num) {
-				if(num == "false"){
+			success : function(num1) {
+				if(num1 == "false"){
 					alert("사용중인 좌석이 있습니다.");
+					room_show(num);
 				}else{
 					if(event == "save"){
 						save_set()

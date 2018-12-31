@@ -255,20 +255,12 @@
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
 		<div class="influence-finder">
-					<%  Date date = new Date();
-						SimpleDateFormat sim = new SimpleDateFormat("yyyy");
-						String sear_year = sim.format(date);
-						SimpleDateFormat sim2 = new SimpleDateFormat("MM");
-						String sear_month = sim2.format(date);
-					%>
-					<input type="text" style="width: 50px;" id="year" value=<%= sear_year %>>년 &nbsp;&nbsp; 
-					<input type="text" style="width: 30px;" id="month" value=<%= sear_month %>>월  &nbsp;&nbsp; 
-					<input type="button" value="보기" onclick="searchChar()"> 
+					
 			<div class="container-fluid dashboard-content">
 				<div class="row"> 
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Income Statistics</h3>
+							<h3 class="mb-2">Income Statistics</h3> 
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
@@ -282,6 +274,15 @@
 							</div>
 						</div>
 					</div>
+					<%  Date date = new Date();
+						SimpleDateFormat sim = new SimpleDateFormat("yyyy");
+						String sear_year = sim.format(date);
+						SimpleDateFormat sim2 = new SimpleDateFormat("MM");
+						String sear_month = sim2.format(date);
+					%>
+					<input type="text" style="width: 50px;" id="year" value=<%= sear_year %>>년 &nbsp;&nbsp; 
+					<input type="text" style="width: 30px;" id="month" value=<%= sear_month %>>월  &nbsp;&nbsp; 
+					<input type="button" value="보기" onclick="searchChar()"> 
 				</div>
 					
 					

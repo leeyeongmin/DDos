@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -22,17 +24,20 @@
 
 <script>
 
-	  $(function(){
-		  topRentalList();
-		  topRentalBook();
+
+	var sear_day , sta_leng;
+	$(function(){
+		  var s_year = document.getElementById('year').value;
+		  var s_month = document.getElementById('month').value; 
+		  sear_day = s_year + "/" + s_month;
+		  topRentalList(sear_day); 
+		  topRentalBook(sear_day);
 	  })
 	
-		
-		//google.charts.load('visualization', '1.0', {'packages':['corechart', 'line']});
 	  google.charts.load("current", {packages:["corechart"]});
 	  google.charts.setOnLoadCallback(function(){
-			book_chart();
-			lineChart();
+			book_chart(sear_day);
+			lineChart(sear_day);
 		});
 		
 		
@@ -44,11 +49,10 @@
 			chart1.draw(data1, options1);
 		}
 
-		function lineChart(){
-			
+		function lineChart(sear_day){
 			  arr = new Array();
 			  $.ajax({
-				    url : "rentalCount", 
+				    url : "rentalCount?day="+ sear_day, 
 					method : "post",
 					success : function(datas) {
 						
@@ -58,6 +62,10 @@
 						}
 						
 						leng = arr.length;
+						sta = arr.length;
+						if(leng == "0"){
+							alert("데이터가 없습니다.");
+						}
 						booklistdraw(0);
 						
 					}
@@ -73,26 +81,48 @@
 		  data1.addColumn('number', 'Guardians of the Galaxy'); 
 		  
 		  leng = leng + chg;
-
-		  for(var i=leng-7; i<leng; i++){ 
-			  data1.addRow([arr[i].day, arr[i].cnt])
+		  
+		  if(chg != 0 ){
+			  if(sta < leng){
+				  alert("마지막데이터입니다.");
+				  leng = leng - chg;
+			  }else if(sta <7){
+				  alert("마지막데이터입니다.");
+			  }else if(leng < 7){
+				  alert("첫번째 데이터입니다.");
+				  leng = leng - chg;
+			  } 
 		  }
+		  
+		  var max = 0;
 
+		  if(leng == "0"){
+			  for(var i=0; i<7; i++){
+				  data1.addRow(null, null);	  
+			  }
+		  }else if(sta < 7){
+			  for(var i=0; i<sta; i++){ 
+				  data1.addRow([arr[i].day, arr[i].cnt]);
+				  if(max < arr[i].cnt){
+					  max = arr[i].cnt;
+				  }
+			  }
+		  }else{
+			  for(var i=leng-7; i<leng; i++){  
+				  data1.addRow([arr[i].day, arr[i].cnt]);
+				  if(max < arr[i].cnt){
+					  max = arr[i].cnt;
+				  }
+			  }
+		  }
+			  
 		    options1 = {
 			        chart: {
 			          title: '일별 대여 횟수',
 			        },
 			        legend : {position : 'none' }, // 항목 표시 여부 (현재 설정은 안함),
 			        height : "400" ,
-			        //vAxis: { minValue: 0 }, 
-			        //pointSize: 30,
-			        //pointShape: { type: 'star', sides: 4 },
-			        //colors : 'gray',
-			         animation: {
-			            duration: 3000,
-			            easing: 'out'
-			       }, 
-			       vAxis: { minValue: 0},
+			       vAxis: { minValue: 0 , maxValue : max + 3, format : '0'}, 
 			       colors: ['gray'],
 			       pointSize: 10,
 			       pointShape: { type: 'star' }
@@ -103,9 +133,12 @@
 	}
 
 	
-	function topRentalList(){
+	function topRentalList(sear_day){
+		
+		$("#expenditureList").empty();
+		
 		 $.ajax({
-			url : "toprental", 
+			url : "toprental?day=" +sear_day, 
 			method : "post",
 			success : function(datas) {
 				var $add = "";
@@ -120,9 +153,12 @@
 		}) 
 	}
 
-	function topRentalBook(){
+	function topRentalBook(sear_day){
+		
+		$("#bookGenre").empty();
+		
 		 $.ajax({
-				url : "toprentalbook", 
+				url : "toprentalbook?day=" + sear_day, 
 				method : "post",
 				success : function(datas) {
 					var $add = "";
@@ -139,9 +175,10 @@
 	
 		
 	//chartContainer
-	function book_chart(){
+	function book_chart(sear_day){
+		
 		$.ajax({
-			url : "bookChart", 	
+			url : "bookChart?day=" + sear_day, 	
 			method : "post", 
 			async: false,
 			success : function(datas) {
@@ -180,8 +217,17 @@
 		}else if(s_month > 12  || s_month <= 0){
 			alert("1- 12 입력하세요");
 		}else{
-			
-		}
+			 if(s_month.length == 1){
+				 s_month = "0" + s_month;
+			 }
+			 var sear_day = s_year + "/" + s_month;
+			 topRentalList(sear_day); 
+			 topRentalBook(sear_day);
+			 book_chart(sear_day);
+			 lineChart(sear_day);
+		} 
+		
+		
 		
 	}
 	
@@ -229,8 +275,14 @@
 							</div>
 						</div>
 					</div>
-					<input type="text" style="width: 50px;" id="year">년 &nbsp;&nbsp; 
-					<input type="text" style="width: 30px;" id="month">월  &nbsp;&nbsp; 
+					<% 	Date date = new Date();
+						SimpleDateFormat sim = new SimpleDateFormat("yyyy");
+						String sear_year = sim.format(date);
+						SimpleDateFormat sim2 = new SimpleDateFormat("MM");
+						String sear_month = sim2.format(date);
+					%>
+					<input type="text" style="width: 50px;" id="year" value=<%= sear_year %>>년 &nbsp;&nbsp; 
+					<input type="text" style="width: 30px;" id="month" value=<%= sear_month %>>월  &nbsp;&nbsp; 
 					<input type="button" value="보기" onclick="searchChar()"> 
 				</div>
 				<!-- ============================================================== -->

@@ -61,10 +61,6 @@
 													style="width: 100%" required></td>
 											</tr>
 											<tr>
-												<td>이미지 첨부</td>
-												<td><input type="file" name="file" style="width:100%"></td>
-											</tr>
-											<tr>
 												<td>내용</td>
 												<td><textarea rows="20" cols="40" name="eventCont"
 														style="width: 100%" required></textarea></td>

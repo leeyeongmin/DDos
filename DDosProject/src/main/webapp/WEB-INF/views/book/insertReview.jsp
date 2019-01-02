@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- bar-rating -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"> 
+<link rel="stylesheet" href="/[경로]/fontawesome-stars.css"> 
 
 <!DOCTYPE html>
 <html>
@@ -8,31 +11,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-	$('.starRev span').click(function() {
-		$(this).parent().children('span').removeClass('on');
-		$(this).addClass('on').prevAll('span').addClass('on');
-		return false;
-	});
+<script type="text/javascript" src="main\webapp\WEB-INF\views\book\jquery.barrating.min.js">
+
 </script>
-<style>
-.starR {
-	background:
-		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
-		no-repeat right 0;
-	background-size: auto 100%;
-	width: 30px;
-	height: 30px;
-	display: inline-block;
-	text-indent: -9999px;
-	cursor: pointer;
-}
-
-.starR.on {
-	background-position: 0 0;
-}
-</style>
-
 </head>
 <body>
 	<div class="dashboard-main-wrapper">
@@ -86,13 +67,18 @@
 									<label for="exampleFormControlTextarea1">리뷰 내용</label>
 									<textarea class="form-control" name="reviewCont" rows="3"></textarea>
 								</div>
-								<div class="starRev">
-									<span class="starR on">별1</span> <span class="starR">별2</span>
-									<span class="starR">별3</span> <span class="starR">별4</span> <span
-										class="starR">별5</span> <span class="starR">별6</span> <span
-										class="starR">별7</span> <span class="starR">별8</span> <span
-										class="starR">별9</span> <span class="starR">별10</span>
+								<div class="form-group">
+									<label for="input-select">별점</label> 
+									<select class="form-control" name="reviewPoint" id="reviewPoint">
+										<option value='' selected>-- 선택 --</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
 								</div>
+
 								<div class="col-sm-6 pl-0">
 									<p class="text-right">
 										<button type="submit" class="btn btn-space btn-primary">저장</button>
@@ -101,11 +87,13 @@
 								</div>
 							</form>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 
 </html>

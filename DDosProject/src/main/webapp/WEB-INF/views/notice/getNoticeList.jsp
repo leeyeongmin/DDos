@@ -97,8 +97,10 @@ div.card {
 											</c:forEach>
 										</tbody>
 									</table>
+									<c:if test="${login.id == 'admin@gmail.com'}">
 										<a href="insertNoticeform" class="btn btn-secondary"
 										style="width:20%; height:48px; margin-left:38%; margin-top:5%; font-weight:bold; padding-top:1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
+									</c:if>
 								</div>
 							</div>
 						</div>

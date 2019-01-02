@@ -45,7 +45,7 @@
 								<div class="table-responsive">
 									<table id="insertNotice" width="100%"
 										class="table table-bordered table-hover text-center">
-										<form action="insertNotice" method="post" enctype="multipart/form-data">
+										<form action="insertNotice" method="post">
 											<tr>
 												<td>작성자</td>
 												<td><input type="hidden" name="memberId"

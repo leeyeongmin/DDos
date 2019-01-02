@@ -15,7 +15,7 @@ public class NoticeController {
 	// 등록폼
 	@RequestMapping("insertNoticeform")
 	public String insertNotice(Model model, NoticeVO vo) {
-		return "admin/notice/insertNotice";
+		return "notice/insertNotice";
 	}
 	
 	// 등록 처리
@@ -29,7 +29,7 @@ public class NoticeController {
 	@RequestMapping("updateNoticeform")
 	public String updateNotice(Model model, NoticeVO vo) {
 		model.addAttribute("notice", noticeService.getNotice(vo));
-		return "admin/notice/updateNotice";
+		return "notice/updateNotice";
 	}
 	
 	// 수정 처리
@@ -52,7 +52,7 @@ public class NoticeController {
 	public String getNotice(Model model, NoticeVO vo) {
 		noticeService.increaseCnt(vo);
 		model.addAttribute("notice", noticeService.getNotice(vo));
-		return "admin/notice/getNotice";
+		return "notice/getNotice";
 	}
 	
 	// 사용자 단건 조회
@@ -67,7 +67,7 @@ public class NoticeController {
 	@RequestMapping("getNoticeList")
 	public String getNoticeList(Model model, NoticeVO vo) {
 		model.addAttribute("noticeList", noticeService.getNoticeList(vo));
-		return "admin/notice/getNoticeList";
+		return "notice/getNoticeList";
 	}
 	
 	// 사용자 전체 조회

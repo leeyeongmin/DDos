@@ -187,6 +187,11 @@
 								href="getSuggestionList"> <i class="fas fa-comment-dots"></i>
 									Suggestion
 							</a></li>
+							
+							<li class="nav-item"><a class="nav-link"
+								href="payList"> <i class="fas fa-comment-dots"></i>
+									Pay
+							</a></li>
 							<!-- <li class="nav-item">
 								<a class="nav-link" href="#">
 									<i class="fas fa-fw fa-map-marker-alt"></i>

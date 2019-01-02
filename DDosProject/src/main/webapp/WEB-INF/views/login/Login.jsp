@@ -38,7 +38,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 		
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp93998128'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -77,7 +77,7 @@
 			alert(msg);
 		});
 	}
-</script>
+</script> -->
 
 
 
@@ -104,7 +104,7 @@
                         <input class="form-control form-control-lg" id="password" name="password" type="password" placeholder="Password" required>
                     </div>
                     
-                    <button type="button" onclick="check()" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <button type="submit"  class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
             <div class="card-footer bg-white p-0  ">

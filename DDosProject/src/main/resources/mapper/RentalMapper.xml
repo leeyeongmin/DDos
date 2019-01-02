@@ -25,14 +25,29 @@
 	{call P_rental(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
 					#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string})
 	</insert>
+	
+	<!-- 대출 반납 리스트 -->
+	<select id="getHistoryList" parameterType="rental"
+	resultType="rental">
+	SELECT B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER, R.RENTAL_DATE,
+	R.ISBN, R.RETURN_DATE, R.DUE_DATE, R.MEMBER_ID
+	FROM BOOK B JOIN RENTAL R
+	ON (B.ISBN=R.ISBN)
+
+	<where>
+		<if test=" loginId != null">
+			AND RETURN_DATE IS NOT NULL AND MEMBER_ID = #{loginId}
+		</if>
+	</where>
+</select>
 
 <!-- 연장 -->
 <insert id="renewBook"  statementType="CALLABLE">
-	{call P_rental
+	{call P_renewal
 	(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
 	#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
 	#{dueDate, mode=IN, jdbcType=VARCHAR, javaType=string},
-	#{renewCnt, mode=IN, jdbcType=VARCHAR, javaType=string})
+	'1' )
 
 </insert>
 

@@ -40,43 +40,44 @@
 		and TRUNC(sysdate, 'd')-2) use
 	</select>
 
-	<select id="BookChart_history" resultType="map">
+	<select id="BookChart_history" resultType="map" parameterType="string">
 		select NVL(count(*),0) "cnt"
 		from book b , rental r
 		where b.ISBN = r.ISBN
-		and rental_date between sysdate-7 and sysdate
+		and to_char(rental_date,'yyyy/mm') = #{value}
 		and b.book_loc = '철학 및 역사'
+    
 	</select>
 
-	<select id="BookChart_total" resultType="map">
+	<select id="BookChart_total" resultType="map" parameterType="string">
 		select NVL(count(*),0) "cnt"
 		from book b , rental r
 		where b.ISBN = r.ISBN
-		and rental_date between sysdate-7 and sysdate
+		and to_char(rental_date,'yyyy/mm') = #{value}
 		and b.book_loc = '총류'
 	</select>
 
-	<select id="BookChart_art" resultType="map">
+	<select id="BookChart_art" resultType="map" parameterType="string">
 		select NVL(count(*),0) "cnt"
 		from book b , rental r
 		where b.ISBN = r.ISBN
-		and rental_date between sysdate-7 and sysdate
+		and to_char(rental_date,'yyyy/mm') = #{value}
 		and b.book_loc = '예술'
 	</select>
 
-	<select id="BookChart_science" resultType="map">
+	<select id="BookChart_science" resultType="map" parameterType="string">
 		select NVL(count(*),0) "cnt"
 		from book b , rental r
 		where b.ISBN = r.ISBN
-		and rental_date between sysdate-7 and sysdate
+		and to_char(rental_date,'yyyy/mm') = #{value}
 		and b.book_loc = '과학'
 	</select>
 
-	<select id="BookChart_language" resultType="map">
+	<select id="BookChart_language" resultType="map" parameterType="string">
 		select NVL(count(*),0) "cnt"
 		from book b , rental r
 		where b.ISBN = r.ISBN
-		and rental_date between sysdate-7 and sysdate
+		and to_char(rental_date,'yyyy/mm') = #{value}
 		and b.book_loc = '언어 및 문학'
 	</select>
 
@@ -85,7 +86,7 @@
 		select member_id "memberId", book_comp "bookComp", m.name "name", m.phone "phone" 
 		from member m ,
 		(select rank() over(order by book_comp desc) rental_top, book_comp, member_id from (
-		<![CDATA[select count(*) book_comp , member_Id from rental where return_date between sysdate-7 and sysdate -1 group by member_id))
+		<![CDATA[select count(*) book_comp , member_Id from rental where to_char(return_date,'yyyy/mm') = #{value} group by member_id))
 		where rental_top <= 5
 		and m.id = member_id]]>
 	</select>
@@ -93,19 +94,99 @@
 	<select id="toprentalbook" resultType="map">
 		select rank_cnt "rankCnt", cnt "cnt", b.book_title "bookTitle", b.book_loc "bookLoc" from book b ,(
 		select rank() over(order by cnt desc) rank_cnt, cnt, isbn from (
-		<![CDATA[select count(*) cnt, isbn from rental where to_char(rental_date, 'yyyy-mm') = to_char(sysdate, 'yyyy-mm') group by isbn)) r 
+		<![CDATA[select count(*) cnt, isbn from rental where to_char(rental_date, 'yyyy/mm') = #{value} group by isbn)) r 
 		where rank_cnt <= 5
 		and r.isbn = b.isbn]]>
 		
 	</select>
 
-	<select id="rentalCount" resultType="map">
+	<select id="rentalCount" resultType="map" parameterType="string">
 		select count(*) "cnt", to_char(rental_date,'mm/dd') "day"
 		from rental
-		where to_char(rental_date, 'yyyy/mm') = to_char(sysdate, 'yyyy/mm')
+		where to_char(rental_date, 'yyyy/mm') = #{value}
 		group by to_char(rental_date,'mm/dd')  
 		order by 2
 	</select>
+	
+	
+	<select id="totalChart_input" resultType="map" parameterType="string">
+		select sum(assets_price) "money", to_char(assets_date, 'mm') "month"
+	    from assets_manage
+	    where assets_Separation = '수입'
+	    and to_char(assets_date,'yyyy') = #{value} 
+	    group by to_char(assets_date, 'mm')
+	    order by 2
+	</select>
+	
+	<select id="totalList" resultType="map" parameterType="string">
+		 select assets_separation "gubun", assets_price "money", assets_cont "content", to_char(assets_date,'yyyy/mm/dd') "day" 
+	    from assets_manage
+	    where to_char(assets_date, 'yyyy') = #{value}
+	    order by 4 desc
+	</select>
+	
+	<select id="totalChart_output" resultType="map" parameterType="string">
+		select sum(assets_price) "money", to_char(assets_date, 'mm') "month"
+	    from assets_manage
+	    where assets_Separation = '지출'
+	    and to_char(assets_date,'yyyy') = #{value} 
+	    group by to_char(assets_date, 'mm')
+	    order by 2
+	</select>
+
+	<select id="UnpaidList" resultType="map" parameterType="string">
+	  select member_id "id", assets_price "money", assets_cont "content", to_char(assets_date, 'yyyy') "day", TRUNC(sysdate) - TRUNC(assets_date) "delay"
+      from assets_manage
+      where cont_detail = 'N'
+	</select>
+	
+	<select id="month_inputchart" resultType="map" parameterType="string">
+	    select sum(assets_price) "total", assets_cont "content" 
+	    from assets_manage
+	    where to_char(assets_date, 'yyyy/mm') = #{value}
+	    and assets_separation = '수입'
+	    group by assets_cont
+	</select>
+	
+	<select id="month_inputList" resultType="map" parameterType="string">
+		select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
+		from assets_manage
+		where to_char(assets_date, 'yyyy/mm') = #{value}
+		and assets_separation = '수입'
+	</select>
+	
+	<select id="click_input" parameterType="map" resultType="map">
+		 select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
+		 from assets_manage
+		 where to_char(assets_date, 'yyyy/mm') = #{day}
+     	 and assets_cont = #{click}
+     	 and assets_separation = '수입'
+	</select>
+	
+	
+	<select id="month_outputchart" resultType="map" parameterType="string">
+	 	select sum(assets_price) "total", assets_cont "content" 
+	    from assets_manage
+	    where to_char(assets_date, 'yyyy/mm') = #{value}
+	    and assets_separation = '지출'
+	    group by assets_cont
+	</select>
+	
+	<select id="month_outputList" resultType="map" parameterType="string">
+		select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
+		from assets_manage
+		where to_char(assets_date, 'yyyy/mm') = #{value}
+		and assets_separation = '지출'
+	</select>
+	
+	<select id="click_output" parameterType="map" resultType="map">
+	 	 select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
+		 from assets_manage
+		 where to_char(assets_date, 'yyyy/mm') = #{day}
+     	 and assets_cont = #{click}
+     	 and assets_separation = '지출'
+	</select>
+	
 
 </mapper> 
 

@@ -23,7 +23,8 @@
 		NOTICE_DATE,
 		NOTICE_CNT
 		FROM NOTICE
-		WHERE NOTICE_NUM = #{noticeNum}
+		WHERE
+		NOTICE_NUM = #{noticeNum}
 	</select>
 
 	<!-- 조회수 증가 -->
@@ -62,7 +63,8 @@
 		UPDATE NOTICE SET
 		NOTICE_TITLE = #{noticeTitle},
 		NOTICE_CONT = #{noticeCont},
-		NOTICE_DATE = sysdate
+		NOTICE_DATE
+		= sysdate
 		WHERE NOTICE_NUM = #{noticeNum}
 	</update>
 
@@ -72,4 +74,17 @@
 		WHERE
 		NOTICE_NUM = #{noticeNum}
 	</delete>
+
+	<!--건수 -->
+	<select id="getCount" resultType="int" parameterType="notice">
+		SELECT COUNT(*)
+		FROM NOTICE
+		<where>
+			<if test="searchType != null and searchType == 'noticeTitle'">
+				and NOTICE_TITLE like '%' || #{searchKeyword} || '%' </if>
+			<if test="searchType != null and searchType == 'noticeCont'">
+				and NOTICE_CONT like '%' || #{searchKeyword} || '%' </if>
+		</where>
+	</select>
+	
 </mapper> 

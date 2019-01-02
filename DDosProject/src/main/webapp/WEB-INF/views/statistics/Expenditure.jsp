@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -17,54 +19,220 @@
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 <title>DDos</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
 
-<script>
-	window.onload = function() {
+	var chart, data, sear_day, chart1, data1;
 
-		var dps = [];
-		var chart = new CanvasJS.Chart("chartContainer", {
-			exportEnabled : true,
-			title : {
-				text : "Expenditure Chart"
-			},
-			axisY : {
-				includeZero : false
-			},
-			data : [ {
-				type : "spline",
-				markerSize : 0,
-				dataPoints : dps
-			} ]
+	google.charts.load("current", {packages:["corechart"]});
+	google.charts.setOnLoadCallback(drawChart);
+	
+	$(function(){
+		input_table(); 
+		output_table();
+	}) 
+	
+	/*--------------------------------inTable--------------------------------*/
+	function input_table(){
+		var s_year = document.getElementById('year').value;
+		var s_month = document.getElementById('month').value; 
+		sear_day = s_year + "/" + s_month;
+		
+		$("#addRow").empty();
+		
+		var $add = "";
+		
+		$.ajax({
+			url : "month_inputList?day=" + sear_day,
+			method : "post",
+			success : function(datas) {
+				for(var i=0; i<datas.length; i++){
+					$add += "<tr><td>" + datas[i].day + "</td>" + 
+					"<td>" + datas[i].content + "</td>" + 
+					"<td>" + datas[i].money + "</td>" + 
+					"<td>" + datas[i].id + "</td></tr>";
+				}
+	
+				$($add).prependTo("#addRow"); 		
+			}
+		
+			
 		});
-
-		var xVal = 0;
-		var yVal = 100;
-		var updateInterval = 1000;
-		var dataLength = 50; // number of dataPoints visible at any point
-
-		var updateChart = function(count) {
-			count = count || 1;
-			// count is number of times loop runs to generate random dataPoints.
-			for (var j = 0; j < count; j++) {
-				yVal = yVal + Math.round(5 + Math.random() * (-5 - 5));
-				dps.push({
-					x : xVal,
-					y : yVal
-				});
-				xVal++;
-			}
-			if (dps.length > dataLength) {
-				dps.shift();
-			}
-			chart.render();
-		};
-
-		updateChart(dataLength);
-		setInterval(function() {
-			updateChart()
-		}, updateInterval);
-
 	}
+	
+	/*------------------------outTable--------------------------*/
+	function output_table(){
+		var s_year = document.getElementById('year').value;
+		var s_month = document.getElementById('month').value; 
+		sear_day = s_year + "/" + s_month;
+		
+		$("#addRow2").empty();
+		
+		var $add = "";
+		
+		$.ajax({
+			url : "month_outputList?day=" + sear_day,
+			method : "post",
+			success : function(datas) {
+				for(var i=0; i<datas.length; i++){
+					$add += "<tr><td>" + datas[i].day + "</td>" + 
+					"<td>" + datas[i].content + "</td>" + 
+					"<td>" + datas[i].money + "</td>" + 
+					"<td>" + datas[i].id + "</td></tr>";
+				}
+	
+				$($add).prependTo("#addRow2"); 		
+			}
+		
+			
+		});
+	}
+	
+	
+	
+	function drawChart() {
+		var s_year = document.getElementById('year').value;
+		var s_month = document.getElementById('month').value; 
+		sear_day = s_year + "/" + s_month;
+		
+		/*--------------------------------in--------------------------------*/
+		$.ajax({
+			url : "month_inputchart?day=" + sear_day,
+			method : "post",
+			success : function(datas) {
+		 	 data = new google.visualization.DataTable();
+				
+				 data.addColumn('string', 'content');
+				 data.addColumn('number', 'total');  
+				
+				for(var i=0; i<datas.length; i++){
+					data.addRow([datas[i].content, datas[i].total]);
+				}
+				
+				 var options = {
+				          title: '수입',
+				          pieHole: 0.4, 
+				          colors : ['yellow', 'green' , 'pink', 'blue', 'orange'], 
+				          annotations:{ textStyle:{ fontSize:7, color:'black'} },
+				          height : "400" ,
+				 };
+
+				chart = new google.visualization.PieChart(document.getElementById('month_inputchart'));
+
+				chart.draw(data, options);
+				        
+				google.visualization.events.addListener(chart, 'select', selectHandler);	
+			}
+		})
+		
+		/*-----------------------------------out------------------------------------*/
+		$.ajax({
+			url : "month_outputchart?day=" + sear_day,
+			method : "post",
+			success : function(datas) {
+		 	 	data1 = new google.visualization.DataTable();
+				
+				 data1.addColumn('string', 'content');
+				 data1.addColumn('number', 'total'); 
+				
+				for(var i=0; i<datas.length; i++){
+					data1.addRow([datas[i].content, datas[i].total]);
+				}
+				
+				 var options1 = {
+				          title: '지출',
+				          pieHole: 0.4, 
+				          colors : ['yellow', 'green' , 'pink', 'blue', 'orange'], 
+				          annotations:{ textStyle:{ fontSize:7, color:'black'} },
+				          height : "400" ,
+				 };
+
+				chart1 = new google.visualization.PieChart(document.getElementById('month_outputchart'));
+
+				chart1.draw(data1, options1);
+				        
+				google.visualization.events.addListener(chart1, 'select', selectHandler2);	
+			}
+		})
+		
+		
+		/*--------------------------------in_click--------------------------------*/
+        function selectHandler(){			//클릭 시 
+      	  var selection = chart.getSelection();
+      	  
+      	  for(var i=0; i<selection.length; i++){
+      		  var item = selection[i];
+      		  if(item.row != null && item.column == null){
+      			  var ck = data.getValue(chart.getSelection()[0].row, 0)
+      		  }
+      	  }
+      	  inclick(ck, sear_day);
+        }
+		
+		/*-------------------------------out_click---------------------------------*/
+		function selectHandler2(){
+			  var selection = chart1.getSelection();
+	      	  
+	      	  for(var i=0; i<selection.length; i++){
+	      		  var item = selection[i];
+	      		  if(item.row != null && item.column == null){
+	      			  var ck = data1.getValue(chart1.getSelection()[0].row, 0)
+	      		  }
+	      	  }
+	      	  outclick(ck, sear_day);
+      	}
+	}
+      
+	
+	/*--------------------------------click event--------------------------------*/
+      function inclick(choose_ck, day){
+			var $click_add ="";
+			$.ajax({
+				url : "click_input",
+				data : {day : sear_day , click : choose_ck},
+				method : "post",
+				success : function(datas) {
+					$("#addRow").empty();
+					
+					for(var i=0; i<datas.length; i++){
+						$click_add += "<tr><td>" + datas[i].day + "</td>" + 
+						"<td>" + datas[i].content + "</td>" + 
+						"<td>" + datas[i].money + "</td>" + 
+						"<td>" + datas[i].id + "</td></tr>";
+					}
+					$($click_add).prependTo("#addRow"); 	
+				}
+			});
+      }
+	
+	/*-----------------------------------out click-------------------------*/
+	function outclick(choose_ck, day){
+		var $click_add ="";
+		$.ajax({
+			url : "click_output",
+			data : {day : sear_day , click : choose_ck},
+			method : "post",
+			success : function(datas) {
+				$("#addRow2").empty();
+				
+				for(var i=0; i<datas.length; i++){
+					$click_add += "<tr><td>" + datas[i].day + "</td>" + 
+					"<td>" + datas[i].content + "</td>" + 
+					"<td>" + datas[i].money + "</td>" + 
+					"<td>" + datas[i].id + "</td></tr>";
+				}
+				$($click_add).prependTo("#addRow2"); 	
+			}
+		});
+	}
+	
+	function searchChar(){
+		input_table(); 
+		output_table();
+		drawChart();
+	}
+	
+	
 </script>
 </head>
 <!-- ============================================================== -->
@@ -87,148 +255,97 @@
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
 		<div class="influence-finder">
+					
 			<div class="container-fluid dashboard-content">
-				<!-- ============================================================== -->
-				<!-- pageheader -->
-				<!-- ============================================================== -->
-				<div class="row">
+				<div class="row"> 
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Expenditure Statistics</h3>
+							<h3 class="mb-2">Income Statistics</h3> 
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item">Statistics</li>
-										<li class="breadcrumb-item active" aria-current="page">Expenditure
-											Statisticst</li>
+										<li class="breadcrumb-item active" aria-current="page">Income
+											Expenditure</li>
 									</ol>
 								</nav>
 							</div>
 						</div>
 					</div>
+					<%  Date date = new Date();
+						SimpleDateFormat sim = new SimpleDateFormat("yyyy");
+						String sear_year = sim.format(date);
+						SimpleDateFormat sim2 = new SimpleDateFormat("MM");
+						String sear_month = sim2.format(date);
+					%>
+					<input type="text" style="width: 50px;" id="year" value=<%= sear_year %>>년 &nbsp;&nbsp; 
+					<input type="text" style="width: 30px;" id="month" value=<%= sear_month %>>월  &nbsp;&nbsp; 
+					<input type="button" value="보기" onclick="searchChar()"> 
 				</div>
-				<!-- ============================================================== -->
-				<!-- end pageheader -->
-				<!-- ============================================================== -->
-				<div class="row"
-					style="display: inline-block; margin-top: 2%; width: 50%;">
-					<!-- ============================================================== -->
-					<!-- search bar  -->
-					<!-- ============================================================== -->
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					
+					
+					<div class="row" style="margin-top: 2%; ">
+						<div class="col-sm" style="height: 500px;">
+							<div id="month_inputchart"></div>
+						</div> 
+					
+					<div class="col-sm">
 						<div class="card">
 							<div class="card-body">
-								<form name="SearchUser" onsubmit="check()">
-									<select class="form-control" name="searchType"
-										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
-										<option value="id">Id
-										<option value="name">Name
-									</select> <input class="form-control form-control-lg"
-										style="width: 75%; margin-left: 1%; display: inline-block;"
-										id="searchUserKeyword" type="text" name="searchUserKeyword"
-										placeholder="Search">
-									<button class="btn btn-primary search-btn" type="submit">Search</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- ============================================================== -->
-					<!-- end search bar  -->
-					<!-- ============================================================== -->
-					<div id="chartContainer"
-						style="margin-left: 2.5%; height: 370px; width: 95%;"></div>
-					<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-				</div>
-				<div class="row"
-					style="display: inline-block; margin-top: 2%; margin-left: 2%; width: 50%;">
-					<!-- ============================================================== -->
-					<!-- start list  -->
-					<!-- ============================================================== -->
-					
-					<h3 class="mb-2" style="text-align:center;">Expenditure Statistics</h3>
-					
-					
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<div class="card">
-							<div class="card-body">
+								<div align="right"><input type="button" value="전체보기" onclick="input_table()"></div>
 								<div class="table-responsive">
-									<table id="getExpenditureList" width="100%"
+								<h3 class="mb-2" style="text-align:center;">수입 목록</h3>
+									<table id="inputList" width="100%"
 										class="table table-bordered table-hover text-center">
 										<thead>
 											<tr>
-												<th width="40%">ID</th>
-												<th width="20%">NAME</th>
-												<th width="20%">DATE</th>
-												<th width="40%">PRICE</th>
+												<th width="40%">날짜</th>
+												<th width="20%">내용</th>
+												<th width="20%">금액</th>
+												<th width="30%">ID</th>
 											</tr>
 										</thead>
-										<tbody id=expenditureList>
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											
-										
-										
-											<%-- <c:forEach items="${noticeList}" var="notice">
-												<c:set var="grant" value="${notice.memberId}"></c:set>
-												<input type="hidden" value="${notice.memberId}">
-												<tr>
-													<td>${notice.noticeNum}</td>
-													<td><a
-														href="./getNotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle}</a></td>
-													<td>${notice.noticeDate}</td>
-													<td>${notice.noticeCnt}</td>
-												</tr>
-											</c:forEach> --%>
-											
-											
-										</tbody>
+										<tbody id=addRow></tbody>
 									</table>
 								</div>
-							</div>
-
-
+							</div> 
 						</div>
 					</div>
-					<!-- ============================================================== -->
-					<!-- end list  -->
-					<!-- ============================================================== -->
-				</div>
+				</div>		<!--  row -->
+				
+				<div class="row" style="margin-top: 2%; ">
+						<div class="col-sm" style="height: 500px;">
+							<div id="month_outputchart"></div>
+						</div> 
+					
+					<div class="col-sm"> 
+						<div class="card">
+							<div class="card-body"> 
+							<div align="right"><input type="button" value="전체보기" onclick="output_table()"></div>
+								<div class="table-responsive">
+								<h3 class="mb-2" style="text-align:center;">지출 목록</h3>
+									<table id="inputList" width="100%"
+										class="table table-bordered table-hover text-center">
+										<thead>
+											<tr>
+												<th width="40%">날짜</th>
+												<th width="20%">내용</th>
+												<th width="20%">금액</th>
+												<th width="30%">ID</th>
+											</tr>
+										</thead>
+										<tbody id=addRow2></tbody>
+									</table>
+								</div>
+							</div> 
+						</div>
+					</div>
+				</div>		<!--  row -->
+				
+				
 			</div>
-
-
-
 		</div>
 	</div>
 </body>

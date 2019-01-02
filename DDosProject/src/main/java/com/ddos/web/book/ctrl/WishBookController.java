@@ -1,6 +1,8 @@
 package com.ddos.web.book.ctrl;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ddos.web.book.WishBookService;
 import com.ddos.web.book.WishBookVO;
 import com.ddos.web.paging.PagingVO;
+import com.ddos.web.user.UserVO;
 
 @Controller
 public class WishBookController {  //희망도서 controller
@@ -28,8 +31,11 @@ public class WishBookController {  //희망도서 controller
 		
 	}*/
 	@RequestMapping(value = "adminWishBook")
+	
 	public ModelAndView adminWishBookList(Model model, WishBookVO vo, PagingVO paging) {
+		
 		ModelAndView mv = new ModelAndView();
+		
 		if (paging.getPage() == null) {
 			paging.setPage(1);
 		}
@@ -59,13 +65,13 @@ public class WishBookController {  //희망도서 controller
 	}
 	
 	//희망도서 등록처리
-	@RequestMapping("/adminInsertWishBook")
+	@RequestMapping("adminInsertWishBook")
 	public String adminInsertWishBook(WishBookVO vo) {
 		wishBookService.adminInsertWishBook(vo);
 		System.out.println("희망도서 컨트롤 등록처리");
-		return "redirect:adminwishbook";
+		return "redirect:adminWishBook";
 	}
-	
+
 	
 	//희망도서 수정폼
 	@RequestMapping("adminUpdateWishBookform")
@@ -78,11 +84,8 @@ public class WishBookController {  //희망도서 controller
 	@RequestMapping("adminUpdateWishBook")
 	public String adminUpdateWishBook(WishBookVO vo) {
 		System.out.println("희망도서 컨트롤 수정처리");
-		System.out.println(vo);
 		wishBookService.adminUpdateWishBook(vo);
-		System.out.println("희망도서 컨트롤 수정처리2");
-		//return "admin/book/adminWishBookList";
-		return "redirect:adminwishbook";
+		return "redirect:adminWishBook";
 	}
 	
 	//희망도서 삭제
@@ -91,7 +94,7 @@ public class WishBookController {  //희망도서 controller
 		System.out.println(vo);
 		wishBookService.adminDeleteWishBook(vo);
 		System.out.println("희망도서 컨트롤 삭제");
-		return "redirect:adminwishbook";
+		return "redirect:adminWishBook";
 	}
 	
 	//희망도서 선택 삭제
@@ -104,8 +107,9 @@ public class WishBookController {  //희망도서 controller
 
 	// 메인에서  전체희망도서로
 	@RequestMapping(value = "wishbook")
-	public ModelAndView wishbook(Model model, WishBookVO vo, PagingVO paging) {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView wishbook(Model model, WishBookVO vo, PagingVO paging, HttpSession session) {
+		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
+			ModelAndView mv = new ModelAndView();
 		if (paging.getPage() == null) {
 			paging.setPage(1);
 		}
@@ -114,9 +118,11 @@ public class WishBookController {  //희망도서 controller
 		vo.setLast(paging.getLast());
 
 		paging.setTotalRecord(wishBookService.getCount(vo));
+		
 		mv.addObject("paging", paging);
 		mv.addObject("getWishBookList", wishBookService.getWishBookList(vo));
 		mv.setViewName("book/getWishBookList");
+		
 		return mv;
 	}
 	

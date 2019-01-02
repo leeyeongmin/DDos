@@ -116,8 +116,13 @@
 									<div class="tab-content" id="myTabContent5">
 										<div class="tab-pane fade" id="tab-1" role="tabpanel"
 											aria-labelledby="product-tab-1">
-											<p>${book.bookCont}</p>
+											<p id ="bookCont">${book.bookCont}</p>
 										</div>
+										<script>
+										var text = document.querySelector('#bookCont');
+										text.innerHTML = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
+										
+										</script>
 										<div class="tab-pane active show" id="tab-2" role="tabpanel"
 											aria-labelledby="product-tab-2">
 											<!-- <div class="review-block"> -->

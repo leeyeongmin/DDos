@@ -11,4 +11,7 @@ public interface NoticeService {
 	public List<NoticeVO> getNoticeList(NoticeVO vo);
 	public NoticeVO UsergetNotice(NoticeVO vo);
 	public List<NoticeVO> UsergetNoticeList(NoticeVO vo);
+	
+	// 전체 건수
+	public int getCount(NoticeVO vo);
 }

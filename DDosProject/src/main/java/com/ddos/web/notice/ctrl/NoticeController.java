@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ddos.web.notice.NoticeService;
 import com.ddos.web.notice.NoticeVO;
+import com.ddos.web.paging.PagingVO;
 
 @Controller
 public class NoticeController {
@@ -64,16 +66,50 @@ public class NoticeController {
 	}
 	
 	// 관리자 전체 조회
-	@RequestMapping("getNoticeList")
+	/*@RequestMapping("getNoticeList")
 	public String getNoticeList(Model model, NoticeVO vo) {
 		model.addAttribute("noticeList", noticeService.getNoticeList(vo));
 		return "notice/getNoticeList";
+	}*/
+	@RequestMapping(value = "getNoticeList")
+	public ModelAndView getNoticeList(Model model, NoticeVO vo, PagingVO paging) {
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(noticeService.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("noticeList", noticeService.getNoticeList(vo));
+		mv.setViewName("notice/getNoticeList");
+		return mv;
 	}
 	
+	
+	
 	// 사용자 전체 조회
-	@RequestMapping("UsergetNoticeList")
+	/*@RequestMapping("UsergetNoticeList")
 	public String UsergetNoticeList(Model model, NoticeVO vo) {
 		model.addAttribute("noticeList", noticeService.UsergetNoticeList(vo));
 		return "notice/UsergetNoticeList";
+	}*/
+	@RequestMapping(value = "UsergetNoticeList")
+	public ModelAndView UsergetNoticeList(Model model, NoticeVO vo, PagingVO paging) {
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(noticeService.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("noticeList", noticeService.UsergetNoticeList(vo));
+		mv.setViewName("notice/UsergetNoticeList");
+		return mv;
 	}
 }

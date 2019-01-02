@@ -227,18 +227,21 @@ margin-top:2%;
 							</li>
 							 -->
 							<li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-3"><i class="fa fa-fw fa-user-circle"></i>Assets</a>
-                                <div id="submenu-2" class="collapse submenu" style="">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fa fa-fw fa-user-circle"></i>Assets</a>
+                                <div id="submenu-4" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         
                                         <li class="nav-item">
-                                            <a class="nav-link" href="expenditureForm" style="margin-top:2%; margin-bottom:2%;">Expenditure</a>
+                                            <a class="nav-link" href="expenditureForm" style="margin-top:2%; margin-bottom:2%;">Monthly earnings</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="incomeForm" style="margin-top:2%; margin-bottom:2%;">Income</a>
+                                            <a class="nav-link" href="incomeForm" style="margin-top:2%; margin-bottom:2%;">unsuccessful list</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="totalAssetsForm" style="margin-top:2%; margin-bottom:2%;">Total</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="assets" style="margin-top:2%; margin-bottom:2%;">음...</a>
                                         </li>
                                         
                                     </ul>

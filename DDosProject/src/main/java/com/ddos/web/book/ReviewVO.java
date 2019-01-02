@@ -8,7 +8,7 @@ public class ReviewVO {
 	private int reviewPoint;	//별점
 	private String memberId;	//회원id
 	private int pageUnit;	//페이징처리
-	private int reviewNum;
+	private String reviewNum;
 	private String reviewDate;
 	public String getIsbn() {
 		return isbn;
@@ -46,10 +46,11 @@ public class ReviewVO {
 	public void setPageUnit(int pageUnit) {
 		this.pageUnit = pageUnit;
 	}
-	public int getReviewNum() {
+	
+	public String getReviewNum() {
 		return reviewNum;
 	}
-	public void setReviewNum(int reviewNum) {
+	public void setReviewNum(String reviewNum) {
 		this.reviewNum = reviewNum;
 	}
 	public String getReviewDate() {

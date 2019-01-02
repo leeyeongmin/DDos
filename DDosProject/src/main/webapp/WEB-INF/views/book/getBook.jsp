@@ -17,16 +17,21 @@
 
 <script type="text/javascript">
 
-function rentalBook() {
-	$.ajax({
-		url : "rentalBook",
-		data : {loginId:"${login.id}",isbn:"${book.isbn}"},
-		type: "post",
-		dataType:"json",
-		success: function(){
-		alter("대출 완료되었습니다");
-		location.href="./getRentalList"}
-	})
+
+	function rentalBook() {
+		$.ajax({
+			url : "rentalBook",
+			data : {
+				loginId : "${login.id}",
+				isbn : "${book.isbn}"
+			},
+			type : "post",
+			dataType : "json",
+			success : function() {
+				alert ("대출 완료되었습니다");
+				location.reload();
+			}
+		})
 	}
 </script>
 
@@ -58,8 +63,7 @@ function rentalBook() {
 												</ol>
 												<div class="carousel-inner">
 													<div class="carousel-item active">
-														<img class="d-block"
-															src="assets/images/eco-slider-img-3.png"
+														<img class="d-block" src="./bookImg/${book.isbn}.jpg"
 															alt="Third slide">
 													</div>
 												</div>
@@ -111,7 +115,8 @@ function rentalBook() {
 										</table>
 
 
-										<input type="button"  class="btn btn-primary" onclick="rentalBook();" value="대출">
+										<input type="button" class="btn btn-primary"
+											onclick="rentalBook();" value="대출">
 									</div>
 								</div>
 							</div>
@@ -142,19 +147,19 @@ function rentalBook() {
 											</h5>
 											<div class="card-body">
 												<ul class="list-unstyled">
-														<li class="media">
-															<div class="media-body">
-																<table class="table">
-																	<thead>
-																		<tr>
-																			<th scope="row" style="width:30%">제목</th>
-																			<th scope="row" width="30%">내용</th>
-																			<th scope="row" width="20%">별점</th>
-																			<th scope="row" width="20%">작성일자</th>
-																			<th scope="row" colspan="2"></th>
-																		</tr>
-																	</thead>
-																	<tbody>
+													<li class="media">
+														<div class="media-body">
+															<table class="table">
+																<thead>
+																	<tr>
+																		<th scope="row" style="width: 30%">제목</th>
+																		<th scope="row" width="30%">내용</th>
+																		<th scope="row" width="20%">별점</th>
+																		<th scope="row" width="20%">작성일자</th>
+																		<th scope="row" colspan="2"></th>
+																	</tr>
+																</thead>
+																<tbody>
 																	<c:forEach items="${review}" var="review">
 																		<tr>
 																			<td>${review.reviewTitle}</td>
@@ -162,20 +167,17 @@ function rentalBook() {
 																			<td>${review.reviewPoint}</td>
 																			<td>${review.reviewDate}</td>
 																		</tr>
-																		</c:forEach>
-																	</tbody>
-																	
-																		<!-- <c:if test="${login.id == review.memberId}">  -->
-																			<td colspan="2">
-																			<a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
-																				class="btn btn-primary">수정</a> 
-																			<a href="./deleteReview?reviewNum=${review.reviewNum}"
-																				class="btn btn-space btn-secondary">삭제</a></td>
-																			<!-- </c:if> -->
-																			
-																</table>
-															</div>
-														</li>
+																	</c:forEach>
+																</tbody>
+																<%--  <td colspan="2">
+																	<a
+																	href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
+																	class="btn btn-primary">수정</a> <a
+																	href="./deleteReview?reviewNum=${review.reviewNum}"
+																	class="btn btn-space btn-secondary">삭제</a></td>  --%>
+															</table>
+														</div>
+													</li>
 												</ul>
 											</div>
 										</div>

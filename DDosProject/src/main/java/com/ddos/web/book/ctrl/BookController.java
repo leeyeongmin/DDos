@@ -48,7 +48,7 @@ public class BookController {
 
 	
 	// user 전체 조회
-@RequestMapping(value = "/getBookList")
+	@RequestMapping(value = "/getBookList")
 	public ModelAndView getBookList(Model model, BookVO vo, PagingVO paging) {
 		ModelAndView mv = new ModelAndView();
 		if (paging.getPage() == null) {

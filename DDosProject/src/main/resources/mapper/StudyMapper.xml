@@ -77,7 +77,7 @@
 	</delete>
 	
 	<!-- 단건조회 -->
-	<select id="getStudy" parameterType="study" resultType="study">
+	<select id="getAdminStudyList" parameterType="study" resultType="study">
 		SELECT 
 		
 		STUDY_NUM as studyNumber,

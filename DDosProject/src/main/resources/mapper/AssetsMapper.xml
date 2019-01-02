@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="assets">
+	<!-- 전체 조회 -->
+	<select id="getAssetsList" parameterType="assets"
+		resultType="assets">
+SELECT B.* FROM (SELECT A.*,  ROWNUM RN FROM (
+		SELECT	ASSETS_SEPARATION, ASSETS_PRICE, TO_CHAR(ASSETS_DATE, 'YYYY/MM/DD'),
+				CONT_DETAIL, MEMBER_ID
+		FROM	ASSETS_MANAGE
+	<where> 
+	<if
+		test="searchCondition != null and searchCondition == 'assetsSeparation'"> 
+		and ASSETS_SEPARATION like '%' || #{searchKeyword} || '%'	</if>
+	<if
+		test="searchCondition != null and searchCondition == 'memberId'">
+		and MEMBER_ID like '%' || #{searchKeyword} || '%' </if>
+	</where>
+	ORDER BY BOOK_TITLE
+	) A) B WHERE RN BETWEEN #{first} and #{last}
+	</select>
+	
+</mapper>

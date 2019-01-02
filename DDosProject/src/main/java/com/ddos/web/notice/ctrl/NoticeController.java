@@ -71,7 +71,7 @@ public class NoticeController {
 		model.addAttribute("noticeList", noticeService.getNoticeList(vo));
 		return "notice/getNoticeList";
 	}*/
-	@RequestMapping(value = "getNoticeList")
+	@RequestMapping(value = "/getNoticeList")
 	public ModelAndView getNoticeList(Model model, NoticeVO vo, PagingVO paging) {
 		ModelAndView mv = new ModelAndView();
 		if (paging.getPage() == null) {
@@ -84,7 +84,7 @@ public class NoticeController {
 		paging.setTotalRecord(noticeService.getCount(vo));
 		mv.addObject("paging", paging);
 		mv.addObject("noticeList", noticeService.getNoticeList(vo));
-		mv.setViewName("notice/getNoticeList");
+		mv.setViewName("admin/notice/getNoticeList");
 		return mv;
 	}
 	
@@ -96,7 +96,7 @@ public class NoticeController {
 		model.addAttribute("noticeList", noticeService.UsergetNoticeList(vo));
 		return "notice/UsergetNoticeList";
 	}*/
-	@RequestMapping(value = "UsergetNoticeList")
+	@RequestMapping(value = "/UsergetNoticeList")
 	public ModelAndView UsergetNoticeList(Model model, NoticeVO vo, PagingVO paging) {
 		ModelAndView mv = new ModelAndView();
 		if (paging.getPage() == null) {

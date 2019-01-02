@@ -8,10 +8,13 @@
 <meta charset="UTF-8">
 <title>관리자 도서 전체 리스트</title>
 <script type="text/javascript">
-	document.getElementById("booklist").click = clickfunc;
-	function clickfunc(e) {
-		var tdele = e.target.parentNode.children[x].innerHTML;
-		var trele = e.target.parentNode;
+	function check() {
+		if (document.search.searchKeyword.value == "") {
+			alert("검색어를 입력하세요");
+			document.search.searchKeyword.focus();
+			return;
+		}
+		document.search.submit();
 	}
 </script>
 </head>
@@ -48,7 +51,7 @@
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
 
-				<div class="row" >
+				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<!-- 검색 -->
@@ -65,7 +68,7 @@
 										type="text" name="searchKeyword" placeholder="Search">
 									<button class="btn btn-primary"
 										style="margin-left: 1%; width: 7%; height: 48px;">Search</button>
-					<input type="hidden" name="page" />
+									<input type="hidden" name="page" />
 
 								</form>
 							</div>
@@ -105,9 +108,10 @@
 									document.frm.submit();
 								}
 							</script>
-							
-							<input type="button" style="float: right" onclick="location.href='./adminInsertBookform'" value="도서 등록"
-					class="btn btn-primary"> 
+
+							<input type="button" style="float: right"
+								onclick="location.href='./adminInsertBookform'" value="도서 등록"
+								class="btn btn-primary">
 						</div>
 					</div>
 				</div>

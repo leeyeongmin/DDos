@@ -39,15 +39,36 @@
 
 <body>
 	<div class="dashboard-main-wrapper">
-		<!-- ============================================================== -->
+	<!-- ============================================================== -->
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
-		<div class="dashboard-finance">
+<div class="dashboard-finance">
 			<div class="container-fluid dashboard-content">
 				<!-- ============================================================== -->
 				<!-- pageheader  -->
 				<!-- ============================================================== -->
 				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="page-header">
+							<h3 class="mb-2">Book Detail</h3>
+							<div class="page-breadcrumb">
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item"><a href="#"
+											class="breadcrumb-link">DDos</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Book Detail</a>
+										</li>
+									</ol>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- ============================================================== -->
+				<!-- pageheader  -->
+				<!-- ============================================================== -->
+				
+	<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
@@ -135,8 +156,13 @@
 									<div class="tab-content" id="myTabContent5">
 										<div class="tab-pane fade" id="tab-1" role="tabpanel"
 											aria-labelledby="product-tab-1">
-											<p>${book.bookCont}</p>
+											<p id ="bookCont">${book.bookCont}</p>
 										</div>
+										<script>
+										var text = document.querySelector('#bookCont');
+										text.innerHTML = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
+										
+										</script>
 										<div class="tab-pane active show" id="tab-2" role="tabpanel"
 											aria-labelledby="product-tab-2">
 											<!-- <div class="review-block"> -->

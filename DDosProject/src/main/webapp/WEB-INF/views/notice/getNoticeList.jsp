@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@ div.card {
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="adminHome"
+										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item active" aria-current="page">Notice</li>
 									</ol>
@@ -67,6 +68,7 @@ div.card {
 										id="searchUserKeyword" type="text" name="searchKeyword"
 										placeholder="Search">
 									<button class="btn btn-primary" style="margin-left:1%; width:7%; height:48px;">검색</button>
+									<input	type="hidden" name="page" />
 								</form>
 							</div>
 

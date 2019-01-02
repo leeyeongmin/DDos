@@ -13,6 +13,11 @@ public class SuggestionMybatisDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	// 전체 건수 조회
+	public int getCount(SuggestionVO vo) {
+		return mybatis.selectOne("suggestion.getCount", vo);
+	}
+	
 	// 등록
 	public void insertSuggestion(SuggestionVO vo) {
 		System.out.println("my batis insertSuggestion() 기능 처리");

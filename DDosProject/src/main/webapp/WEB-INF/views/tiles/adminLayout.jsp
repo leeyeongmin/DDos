@@ -241,7 +241,7 @@ margin-top:2%;
                                             <a class="nav-link" href="totalAssetsForm" style="margin-top:2%; margin-bottom:2%;">Total</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="assets" style="margin-top:2%; margin-bottom:2%;">음...</a>
+                                            <a class="nav-link" href="assets" style="margin-top:2%; margin-bottom:2%;">Asssets Manage</a>
                                         </li>
                                         
                                     </ul>

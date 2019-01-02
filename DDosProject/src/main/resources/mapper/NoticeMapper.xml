@@ -4,19 +4,24 @@
 <mapper namespace="notice">
 
 	<!-- 전체 조회 -->
-	<select id="getNoticeList" resultType="notice">
-		SELECT * FROM NOTICE
-		<where>
-			<if test="searchType != null and searchType == 'noticeTitle'">
-				and NOTICE_TITLE like '%' || #{searchKeyword} || '%' </if>
-			<if test="searchType != null and searchType == 'noticeCont'">
-				and NOTICE_CONT like '%' || #{searchKeyword} || '%' </if>
-		</where>
-		ORDER BY NOTICE_NUM DESC
-	</select>
+	<select id="getNoticeList" resultType="notice" 	parameterType="notice">
+	SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
+	SELECT NOTICE_NUM,
+	NOTICE_TITLE, NOTICE_DATE, NOTICE_CONT, MEMBER_ID, NOTICE_CNT
+	FROM
+	NOTICE
+	<where>
+		<if test="searchType != null and searchType == 'noticeTitle'">
+			and NOTICE_TITLE like '%' || #{searchKeyword} || '%' </if>
+		<if test="searchType != null and searchType == 'noticeCont'">
+			and NOTICE_CONT like '%' || #{searchKeyword} || '%' </if>
+	</where>
+	ORDER BY NOTICE_NUM DESC
+	) A) B WHERE RN BETWEEN #{first} and #{last}
+</select>
 
 	<!-- 단건 조회 -->
-	<select id="getNotice" resultType="notice">
+	<select id="getNotice" resultType="notice" parameterType="notice">
 		SELECT NOTICE_NUM,
 		NOTICE_TITLE,
 		NOTICE_CONT,

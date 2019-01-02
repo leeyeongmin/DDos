@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.ddos.web.paging.PagingVO;
 import com.ddos.web.suggestion.SuggestionService;
 import com.ddos.web.suggestion.SuggestionVO;
 
@@ -58,10 +60,26 @@ public class SuggestionController {
 	}
 
 	// 전체 조회
-	@RequestMapping("getSuggestionList")
+	/*@RequestMapping("getSuggestionList")
 	public String getSuggestionList(Model model, SuggestionVO vo) {
 		model.addAttribute("suggestionList", suggestionService.getSuggestionList(vo));
 		return "suggestion/getSuggestionList";
+	}*/
+	@RequestMapping(value = "/getSuggestionList")
+	public ModelAndView getSuggestionList(Model model, SuggestionVO vo, PagingVO paging) {
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(suggestionService.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("suggestionList", suggestionService.getSuggestionList(vo));
+		mv.setViewName("suggestion/getSuggestionList");
+		return mv;
 	}
 
 	// 관리자 단건 조회
@@ -73,9 +91,25 @@ public class SuggestionController {
 	}
 
 	// 관리자 전체 조회
-	@RequestMapping("AdmingetSuggestionList")
+	/*@RequestMapping("AdmingetSuggestionList")
 	public String AdmingetSuggestionList(Model model, SuggestionVO vo) {
 		model.addAttribute("suggestionList", suggestionService.AdmingetSuggestionList(vo));
 		return "suggestion/AdmingetSuggestionList";
+	}*/
+	@RequestMapping(value = "/AdmingetSuggestionList")
+	public ModelAndView AdmingetSuggestionList(Model model, SuggestionVO vo, PagingVO paging) {
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(suggestionService.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("suggestionList", suggestionService.AdmingetSuggestionList(vo));
+		mv.setViewName("admin/suggestion/AdmingetSuggestionList");
+		return mv;
 	}
 }

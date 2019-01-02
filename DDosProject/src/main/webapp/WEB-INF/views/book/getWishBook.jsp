@@ -85,7 +85,11 @@
 											<label for="wishReason">사유</label>
 											<textarea class="form-control" id="wishReason">${wishbook.wishReason}</textarea >
 										</div>
-									
+									<script>
+										var text = document.querySelector('#wishReason');
+										text.innerHTML = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
+										
+										</script>
 									<c:if test ="${login.id == wishbook.memberId}">
 									<a href="./wishbook" class="btn btn-secondary">취소</a>
 									</c:if>

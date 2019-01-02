@@ -67,5 +67,11 @@ public class SuggestionServiceImpl implements SuggestionService {
 	public List<SuggestionVO> AdmingetSuggestionList(SuggestionVO vo) {
 		return sugDAO.AdmingetSuggestionList(vo);
 	}
+// 전체 건수 조회
+	@Override
+	public int getCount(SuggestionVO vo) {
+		return sugDAO.getCount(vo);
+		
+	}
 
 }

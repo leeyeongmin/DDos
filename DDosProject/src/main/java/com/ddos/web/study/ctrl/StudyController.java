@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ddos.web.event.EventVO;
 import com.ddos.web.study.StudyMemberVO;
 import com.ddos.web.study.StudyService;
 import com.ddos.web.study.StudyVO;
@@ -70,4 +71,12 @@ public class StudyController {
 		studyService.insertStudyMember(vo);
 		return "redirect:getStudyList";
 	}
+	
+	//관리자
+	// 전체 조회
+		@RequestMapping("adminStudyList")
+		public String adminStudyList(Model model, EventVO vo) {
+			model.addAttribute("adminStudyList", studyService.getAdminStudytList(vo));
+			return "admin/study/AdminStudyStudyRoom";
+		}
 }

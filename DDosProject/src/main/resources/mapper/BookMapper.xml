@@ -44,9 +44,20 @@
 	</select>
 	
 	<!-- 건수 -->
-	<select id="getCount" resultType="int">
+	<select id="getCount" resultType="int"  parameterType="book" >
 	SELECT COUNT(*)
 	FROM BOOK
+	<where> 
+	<if
+		test="searchCondition != null and searchCondition == 'booktitle'"> 
+		and book_Title like '%' || #{searchKeyword} || '%'	</if>
+	<if
+		test="searchCondition != null and searchCondition == 'bookwriter'">
+		and book_Writer like '%' || #{searchKeyword} || '%' </if>
+	<if test="searchCondition != null and searchCondition == 'bookcomp'">
+		and book_Comp like '%' || #{searchKeyword} || '%' </if>
+	</where>
+	
 	</select>
 	
 	<!-- 전체 조회 -->

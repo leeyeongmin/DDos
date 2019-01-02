@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ddos.web.event.EventVO;
 import com.ddos.web.study.StudyMemberVO;
 import com.ddos.web.study.StudyService;
 import com.ddos.web.study.StudyVO;
+import com.ddos.web.user.UserVO;
 
 @Service
 public class StudyServiceImpl implements StudyService{
@@ -55,6 +57,11 @@ public class StudyServiceImpl implements StudyService{
 	public void insertStudyMember(StudyMemberVO vo) {
 		// TODO Auto-generated method stub
 		dao.insertStudyMember(vo);
+	}
+
+	@Override
+	public List<StudyVO> getAdminStudytList(EventVO vo) {
+		return dao.getAdminStudyList(vo);
 	}
 
 }

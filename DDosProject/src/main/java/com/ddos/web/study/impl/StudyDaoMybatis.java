@@ -1,5 +1,7 @@
 package com.ddos.web.study.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -7,6 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.ddos.web.event.EventVO;
 import com.ddos.web.study.StudyMemberVO;
 import com.ddos.web.study.StudyVO;
 
@@ -37,5 +41,9 @@ public class StudyDaoMybatis {
 		public void deleteStudy(StudyVO vo) {
 			System.out.println("mybatis deleteStudy() 기능처리");
 			mybatis.update("study.deleteStudy",vo);		
+		}
+
+		public List<StudyVO> getAdminStudyList(EventVO vo) {
+			return mybatis.selectList("study.getAdminStudyList", vo);
 		}
 }

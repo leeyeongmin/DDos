@@ -76,4 +76,22 @@
 	DELETE FROM STUDY WHERE STUDY_NUM= #{studyNumber}
 	</delete>
 	
+	<!-- 단건조회 -->
+	<select id="getStudy" parameterType="study" resultType="study">
+		SELECT 
+		
+		STUDY_NUM as studyNumber,
+		STUDY_NAME,
+		STUDY_SUBJECT,
+		STUDY_TIME,
+		TO_CHAR(STUDY_DATE,'YYYY-MM-DD') AS STUDY_DATE,
+		TO_CHAR(RECRUIT_END,'YYYY-MM-DD') AS RECRUIT_END,
+		RECRUIT_PERSON,
+		STATUS,
+		STUDYROOM_NUM as studyroomNumber,
+		MEMBER_ID
+		
+		FROM STUDY
+	</select> 
+	
 </mapper> 

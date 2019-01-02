@@ -11,6 +11,26 @@ public class NoticeVO {
 	private String searchType;
 	private String searchKeyword;
 
+	// 페이징 처리
+	private int First;
+	private int Last;
+
+	public int getFirst() {
+		return First;
+	}
+
+	public void setFirst(int first) {
+		First = first;
+	}
+
+	public int getLast() {
+		return Last;
+	}
+
+	public void setLast(int last) {
+		Last = last;
+	}
+
 	public int getNoticeNum() {
 		return noticeNum;
 	}
@@ -79,6 +99,8 @@ public class NoticeVO {
 	public String toString() {
 		return "NoticeVO [noticeNum=" + noticeNum + ", noticeTitle=" + noticeTitle + ", noticeDate=" + noticeDate
 				+ ", noticeCont=" + noticeCont + ", memberId=" + memberId + ", noticeCnt=" + noticeCnt + ", searchType="
-				+ searchType + ", searchKeyword=" + searchKeyword + "]";
+				+ searchType + ", searchKeyword=" + searchKeyword + ", First=" + First + ", Last=" + Last + "]";
 	}
+
+
 }

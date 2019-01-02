@@ -16,7 +16,7 @@ public class AssetsDAOMybatis {
 	private SqlSessionTemplate mybatis;
 
 	public List<AssetsVO> getAssetsList(AssetsVO vo) {
-System.out.println("자산리스트  mybatis ");
+		System.out.println("자산리스트  mybatis ");
 		return mybatis.selectList("assets.getAssetsList", vo);
 	}
 
@@ -33,6 +33,10 @@ System.out.println("자산리스트  mybatis ");
 	public void assetsUpdate(AssetsVO vo) {
 		System.out.println("자산 수정  mybatis ");
 		mybatis.update("assets.assetsUpdate", vo);
+	}
+
+	public int getCount(AssetsVO vo) {
+		return mybatis.selectOne("assets.getCount", vo);
 	}
 
 }

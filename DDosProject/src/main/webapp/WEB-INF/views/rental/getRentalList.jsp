@@ -14,19 +14,19 @@
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 <script type="text/javascript">
-	function renewBook() {
+	function renewBook(isbn, dueDate) {
 		$.ajax({
 			url : "renewBook",
 			data : {
 				loginId : "${login.id}",
-				isbn : "${book.isbn}",
-				dueDate : "${rental.dueDate}"
+				isbn : isbn,
+				dueDate : dueDate
 			},
 			type : "post",
 			dataType : "json",
 			success : function() {
-				alter("연장 완료되었습니다");
-				location.href = "./getRentalList"
+				alert ("연장 완료되었습니다");
+				location.href = "./rental"
 			}
 		})
 	}
@@ -77,6 +77,7 @@
 								id="profile-tab" data-toggle="tab" href="#profile" role="tab"
 								aria-controls="profile" aria-selected="true">대출이력</a></li>
 						</ul>
+					
 						<div class="tab-content" id="myTabContent" style="width: 100%;">
 							<!--대출 현황-->
 							<div class="tab-pane fade" id="home" role="tabpanel"
@@ -108,7 +109,7 @@
 													<td>${rental.rentalDate}</td>
 													<td>${rental.dueDate}</td>
 													<td><input type="button" class="btn btn-brand"
-														onclick="renewBook();" value="연장"></td>
+														onclick="renewBook('${rental.isbn}', '${rental.dueDate}');" value="연장"></td>
 												</tr>
 											</c:forEach>
 										</tbody>

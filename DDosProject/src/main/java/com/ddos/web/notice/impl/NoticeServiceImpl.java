@@ -12,7 +12,7 @@ import com.ddos.web.notice.NoticeVO;
 public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	private NoticeMybatisDAO noticeDAO;
-	
+
 	// 전체 조회
 	@Override
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
@@ -24,21 +24,19 @@ public class NoticeServiceImpl implements NoticeService {
 	public NoticeVO getNotice(NoticeVO vo) {
 		return noticeDAO.getNotice(vo);
 	}
-	
+
 	// 사용자 상세 조회
 	@Override
 	public NoticeVO UsergetNotice(NoticeVO vo) {
 		return noticeDAO.UsergetNotice(vo);
 	}
 
-	
 	// 수정
 	@Override
 	public void updateNotice(NoticeVO vo) {
 		noticeDAO.updateNotice(vo);
 	}
-	
-	
+
 	// 등록
 	@Override
 	public void insertNotice(NoticeVO vo) {
@@ -61,4 +59,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.UsergetNoticeList(vo);
 	}
 
+	// 건수
+	@Override
+	public int getCount(NoticeVO vo) {
+		return noticeDAO.getCount(vo);
+	}
 }

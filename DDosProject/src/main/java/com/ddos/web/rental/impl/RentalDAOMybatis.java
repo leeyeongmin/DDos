@@ -38,4 +38,10 @@ public class RentalDAOMybatis {
 	public void renewBook(RentalVO vo) {
 		mybatis.update("rental.renewBook", vo);
 		}
+	
+	//대출 반납 히스토리
+	public List<RentalVO> getHistoryList(RentalVO vo){
+		System.out.println("마이바티스 대출반납히스토리 조회");
+		return mybatis.selectList("rental.getHistoryList", vo);
+	}
 }

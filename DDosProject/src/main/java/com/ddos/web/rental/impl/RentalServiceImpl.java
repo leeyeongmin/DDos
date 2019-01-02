@@ -22,8 +22,8 @@ public class RentalServiceImpl implements RentalService{
 
 	//대출 반납 히스토리
 	@Override
-	public List<RentalVO> historyList(RentalVO vo) {
-		return null;
+	public List<RentalVO> getHistoryList(RentalVO vo) {
+		return rda.getHistoryList(vo);
 	}
 
 	//대출

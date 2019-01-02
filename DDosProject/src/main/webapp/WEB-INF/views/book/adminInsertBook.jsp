@@ -42,7 +42,7 @@
 	<div class="row">
 		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 			<div class="section-block" id="basicform">
-				<!-- <h3 class="section-title">도서 등록</h3> -->
+			
 			</div>
 			<div class="card-body">
 				<form action="adminInsertBook" method="post">
@@ -100,10 +100,10 @@
 						<label for="exampleFormControlTextarea1">도서 내용</label>
 						<textarea class="form-control" name="bookCont" rows="3"></textarea>
 					</div>
-					<div class="form-group row text-right">
-						<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+					<div class="form-group row text-right" >
+						<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0" >
 							<button type="submit" class="btn btn-space btn-primary">저장</button>
-							<button class="btn btn-space btn-secondary">취소</button>
+							<button class="btn btn-space btn-secondary" >취소</button>
 						</div>
 					</div>
 					</form>

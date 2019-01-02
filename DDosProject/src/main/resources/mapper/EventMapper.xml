@@ -65,7 +65,11 @@
 			START_DATE,
 			END_DATE,
 			WRITE_DATE,
-			MEMBER_ID)
+			MEMBER_ID,
+			<if test="eventFile != null and eventFile != ''">
+			EVENT_FILE
+			</if>
+			)
 		VALUES (
 			#{eventNum},
 			#{eventTitle},
@@ -73,7 +77,11 @@
 			#{startDate},
 			#{endDate},
 			sysdate,
-			#{memberId})
+			#{memberId},
+			<if test="eventFile != null and eventFile != ''">
+			#{eventFile}
+			</if>
+			)
 	</insert>
 	
 	<!-- 수정 -->

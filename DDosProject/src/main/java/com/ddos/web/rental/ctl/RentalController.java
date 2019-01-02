@@ -21,7 +21,7 @@ public class RentalController {
 	
 	//메인에서 대출이력조회
 	@RequestMapping("/rental")
-	public String  rental(Model model, RentalVO vo, HttpSession session) {
+	public String getRentalList(Model model, RentalVO vo, HttpSession session) {
 		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("getRentalList", rentalService.getRentalList(vo));
 		System.out.println(vo);
@@ -37,6 +37,14 @@ public class RentalController {
 
 	
 	// 대출반납 전체 이력
+	@RequestMapping("getHistoryList")
+	public String getHistoryList(Model model, RentalVO vo, HttpSession session) {
+		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
+		model.addAttribute("getHistoryList", rentalService.getHistoryList(vo));
+		System.out.println(vo);
+		System.out.println("컨트롤 대출반납 히스토리 조회");
+		return "rental/getRentalList";
+	}
 	
 	
 	//대출

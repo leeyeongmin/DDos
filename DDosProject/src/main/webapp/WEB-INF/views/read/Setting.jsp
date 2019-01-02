@@ -81,7 +81,6 @@
 	}
 
 	function click_set(seatnum){			//좌석 선택 시 
-		alert(seatnum.style.backgroundColor);
 		if(seatnum.style.backgroundColor == "rgb(0, 255, 0)"){
 			seatnum.style.background = "#ffffff";
 		}else{
@@ -121,9 +120,10 @@
 			type : "post",
 			url : "setting_change_ck?room="+num,
 			async: false,
-			success : function(num) {
-				if(num == "false"){
+			success : function(num1) {
+				if(num1 == "false"){
 					alert("사용중인 좌석이 있습니다.");
+					room_show(num);
 				}else{
 					if(event == "save"){
 						save_set()

@@ -14,17 +14,21 @@
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 <script type="text/javascript">
-
-function renewBook() {
-	$.ajax({
-		url : "renewBook",
-		data : {loginId:"${login.id}",isbn:"${book.isbn}", dueDate:"${rental.dueDate}", dueDate:"${rental.renewCnt}"},
-		type: "post",
-		dataType:"json",
-		success: function(){
-		alter("연장 완료되었습니다");
-		location.href="./getRentalList"}
-	})
+	function renewBook() {
+		$.ajax({
+			url : "renewBook",
+			data : {
+				loginId : "${login.id}",
+				isbn : "${book.isbn}",
+				dueDate : "${rental.dueDate}"
+			},
+			type : "post",
+			dataType : "json",
+			success : function() {
+				alter("연장 완료되었습니다");
+				location.href = "./getRentalList"
+			}
+		})
 	}
 </script>
 </head>
@@ -68,7 +72,7 @@ function renewBook() {
 							<li class="nav-item"><a class="nav-link" id="home-tab"
 								data-toggle="tab" href="#home" role="tab" aria-controls="home"
 								aria-selected="false">대출현황</a></li>
-								
+
 							<li class="nav-item"><a class="nav-link active show"
 								id="profile-tab" data-toggle="tab" href="#profile" role="tab"
 								aria-controls="profile" aria-selected="true">대출이력</a></li>
@@ -78,6 +82,7 @@ function renewBook() {
 							<div class="tab-pane fade" id="home" role="tabpanel"
 								aria-labelledby="home-tab">
 								<div class="card-body" style="width: 100%;">
+									<h3>대출 현황</h3>
 									<table class="table">
 										<thead>
 											<tr>
@@ -102,19 +107,20 @@ function renewBook() {
 													<td>${rental.bookComp}</td>
 													<td>${rental.rentalDate}</td>
 													<td>${rental.dueDate}</td>
-													<td><input type="button" class="btn btn-brand"  onclick="renewBook();" value="연장"></td>
+													<td><input type="button" class="btn btn-brand"
+														onclick="renewBook();" value="연장"></td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 								</div>
-				
-						</div>
-					</div>
-						<%-- <div class="tab-pane fade active show" id="profile"
-							role="tabpanel" aria-labelledby="profile-tab">
-							<h3>대출 이력</h3>
-							<div class="card-body" style="width: 100%;">
+							</div>
+
+
+							<div class="tab-pane fade active show" id="profile"
+								role="tabpanel" aria-labelledby="profile-tab">
+								<h3>대출 이력</h3>
+								<div class="card-body">
 								<table class="table">
 									<thead>
 										<tr>
@@ -127,28 +133,26 @@ function renewBook() {
 											<th scope="col">반납예정일</th>
 										</tr>
 									</thead>
-									<tbody id=getRentalList>
-										<c:forEach items="${getRentalList}" var="rental">
+									<tbody id=getHistoryList>
+										<c:forEach items="${getHistoryList}" var="rental">
 											<tr>
-												<td><input type="checkbox" name="rnum"
-													value="${rental.rentalNum}"></td>
 												<td>${rental.isbn}</td>
 												<td>${rental.bookTitle}</td>
 												<td>${rental.bookWriter}</td>
 												<td>${rental.bookComp}</td>
 												<td>${rental.rentalDate}</td>
+												<td>${rental.returnDate}</td>
 												<td>${rental.dueDate}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
-						</div> --%>
-						
+						</div>
 					</div>
+				</div>
 			</div>
 		</div>
-
 	</div>
 </body>
 </html>

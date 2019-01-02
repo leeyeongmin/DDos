@@ -23,6 +23,7 @@
 		<typeAlias alias="wishbook" type="com.ddos.web.book.WishBookVO"/>
 		<typeAlias alias="rental" type="com.ddos.web.rental.RentalVO"/>
 		<typeAlias alias="message" type="com.ddos.web.message.MessageVO"/>
+		<typeAlias alias="assets" type="com.ddos.web.assets.AssetsVO"/>
 	</typeAliases>
 	
 </configuration>

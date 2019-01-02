@@ -31,51 +31,111 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	}
 
 	@Override
-	public Map<String, Object> BookChart_history() {
+	public Map<String, Object> BookChart_history(String day) {
 		// TODO Auto-generated method stub
-		return dao.BookChart_history();
+		return dao.BookChart_history(day);
 	}
 
 	@Override
-	public Map<String, Object> BookChart_total() {
+	public Map<String, Object> BookChart_total(String day) {
 		// TODO Auto-generated method stub
-		return dao.BookChart_total();
+		return dao.BookChart_total(day);
 	}
 
 	@Override
-	public Map<String, Object> BookChart_art() {
+	public Map<String, Object> BookChart_art(String day) {
 		// TODO Auto-generated method stub
-		return dao.BookChart_art();
+		return dao.BookChart_art(day);
 	}
 
 	@Override
-	public Map<String, Object> BookChart_science() {
+	public Map<String, Object> BookChart_science(String day) {
 		// TODO Auto-generated method stub
-		return dao.BookChart_science();
+		return dao.BookChart_science(day);
 	}
 
 	@Override
-	public Map<String, Object> BookChart_language() {
+	public Map<String, Object> BookChart_language(String day) {
 		// TODO Auto-generated method stub
-		return dao.BookChart_language();
+		return dao.BookChart_language(day);
 	}
 
 	@Override
-	public List<Map> toprental() {
+	public List<Map> toprental(String day) {
 		// TODO Auto-generated method stub
-		return dao.toprental();
+		return dao.toprental(day);
 	}
 
 	@Override
-	public List<Map> toprentalbook() {
+	public List<Map> toprentalbook(String day) {
 		// TODO Auto-generated method stub
-		return dao.toprentalbook();
+		return dao.toprentalbook(day);
 	}
 
 	@Override
-	public List<Map> rentalCount() {
+	public List<Map> rentalCount(String day) {
 		// TODO Auto-generated method stub
-		return dao.rentalCount();
+		return dao.rentalCount(day);
+	}
+
+	@Override
+	public List<Map> totalChart_input(String year) {
+		// TODO Auto-generated method stub
+		return dao.totalChart_input(year);
+	}
+
+	@Override
+	public List<Map> totalList(String year) {
+		// TODO Auto-generated method stub
+		return dao.totalList(year);
+	}
+
+	@Override
+	public List<Map> totalChart_output(String year) {
+		// TODO Auto-generated method stub
+		return dao.totalChart_output(year);
+	}
+
+	@Override
+	public List<Map> UnpaidList() {
+		// TODO Auto-generated method stub
+		return dao.UnpaidList();
+	}
+
+	@Override
+	public List<Map> month_inputchart(String day) {
+		// TODO Auto-generated method stub
+		return dao.month_inputchart(day);
+	}
+
+	@Override
+	public List<Map> month_inputList(String day) {
+		// TODO Auto-generated method stub
+		return dao.month_inputList(day);
+	}
+
+	@Override
+	public List<Map> click_input(Map map) {
+		// TODO Auto-generated method stub
+		return dao.click_input(map);
+	}
+
+	@Override
+	public List<Map> click_output(Map map) {
+		// TODO Auto-generated method stub
+		return dao.click_output(map);
+	}
+
+	@Override
+	public List<Map> month_outputchart(String day) {
+		// TODO Auto-generated method stub
+		return dao.month_outputchart(day);
+	}
+
+	@Override
+	public List<Map> month_outputList(String day) {
+		// TODO Auto-generated method stub
+		return dao.month_outputList(day);
 	}
 
 

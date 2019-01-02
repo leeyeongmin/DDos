@@ -32,7 +32,7 @@
 		#{studySubject},
 		#{studyTime},
 		to_date(#{studyDate},'mm/dd'),
-		to_date(#{recruitEnd},'mm/dd/yyyy'),
+		to_date(#{recruitEnd},'yyyy/mm/dd'),
 		#{recruitPerson},
 		#{status},
 		#{studyroomNumber},

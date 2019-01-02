@@ -169,7 +169,7 @@
 							
 
 							<li class="nav-item "><a class="nav-link" href="read"> <i
-									class="fab fa-fw fa-wpforms"></i> Seat Setting
+									class="fab fa-fw fa-wpforms"></i> Reading Room
 							</a></li>
 
 							<li class="nav-item"><a class="nav-link" href="getStudyList">

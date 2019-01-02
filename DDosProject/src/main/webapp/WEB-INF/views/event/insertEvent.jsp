@@ -56,6 +56,11 @@
 													value="${sessionScope.login.id}">${sessionScope.login.id}</td>
 											</tr>
 											<tr>
+												<td>이미지</td>
+												<td><input type="text" name="eventTitle"
+													style="width: 100%" required></td>
+											</tr>
+											<tr>
 												<td>제목</td>
 												<td><input type="text" name="eventTitle"
 													style="width: 100%" required></td>

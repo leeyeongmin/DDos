@@ -66,7 +66,7 @@ public class StudyDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				day = rs.getInt("day");
-				ary[day] = ary[day] + rs.getInt("study_time") +" "+rs.getString("study_name")+"("
+				ary[day] = ary[day] + rs.getInt("study_time") +" : 00   "+rs.getString("study_name")+"("
 							+rs.getString("studyroom_num")+"번방)"+","+rs.getInt("study_num")+","+rs.getString("recruit_end")+",\t";
 				System.out.println(ary[day]);
 			}

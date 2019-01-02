@@ -43,11 +43,11 @@
 
 <!-- 연장 -->
 <insert id="renewBook"  statementType="CALLABLE">
-	{call P_rental
+	{call P_renewal
 	(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
 	#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
 	#{dueDate, mode=IN, jdbcType=VARCHAR, javaType=string},
-	#{renewCnt, mode=IN, jdbcType=VARCHAR, javaType=string})
+	'1' )
 
 </insert>
 

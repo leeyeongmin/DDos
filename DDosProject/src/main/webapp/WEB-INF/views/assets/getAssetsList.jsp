@@ -6,7 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>DDos</title>
-
+<script type="text/javascript">
+	document.getElementById("assets").click = clickfunc;
+	function clickfunc(e) {
+		var tdele = e.target.parentNode.children[x].innerHTML;
+		var trele = e.target.parentNode;
+	}
+</script>
 <style>
 div.card {
 	padding: 12px 20px 12px 20px;
@@ -27,15 +33,26 @@ div.card {
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Asets</h3>
+							<h3 class="mb-2">Assets</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Asets</li>
+										<li class="breadcrumb-item active" aria-current="page">Assets</li>
 									</ol>
 								</nav>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 							</div>
 						</div>
 					</div>
@@ -45,7 +62,7 @@ div.card {
 				<!-- ============================================================== -->
 				<div class="row" style="margin-top:5%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<!-- <div class="card">
+						 <div class="card">
 							검색
 							<div class="card-body">
 								<form name="search" onsubmit="check()">
@@ -59,12 +76,12 @@ div.card {
 										placeholder="Search">
 									<button class="btn btn-primary" style="margin-left:1%; width:7%; height:48px;">검색</button>
 								</form>
-							</div> -->
+							</div>
 
 
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getNoticeList" width="100%"
+									<table id="getAssetsList" width="100%"
 										class="table table-bordered table-hover text-center">
 										<thead>
 											<tr>

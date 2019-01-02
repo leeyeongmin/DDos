@@ -38,6 +38,11 @@ public class AssetsServiceImpl implements AssetsService {
 		
 	}
 
+	@Override
+	public int getCount(AssetsVO vo) {
+		return ada.getCount(vo);
+	}
+
 
 	 
 }

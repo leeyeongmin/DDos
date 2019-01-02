@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ddos.web.paging.PagingVO;
+
 @Service
 public class StatisticsSeviceImpl implements StatisticsService{
 
@@ -136,6 +138,12 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	public List<Map> month_outputList(String day) {
 		// TODO Auto-generated method stub
 		return dao.month_outputList(day);
+	}
+
+	//전체 건수 
+	@Override
+	public int getCount(PagingVO vo) {
+		return dao.getCount(vo);
 	}
 
 

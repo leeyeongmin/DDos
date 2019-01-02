@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ddos.web.paging.PagingVO;
+
 
 @Repository
 public class StatisticsDAOMYBatis {
@@ -106,5 +108,10 @@ public class StatisticsDAOMYBatis {
 	
 	public List<Map> click_output(Map map){
 		return mybatis.selectList("Statics.click_output",map);
+	}
+	
+	//전체 건수 조회
+	public int getCount(PagingVO vo) {
+		return mybatis.selectOne("paging.getCount", vo);
 	}
 }

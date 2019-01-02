@@ -3,6 +3,8 @@ package com.ddos.web.statistics.impl;
 import java.util.List;
 import java.util.Map;
 
+import com.ddos.web.paging.PagingVO;
+
 
 public interface StatisticsService {
 	public Map<String, Object> readChart_yester();			//어제
@@ -30,4 +32,7 @@ public interface StatisticsService {
 	public List<Map> month_outputList(String day);
 	public List<Map> click_input(Map map);
 	public List<Map> click_output(Map map);
+	
+	// 전체 건수
+	public int getCount(PagingVO vo);
 }

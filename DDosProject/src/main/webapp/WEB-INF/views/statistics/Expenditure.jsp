@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -283,6 +284,7 @@
 					<input type="text" style="width: 50px;" id="year" value=<%= sear_year %>>년 &nbsp;&nbsp; 
 					<input type="text" style="width: 30px;" id="month" value=<%= sear_month %>>월  &nbsp;&nbsp; 
 					<input type="button" value="보기" onclick="searchChar()"> 
+				<!-- 페이징처리 부분 -->	<input type="hidden" name="page" />
 				</div>
 					
 					
@@ -311,6 +313,13 @@
 									</table>
 								</div>
 							</div> 
+							<my:paging paging="${paging}" />
+							<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script>
 						</div>
 					</div>
 				</div>		<!--  row -->
@@ -324,6 +333,7 @@
 						<div class="card">
 							<div class="card-body"> 
 							<div align="right"><input type="button" value="전체보기" onclick="output_table()"></div>
+								<!-- 페이징처리 부분 -->	<input type="hidden" name="page" />
 								<div class="table-responsive">
 								<h3 class="mb-2" style="text-align:center;">지출 목록</h3>
 									<table id="inputList" width="100%"
@@ -339,7 +349,14 @@
 										<tbody id=addRow2></tbody>
 									</table>
 								</div>
-							</div> 
+							</div>
+							<my:paging paging="${paging}" />
+							<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script> 
 						</div>
 					</div>
 				</div>		<!--  row -->

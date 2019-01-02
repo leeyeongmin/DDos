@@ -164,12 +164,12 @@ function rentalBook() {
 																		</tr>
 																	</c:forEach>
 																</tbody>
-																<td colspan="2">
+																<%-- <td colspan="2">
 																	<a
 																	href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
 																	class="btn btn-primary">수정</a> <a
 																	href="./deleteReview?reviewNum=${review.reviewNum}"
-																	class="btn btn-space btn-secondary">삭제</a></td>
+																	class="btn btn-space btn-secondary">삭제</a></td> --%>
 															</table>
 														</div>
 													</li>

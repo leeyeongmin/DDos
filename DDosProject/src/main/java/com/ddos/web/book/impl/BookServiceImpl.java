@@ -33,8 +33,8 @@ public class BookServiceImpl implements BookService {
 
 	// 전체 조회
 	
-	  @Override public List<BookVO> getBookList(BookVO vo) { return
-	  dab.getBookList(vo); }
+	  @Override public List<BookVO> getBookList(BookVO vo) {
+		  return  dab.getBookList(vo); }
 	 
 
 	// 한건 조회
@@ -77,6 +77,7 @@ public class BookServiceImpl implements BookService {
 		dab.adminUpdateBook(vo);
 	}
 
+	//도서 이미지 가져는거
 	@Override
 	public List<BookVO> apiBookList(String isbn, int display, int start) {
 		
@@ -97,8 +98,7 @@ public class BookServiceImpl implements BookService {
 	            XmlPullParser parser = factory.newPullParser();
 	            parser.setInput(
 	                    new InputStreamReader(urlConn.getInputStream()));
-	            //Test에서 했던 방식은 DOM방식이기때문에? 
-	            //그래서 이렇게 해도 된다?!??!??!? 
+	           
 	            
 	            
 	            
@@ -130,7 +130,6 @@ public class BookServiceImpl implements BookService {
 	                        if(b != null)
 	                            b.setBookTitle(parser.nextText());
 	                        break;
-	                   
 	                    case "image":
 	                        if(b != null) {	                            
 	                            String img = parser.nextText();

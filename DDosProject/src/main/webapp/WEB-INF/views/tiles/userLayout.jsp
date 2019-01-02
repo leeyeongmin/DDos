@@ -148,21 +148,25 @@
 
 						
 							<!-- =============================== -->
-							<li class="nav-item"><a class="nav-link" href="#"
-								data-toggle="collapse" aria-expanded="true"
-								data-target="#submenu-2" aria-controls="submenu-2"><i
-									class="fas fa-book"></i>Library</a>
-								<div id="submenu-2" class="submenu collapse show" style="">
-									<ul class="nav flex-column">
-										<li class="nav-item"><a class="nav-link"
-											href="wishbook?loginId=${login.id}">WishBook <span
-												class="badge badge-secondary">New</span></a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="getBookList">Collection</a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="rental?loginId=${login.id}">borrow</a></li>
-									</ul>
-								</div></li>
+					<li class="nav-item">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-book"></i>Library</a>
+                                <div id="submenu-2" class="submenu collapse" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="wishbook?loginId=${login.id}">WishBook <span class="badge badge-secondary">New</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="getBookList">Collection</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="rental?loginId=${login.id}">borrow</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+							
+							
 
 							<li class="nav-item "><a class="nav-link" href="read"> <i
 									class="fab fa-fw fa-wpforms"></i> Seat Setting

@@ -8,8 +8,8 @@ public interface RentalService {
 	public List<RentalVO> getRentalList(RentalVO vo);
 	
 	
-	//대출 이력 조회
-	public List<RentalVO> historyList(RentalVO vo);
+	//대출 반납이력 조회
+	public List<RentalVO> getHistoryList(RentalVO vo);
 	
 	//대출
 	public void rentalBook(RentalVO vo);

@@ -45,7 +45,7 @@
 			<div class="section-block" id="basicform">
 			
 			</div>
-			<div class="card-body">
+			<div class="card-body" width="100%" >
 				<form action ="adminUpdateBook" method="post">
 					<div class="form-group">
 						<label for="inputText3" class="col-form-label">도서명</label> 

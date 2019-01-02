@@ -170,7 +170,7 @@ margin-top:2%;
 							</li>
 							
 							<li class="nav-item">
-								<a class="nav-link" href="getStudyList">
+								<a class="nav-link" href="adminStudyList">
 									<i class="fas fa-fw fa-file"></i> 
 									Study & Study Room
 								</a>

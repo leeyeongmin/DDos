@@ -35,6 +35,9 @@
     }
     </style>
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <script type="text/javascript">
 	function openPopup() { //팝업창 오픈 
 		var cookieCheck = getCookie("popupYN");
@@ -43,23 +46,10 @@
 			window.open('popup.jsp', 'a', 'width=400, height=400')
 
 	}
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
-<!-- <script type="text/javascript">
-		
-	var IMP = window.IMP; // 생략가능
-	IMP.init('imp93998128'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-	
-	
-	function check(){
-		
-	}
 	
 	function getCookie(name) {
 		var cookie = document.cookie;
-	
+
 		if (document.cookie != "") {
 			var cookie_array = cookie.split("; ");
 			for ( var index in cookie_array) {
@@ -71,10 +61,7 @@
 		}
 		return;
 	}
-
 </script>
-
-</script> -->
 
 </head>
 

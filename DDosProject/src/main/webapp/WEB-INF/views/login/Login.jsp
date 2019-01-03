@@ -34,14 +34,15 @@
     background-size: cover;
     }
     </style>
-<<<<<<< HEAD
+
 <script type="text/javascript">
 	function openPopup() { //팝업창 오픈 
 		var cookieCheck = getCookie("popupYN");
 		console.log(cookieCheck);
 		if (cookieCheck != "N")
 			window.open('popup.jsp', 'a', 'width=400, height=400')
-=======
+
+	}
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -54,7 +55,6 @@
 	
 	function check(){
 		
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 	}
 	
 	function getCookie(name) {
@@ -71,15 +71,11 @@
 		}
 		return;
 	}
-<<<<<<< HEAD
+
 </script>
-=======
+
 </script> -->
 
-
-
-
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 </head>
 
 <body class="bgimg" onload="openPopup()">
@@ -102,11 +98,10 @@
                         <input class="form-control form-control-lg" id="password" name="password" type="password" placeholder="Password" required>
                     </div>
                     
-<<<<<<< HEAD
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-=======
+
                     <button type="submit"  class="btn btn-primary btn-lg btn-block">Sign in</button>
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
+
                 </form>
             </div>
             <div class="card-footer bg-white p-0  ">

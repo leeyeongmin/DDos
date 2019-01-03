@@ -33,7 +33,7 @@
 		output_table();
 	}) 
 	
-	/*--------------------------------inTable--------------------------------*/
+	/*--------------------------------inTable 수입 목록 테이블--------------------------------*/
 	function input_table(){
 		var s_year = document.getElementById('year').value;
 		var s_month = document.getElementById('month').value; 
@@ -47,21 +47,24 @@
 			url : "month_inputList?day=" + sear_day,
 			method : "post",
 			success : function(datas) {
-				for(var i=0; i<datas.length; i++){
-					$add += "<tr><td>" + datas[i].day + "</td>" + 
-					"<td>" + datas[i].content + "</td>" + 
-					"<td>" + datas[i].money + "</td>" + 
-					"<td>" + datas[i].id + "</td></tr>";
+				
+				if (datas.length == 0){
+					$add += "<tr><td colspan='4'>검색결과가 없습니다.</td></tr>";
+				}else{
+					for(var i=0; i<datas.length; i++){
+						$add += "<tr><td>" + datas[i].day + "</td>" + 
+						"<td>" + datas[i].content + "</td>" + 
+						"<td>" + datas[i].money + "</td>" + 
+						"<td>" + datas[i].id + "</td></tr>";
+					}	
 				}
-	
+			
 				$($add).prependTo("#addRow"); 		
 			}
-		
-			
 		});
 	}
 	
-	/*------------------------outTable--------------------------*/
+	/*------------------------outTable 지출 테이블--------------------------*/
 	function output_table(){
 		var s_year = document.getElementById('year').value;
 		var s_month = document.getElementById('month').value; 
@@ -75,13 +78,16 @@
 			url : "month_outputList?day=" + sear_day,
 			method : "post",
 			success : function(datas) {
+				if (datas.length == 0){
+					$add += "<tr><td colspan='4'>검색결과가 없습니다.</td></tr>";
+				}else{
 				for(var i=0; i<datas.length; i++){
 					$add += "<tr><td>" + datas[i].day + "</td>" + 
 					"<td>" + datas[i].content + "</td>" + 
 					"<td>" + datas[i].money + "</td>" + 
 					"<td>" + datas[i].id + "</td></tr>";
 				}
-	
+				}
 				$($add).prependTo("#addRow2"); 		
 			}
 		
@@ -96,7 +102,7 @@
 		var s_month = document.getElementById('month').value; 
 		sear_day = s_year + "/" + s_month;
 		
-		/*--------------------------------in--------------------------------*/
+		/*--------------------------------in 수입 그래프--------------------------------*/
 		$.ajax({
 			url : "month_inputchart?day=" + sear_day,
 			method : "post",
@@ -126,7 +132,7 @@
 			}
 		})
 		
-		/*-----------------------------------out------------------------------------*/
+		/*-----------------------------------out 지출 그래프------------------------------------*/
 		$.ajax({
 			url : "month_outputchart?day=" + sear_day,
 			method : "post",
@@ -284,7 +290,8 @@
 					<input type="text" style="width: 50px;" id="year" value=<%= sear_year %>>년 &nbsp;&nbsp; 
 					<input type="text" style="width: 30px;" id="month" value=<%= sear_month %>>월  &nbsp;&nbsp; 
 					<input type="button" value="보기" onclick="searchChar()"> 
-				<!-- 페이징처리 부분 -->	<input type="hidden" name="page" />
+				<input type="hidden" name="page" /> 
+				
 				</div>
 					
 					
@@ -296,6 +303,7 @@
 					<div class="col-sm">
 						<div class="card">
 							<div class="card-body">
+						
 								<div align="right"><input type="button" value="전체보기" onclick="input_table()"></div>
 								<div class="table-responsive">
 								<h3 class="mb-2" style="text-align:center;">수입 목록</h3>
@@ -313,13 +321,13 @@
 									</table>
 								</div>
 							</div> 
-							<my:paging paging="${paging}" />
-							<script>
+						<my:paging paging="${paging}" />
+						<script>
 								function go_page(page) {
 									document.frm.page.value = page;
 									document.frm.submit();
 								}
-							</script>
+							</script> 
 						</div>
 					</div>
 				</div>		<!--  row -->
@@ -332,8 +340,10 @@
 					<div class="col-sm"> 
 						<div class="card">
 							<div class="card-body"> 
+							
 							<div align="right"><input type="button" value="전체보기" onclick="output_table()"></div>
-								<!-- 페이징처리 부분 -->	<input type="hidden" name="page" />
+							<!-- 페이징처리 부분 -->	<input type="hidden" name="page" />
+						
 								<div class="table-responsive">
 								<h3 class="mb-2" style="text-align:center;">지출 목록</h3>
 									<table id="inputList" width="100%"
@@ -350,13 +360,13 @@
 									</table>
 								</div>
 							</div>
-							<my:paging paging="${paging}" />
+						 <my:paging paging="${paging}" />
 							<script>
 								function go_page(page) {
 									document.frm.page.value = page;
 									document.frm.submit();
 								}
-							</script> 
+							</script>  
 						</div>
 					</div>
 				</div>		<!--  row -->

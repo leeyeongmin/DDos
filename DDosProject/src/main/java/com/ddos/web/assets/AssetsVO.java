@@ -6,7 +6,7 @@ public class AssetsVO {
 	private int assetsPrice;
 	private String assetsDate;
 	private String assetsCont;
-	private String assetsDetail;
+	private String contDetail;
 	private String memberId;
 
 	// 검색
@@ -57,12 +57,12 @@ public class AssetsVO {
 		this.assetsCont = assetsCont;
 	}
 
-	public String getAssetsDetail() {
-		return assetsDetail;
+	public String getcontDetail() {
+		return contDetail;
 	}
 
-	public void setAssetsDetail(String assetsDetail) {
-		this.assetsDetail = assetsDetail;
+	public void setcontDetail(String contDetail) {
+		this.contDetail = contDetail;
 	}
 
 	public String getMemberId() {
@@ -108,8 +108,8 @@ public class AssetsVO {
 	@Override
 	public String toString() {
 		return "AssetsVO [assetsNum=" + assetsNum + ", assetsSeparation=" + assetsSeparation + ", assetsPrice="
-				+ assetsPrice + ", assetsDate=" + assetsDate + ", assetsCont=" + assetsCont + ", assetsDetail="
-				+ assetsDetail + ", memberId=" + memberId + ", searchCondition=" + searchCondition + ", searchKeyword="
+				+ assetsPrice + ", assetsDate=" + assetsDate + ", assetsCont=" + assetsCont + ", contDetail="
+				+ contDetail + ", memberId=" + memberId + ", searchCondition=" + searchCondition + ", searchKeyword="
 				+ searchKeyword + ", First=" + First + ", Last=" + Last + "]";
 	}
 

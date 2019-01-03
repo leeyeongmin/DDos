@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ddos.web.paging.PagingVO;
 import com.ddos.web.statistics.impl.StatisticsService;
 
 @Controller
@@ -73,8 +74,23 @@ public class StatisticsController {
 	
 	@RequestMapping("toprental")
 	@ResponseBody
-	public List<Map> topRental(@RequestParam String day){
-		return serivce.toprental(day);
+	public Map topRental(@RequestParam Map map, PagingVO paging){
+		Map map = new HashMap();
+	      
+	      if (paging.getPage() == null) {
+	         paging.setPage(1);
+	      }
+	      paging.setPageUnit(5);
+	      
+	      map.put("first", paging.getFirst());
+	      map.put("last", paging.getLast());      
+
+	      paging.setTotalRecord(serivce.getCount(map));
+	      map.put("paging", paging);
+	      
+	      map.put("result", serivce.toprental(map));
+	      
+	      return map;
 	}
 	
 	

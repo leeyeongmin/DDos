@@ -104,8 +104,8 @@ div.card {
 							<my:paging paging="${paging}" />
 							<script>
 								function go_page(page) {
-									document.frm.page.value = page;
-									document.frm.submit();
+									document.search.page.value = page;
+									document.search.submit();
 								}
 							</script>
 							<a href="./insertSuggestionform" class="btn btn-secondary"

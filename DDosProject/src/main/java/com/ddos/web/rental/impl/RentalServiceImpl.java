@@ -35,7 +35,7 @@ public class RentalServiceImpl implements RentalService{
 //반납
 	@Override
 	public void returnBook(RentalVO vo) {
-		rda.rentalBook(vo);
+		rda.returnBook(vo);
 		
 	}
 //반납 리스트

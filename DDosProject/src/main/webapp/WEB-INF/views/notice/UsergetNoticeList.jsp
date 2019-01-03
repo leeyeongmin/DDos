@@ -58,7 +58,7 @@ div.card {
 						<div class="card">
 							<!-- 검색 -->
 							<div class="card-body">
-								<form name="search" onsubmit="check()">
+								<form name="search" onsubmit="check()" >
 									<select class="form-control" name="searchType"
 										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
 										<option value="noticeTitle">제목
@@ -105,8 +105,8 @@ div.card {
 							<my:paging paging="${paging}" />
 							<script>
 								function go_page(page) {
-									document.frm.page.value = page;
-									document.frm.submit();
+									document.search.page.value = page;
+									document.search.submit();
 								}
 							</script>
 						</div>

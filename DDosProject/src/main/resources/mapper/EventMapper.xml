@@ -36,9 +36,16 @@
 	
 	<!-- ================관리자용================== -->
 	<!-- 전체 조회 -->
-	<select id="getEventList" resultType="event">
+	<select id="getEventList" parameterType="event" resultType="event">
+		SELECT B.* FROM (SELECT A.*,  ROWNUM RN FROM (
 		SELECT * FROM EVENT
 		ORDER BY EVENT_NUM DESC
+		) A) B WHERE RN BETWEEN #{first} and #{last}
+	</select>
+	
+	<select id="getCount" resultType="int"  parameterType="event" >
+	SELECT COUNT(*)
+	FROM EVENT
 	</select>
 	
 	<!-- 단건 조회 -->

@@ -42,17 +42,6 @@ div.card {
 										<li class="breadcrumb-item active" aria-current="page">Assets</li>
 									</ol>
 								</nav>
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
 							</div>
 						</div>
 					</div>

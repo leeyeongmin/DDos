@@ -5,9 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ddos.web.event.EventService;
 import com.ddos.web.event.EventVO;
+import com.ddos.web.paging.PagingVO;
 
 @Controller
 public class EventController {
@@ -73,11 +75,28 @@ public class EventController {
 	}
 	
 	// 전체 조회
-	@RequestMapping("getEventList")
+	/*@RequestMapping("getEventList")
 	public String getEventList(Model model, EventVO vo) {
 		model.addAttribute("eventList", eventService.getEventList(vo));
 		return "event/getEventList";
-	}
+	}*/
+	
+	@RequestMapping(value = "/getEventList")
+	public ModelAndView getEventList(Model model, EventVO vo,  PagingVO paging) {
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(eventService.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("eventList", eventService.getEventList(vo));
+		mv.setViewName("event/getEventList");
+		return mv;
+		}
 	
 	// 단건 조회
 	@RequestMapping("getEvent")
@@ -85,4 +104,6 @@ public class EventController {
 		model.addAttribute("event", eventService.getEvent(vo));
 		return "event/getEvent";
 	}
+	
+	//건수
 }

@@ -48,6 +48,7 @@
 		</selectKey>
 		INSERT INTO NOTICE (
 		NOTICE_NUM,
+
 		NOTICE_TITLE,
 		NOTICE_CONT,
 		MEMBER_ID,

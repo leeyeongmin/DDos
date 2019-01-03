@@ -53,7 +53,7 @@ div.card {
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="row" style="margin-top:5%;">
+				<div class="row" style="margin-top: 5%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<!-- 검색 -->
@@ -67,8 +67,9 @@ div.card {
 										style="width: 75%; margin-left: 1%; display: inline-block;"
 										id="searchUserKeyword" type="text" name="searchKeyword"
 										placeholder="Search">
-									<button class="btn btn-primary" style="margin-left:1%; width:7%; height:48px;">검색</button>
-									<input	type="hidden" name="page" />
+									<button class="btn btn-primary"
+										style="margin-left: 1%; width: 7%; height: 48px;">검색</button>
+									<input type="hidden" name="page" />
 								</form>
 							</div>
 
@@ -101,10 +102,17 @@ div.card {
 									</table>
 									<c:if test="${login.id == 'admin@gmail.com'}">
 										<a href="insertNoticeform" class="btn btn-secondary"
-										style="width:20%; height:48px; margin-left:38%; margin-top:5%; font-weight:bold; padding-top:1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
+											style="width: 20%; height: 48px; margin-left: 38%; margin-top: 5%; font-weight: bold; padding-top: 1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
 									</c:if>
 								</div>
 							</div>
+							<my:paging paging="${paging}" />
+							<script>
+								function go_page(page) {
+									document.search.page.value = page;
+									document.search.submit();
+								}
+							</script>
 						</div>
 					</div>
 				</div>

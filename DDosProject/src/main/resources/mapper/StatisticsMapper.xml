@@ -86,7 +86,7 @@
 		select member_id "memberId", book_comp "bookComp", m.name "name", m.phone "phone" 
 		from member m ,
 		(select rank() over(order by book_comp desc) rental_top, book_comp, member_id from (
-		<![CDATA[select count(*) book_comp , member_Id from rental where to_char(return_date,'yyyy/mm') = #{value} group by member_id))
+		<![CDATA[select count(*) book_comp , member_Id from rental where to_char(rental_date,'yyyy/mm') = #{value} group by member_id))
 		where rental_top <= 5
 		and m.id = member_id]]>
 	</select>
@@ -148,12 +148,12 @@
 	    group by assets_cont
 	</select>
 	
-	<!-- <select id="month_inputList" resultType="map" parameterType="string">
+	 <select id="month_inputList" resultType="map" parameterType="string">
 		select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
 		from assets_manage
 		where to_char(assets_date, 'yyyy/mm') = #{value}
 		and assets_separation = '수입'
-	</select> -->
+	</select> 
 	
 	<select id="click_input" parameterType="map" resultType="map">
 		 select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"

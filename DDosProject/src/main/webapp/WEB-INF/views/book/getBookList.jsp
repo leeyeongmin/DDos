@@ -8,11 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	document.getElementById("getBookList").click = clickfunc;
-	function clickfunc(e) {
-		var tdele = e.target.parentNode.children[x].innerHTML;
-		var trele = e.target.parentNode;
+function check() {
+	if (document.search.searchKeyword.value == "") {
+		alert("검색어를 입력하세요");
+		document.search.searchKeyword.focus();
+		return;
 	}
+	document.search.submit();
 </script>
 </head>
 <body>

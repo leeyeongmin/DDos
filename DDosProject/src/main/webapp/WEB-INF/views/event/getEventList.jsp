@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +57,9 @@ div.card {
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
+							<form name="frm">
+							<input type="hidden" name="page" />
+							</form>
 								<div class="table-responsive">
 									<table id="getEventList" width="100%"
 										class="table table-bordered table-hover text-center">
@@ -84,6 +88,13 @@ div.card {
 										<a href="insertEventform" class="btn btn-secondary"
 										style="width:20%; height:48px; margin-left:38%; margin-top:5%; font-weight:bold; padding-top:1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
 								</div>
+								<my:paging paging="${paging}" />
+							<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script>
 							</div>
 						</div>
 					</div>

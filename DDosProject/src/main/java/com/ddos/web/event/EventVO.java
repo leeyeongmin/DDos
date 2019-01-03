@@ -9,6 +9,26 @@ public class EventVO {
 	private String endDate;
 	private String writeDate;
 	private String memberId;
+	
+	// 페이징 처리
+		private int First;
+		private int Last;
+
+	public int getFirst() {
+			return First;
+		}
+
+		public void setFirst(int first) {
+			First = first;
+		}
+
+		public int getLast() {
+			return Last;
+		}
+
+		public void setLast(int last) {
+			Last = last;
+		}
 
 	public int getEventNum() {
 		return eventNum;
@@ -70,7 +90,9 @@ public class EventVO {
 	public String toString() {
 		return "EventVO [eventNum=" + eventNum + ", eventTitle=" + eventTitle + ", eventCont=" + eventCont
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", writeDate=" + writeDate + ", memberId="
-				+ memberId + "]";
+				+ memberId + ", First=" + First + ", Last=" + Last + "]";
 	}
+
+	
 
 }

@@ -51,4 +51,8 @@ public class EventDAOMybatis {
 	public EventVO getEvent(EventVO vo) {
 		return mybatis.selectOne("event.getEvent", vo);
 	}
+	// 전체 건수 조회
+		public int getCount(EventVO vo) {
+			return mybatis.selectOne("event.getCount", vo);
+		}
 }

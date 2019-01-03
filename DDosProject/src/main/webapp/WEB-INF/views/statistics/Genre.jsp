@@ -68,7 +68,7 @@
 						leng = arr.length;
 						sta = arr.length;
 						if(leng == "0"){
-							alert("데이터가 없습니다.");
+							
 						}
 						
 						booklistdraw(0);
@@ -137,94 +137,97 @@
 			url : "toprental?day=" +sear_day, 
 			method : "post",
 			success : function(datas) {
-				var $add = "";
-				for(var i=0; i<datas.length; i++){
-					$add += "<tr><td>" + datas[i].memberId + "</td>" +
-							"<td>" + datas[i].name + "</td>" + 
-							"<td>" + datas[i].bookComp + "</td></tr>" 
-				} 
-				$($add).prependTo("#expenditureList"); 
+					var $add = "";
+					for (var i = 0; i < datas.length; i++) {
+						$add += "<tr><td>" + datas[i].memberId + "</td>"
+								+ "<td>" + datas[i].name + "</td>" + "<td>"
+								+ datas[i].bookComp + "</td></tr>"
+					}
+				}
+				$($add).prependTo("#expenditureList");
 			}
-		}) 
+		});
 	}
 
-	function topRentalBook(sear_day){
-		
+	function topRentalBook(sear_day) {
+
 		$("#bookGenre").empty();
-		
-		 $.ajax({
-				url : "toprentalbook?day=" + sear_day, 
-				method : "post",
-				success : function(datas) {
-					var $add = "";
-					for(var i=0; i<datas.length; i++){
-						$add += "<tr><td>" + datas[i].rankCnt + "</td>" +
-								"<td>" + datas[i].bookTitle + "</td>" + 
-								"<td>" + datas[i].bookLoc + "</td>" + 
-								"<td>" + datas[i].cnt + "</td></tr>";	
-					} 
-					$($add).prependTo("#bookGenre"); 
-				}
-			});
-	}
-	
-		
-	//chartContainer
-	function book_chart(sear_day){
-		
+
 		$.ajax({
-			url : "bookChart?day=" + sear_day, 	
-			method : "post", 
-			async: false,
+			url : "toprentalbook?day=" + sear_day,
+			method : "post",
+			success : function(datas) {
+				var $add = "";
+				for (var i = 0; i < datas.length; i++) {
+					$add += "<tr><td>" + datas[i].rankCnt + "</td>" + "<td>"
+							+ datas[i].bookTitle + "</td>" + "<td>"
+							+ datas[i].bookLoc + "</td>" + "<td>"
+							+ datas[i].cnt + "</td></tr>";
+				}
+				$($add).prependTo("#bookGenre");
+			}
+		});
+	}
+
+	//chartContainer
+	function book_chart(sear_day) {
+
+		$.ajax({
+			url : "bookChart?day=" + sear_day,
+			method : "post",
+			async : false,
 			success : function(datas) {
 				data = new google.visualization.arrayToDataTable([
-					 ['genre' , '권' , {role : 'style'}],
-					 ["철학 및 역사",  datas.History.cnt, 'blue'],
-				     ["총류",  datas.Total.cnt, 'orange'],
-				     ["예술",  datas.art.cnt, 'yellow'],
-				     ["과학",  datas.Science.cnt, 'red'],
-				     ["언어 및 문학",  datas.Language.cnt, 'green']
-				]);
-				 
-				options = {
-				          title: '장르별 책 대여 현황 ',
-				          is3D: true,
-				          colors: ['blue', 'gray' , 'yellow', 'red', 'orange'],
-				          vAxis : { format : '0'},
-				          legend : {position : 'none' }, // 항목 표시 여부 (현재 설정은 안함),
-				          height : "400"  
-				 };
+						[ 'genre', '권', {
+							role : 'style'
+						} ], [ "철학 및 역사", datas.History.cnt, 'blue' ],
+						[ "총류", datas.Total.cnt, 'orange' ],
+						[ "예술", datas.art.cnt, 'yellow' ],
+						[ "과학", datas.Science.cnt, 'red' ],
+						[ "언어 및 문학", datas.Language.cnt, 'green' ] ]);
 
-				chart = new google.visualization.ColumnChart(document.getElementById('chartContainer'));
+				options = {
+					title : '장르별 책 대여 현황 ',
+					is3D : true,
+					colors : [ 'blue', 'gray', 'yellow', 'red', 'orange' ],
+					vAxis : {
+						format : '0'
+					},
+					legend : {
+						position : 'none'
+					}, // 항목 표시 여부 (현재 설정은 안함),
+					height : "400"
+				};
+
+				chart = new google.visualization.ColumnChart(document
+						.getElementById('chartContainer'));
 
 				chart.draw(data, options);
 			}
 		});//ajax
 
 	}
-	
-	function searchChar(){
+
+	function searchChar() {
 		var s_year = document.getElementById('year').value;
-		var s_month = document.getElementById('month').value; 
-	
-		if(s_year == "" || s_month == ""){
+		var s_month = document.getElementById('month').value;
+
+		if (s_year == "" || s_month == "") {
 			alert("빈칸을 입력하세요.")
-		}else if(s_month > 12  || s_month <= 0){
+		} else if (s_month > 12 || s_month <= 0) {
 			alert("1- 12 입력하세요");
-		}else{
-			 if(s_month.length == 1){
-				 s_month = "0" + s_month;
-			 }
-			 var sear_day = s_year + "/" + s_month;
-			 topRentalList(sear_day); 
-			 topRentalBook(sear_day);
-			 book_chart(sear_day);
-			 lineChart(sear_day);
-		} 
-		
+		} else {
+			if (s_month.length == 1) {
+				s_month = "0" + s_month;
+			}
+			var sear_day = s_year + "/" + s_month;
+			topRentalList(sear_day);
+			topRentalBook(sear_day);
+			book_chart(sear_day);
+			lineChart(sear_day);
+		}
+
 	}
-	
-	
 </script>
 </head>
 <!-- ============================================================== -->

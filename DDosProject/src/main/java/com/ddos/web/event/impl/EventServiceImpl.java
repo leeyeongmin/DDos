@@ -64,4 +64,12 @@ public class EventServiceImpl implements EventService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	//건 조회
+	@Override
+	public int getCount(EventVO vo) {
+	
+		return dao.getCount(vo);
+	}
 }

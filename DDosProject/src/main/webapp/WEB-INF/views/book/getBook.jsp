@@ -190,7 +190,23 @@
 																		<tr>
 																			<td>${review.reviewTitle}</td>
 																			<td>${review.reviewCont}</td>
-																			<td>${review.reviewPoint}</td>
+																			<td>
+																				<c:if test="${review.reviewPoint == 1}">
+																					<img src="assets/images/reviewImg/star_1.png" width="90">
+																				</c:if>
+																				<c:if test="${review.reviewPoint == 2}">
+																					<img src="assets/images/reviewImg/star_2.png" width="90">
+																				</c:if>
+																				<c:if test="${review.reviewPoint == 3}">
+																					<img src="assets/images/reviewImg/star_3.png" width="90">
+																				</c:if>
+																				<c:if test="${review.reviewPoint == 4}">
+																					<img src="assets/images/reviewImg/star_4.png" width="90">
+																				</c:if>
+																				<c:if test="${review.reviewPoint == 5}">
+																					<img src="assets/images/reviewImg/star_5.png" width="90">
+																				</c:if>
+																			</td>
 																			<td>${review.reviewDate}</td>
 																		</tr>
 																	</c:forEach>

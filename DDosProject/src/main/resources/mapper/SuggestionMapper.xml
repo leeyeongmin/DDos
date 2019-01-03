@@ -7,7 +7,7 @@
 	<select id="getSuggestionList" resultType="suggestion"
 		parameterType="suggestion">
 		SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
-		SELECT SUG_NUM, SUG_TITLE, SUG_DATE, SUG_CONT, MEMBER_ID, SUG_CNT
+		SELECT SUG_NUM, SUG_TITLE, TO_CHAR(TO_DATE(SUG_DATE, 'YY/MM/DD'), 'YY/MM/DD') SUG_DATE, SUG_CONT, MEMBER_ID, SUG_CNT
 		FROM SUGGESTION
 		<where>
 			<if test="searchType != null and searchType == 'sugTitle'">
@@ -36,7 +36,7 @@
 	<select id="getSuggestion" resultType="suggestion">
 		SELECT SUG_NUM,
 		SUG_TITLE,
-		SUG_DATE,
+		TO_CHAR(TO_DATE(SUG_DATE, 'YY/MM/DD'), 'YY/MM/DD') SUG_DATE,
 		SUG_CONT,
 		SUG_CNT,
 		MEMBER_ID

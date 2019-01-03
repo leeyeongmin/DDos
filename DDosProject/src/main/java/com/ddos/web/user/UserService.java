@@ -2,6 +2,7 @@ package com.ddos.web.user;
 
 import java.util.List;
 
+
 public interface UserService {
 	
 	public UserVO getUser(UserVO vo);
@@ -15,4 +16,6 @@ public interface UserService {
 	public List<UserVO> getInterestUserList(UserVO vo);
 	public List<UserVO> getBlackUserList(UserVO vo);
 	public List<UserVO> getNormalUserList(UserVO vo);
+	
+	public void extensionUser(UserVO vo);
 }

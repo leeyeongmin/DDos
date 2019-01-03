@@ -68,4 +68,10 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> getNormalUserList(UserVO vo) {
 		return dao.getNUserList(vo);
 	}
+
+	@Override
+	public void extensionUser(UserVO vo) {
+		// TODO Auto-generated method stub
+		dao.extensionUser(vo);
+	}
 }

@@ -23,7 +23,7 @@
 	 window.open("popup.jsp", "a", "width=400, height=300, left=100, top=50"); 
 	 } */
 
-	function openPopup() { //팝업창 오픈 
+	/* function openPopup() { //팝업창 오픈 
 		var cookieCheck = getCookie("popupYN");
 		console.log(cookieCheck);
 		if (cookieCheck != "N")
@@ -43,10 +43,10 @@
 			}
 		}
 		return;
-	}
+	} */
 </script>
 
-<body onload="openPopup()">
+<body> <!-- onload="openPopup()"> -->
 	<!--  user여라!. -->
 	<div class="dashboard-main-wrapper">
 		<!-- ============================================================== -->

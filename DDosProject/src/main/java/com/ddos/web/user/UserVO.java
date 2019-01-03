@@ -12,6 +12,8 @@ public class UserVO {
 	private int outCount;
 	private String address;
 	private String gender;
+	
+
 	// 검색
 	private String searchType;
 	private String searchUserKeyword;
@@ -19,7 +21,6 @@ public class UserVO {
 	//정렬
 	private String sortCol;
 
-	
 	public String getId() {
 		return id;
 	}

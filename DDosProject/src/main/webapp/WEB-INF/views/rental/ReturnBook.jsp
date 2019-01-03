@@ -23,7 +23,7 @@
 				 	var $add = "";
 				 	$("#searchData").empty(); 
 					for(var i=0; i<datas.length; i++){
-						$add += "<tr>";
+						$add += "<tr>"; 
 						$add += "<td><input type=checkbox name=check></td>";
 						$add += "<td>"+ datas[i].bookTitle + "</td>" + 
 								"<td>" + datas[i].isbn + "</td>" + 
@@ -40,7 +40,7 @@
 			});
 		}
 	}
-	
+
 	function all_check(){
 		if($("#checkyn").prop("checked")){
 			$("input[type=checkbox]").prop("checked",true);

@@ -142,7 +142,7 @@
 						$add += "<tr><td>" + datas[i].memberId + "</td>"
 								+ "<td>" + datas[i].name + "</td>" + "<td>"
 								+ datas[i].bookComp + "</td></tr>"
-					}
+					
 				}
 				$($add).prependTo("#expenditureList");
 			}
@@ -349,75 +349,11 @@
 						</div>
 					</div>
 				</div>		<!--  row -->
-					<!-- ============================================================== -->
-					<!-- search bar  -->
-					<!-- ============================================================== -->
-					<!--  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<div class="card">
-							<div class="card-body">
-								<form name="SearchUser" onsubmit="check()">
-									<select class="form-control" name="searchType"
-										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
-										<option value="id">Id
-										<option value="name">Name
-									</select> <input class="form-control form-control-lg"
-										style="width: 75%; margin-left: 1%; display: inline-block;"
-										id="searchUserKeyword" type="text" name="searchUserKeyword"
-										placeholder="Search">
-									<button class="btn btn-primary search-btn" type="submit">Search</button>
-								</form>
-							</div>
-						</div>
-					</div>  -->
-					<!-- ============================================================== -->
-					<!-- end search bar  -->
-					<!-- ============================================================== -->
 					
-				<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-					
-				
-				<!-- <div class="row"
-					style="display: inline-block; margin-top: 2%; margin-left: 2%; width: 50%;"> -->
-					<!-- ============================================================== -->
-					<!-- start list  -->
-					<!-- ============================================================== -->
-					
-				<%--	<h3 class="mb-2" style="text-align:center;">도서 대여 횟수 </h3> 
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						<div class="card">
-							<div class="card-body">
-								 <div class="table-responsive">
-									<table id="getExpenditureList" width="100%"
-										class="table table-bordered table-hover text-center">
-										<thead>
-											<tr>
-												<th width="40%">ID</th>
-												<th width="20%">NAME</th>
-												<th width="20%">COUNT</th>
-												<th width="40%">PHONE</th>
-											</tr>
-										</thead>
-										<tbody id=expenditureList>
-											<c:forEach items="${noticeList}" var="notice">
-												<c:set var="grant" value="${notice.memberId}"></c:set>
-												<input type="hidden" value="${notice.memberId}">
-												<tr>
-													<td>${notice.noticeNum}</td>
-													<td><a
-														href="./getNotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle}</a></td>
-													<td>${notice.noticeDate}</td>
-													<td>${notice.noticeCnt}</td>
-												</tr>
-											</c:forEach>
-											
-											
-										</tbody>
-									</table> 
-								</div> --%>
-							</div>
 
 
 						</div>
+					</div>
 					</div>
 					<!-- ============================================================== -->
 					<!-- end list  -->

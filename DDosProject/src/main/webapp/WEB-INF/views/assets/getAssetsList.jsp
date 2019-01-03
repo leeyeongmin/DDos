@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>DDos</title>
 <script type="text/javascript">
-	document.getElementById("assets").click = clickfunc;
-	function clickfunc(e) {
-		var tdele = e.target.parentNode.children[x].innerHTML;
-		var trele = e.target.parentNode;
+	function check() {
+		if (document.search.searchKeyword.value == "") {
+			alert("검색어를 입력하세요");
+			document.search.searchKeyword.focus();
+			return;
+		}
+		document.search.submit();
 	}
 </script>
 <style>
@@ -64,6 +68,7 @@ div.card {
 										id="searchUserKeyword" type="text" name="searchKeyword"
 										placeholder="Search">
 									<button class="btn btn-primary" style="margin-left:1%; width:7%; height:48px;">검색</button>
+							<input type="hidden" name="page" />
 								</form>
 							</div>
 
@@ -99,6 +104,15 @@ div.card {
 									
 								</div>
 							</div>
+								<my:paging paging="${paging}" />
+							<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script>
+							
+							
 						</div>
 					</div>
 				</div>

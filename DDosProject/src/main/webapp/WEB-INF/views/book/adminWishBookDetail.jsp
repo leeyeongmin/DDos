@@ -65,27 +65,27 @@
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishWriter">저자</label>
-											<div class="form-control" name="wishWriter" id="wishWriter">"${wishbook.wishWriter}</div>
+											<div class="form-control" name="wishWriter" id="wishWriter">${wishbook.wishWriter}</div>
 										</div>
 										<div class="col-md-6 mb-3">
 											<label for="wishComp">출판사</label>
-											<div class="form-control" name="wishComp" id="wishComp">"${wishbook.wishComp}"</div>
+											<div class="form-control" name="wishComp" id="wishComp">${wishbook.wishComp}</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishPrice">가격</label>
-											<div class="form-control" name="wishPrice" id="wishPrice">"${wishbook.wishPrice}"</div>
+											<div class="form-control" name="wishPrice" id="wishPrice">${wishbook.wishPrice}</div>
 										</div>
 										<div class="col-md-6 mb-3">
 										<label for="wishGenre">장르</label>
-										<div class="form-control" name="wishGenre" id="wishGenre">"${wishbook.wishGenre}"</div>
+										<div class="form-control" name="wishGenre" id="wishGenre">${wishbook.wishGenre}</div>
 									</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 mb-3">
 											<label for="wishReason">사유</label>
-											<textarea class="form-control" name="wishReason" id="wishReason">"${wishbook.wishReason}"</textarea >
+											<textarea class="form-control" name="wishReason" id="wishReason">${wishbook.wishReason}</textarea >
 										</div>
 										<script>
 										var text = document.querySelector('#wishReason');
@@ -97,7 +97,7 @@
 									
 									<a href="./adminUpdateWishBookform?isbn=${wishbook.isbn}" class="btn btn-primary">수정</a> 
 									<a href="./adminDeleteWishBook?isbn=${wishbook.isbn}" class="btn btn-brand">삭제</a> 
-									<a href="./adminwishbook" class="btn btn-secondary">취소</a>
+									<a href="javascript:history.back();" class="btn btn-secondary">이전페이지로</a>
 								
 								</form>
 

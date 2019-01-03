@@ -34,5 +34,6 @@ public interface StatisticsService {
 	public List<Map> click_output(Map map);
 	
 	// 전체 건수
-	public Map getCount(Map map);
+	public int getCount(Map map);
+	int getCount(PagingVO vo);
 }

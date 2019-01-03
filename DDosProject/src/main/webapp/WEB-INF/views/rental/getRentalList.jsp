@@ -50,7 +50,7 @@
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="#"
+										<li class="breadcrumb-item"><a href="userHome"
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item active" aria-current="page">Borrow</a>
 										</li>
@@ -75,7 +75,7 @@
 
 							<li class="nav-item"><a class="nav-link active show"
 								id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-								aria-controls="profile" aria-selected="true">대출이력</a></li>
+								aria-controls="profile" aria-selected= "true">대출이력</a></li>
 						</ul>
 					
 						<div class="tab-content" id="myTabContent" style="width: 100%;">
@@ -108,8 +108,16 @@
 													<td>${rental.bookComp}</td>
 													<td>${rental.rentalDate}</td>
 													<td>${rental.dueDate}</td>
-													<td><input type="button" class="btn btn-brand"
+													<c:choose>
+													<c:when test="${rental.renewCnt ne null}">
+														<td><input type="hidden" class="btn btn-brand"
 														onclick="renewBook('${rental.isbn}', '${rental.dueDate}');" value="연장"></td>
+														</c:when>
+														<c:when test="${rental.renewCnt eq null}">
+														<td><input type="button" class="btn btn-brand"
+														onclick="renewBook('${rental.isbn}', '${rental.dueDate}');" value="연장"></td>
+														</c:when>
+												</c:choose>
 												</tr>
 											</c:forEach>
 										</tbody>

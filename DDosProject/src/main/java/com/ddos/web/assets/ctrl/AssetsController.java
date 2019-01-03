@@ -17,7 +17,7 @@ public class AssetsController {
 	AssetsService assetsService;
 
 	// 클릭시 자산으로
-	@RequestMapping(value = "/assets")
+	@RequestMapping(value = "assets")
 	public ModelAndView getAssetsList(Model model, AssetsVO vo, PagingVO paging) {
 		ModelAndView mv = new ModelAndView();
 		if (paging.getPage() == null) {
@@ -44,13 +44,15 @@ public class AssetsController {
 	// 등록 퐁
 	@RequestMapping("assetsInsertform")
 	public String assetsInsert(Model model, AssetsVO vo) {
-		return "admin/assets/assetsInsertform";
+		System.out.println(vo + "자산 등록 폼 컨드롤러");
+		return "admin/assets/assetsInsert";
 	}
 
 	// 등록 처리
 	@RequestMapping("assetsInsert")
 	public String assetsInsert(AssetsVO vo) {
 		assetsService.assetsInsert(vo);
+		System.out.println("자산 등록 처리 컨드롤러");
 		return "redirect:assets";
 	}
 

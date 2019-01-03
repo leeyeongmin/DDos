@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>도서 등록</title>
+<title>ddos</title>
 </head>
 <body>
 <div class="dashboard-main-wrapper">
@@ -103,7 +103,7 @@
 					<div class="form-group row text-right" >
 						<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0" >
 							<button type="submit" class="btn btn-space btn-primary">저장</button>
-							<button class="btn btn-space btn-secondary" >취소</button>
+							<a href="javascript:history.back();"  class="btn btn-space btn-secondary" >목록</a>
 						</div>
 					</div>
 					</form>

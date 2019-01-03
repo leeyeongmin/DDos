@@ -1,7 +1,6 @@
 package com.ddos.web.assets;
 
 import java.util.List;
-import com.ddos.web.assets.AssetsVO;
 
 
 public interface AssetsService {

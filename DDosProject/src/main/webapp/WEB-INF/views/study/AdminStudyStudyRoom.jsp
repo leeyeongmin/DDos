@@ -1,21 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>DDos</title>
-<script>
-	function check() {
-		if (document.search.searchKeyword.value == "") {
-			alert("검색어를 입력하세요");
-			document.search.searchKeyword.focus();
-			return;
-		}
-		document.search.submit();
-	}
-</script>
+
 <style>
 div.card {
 	padding: 12px 20px 12px 20px;
@@ -23,6 +15,11 @@ div.card {
 </style>
 </head>
 <body>
+	<%
+		java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		String today = formatter.format(new java.util.Date());
+		request.setAttribute("today",today);
+	%>
 	<div class="dashboard-main-wrapper">
 		<!-- ============================================================== -->
 		<!-- wrapper  -->
@@ -42,7 +39,8 @@ div.card {
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Study & Study Room</li>
+										<li class="breadcrumb-item active" aria-current="page">Study
+											& Study Room</li>
 									</ol>
 								</nav>
 							</div>
@@ -52,43 +50,57 @@ div.card {
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				
+
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
-							<form action="search" name="search" method="post">
-								<select name="searchType">
-									<option value="noticeTitle"
-										<c:if test="${'noticeTitle' == searchType}"> selected </c:if>>제목</option>
-								</select> <input type="text" name="searchKeyword"
-									value="${searchKeyword}"> <input type="button"
-									value="검색" class="btn btn-primary btn-sm" onclick="click()">
-							</form>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table id="AdmingetNoticeList" width="100%"
 										class="table table-bordered table-hover text-center">
 										<thead>
 											<tr>
-												<th width="10%">번호</th>
-												<th>제목</th>
-												<th width="30%">작성일</th>
-												<th width="10%">조회수</th>
+												<th>No.</th>
+												<th>Name</th>
+												<th>Study Date</th>
+												<th>Recruit End Date</th>
+												<th>Time</th>
+												<th>Recruit Person</th>
+												<th>Person Status</th>
+												<th>Delete</th>
 											</tr>
 										</thead>
-										<tbody id=noticelist>
-											<c:forEach items="${noticeList}" var="notice">
-												<tr>
-													<td>${notice.noticeNum}</td>
-													<td><a
-														href="./getNotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle}</a></td>
-													<td>${notice.noticeDate}</td>
-													<td>${notice.noticeCnt}</td>
-												</tr>
+										<tbody id=adminStudyList>
+											<c:forEach items="${adminStudyList}" var="adminStudyList">
+												<c:if
+													test="${fn:substring(adminStudyList.recruitEnd,0,10)<today}">
+													<tr style="background: #C17070; color: white;">
+														<td>${adminStudyList.studyNumber}</td>
+														<td>${adminStudyList.studyName}</td>
+														<td>${fn:substring(adminStudyList.studyDate,0,10)}</td>
+														<td>${fn:substring(adminStudyList.recruitEnd,0,10)}</td>
+														<td>${adminStudyList.studyTime}:00</td>
+														<td>${adminStudyList.recruitPerson}</td>
+														<td>${adminStudyList.personStatus}</td>
+														<td><a href="deleteStudyList?studyNumber=${adminStudyList.studyNumber}">삭제</a></td>
+													</tr>
+												</c:if>
+												<c:if
+													test="${fn:substring(adminStudyList.recruitEnd,0,10)>=today}">
+													<tr>
+														<td>${adminStudyList.studyNumber}</td>
+														<td>${adminStudyList.studyName}</td>
+														<td>${fn:substring(adminStudyList.studyDate,0,10)}</td>
+														<td>${fn:substring(adminStudyList.recruitEnd,0,10)}</td>
+														<td>${adminStudyList.studyTime}:00</td>
+														<td>${adminStudyList.recruitPerson}</td>
+														<td>${adminStudyList.personStatus}</td>
+														<td><a href="deleteStudyList?studyNumber=${adminStudyList.studyNumber}">삭제</a></td>
+													</tr>
+												</c:if>
 											</c:forEach>
 										</tbody>
 									</table>
-										<a href="insertNoticeform" class="btn btn-secondary" style="margin-top: 30px">등록</a>
 								</div>
 							</div>
 						</div>

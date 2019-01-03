@@ -75,23 +75,17 @@
 	<delete id="deleteStudy" parameterType="study">
 	DELETE FROM STUDY WHERE STUDY_NUM= #{studyNumber}
 	</delete>
+	<delete id="deleteStudyMember" parameterType="studymember">
+	DELETE FROM STUDY_MEMBER WHERE STUDY_NUM= #{studyNumber}
+	</delete>
 	
 	<!-- 단건조회 -->
 	<select id="getAdminStudyList" parameterType="study" resultType="study">
-		SELECT 
-		
-		STUDY_NUM as studyNumber,
-		STUDY_NAME,
-		STUDY_SUBJECT,
-		STUDY_TIME,
-		TO_CHAR(STUDY_DATE,'YYYY-MM-DD') AS STUDY_DATE,
-		TO_CHAR(RECRUIT_END,'YYYY-MM-DD') AS RECRUIT_END,
-		RECRUIT_PERSON,
-		STATUS,
-		STUDYROOM_NUM as studyroomNumber,
-		MEMBER_ID
-		
-		FROM STUDY
+		SELECT S.STUDY_NUM studyNumber, STUDY_NAME, STUDY_DATE, RECRUIT_END, STUDY_TIME, RECRUIT_PERSON, COUNT(SM.MEMBER_ID) personStatus
+		FROM STUDY S LEFT OUTER JOIN STUDY_MEMBER SM
+		ON S.STUDY_NUM = SM.STUDY_NUM
+		GROUP BY S.STUDY_NUM, STUDY_DATE, RECRUIT_END, STUDY_TIME, RECRUIT_PERSON, STUDY_NAME
+		ORDER BY RECRUIT_END
 	</select> 
 	
 </mapper> 

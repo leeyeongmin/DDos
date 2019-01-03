@@ -60,8 +60,14 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public List<StudyVO> getAdminStudytList(EventVO vo) {
+	public List<StudyVO> getAdminStudytList(StudyVO vo) {
 		return dao.getAdminStudyList(vo);
+	}
+	
+	@Override
+	public void deleteStudyMember(StudyMemberVO svo) {
+		dao.deleteStudyMember(svo);
+		
 	}
 
 }

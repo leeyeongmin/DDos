@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ddos.web.event.EventVO;
 import com.ddos.web.study.StudyMemberVO;
 import com.ddos.web.study.StudyService;
 import com.ddos.web.study.StudyVO;
@@ -21,62 +20,69 @@ import com.ddos.web.study.StudyVO;
 public class StudyController {
 	@Autowired
 	StudyService studyService;
-	
-	//스터디 등록
-	@RequestMapping("insertStudy")			
+
+	// 스터디 등록
+	@RequestMapping("insertStudy")
 	public String insertStudy(StudyVO vo, HttpSession session, HttpServletResponse response) throws IOException {
-		
+
 		StudyVO studyvo = studyService.getStudy(vo);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		if(studyvo != null) {
+
+		if (studyvo != null) {
 			out.println("<script>alert('이미 사용중인 스터디 룸입니다. 다시 등록해주세요.');</script>");
 			out.flush();
 			return "redirect:getStudyList";
-		}
-		else {
+		} else {
 			studyService.insertStudy(vo);
 			return "redirect:getStudyList";
 		}
 	}
-	
-	//스터디 등록 창
+
+	// 스터디 등록 창
 	@RequestMapping("makeStudy")
 	public String makeStudy() {
-		return "study/makeStudy";	
+		return "study/makeStudy";
 	}
 
-	//스터디 삭제
+	// 스터디 삭제
 	@RequestMapping("deleteStudy")
 	public String deleteStudy(StudyVO vo) {
 		studyService.deleteStudy(vo);
 		return "redirect:getStudyList";
 	}
-	//스터디 단건 조회
+
+	// 스터디 단건 조회
 	@RequestMapping("getStudy")
-	public String getStudy(Model model,StudyVO vo) {
-		model.addAttribute("study",studyService.getStudy(vo));
+	public String getStudy(Model model, StudyVO vo) {
+		model.addAttribute("study", studyService.getStudy(vo));
 		return "study/getStudy";
 	}
-	
+
 	@RequestMapping("getStudyList")
 	public String getStudyList() {
 		return "study/getStudyList";
 	}
-	
-	
+
 	@RequestMapping("insertStudyMember")
 	public String insertStudyMember(StudyMemberVO vo) {
 		studyService.insertStudyMember(vo);
 		return "redirect:getStudyList";
 	}
-	
-	//관리자
-	// 전체 조회
-		@RequestMapping("adminStudyList")
-		public String adminStudyList(Model model, EventVO vo) {
-			model.addAttribute("adminStudyList", studyService.getAdminStudytList(vo));
-			return "admin/study/AdminStudyStudyRoom";
-		}
+
+	// 관리자
+
+	@RequestMapping("adminStudyList")
+	public String adminStudyList(Model model, StudyVO vo) {
+		model.addAttribute("adminStudyList", studyService.getAdminStudytList(vo));
+		return "admin/study/AdminStudyStudyRoom";
+	}
+
+	// 스터디 삭제
+	@RequestMapping("deleteStudyList")
+	public String deleteStudyList(StudyVO vo, StudyMemberVO svo) {
+		studyService.deleteStudyMember(svo);
+		studyService.deleteStudy(vo);
+		return "redirect:adminStudyList";
+	}
 }

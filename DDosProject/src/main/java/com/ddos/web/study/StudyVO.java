@@ -11,6 +11,7 @@ public class StudyVO {
 	private String status;
 	private int studyroomNumber;
 	private String memberId;
+	private int personStatus;
 	
 	
 	public int getStudyNumber() {
@@ -73,12 +74,19 @@ public class StudyVO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+	
+	public int getPersonStatus() {
+		return personStatus;
+	}
+	public void setPersonStatus(int personStatus) {
+		this.personStatus = personStatus;
+	}
 	@Override
 	public String toString() {
-		return "StudyBean [studyNumber=" + studyNumber + ", studyName=" + studyName + ", studySubject=" + studySubject
+		return "StudyVO [studyNumber=" + studyNumber + ", studyName=" + studyName + ", studySubject=" + studySubject
 				+ ", studyTime=" + studyTime + ", studyDate=" + studyDate + ", recruitEnd=" + recruitEnd
 				+ ", recruitPerson=" + recruitPerson + ", status=" + status + ", studyroomNumber=" + studyroomNumber
-				+ ", memberId=" + memberId + "]";
+				+ ", memberId=" + memberId + ", personStatus=" + personStatus + "]";
 	}
 	
 }

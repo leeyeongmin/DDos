@@ -43,7 +43,11 @@ public class StudyDaoMybatis {
 			mybatis.update("study.deleteStudy",vo);		
 		}
 
-		public List<StudyVO> getAdminStudyList(EventVO vo) {
+		public List<StudyVO> getAdminStudyList(StudyVO vo) {
 			return mybatis.selectList("study.getAdminStudyList", vo);
+		}
+
+		public void deleteStudyMember(StudyMemberVO svo) {
+			mybatis.update("study.deleteStudyMember",svo);
 		}
 }

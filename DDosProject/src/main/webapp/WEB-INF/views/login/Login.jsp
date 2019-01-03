@@ -87,7 +87,7 @@
                     
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
-                    <button type="submit"  class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <!-- <button type="submit"  class="btn btn-primary btn-lg btn-block">Sign in</button> -->
 
                 </form>
             </div>

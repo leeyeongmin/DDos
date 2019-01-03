@@ -20,7 +20,22 @@ public class RentalVO {
 	private String bookComp;
 	//
 	
+	private int money;
+	private int overdue;
 	
+
+	public int getMoney() {
+		return money;
+	}
+	public void setMoney(int money) {
+		this.money = money;
+	}
+	public int getOverdue() {
+		return overdue;
+	}
+	public void setOverdue(int overdue) {
+		this.overdue = overdue;
+	}
 	public String getBookWriter() {
 		return bookWriter;
 	}

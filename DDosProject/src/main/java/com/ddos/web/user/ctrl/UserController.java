@@ -2,7 +2,10 @@ package com.ddos.web.user.ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -31,11 +34,11 @@ public class UserController {
 	}
 
 	@RequestMapping("login")
-	public String login(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response)
+	public String login(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response, Model model)
 			throws IOException {
 
 		UserVO uservo = userService.getUser(vo);
-
+ 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
@@ -51,14 +54,25 @@ public class UserController {
 			out.flush();
 
 			return "no/login/Login";
-		} else {
+		}else {
+			
+			Date date = new Date();
+			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
-			session.setAttribute("login", uservo);
+			int bigo = format1.format(date).compareTo(uservo.getExpDate());
+				
+			if (bigo >  0) {
+				session.setAttribute("temp", uservo);
+				model.addAttribute("user", uservo);
+				return "no/pay/ShowPay";
+			}else{
+				session.setAttribute("login", uservo);
 
-			if (uservo.getId().equals("admin@gmail.com")) {
-				return "admin/admin/AdminHome";
-			} else {
-				return "user/UserHome";
+				if (uservo.getId().equals("admin@gmail.com")) {
+					return "admin/admin/AdminHome";
+				} else {
+					return "user/UserHome";
+				}
 			}
 		}
 	}
@@ -153,4 +167,18 @@ public class UserController {
 		return "no/login/Login";
 	}
 
+	
+	@RequestMapping("extensionUser")	//연장 
+	public String extensionUser(HttpSession session) {
+		System.out.println("sklsdajklsdasdajklsdajkl");
+		userService.extensionUser((UserVO)session.getAttribute("temp")); 
+		session.setAttribute("login", userService.getUser((UserVO)session.getAttribute("temp")));
+		return "user/UserHome"; 
+	}
+	
+	@RequestMapping("loginHomepage")
+	public String loginHomepage() {
+		return "no/login/Login";   
+	}
+	
 }

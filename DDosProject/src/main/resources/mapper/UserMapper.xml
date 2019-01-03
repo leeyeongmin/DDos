@@ -13,7 +13,7 @@
 	
 	<select id="getUserList" resultType="user">
 
-		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER
+		SELECT ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, to_char(MEM_SEPARATION,'yyyy-mm-dd'), OUT_COUNT, ADDRESS, GENDER
 		FROM MEMBER
 		
 		<where>
@@ -195,6 +195,12 @@
 		DELETE FROM MEMBER
 		WHERE ID = #{id}
 	</delete>
+	
+	<update id="extensionUser" parameterType="user">
+		update member
+		set exp_date = sysdate + 365
+		where id = #{id}
+	</update>
 	
 
 </mapper> 

@@ -51,4 +51,8 @@ public class UserDAOMybatis {
 			return mybatis.selectList("user.getNUserList", vo);
 		}
 		
+		public void extensionUser(UserVO vo) {
+			System.out.println("aaaaaaaaaaaaaaaaaa : " + vo.toString());
+			mybatis.selectOne("user.extensionUser",vo);
+		}
 }

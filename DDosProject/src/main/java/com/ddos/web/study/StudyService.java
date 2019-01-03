@@ -2,6 +2,8 @@ package com.ddos.web.study;
 
 import java.util.List;
 
+import com.ddos.web.event.EventVO;
+
 public interface StudyService {
 	public void insertStudy(StudyVO vo);
 	public void updateStudy(StudyVO vo);
@@ -10,4 +12,5 @@ public interface StudyService {
 	public StudyVO getStudy(StudyVO vo);
 	public List<StudyVO> getStudyList(StudyVO vo);
 	public void insertStudyMember(StudyMemberVO vo);
+	public List<StudyVO> getAdminStudytList(EventVO vo);
 }

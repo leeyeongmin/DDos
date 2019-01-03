@@ -52,16 +52,16 @@
 <div>
     <div id="studyList-b">
 	    <form id="addForm" action="./insertStudy" method="post" target="studylist.do">
-			<p>스터디 명:<input type="text" name="studyName"></p>
-			<p>스터디 주제:<input type="text" name="studySubject"></p>
-			<p>스터디 룸:
+			<p>스터디 명&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;<input type="text" name="studyName"></p>
+			<p>스터디 주제&ensp;&ensp;&ensp;:&ensp;&ensp;<input type="text" name="studySubject"></p>
+			<p>스터디 룸&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;
 			<select name="studyroomNumber" id="studyroomNumber">
 				<option>-선택-</option>
 				<option value="1">1번방</option>
 				<option value="2">2번방</option>
 			</select>
 			</p>
-			<p id="studyTime">스터디 시간:
+			<p id="studyTime">스터디 시간&ensp;&ensp;&ensp;:&ensp;&ensp;
 			<select name="studyTime" id="studyTime">
 				<option value="9">09:00~12:00</option>
 				<option value="12">12:00~15:00</option>
@@ -69,11 +69,11 @@
 			</select>
 			</p>
 
-			<p>시작 일자: <%=month %>월 <%=day %>일</p>
+			<p>시작 일자&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp; <%=month %>&ensp;월 &ensp;<%=day %>&ensp;일</p>
 			<% String studyDate = month+"/"+day; %>
 			<input type=hidden value="<%=studyDate%>" name="studyDate">
-			<p>마감 기한:<input type="text" id="testDatepicker" name="recruitEnd" size="10">(mm/dd/yyyy)</p>
-			<p>모집 인원:<input type="text" id="recruitPerson" name="recruitPerson" maxlength="2" size="2"></p>
+			<p>마감 기한&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;<input type="text" id="testDatepicker" name="recruitEnd" size="10">&ensp;&ensp;(&ensp;연&ensp;/&ensp;월&ensp;/&ensp;일&ensp;)&ensp;&ensp;ex)1991/04/19</p>
+			<p>모집 인원&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;<input type="text" id="recruitPerson" name="recruitPerson" maxlength="2" size="2">명</p>
 			<input type="hidden" value="모집중" name="status">
 			<input type="hidden" value="${sessionScope.login.id}" name="memberId">
 			<br>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,6 +71,7 @@ div.card {
 										placeholder="Search"> <input class="btn btn-primary"
 										style="margin-left: 1%; width: 7%; height: 47px;"
 										type="button" value="검색" onclick="click()">
+										<input type="hidden" name="page" />
 								</form>
 							</div>
 
@@ -96,11 +98,20 @@ div.card {
 												</tr>
 											</c:forEach>
 									</table>
-									<a href="./insertSuggestionform" class="btn btn-secondary"
-										style="width:20%; height:48px; margin-left:38%; margin-top:5%; font-weight:bold; padding-top:1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
+									
 								</div>
 							</div>
+							<my:paging paging="${paging}" />
+							<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script>
+							<a href="./insertSuggestionform" class="btn btn-secondary"
+										style="width:20%; height:48px; margin-left:38%; margin-top:5%; font-weight:bold; padding-top:1%;">등&emsp;&emsp;&emsp;&emsp;록</a>
 						</div>
+						
 					</div>
 				</div>
 			</div>

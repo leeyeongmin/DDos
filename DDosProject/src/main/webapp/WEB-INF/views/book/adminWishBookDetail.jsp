@@ -26,7 +26,7 @@
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="#"
+										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item active" aria-current="page">Admin Wish
 											Book details</li>
@@ -87,6 +87,11 @@
 											<label for="wishReason">사유</label>
 											<textarea class="form-control" name="wishReason" id="wishReason">"${wishbook.wishReason}"</textarea >
 										</div>
+										<script>
+										var text = document.querySelector('#wishReason');
+										text.innerHTML = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
+										
+										</script>
 									</div>
 									
 									

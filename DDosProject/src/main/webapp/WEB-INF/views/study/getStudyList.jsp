@@ -97,8 +97,8 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Study &
-											Study Room</li>
+										<li class="breadcrumb-item active" aria-current="page">Study
+											& Study Room</li>
 									</ol>
 								</nav>
 							</div>
@@ -120,10 +120,9 @@
 						String recruitDay;
 						String[] tmp;
 						StudyDAO sd = new StudyDAO();
-						
-						java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+						java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
 						String today = formatter.format(new java.util.Date());
-						 
 					%>
 					<%
 						Calendar tDay = Calendar.getInstance();
@@ -186,7 +185,7 @@
 
 						</tr>
 
-						<tr style="text-align:center;">
+						<tr style="text-align: center;">
 
 							<%
 								String[] a = { "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT" };
@@ -209,34 +208,35 @@
 							%>
 
 							<td>
-									<button style="color: gray; cursor: pointer; border:none; background:none;"
-										onclick="event.stopPropagation(); popup(<%=m%>, <%=k%>)">
-										<%=k%>
-									</button> 
-									<div style="overflow-y:scroll; height:80%; width:100%">
-<%
- 	if (prevStudy[k] != "") {
- 			tmp = new String[12];
- 			tmp = prevStudy[k].split("\t");
- 			for (String wo : tmp) {
- 				studyName = wo.split(",")[0];
- 				studyNumber = wo.split(",")[1];
- 				recruitDay = wo.split(",")[2];
- 				
- 				if(today.compareTo(recruitDay)<0){
-%>
-									<button style="color: white; cursor: pointer; width:100%; height:50px; border:none; background:#EC4646;">
-									<%=studyName%></button>
-<%					
- 				}else{
-%>
-									<button style="color: white; cursor: pointer; width:100%; height:50px; border:none; background:#7DC74B;"
+								<button
+									style="color: gray; cursor: pointer; border: none; background: none;"
+									onclick="event.stopPropagation(); popup(<%=m%>, <%=k%>)">
+									<%=k%>
+								</button>
+								<div style="overflow-y: auto; height: 80%; width: 100%">
+									<%
+										if (prevStudy[k] != "") {
+												tmp = new String[12];
+												tmp = prevStudy[k].split("\t");
+												for (String wo : tmp) {
+													studyName = wo.split(",")[0];
+													studyNumber = wo.split(",")[1];
+													recruitDay = wo.split(",")[2].substring(0, 10);
+
+													if (today.compareTo(recruitDay) > 0) {
+									%>
+									<button
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #EC4646;">
+										<%=studyName%></button>
+									<%
+										} else {
+									%>
+									<button
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #7DC74B;"
 										onclick="event.stopPropagation(); getStudyDetail(<%=studyNumber%>)"><%=studyName%></button>
-<%
- 				}
- 				
- 				
-%>
+									<%
+										}
+									%>
 								</div>
 							</td>
 							<%
@@ -250,45 +250,48 @@
 							%>
 
 							<td>
-									<button style="color: gray; cursor: pointer; border:none; background:none;"
-											onclick="event.stopPropagation(); popup(<%=m + 1%>,<%=j%>)">
-										<%=j%>
-									</button> 
-									<div style="overflow-y:scroll; height:80%; width:100%">
-<%
- 	if (curStudy[j] != "") {
- 			tmp = new String[12];
- 			tmp = curStudy[j].split("\t");
- 			for (String wo : tmp) {
- 				studyName = wo.split(",")[0];
- 				studyNumber = wo.split(",")[1];
- 				recruitDay = wo.split(",")[2];
- 				
- 				if(today.compareTo(recruitDay)<0){
-%>
-									<button style="color: white; cursor: pointer; width:100%; height:50px; border:none; background:#EC4646;">
-									<%=studyName%></button>
-<%					
- 				}else{
-%>
-									<button style="color: white; cursor: pointer; width:100%; height:50px; border:none; background:#7DC74B;"
+								<button
+									style="color: gray; cursor: pointer; border: none; background: none;"
+									onclick="event.stopPropagation(); popup(<%=m + 1%>,<%=j%>)">
+									<%=j%>
+								</button>
+								<div style="overflow-y: auto; height: 80%; width: 100%">
+									<%
+										if (curStudy[j] != "") {
+												tmp = new String[12];
+												tmp = curStudy[j].split("\t");
+												for (String wo : tmp) {
+													studyName = wo.split(",")[0];
+													studyNumber = wo.split(",")[1];
+													recruitDay = wo.split(",")[2].substring(0, 10);
+
+													if (today.compareTo(recruitDay) > 0) {
+									%>
+									<button
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #EC4646;">
+										<%=studyName%></button>
+									<%
+										} else {
+									%>
+									<button
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #7DC74B;"
 										onclick="event.stopPropagation(); getStudyDetail(<%=studyNumber%>)"><%=studyName%></button>
-<%
- 				}
- 				
-			}
-	}
-	if ((yo + j - 1) % 7 == 0) {
-		if (j == last_day) {
-			continue;
-		}
-%>
+									<%
+										}
+
+												}
+											}
+											if ((yo + j - 1) % 7 == 0) {
+												if (j == last_day) {
+													continue;
+												}
+									%>
 								</div>
 							</td>
 						</tr>
 						<tr height="120px" valign="top">
 
-						<%
+							<%
 								}
 
 								}
@@ -304,34 +307,35 @@
 							%>
 
 							<td>
-									<button style="color: gray; cursor: pointer; border:none; background:none;"
-										onclick="event.stopPropagation(); popup(<%=m + 2%>,<%=e%>)">
-										<%=e%>
-									</button>
-									<div style="overflow-y:scroll; height:80%; width:100%">
-<%
- 	if (nextStudy[e] != "") {
- 			tmp = new String[12];
- 			tmp = nextStudy[e].split("\t");
- 			for (String wo : tmp) {
- 				studyName = wo.split(",")[0];
- 				studyNumber = wo.split(",")[1];
- 				recruitDay = wo.split(",")[2];
- 				
- 				if(today.compareTo(recruitDay)<0){
-%>
-									<button style="color: white; cursor: pointer; width:100%; height:50px; border:none; background:#EC4646;">
-									<%=studyName%></button>
-<%					
- 				}else{
-%>
-									<button style="color: white; cursor: pointer; width:100%; height:50px; border:none; background:#7DC74B;"
+								<button
+									style="color: gray; cursor: pointer; border: none; background: none;"
+									onclick="event.stopPropagation(); popup(<%=m + 2%>,<%=e%>)">
+									<%=e%>
+								</button>
+								<div style="overflow-y: auto; height: 80%; width: 100%">
+									<%
+										if (nextStudy[e] != "") {
+												tmp = new String[12];
+												tmp = nextStudy[e].split("\t");
+												for (String wo : tmp) {
+													studyName = wo.split(",")[0];
+													studyNumber = wo.split(",")[1];
+													recruitDay = wo.split(",")[2].substring(0,10);
+
+													if (today.compareTo(recruitDay) > 0) {
+									%>
+									<button
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #EC4646;">
+										<%=studyName%></button>
+									<%
+										} else {
+									%>
+									<button
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #7DC74B;"
 										onclick="event.stopPropagation(); getStudyDetail(<%=studyNumber%>)"><%=studyName%></button>
-<%
- 				}
- 				
- 				
-%>
+									<%
+										}
+									%>
 
 								</div>
 							</td>

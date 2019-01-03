@@ -3,6 +3,7 @@ package com.ddos.web.assets;
 import java.util.List;
 import com.ddos.web.assets.AssetsVO;
 
+
 public interface AssetsService {
 
 	// 전체 조회
@@ -16,4 +17,7 @@ public interface AssetsService {
 
 	//수정
 	public void assetsUpdate(AssetsVO vo);
+	
+	// 전체 건수
+	public int getCount(AssetsVO vo);
 }

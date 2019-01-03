@@ -25,7 +25,7 @@
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="adminHome"
+										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item">Notice</li>
 										<li class="breadcrumb-item active" aria-current="page">Show Notice</li>
@@ -70,6 +70,7 @@
 								<a href="UsergetNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
 							</div>
 							<!-- end card-body -->
+							
 						</div>
 					</div>
 				</div>

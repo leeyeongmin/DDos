@@ -32,7 +32,7 @@
 		#{studySubject},
 		#{studyTime},
 		to_date(#{studyDate},'mm/dd'),
-		to_date(#{recruitEnd},'mm/dd/yyyy'),
+		to_date(#{recruitEnd},'yyyy/mm/dd'),
 		#{recruitPerson},
 		#{status},
 		#{studyroomNumber},
@@ -75,5 +75,23 @@
 	<delete id="deleteStudy" parameterType="study">
 	DELETE FROM STUDY WHERE STUDY_NUM= #{studyNumber}
 	</delete>
+	
+	<!-- 단건조회 -->
+	<select id="getAdminStudyList" parameterType="study" resultType="study">
+		SELECT 
+		
+		STUDY_NUM as studyNumber,
+		STUDY_NAME,
+		STUDY_SUBJECT,
+		STUDY_TIME,
+		TO_CHAR(STUDY_DATE,'YYYY-MM-DD') AS STUDY_DATE,
+		TO_CHAR(RECRUIT_END,'YYYY-MM-DD') AS RECRUIT_END,
+		RECRUIT_PERSON,
+		STATUS,
+		STUDYROOM_NUM as studyroomNumber,
+		MEMBER_ID
+		
+		FROM STUDY
+	</select> 
 	
 </mapper> 

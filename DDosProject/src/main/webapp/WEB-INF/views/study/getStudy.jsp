@@ -6,14 +6,14 @@
 	//String memberId = (String) session.getAttribute("id");
 	%>
 	<div id="info">
-		스터디명:${study.studyName}<br>
-		스터디주제:${study.studySubject}<br>
-		스터디시간:${study.studyTime}<br>
-		시작일${study.studyDate}<br>
-		모집종료일${study.recruitEnd }<br>
-		모집인원:${study.recruitPerson }<br>
-		스터디룸:${study.studyroomNumber}<br>
-		스터디장:${study.memberId }<br>
+		스터디 명&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.studyName}<br>
+		스터디 주제&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.studySubject}<br>
+		스터디 시간&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.studyTime}&ensp;:&ensp;00<br>
+		시작 일&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.studyDate}<br>
+		모집 종료일&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.recruitEnd }<br>
+		모집 인원&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.recruitPerson }명<br>
+		스터디 룸&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.studyroomNumber}번 방<br>
+		스터디 장&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.memberId }<br>
 	</div>
 	
 

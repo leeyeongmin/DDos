@@ -9,6 +9,10 @@ public class SuggestionVO {
 	private int sugCnt;
 	private String searchType;
 	private String searchKeyword;
+	
+	// 페이징 처리
+	private int First;
+	private int Last;
 
 	public int getSugNum() {
 		return sugNum;
@@ -74,10 +78,28 @@ public class SuggestionVO {
 		this.searchKeyword = searchKeyword;
 	}
 
+	public int getFirst() {
+		return First;
+	}
+
+	public void setFirst(int first) {
+		First = first;
+	}
+
+	public int getLast() {
+		return Last;
+	}
+
+	public void setLast(int last) {
+		Last = last;
+	}
+
 	@Override
 	public String toString() {
 		return "SuggestionVO [sugNum=" + sugNum + ", sugTitle=" + sugTitle + ", sugDate=" + sugDate + ", sugCont="
 				+ sugCont + ", memberId=" + memberId + ", sugCnt=" + sugCnt + ", searchType=" + searchType
-				+ ", searchKeyword=" + searchKeyword + "]";
+				+ ", searchKeyword=" + searchKeyword + ", First=" + First + ", Last=" + Last + "]";
 	}
+
+	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@ div.card {
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="adminHome"
+										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item active" aria-current="page">Notice</li>
 									</ol>
@@ -52,7 +53,7 @@ div.card {
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="row" style="margin-top:5%;">
+				<div class="row" style="margin-top: 5%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<!-- 검색 -->
@@ -66,7 +67,9 @@ div.card {
 										style="width: 75%; margin-left: 1%; display: inline-block;"
 										id="searchUserKeyword" type="text" name="searchKeyword"
 										placeholder="Search">
-									<button class="btn btn-primary" style="margin-left:1%; width:7%; height:48px;">검색</button>
+									<button class="btn btn-primary"
+										style="margin-left: 1%; width: 7%; height: 48px;">검색</button>
+									<input type="hidden" name="page" />
 								</form>
 							</div>
 
@@ -99,6 +102,13 @@ div.card {
 									</table>
 								</div>
 							</div>
+							<my:paging paging="${paging}" />
+							<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script>
 						</div>
 					</div>
 				</div>

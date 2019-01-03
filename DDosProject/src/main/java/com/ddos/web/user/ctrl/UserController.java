@@ -137,8 +137,11 @@ public class UserController {
 	}
 
 	@RequestMapping("join")
-	public String insertUser(UserVO vo) { // 而ㅻ㎤�뱶 媛앹껜
+	public String insertUser(UserVO vo, HttpSession session, HttpServletResponse response) throws IOException { // 而ㅻ㎤�뱶 媛앹껜
 		userService.insertUser(vo); // �벑濡� 泥섎━
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('회원 가입이 완료되었습니다. 로그인 해주세용.');</script>");
+		out.flush();
 		return "no/login/Login";
 	}
 

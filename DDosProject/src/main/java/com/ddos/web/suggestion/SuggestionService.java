@@ -12,4 +12,7 @@ public interface SuggestionService {
 	public void create(SuggestionVO vo);
 	public SuggestionVO AdmingetSuggestion(SuggestionVO vo);
 	public List<SuggestionVO> AdmingetSuggestionList(SuggestionVO vo);
+
+	// 전체 건수
+	public int getCount(SuggestionVO vo);
 }

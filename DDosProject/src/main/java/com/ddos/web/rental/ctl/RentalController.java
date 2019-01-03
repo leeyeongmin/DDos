@@ -1,6 +1,8 @@
 package com.ddos.web.rental.ctl;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,8 +33,9 @@ public class RentalController {
 	// 도서 연장
 	@RequestMapping("renewBook")
 	@ResponseBody
-	public void renewBook(RentalVO vo) {
+	public Map renewBook(RentalVO vo) {
 		rentalService.renewBook(vo);
+		return Collections.emptyMap();
 	}
 
 	
@@ -50,8 +53,9 @@ public class RentalController {
 	//대출
 	@RequestMapping("/rentalBook")
 	@ResponseBody
-	public void rentalBook(RentalVO vo) {
+	public Map rentalBook(RentalVO vo) {
 		rentalService.rentalBook(vo);
+		return Collections.emptyMap();
 	}
 	
 	//반납페이지로

@@ -24,7 +24,7 @@ public class AssetsDAOMybatis {
 	//단건 조회
 	public AssetsVO getAssets(AssetsVO vo) {
 		System.out.println("자산상세보기  mybatis ");
-		return mybatis.selectOne("asssets.getAssets", vo);
+		return mybatis.selectOne("assets.getAssets", vo);
 	}
 
 	//등록

@@ -121,6 +121,7 @@ public class StatisticsController {
 		return serivce.month_inputchart(day);
 	}
 	
+	
 	@RequestMapping("month_inputList")
 	@ResponseBody
 	public List<Map> month_inputList(@RequestParam String day){

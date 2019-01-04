@@ -49,7 +49,7 @@ div.card {
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 					<div class="card">
 						<div class="card-body">
-							<form id="assetsInsert" method="post" encType="multipart/form-data">
+							<form id="assetsInsert" action="assetsInsert" method="post" encType="multipart/form-data">
 								<div class="form-group row">
 									<label class="col-12 col-sm-3 col-form-label text-sm-right">적요</label>
 									<div class="col-12 col-sm-8 col-lg-6">

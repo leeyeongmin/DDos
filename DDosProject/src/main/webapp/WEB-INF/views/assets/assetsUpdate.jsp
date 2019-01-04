@@ -49,7 +49,7 @@ div.card {
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 					<div class="card">
 						<div class="card-body">
-							<form id="assetsUpdate" method="post">
+							<form id="assetsUpdate" action="assetsUpdate" method="post" encType="multipart/form-data">
 								<div class="form-group row">
 									<label class="col-12 col-sm-3 col-form-label text-sm-right">적요</label>
 									<div class="col-12 col-sm-8 col-lg-6">
@@ -120,7 +120,8 @@ div.card {
 									<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
 
 										<input type="submit" class="btn btn-space btn-primary"
-											value="수정"> <a href="javascript:history.go(-2);"
+											value="수정">
+											 <a href="javascript:history.go(-2);"
 											class="btn btn-space btn-secondary">목록</a>
 									</div>
 								</div>

@@ -108,7 +108,6 @@
 													<td>${rental.rentalDate}</td>
 													<td>${rental.dueDate}</td>
 													<c:choose>
-<<<<<<< HEAD
 														<c:when test="${rental.renewCnt == '1'}">
 															<td></td>
 														</c:when>
@@ -119,7 +118,7 @@
 													</c:choose>
 													<%-- <td><input type="button" class="btn btn-brand"
 														onclick="renewBook('${rental.isbn}', '${rental.dueDate}');" value="연장"></td> --%>
-=======
+									<%-- 			<c:choose>
 													<c:when test="${rental.renewCnt ne null}">
 														<td><input type="hidden" class="btn btn-brand"
 														onclick="renewBook('${rental.isbn}', '${rental.dueDate}');" value="연장"></td>
@@ -128,8 +127,8 @@
 														<td><input type="button" class="btn btn-brand"
 														onclick="renewBook('${rental.isbn}', '${rental.dueDate}');" value="연장"></td>
 														</c:when>
-												</c:choose>
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
+												</c:choose> --%>
+
 												</tr>
 											</c:forEach>
 										</tbody>

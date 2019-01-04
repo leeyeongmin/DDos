@@ -133,7 +133,7 @@ public class BookServiceImpl implements BookService {
 	                    case "image":
 	                        if(b != null) {	                            
 	                            String img = parser.nextText();
-	                            File outputFile = new File("C:\\Users\\User\\git\\DDos\\DDosProject\\src\\main\\webapp\\bookImg", isbn+".jpg");
+	                            File outputFile = new File("C:\\Users\\User\\git\\DDos2\\DDosProject\\src\\main\\webapp\\bookImg", isbn+".jpg");
 	                        
 		                        URL imgurl = null;
 		                        BufferedImage bi = null;

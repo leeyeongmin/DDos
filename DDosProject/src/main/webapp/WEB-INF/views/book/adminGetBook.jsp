@@ -64,8 +64,7 @@
 												<div class="carousel-inner">
 													<div class="carousel-item active">
 														<img class="d-block"
-															src="./bookImg/${book.isbn}.jpg"
-															alt="Third slide">
+															src="./bookImg/${book.isbn}.jpg">
 													</div>
 												</div>
 

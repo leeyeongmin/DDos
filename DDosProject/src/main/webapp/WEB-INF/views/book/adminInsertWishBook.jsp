@@ -46,10 +46,6 @@
 						<i class="fas fa-star" style="color:red;">필수값을 입력해주세요.</i> 
 							<form action="adminInsertWishBook" method="post">
 								<div class="form-group">
-									<label for="inputText3" class="col-form-label">회원ID&nbsp;</label><input
-										name="memberId" type="hidden" value="${sessionScope.login.id}">${sessionScope.login.id}
-								</div>
-								<div class="form-group">
 									<label for="inputText3" class="col-form-label">
 									<i class="fas fa-star" style="color:red;" ></i>
 									ISBN</label> <input

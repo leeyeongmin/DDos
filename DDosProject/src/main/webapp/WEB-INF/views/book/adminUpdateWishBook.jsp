@@ -105,7 +105,7 @@
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary">저장 </button>
-									<a href="./adminwishbook" class="btn btn-secondary">취소</a>
+									<a href="javascript:history.back();" class="btn btn-secondary">이전페이지로</a>
 								</form>
 
 							</div>

@@ -146,6 +146,12 @@ public class StatisticsSeviceImpl implements StatisticsService{
 		return dao.getCount(vo);
 	}
 
+	@Override
+	public int getCount(Map map) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 }

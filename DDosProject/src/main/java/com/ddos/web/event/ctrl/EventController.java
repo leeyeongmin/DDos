@@ -42,7 +42,7 @@ public class EventController {
 	// 등록 폼
 	@RequestMapping("insertEventform")
 	public String insertEvent(Model model, EventVO vo) {
-		return "event/insertEvent";
+		return "admin/event/insertEvent";
 	}
 	
 	// 등록 처리
@@ -57,7 +57,7 @@ public class EventController {
 	public String updateEvent(Model model, EventVO vo) {
 		System.out.println(vo);
 		model.addAttribute("event", eventService.getEvent(vo));
-		return "event/updateEvent";
+		return "admin/event/updateEvent";
 	}
 	
 	// 수정 처리
@@ -94,7 +94,7 @@ public class EventController {
 		paging.setTotalRecord(eventService.getCount(vo));
 		mv.addObject("paging", paging);
 		mv.addObject("eventList", eventService.getEventList(vo));
-		mv.setViewName("event/getEventList");
+		mv.setViewName("admin/event/getEventList");
 		return mv;
 		}
 	
@@ -102,7 +102,7 @@ public class EventController {
 	@RequestMapping("getEvent")
 	public String getEvent(Model model, EventVO vo) {
 		model.addAttribute("event", eventService.getEvent(vo));
-		return "event/getEvent";
+		return "admin/event/getEvent";
 	}
 	
 	//건수

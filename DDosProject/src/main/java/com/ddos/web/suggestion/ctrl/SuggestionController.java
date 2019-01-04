@@ -87,7 +87,7 @@ public class SuggestionController {
 	public String AdmingetSuggestion(Model model, SuggestionVO vo) {
 		suggestionService.increaseCnt(vo);
 		model.addAttribute("suggestion", suggestionService.AdmingetSuggestion(vo));
-		return "suggestion/AdmingetSuggestion";
+		return "admin/suggestion/AdmingetSuggestion";
 	}
 
 	// 관리자 전체 조회

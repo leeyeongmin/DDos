@@ -1,6 +1,7 @@
 package com.ddos.web.rental.ctl;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -115,6 +117,27 @@ public class RentalController {
 	public List<RentalVO> rental_search(RentalVO vo){
 		return rentalService.rentalSearch(vo);
 	}
+	
+	/*//반납 리스트
+		@RequestMapping(value="rentalSearch", method = RequestMethod.POST)
+		@ResponseBody
+		public Map rental_search(RentalVO vo,  PagingVO paging){
+			HashMap map = new HashMap();
+			  if (paging.getPage() == null) {
+			         paging.setPage(1);
+			      }
+			  paging.setPageUnit(10);
+		      
+		      vo.setFirst(paging.getFirst());
+		      vo.setLast(paging.getLast());
+		      
+		      paging.setTotalRecord(rentalService.getCount(vo));
+		      map.put("paging", paging);
+		      map.put("result", rentalService.rentalSearch());
+			
+			  return map;
+
+		}*/
 	
 	//반납
 	@RequestMapping("returnBook")

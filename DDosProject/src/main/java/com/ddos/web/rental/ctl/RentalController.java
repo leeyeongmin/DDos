@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.ddos.web.paging.PagingVO;
 import com.ddos.web.rental.RentalService;
 import com.ddos.web.rental.RentalVO;
 import com.ddos.web.user.UserVO;
@@ -22,7 +24,7 @@ public class RentalController {
 	@Autowired 	RentalService rentalService;
 	
 	//메인에서 대출이력조회
-	@RequestMapping("/rental")
+	/*@RequestMapping("/rental")
 	public String getRentalList(Model model, RentalVO vo, HttpSession session) {
 		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("getRentalList", rentalService.getRentalList(vo));
@@ -30,7 +32,27 @@ public class RentalController {
 		System.out.println(vo);
 		System.out.println("컨트롤 대출 이력 조회");
 		return "rental/getRentalList";
+	}*/
+	@RequestMapping("/rental")
+	public ModelAndView getRentalList(Model model, RentalVO vo, HttpSession session, PagingVO paging) {
+		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(rentalService.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("getRentalList", rentalService.getRentalList(vo));
+		mv.addObject("getHistoryList", rentalService.getHistoryList(vo));
+		mv.setViewName("rental/getRentalList");
+		return mv;
 	}
+	
+	
 	// 도서 연장
 	@RequestMapping("renewBook")
 	@ResponseBody
@@ -41,13 +63,30 @@ public class RentalController {
 
 	
 	// 대출반납 전체 이력
-	@RequestMapping("getHistoryList")
+	/*@RequestMapping("getHistoryList")
 	public String getHistoryList(Model model, RentalVO vo, HttpSession session) {
 		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("getHistoryList", rentalService.getHistoryList(vo));
 		System.out.println(vo);
 		System.out.println("컨트롤 대출반납 히스토리 조회");
 		return "rental/getRentalList";
+	}*/
+	@RequestMapping("getHistoryList")
+	public ModelAndView getHistoryList(Model model, RentalVO vo, HttpSession session,  PagingVO paging) {
+		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
+		ModelAndView mv = new ModelAndView();
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		paging.setPageUnit(10);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+
+		paging.setTotalRecord(rentalService.getCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("getHistoryList", rentalService.getHistoryList(vo));
+		mv.setViewName("rental/getRentalList");
+		return mv;
 	}
 	
 	
@@ -66,6 +105,9 @@ public class RentalController {
 	public String adminreturn() {
 		return "admin/rental/ReturnBook";
 	}
+	
+	
+	
 	
 	//반납 리스트
 	@RequestMapping("rentalSearch")

@@ -24,7 +24,23 @@ public class RentalVO {
 	private int overdue;
 	private String overck;
 	
+	// 페이징 처리
+	private int First;
+	private int Last;
+
 	
+	public int getFirst() {
+		return First;
+	}
+	public void setFirst(int first) {
+		First = first;
+	}
+	public int getLast() {
+		return Last;
+	}
+	public void setLast(int last) {
+		Last = last;
+	}
 	public String getOverck() {
 		return overck;
 	}
@@ -124,14 +140,16 @@ public class RentalVO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	//
 	@Override
 	public String toString() {
 		return "RentalVO [rentalNum=" + rentalNum + ", rentalDate=" + rentalDate + ", returnDate=" + returnDate
 				+ ", isbn=" + isbn + ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate=" + dueDate
-				+ ", searchTitle=" + searchTitle + ", searchKeyword=" + searchKeyword + ", bookTitle=" + bookTitle
-				+ ", bookWriter=" + bookWriter + ", bookComp=" + bookComp + "]";
+				+ ", renewCnt=" + renewCnt + ", searchTitle=" + searchTitle + ", searchKeyword=" + searchKeyword
+				+ ", bookTitle=" + bookTitle + ", bookWriter=" + bookWriter + ", bookComp=" + bookComp + ", money="
+				+ money + ", overdue=" + overdue + ", overck=" + overck + ", First=" + First + ", Last=" + Last + "]";
 	}
+	
+	
 
 	
 }

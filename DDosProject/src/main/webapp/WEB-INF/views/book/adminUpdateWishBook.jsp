@@ -39,10 +39,6 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<c:if test="${not empty sessionScope.login}">
-				${sessionScope.login.id} 님
-				</c:if>
-
 				<div class="row">
 					<div class="col-md-8">
 						<div class="card"  style="width: 1000px;">
@@ -105,7 +101,7 @@
 										</div>
 									</div>
 									<button type="submit" class="btn btn-primary">저장 </button>
-									<a href="javascript:history.back();" class="btn btn-secondary">이전페이지로</a>
+									<a href="javascript:history.go(-2);" class="btn btn-secondary">목록</a>
 								</form>
 
 							</div>

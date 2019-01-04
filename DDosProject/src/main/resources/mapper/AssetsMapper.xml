@@ -8,7 +8,7 @@
 		resultType="assets">
 		SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
 		SELECT ASSETS_NUM,
-		ASSETS_SEPARATION, ASSETS_PRICE, ASSETS_DATE,
+		ASSETS_SEPARATION, ASSETS_PRICE, TO_CHAR(ASSETS_DATE, 'YYYY/MM/DD') AS ASSETS_DATE,
 		ASSETS_CONT, CONT_DETAIL,
 		MEMBER_ID, RENTAL_NUM
 		FROM ASSETS_MANAGE
@@ -17,19 +17,16 @@
 				test="searchCondition != null and searchCondition == 'memberId'">
 				and MEMBER_ID like '%' || #{searchKeyword} || '%'	</if>
 		</where>
-		ORDER BY ASSETS_NUM DESC
+		ORDER BY ASSETS_DATE DESC
 		) A) B WHERE RN BETWEEN #{first} and #{last}
 	</select>
 
 	<!-- 한건 조회 -->
-	<select id="getAssets" parameterType="assets"
-		resultType="assets">
-		SELECT ASSETS_SEPARATION, ASSETS_PRICE ,
-		TO_CHAR(ASSETS_DATE, 'YYYY/MM/DD'),
-		ASSETS_CONT, CONT_DETAIL,
-		MEMBER_ID, RENTAL_NUM
-		FROM ASSETS_MANAGE
-		WHERE ASSETS_NUM=#{assetsNum}
+	<select id="getAssets" parameterType="assets" resultType="assets">
+		SELECT 	ASSETS_NUM, ASSETS_SEPARATION, ASSETS_PRICE, TO_CHAR(ASSETS_DATE, 'YYYY/MM/DD') AS ASSETS_DATE,
+				ASSETS_CONT, CONT_DETAIL, MEMBER_ID
+		FROM 	ASSETS_MANAGE
+		WHERE	ASSETS_NUM=#{assetsNum}
 	</select>
 
 	<!-- 등록 -->
@@ -41,11 +38,16 @@
 		INSERT INTO ASSETS_MANAGE(
 		ASSETS_NUM, ASSETS_SEPARATION, ASSETS_PRICE,
 		ASSETS_DATE,
-		ASSETS_CONT, CONT_DETAIL, MEMBER_ID)
+		ASSETS_CONT, CONT_DETAIL, MEMBER_ID
+		<if test="uploadFileName !=null and uploadFileName !=''">,uploadFileName
+			</if>
+		)
 		VALUES(#{assetsNum},
 		#{assetsSeparation}, #{assetsPrice},
 		#{assetsDate},
 		#{assetsCont}, #{contDetail}, #{memberId}
+		<if test="uploadFileName !=null and uploadFileName !=''">, #{uploadFileName}
+			</if>
 		)
 
 	</insert>

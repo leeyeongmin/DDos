@@ -22,14 +22,7 @@ public class WishBookController {  //희망도서 controller
 	
 	//admin
 	//메인에서 희망으로
-	/*@RequestMapping("adminwishbook")
-	public String adminWishBookList(Model model, WishBookVO vo) {
-		//vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
-		model.addAttribute("adminWishBookList", wishBookService.adminWishBookList(vo));
-		System.out.println("컨트롤 희망도서 전체 조회");
-		return "admin/book/adminWishBookList";
-		
-	}*/
+	
 	@RequestMapping(value = "adminWishBook")
 	
 	public ModelAndView adminWishBookList(Model model, WishBookVO vo, PagingVO paging) {
@@ -125,13 +118,6 @@ public class WishBookController {  //희망도서 controller
 		
 		return mv;
 	}
-	
-/*	@RequestMapping("/wishbook")
-	public String wishbook(Model model, WishBookVO vo, HttpSession session) {
-		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
-		model.addAttribute("wishBookList", wishBookService.getWishBookList(vo));
-		return "book/getWishBookList";	
-	}*/
 	
 	//희망도서 단건 조회
 	@RequestMapping("/getWishBook")

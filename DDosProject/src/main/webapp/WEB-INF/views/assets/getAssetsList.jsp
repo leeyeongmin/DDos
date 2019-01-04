@@ -76,6 +76,7 @@ div.card {
 										<table class="table table-hover" id="getAssetsList" width="100%">
 											<thead>
 												<tr>
+												<th scope="col">문서번호</th>
 												<th scope="col">적요</th>
 													<th scope="col">구분</th>
 													<th scope="col">날짜</th>
@@ -87,7 +88,9 @@ div.card {
 											<tbody id=getAssetsList>
 												<c:forEach items="${getAssetsList}" var="assets">
 													<tr>
-													<td>${assets.assetsCont}</td>
+													<td>${assets.assetsNum}</td>
+													<td><a href="./getAssets?assetsNum=${assets.assetsNum}">${assets.assetsCont}</a>
+													</td>
 														<td>${assets.assetsSeparation}</td>
 														<td>${assets.assetsDate}</td>
 														<td>${assets.assetsPrice}</td>

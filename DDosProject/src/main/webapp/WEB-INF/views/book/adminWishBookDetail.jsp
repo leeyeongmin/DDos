@@ -39,9 +39,7 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<c:if test="${not empty sessionScope.login}">
-				${sessionScope.login.id} 님
-				</c:if>
+				
 
 				<div class="row">
 					<div class="col-md-8">

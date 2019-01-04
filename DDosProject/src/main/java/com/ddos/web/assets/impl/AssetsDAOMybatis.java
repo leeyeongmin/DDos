@@ -29,7 +29,7 @@ public class AssetsDAOMybatis {
 
 	//등록
 	public void assetsInsert(AssetsVO vo) {
-		System.out.println("자산 입력  mybatis ");
+		System.out.println("===============자산 입력  mybatis ");
 		mybatis.insert("assets.assetsInsert", vo);
 	}
 

@@ -32,7 +32,7 @@
 
 	<!-- 리뷰 등록 -->
 	<insert id="insertReview" parameterType="review">
-		<selectKey keyProperty="reviewNum" resultType="integer"	order="BEFORE">
+		<selectKey keyProperty="reviewNum" resultType="string"	order="BEFORE">
 			SELECT NVL(MAX(REVIEW_NUM), 0) + 1 FROM REVIEW
 		</selectKey>
 		INSERT INTO REVIEW (ISBN, REVIEW_TITLE, REVIEW_CONT, REVIEW_POINT,

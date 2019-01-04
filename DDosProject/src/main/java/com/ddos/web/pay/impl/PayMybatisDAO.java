@@ -18,4 +18,8 @@ public class PayMybatisDAO {
 		return mybatis.selectList("pay.Nonpayment_book", id);
 	}
 	
+	public void paymentBook(List<String> arr) {
+		mybatis.update("pay.paymentBook", arr);
+	}
+	
 }

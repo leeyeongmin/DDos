@@ -200,7 +200,8 @@ public class BookController {
 		model.addAttribute("book", bookservice.getBook(vo));
 		model.addAttribute("review", reviewservice.getReviewList(rvo));
 
-		return "book/getBook?isbn=" + rvo.getIsbn();
+		return "redirect:getBook?isbn=" + rvo.getIsbn();
+		// return "book/getBook?isbn=" + rvo.getIsbn();
 		// return "redirect:getBook";
 	}
 

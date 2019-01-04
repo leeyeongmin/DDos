@@ -68,18 +68,18 @@
 					</div>
 					<div class="tab-regular">
 						<ul class="nav nav-tabs " id="myTab" role="tablist">
-							<li class="nav-item"><a class="nav-link" id="home-tab"
+							<li class="nav-item"><a class="nav-link active show" id="home-tab"
 								data-toggle="tab" href="#home" role="tab" aria-controls="home"
-								aria-selected="false">대출현황</a></li>
+								aria-selected="true">대출현황</a></li>
 
-							<li class="nav-item"><a class="nav-link active show"
+							<li class="nav-item"><a class="nav-link"
 								id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-								aria-controls="profile" aria-selected= "true">대출이력</a></li>
+								aria-controls="profile" aria-selected= "false">대출이력</a></li>
 						</ul>
 					
 						<div class="tab-content" id="myTabContent" style="width: 100%;">
 							<!--대출 현황-->
-							<div class="tab-pane fade" id="home" role="tabpanel"
+							<div class="tab-pane fade active show" id="home" role="tabpanel"
 								aria-labelledby="home-tab">
 								<div class="card-body" style="width: 100%;">
 									<h3>대출 현황</h3>
@@ -137,7 +137,7 @@
 							</div>
 
 
-							<div class="tab-pane fade active show" id="profile"
+							<div class="tab-pane fade" id="profile"
 								role="tabpanel" aria-labelledby="profile-tab">
 								<h3>대출 이력</h3>
 								<div class="card-body">

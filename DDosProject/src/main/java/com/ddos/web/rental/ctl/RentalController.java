@@ -26,6 +26,7 @@ public class RentalController {
 	public String getRentalList(Model model, RentalVO vo, HttpSession session) {
 		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("getRentalList", rentalService.getRentalList(vo));
+		model.addAttribute("getHistoryList", rentalService.getHistoryList(vo));
 		System.out.println(vo);
 		System.out.println("컨트롤 대출 이력 조회");
 		return "rental/getRentalList";
@@ -53,9 +54,11 @@ public class RentalController {
 	//대출
 	@RequestMapping("/rentalBook")
 	@ResponseBody
-	public Map rentalBook(RentalVO vo) {
-		rentalService.rentalBook(vo);
-		return Collections.emptyMap();
+	public String rentalBook(RentalVO vo) {
+		rentalService.rentalBook(vo); 
+		System.out.println("--------------------" + vo.getOverck());
+		/*return Collections.emptyMap();*/
+		return "{\"result\":\""+vo.getOverck()+"\"}";
 	}
 	
 	//반납페이지로

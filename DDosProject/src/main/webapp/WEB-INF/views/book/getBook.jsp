@@ -27,9 +27,15 @@
 			},
 			type : "post",
 			dataType : "json",
-			success : function() {
-				alert ("대출 완료되었습니다");
-				location.reload();
+			success : function(data) {
+				console.log(data.result);
+				if(data.result == "true"){
+					alert("대출 중인 책입니다.");
+				}else{
+					alert ("대출 완료되었습니다");	
+					location.reload();
+				}
+				
 			}
 		})
 	}

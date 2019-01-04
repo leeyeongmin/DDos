@@ -17,13 +17,22 @@
      	 and r.RENTAL_NUM = a.RENTAL_NUM]]>
 	</select>
 
-	<update id="paymentBook">
+	<update id="paymentBook" parameterType="map">
 		update ASSETS_MANAGE
-		set cont_detail = 'Y'
+		set cont_detail = 'Y',
+		assets_date = sysdate 
 		where assets_num in 
 		<foreach collection="arr" item="num" open="(" close=")" separator=",">
 				#{num}
-			</foreach>
+		</foreach>
+	</update>
+	
+	<update id="overdue_add">
+	 	update ASSETS_MANAGE
+        set ASSETS_PRICE  = ASSETS_NUM + 100
+        where cont_detail = 'N'
+        and ASSETS_CONT = '연체비'
+        and ASSETS_DATE is null
 	</update>
 
 

@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/libs/css/style.css">
+<link rel="stylesheet"
+	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 
@@ -15,6 +21,7 @@
 	
 	function Nonpay_search(){
 		$("#overdueList").empty();
+		document.getElementById("hap").innerHTML = '0';
 		var $add = "";
 		$.ajax({
 			data : { id : "${login.id}"},
@@ -26,8 +33,8 @@
 					$add += "<tr><Td colspan='7'>연체 목록이 없습니다.</td></tr>";
 				}else{  
 					for(var i=0; i<datas.length; i++){
-						$add += "<tr><input type=hidden name=num id=num value=" + datas[i].rentalNum + ">"   +
-								"<td><input type=checkbox name=check onclick=check_ck()></td>" +
+						$add += "<tr>" +
+								"<td><input type=	checkbox name='check' value='" + datas[i].rentalNum + "' onclick=check_ck()></td>" +
 								"<td>" + datas[i].bookTitle + "</td>" + 
 								"<td>" + datas[i].rentalDate + "</td>" +
 								"<td>" + datas[i].dueDate + "</td>" +
@@ -52,7 +59,7 @@
 			var td = tr.children();
 
 			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-			var money = td.eq(7).text();
+			var money = td.eq(6).text();
 			
 			money = Number(money);
 			
@@ -61,11 +68,9 @@
 		})
 		
 		document.getElementById("hap").innerHTML = result;
-		payment_book();
 		 
 	}  
-	
-	
+
 	function all_check(){
 		if($("#checkyn").prop("checked")){
 			$("input[type=checkbox]").prop("checked",true);
@@ -74,45 +79,6 @@
 		}
 		check_ck();
 	}
-	
-	function returnBook(){
-		
-		var checkbox = $("input[name=check]:checked");
-		
-		// 체크된 체크박스 값을 가져온다
-		checkbox.each(function(i) {
-
-			// checkbox.parent() : checkbox의 부모는 <td>이다.
-			// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
-			var tr = checkbox.parent().parent().eq(i);
-			var td = tr.children();
-
-			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-			var isbn = td.eq(2).text();
-			var rental_date = td.eq(3).text();
-			var login = td.eq(5).text();
-	
-			var params = {isbn : isbn, rentalDate : rental_date, memberId : login };
-			
-			$.ajax({
-				url : "returnBook",
-				type : "post",
-				dataType : "json",
-				data : params,
-				async: false,
-				success : function() {
-					
-				}
-			})
-		});
-		
-		if($("input:checkbox[name=check]").length != 0){
-			check();	
-		}
-		
-	}
-	
-	
 
 	var IMP = window.IMP; // 생략가능
 	IMP.init('imp39765501'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -144,12 +110,13 @@
 							msg += '상점 거래ID : ' + rsp.merchant_uid;
 							msg += '결제 금액 : ' + rsp.paid_amount;
 							msg += '카드 승인번호 : ' + rsp.apply_num;
-							
+							payment_book();
 						} else {
 							var msg = '결제에 실패하였습니다.';
 							msg += '에러내용 : ' + rsp.error_msg;
 						}
 						alert(msg);
+						Nonpay_search();
 					});
 					
 				}
@@ -161,13 +128,9 @@
 		var $save = new Array();
 		 
 		// 체크된 체크박스 값을 가져온다
-		checkbox.each(function(i) {
-
-			var tr = checkbox.parent().parent().eq(i);
-			var td = tr.children();
-
-			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-			var num = td.eq(0).attr("value");
+		checkbox.each(function(i,obj) {
+			
+			var num = obj.value;
 			$save.push(num);
 			
 		});
@@ -180,12 +143,11 @@
 			url : "paymentBook",
 			type : "post",
 			dataType : "json",
-			data : params,
+			contentType:'application/json;charset=utf-8',
+			data : JSON.stringify(params),
 			async: false
 		});
-		
-		//Nonpay_search();	
-	
+
 	}
 </script>
 
@@ -221,10 +183,11 @@
 
 				<div class="row">
 					<div class="col-sm">
-					<h3>연체비</h3>
+					<h1 align="center">연체 내역</h1>
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
+									<form name="checkform">
 									<table id="getOverdue" width="100%"
 										class="table table-bordered table-hover text-center">
 										<tr>
@@ -241,6 +204,7 @@
 											
 										</tbody>
 									</table>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -249,7 +213,7 @@
 				<hr>
 				<div align="right">
 					<span style="font-size: 30pt;">합계 :</span>
-					<span id="hap" style="font-size: 30pt;">0</span>
+					<span id="hap" style="font-size: 30pt;"></span>
 					<span style="font-size: 30pt;">원</span>
 				</div>
 				

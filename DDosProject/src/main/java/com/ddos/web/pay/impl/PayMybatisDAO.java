@@ -1,6 +1,7 @@
 package com.ddos.web.pay.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class PayMybatisDAO {
 		return mybatis.selectList("pay.Nonpayment_book", id);
 	}
 	
-	public void paymentBook(List<String> arr) {
-		mybatis.update("pay.paymentBook", arr);
+	public void paymentBook(Map map) {
+		mybatis.update("pay.paymentBook", map);
 	}
 	
 }

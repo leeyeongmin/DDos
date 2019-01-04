@@ -22,8 +22,15 @@ public class RentalVO {
 	
 	private int money;
 	private int overdue;
+	private String overck;
 	
-
+	
+	public String getOverck() {
+		return overck;
+	}
+	public void setOverck(String overck) {
+		this.overck = overck;
+	}
 	public int getMoney() {
 		return money;
 	}

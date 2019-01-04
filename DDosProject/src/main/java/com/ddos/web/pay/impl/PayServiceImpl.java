@@ -22,8 +22,8 @@ public class PayServiceImpl implements PaySerivce{
 	}
 
 	@Override
-	public void paymentBook(List<String> arr) {
-		dao.paymentBook(arr);
+	public void paymentBook(Map map) {
+		dao.paymentBook(map);
 	}
 	
 	

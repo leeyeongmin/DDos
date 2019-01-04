@@ -15,6 +15,7 @@ function check() {
 		return;
 	}
 	document.search.submit();
+}
 </script>
 </head>
 <body>

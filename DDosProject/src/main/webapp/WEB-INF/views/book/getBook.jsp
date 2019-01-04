@@ -135,9 +135,17 @@
 											</thead>
 										</table>
 
-
-										<input type="button" class="btn btn-primary"
-											onclick="rentalBook();" value="대출">
+										<c:choose>
+											<c:when test="${book.bookAmount == '0'}">
+												<input type="button" class="btn btn-primary"
+													onclick="rentalBook();" value="대출불가" disabled="disabled">
+											</c:when>
+											<c:otherwise>
+												<input type="button" class="btn btn-primary"
+												onclick="rentalBook();" value="대출">
+											</c:otherwise>
+										</c:choose>
+										
 									</div>
 								</div>
 							</div>

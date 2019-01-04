@@ -8,7 +8,7 @@
 	resultType="rental">
 
 	SELECT	 R.RENTAL_NUM, B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER, TO_CHAR(R.RENTAL_DATE, 'YYYY/MM/DD')AS RENTAL_DATE,
-			R.RETURN_DATE, R.MEMBER_ID, TO_CHAR(R.DUE_DATE, 'YYYY/MM/DD')AS DUE_DATE
+			R.RETURN_DATE, R.MEMBER_ID, TO_CHAR(R.DUE_DATE, 'YYYY/MM/DD')AS DUE_DATE , RENEW_CNT
 	FROM	 BOOK B JOIN RENTAL R
 	ON 		(B.ISBN=R.ISBN)
 
@@ -44,10 +44,10 @@
 <!-- 연장 -->
 <insert id="renewBook"  statementType="CALLABLE">
 	{call P_renewal
-	(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
-	#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
-	#{dueDate, mode=IN, jdbcType=VARCHAR, javaType=string},
-	'1' )
+		(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
+		#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
+		'1' )
+	}
 
 </insert>
 

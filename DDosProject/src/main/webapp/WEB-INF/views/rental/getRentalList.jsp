@@ -14,13 +14,12 @@
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 <script type="text/javascript">
-	function renewBook(isbn, dueDate) {
+	function renewBook(isbn) {
 		$.ajax({
 			url : "renewBook",
 			data : {
 				loginId : "${login.id}",
 				isbn : isbn,
-				dueDate : dueDate
 			},
 			type : "post",
 			dataType : "json",
@@ -108,8 +107,17 @@
 													<td>${rental.bookComp}</td>
 													<td>${rental.rentalDate}</td>
 													<td>${rental.dueDate}</td>
-													<td><input type="button" class="btn btn-brand"
-														onclick="renewBook('${rental.isbn}', '${rental.dueDate}');" value="연장"></td>
+													<c:choose>
+														<c:when test="${rental.renewCnt == '1'}">
+															<td></td>
+														</c:when>
+														<c:otherwise>
+															<td><input type="button" class="btn btn-brand"
+															onclick="renewBook('${rental.isbn}');" value="연장"></td>
+														</c:otherwise>					
+													</c:choose>
+													<%-- <td><input type="button" class="btn btn-brand"
+														onclick="renewBook('${rental.isbn}', '${rental.dueDate}');" value="연장"></td> --%>
 												</tr>
 											</c:forEach>
 										</tbody>

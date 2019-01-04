@@ -221,7 +221,7 @@ public class BookController {
 		vo.setIsbn(rvo.getIsbn());
 		model.addAttribute("book", bookservice.getBook(vo));
 		model.addAttribute("review", reviewservice.getReviewList(rvo));
-		return "book/getBook?isbn=" + rvo.getIsbn();
+		return "redirect:getBook?isbn=" + rvo.getIsbn();
 	}
 
 	// 리뷰 삭제

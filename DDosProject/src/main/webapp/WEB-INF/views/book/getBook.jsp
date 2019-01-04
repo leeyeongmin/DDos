@@ -16,8 +16,6 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-
-
 	function rentalBook() {
 		$.ajax({
 			url : "rentalBook",
@@ -28,7 +26,7 @@
 			type : "post",
 			dataType : "json",
 			success : function() {
-				alert ("대출 완료되었습니다");
+				alert("대출 완료되었습니다");
 				location.reload();
 			}
 		})
@@ -39,10 +37,10 @@
 
 <body>
 	<div class="dashboard-main-wrapper">
-	<!-- ============================================================== -->
+		<!-- ============================================================== -->
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
-<div class="dashboard-finance">
+		<div class="dashboard-finance">
 			<div class="container-fluid dashboard-content">
 				<!-- ============================================================== -->
 				<!-- pageheader  -->
@@ -56,7 +54,8 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Book Detail</a>
+										<li class="breadcrumb-item active" aria-current="page">Book
+											Detail</a>
 										</li>
 									</ol>
 								</nav>
@@ -67,8 +66,8 @@
 				<!-- ============================================================== -->
 				<!-- pageheader  -->
 				<!-- ============================================================== -->
-				
-	<div class="row">
+
+				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
@@ -142,10 +141,10 @@
 											</c:when>
 											<c:otherwise>
 												<input type="button" class="btn btn-primary"
-												onclick="rentalBook();" value="대출">
+													onclick="rentalBook();" value="대출">
 											</c:otherwise>
 										</c:choose>
-										
+
 									</div>
 								</div>
 							</div>
@@ -164,12 +163,14 @@
 									<div class="tab-content" id="myTabContent5">
 										<div class="tab-pane fade" id="tab-1" role="tabpanel"
 											aria-labelledby="product-tab-1">
-											<p id ="bookCont">${book.bookCont}</p>
+											<p id="bookCont">${book.bookCont}</p>
 										</div>
 										<script>
-										var text = document.querySelector('#bookCont');
-										text.innerHTML = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
-										
+											var text = document
+													.querySelector('#bookCont');
+											text.innerHTML = text.innerHTML
+													.replace(/(\n|\r\n)/g,
+															'<br>');
 										</script>
 										<div class="tab-pane active show" id="tab-2" role="tabpanel"
 											aria-labelledby="product-tab-2">
@@ -198,30 +199,32 @@
 																		<tr>
 																			<td>${review.reviewTitle}</td>
 																			<td>${review.reviewCont}</td>
-																			<td>
-																				<c:if test="${review.reviewPoint == 1}">
-																					<img src="assets/images/reviewImg/star_1.png" width="90">
-																				</c:if>
-																				<c:if test="${review.reviewPoint == 2}">
-																					<img src="assets/images/reviewImg/star_2.png" width="90">
-																				</c:if>
-																				<c:if test="${review.reviewPoint == 3}">
-																					<img src="assets/images/reviewImg/star_3.png" width="90">
-																				</c:if>
-																				<c:if test="${review.reviewPoint == 4}">
-																					<img src="assets/images/reviewImg/star_4.png" width="90">
-																				</c:if>
-																				<c:if test="${review.reviewPoint == 5}">
-																					<img src="assets/images/reviewImg/star_5.png" width="90">
-																				</c:if>
-																			</td>
+																			<td><c:if test="${review.reviewPoint == 1}">
+																					<img src="assets/images/reviewImg/star_1.png"
+																						width="90">
+																				</c:if> <c:if test="${review.reviewPoint == 2}">
+																					<img src="assets/images/reviewImg/star_2.png"
+																						width="90">
+																				</c:if> <c:if test="${review.reviewPoint == 3}">
+																					<img src="assets/images/reviewImg/star_3.png"
+																						width="90">
+																				</c:if> <c:if test="${review.reviewPoint == 4}">
+																					<img src="assets/images/reviewImg/star_4.png"
+																						width="90">
+																				</c:if> <c:if test="${review.reviewPoint == 5}">
+																					<img src="assets/images/reviewImg/star_5.png"
+																						width="90">
+																				</c:if></td>
 																			<td>${review.reviewDate}</td>
+																			<td>
+																			<c:if test="${login.id == review.memberId}">
+																			<a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}" class="btn btn-primary">수정</a> 
+																			<a href="./deleteReview?reviewNum=${review.reviewNum}&isbn=${review.isbn}" class="btn btn-space btn-secondary">삭제</a>
+																			</c:if>
+																			</td>
 																		</tr>
 																	</c:forEach>
 																</tbody>
-																<%-- <td colspan="2">
-																	<a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}" class="btn btn-primary">수정</a>
-																	<a href="./deleteReview?reviewNum=${review.reviewNum}" class="btn btn-space btn-secondary">삭제</a></td> --%>
 															</table>
 														</div>
 													</li>

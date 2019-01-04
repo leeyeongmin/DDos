@@ -109,10 +109,11 @@
 								}
 							</script>
 
-							<input type="button" style="float: right"
+							
+						</div>
+						<input type="button" style="float: right"
 								onclick="location.href='./adminInsertBookform'" value="도서 등록"
 								class="btn btn-primary">
-						</div>
 					</div>
 				</div>
 			</div>

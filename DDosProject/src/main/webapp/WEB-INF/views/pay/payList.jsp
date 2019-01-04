@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 
 	$(function(){
@@ -15,21 +14,27 @@
 	
 	
 	function Nonpay_search(){
+		$("#overdueList").empty();
 		var $add = "";
 		$.ajax({
 			data : { id : "${login.id}"},
 			type : "post",
 			url : "Nonpayment_book",
+			async: false,
 			success : function(datas) {
-				console.log(datas);
-				for(var i=0; i<datas.length; i++){
-					$add += "<tr><td><input type=checkbox name=check onclick=check_ck()></td>" +
-							"<td>" + datas[i].bookTitle + "</td>" + 
-							"<td>" + datas[i].rentalDate + "</td>" +
-							"<td>" + datas[i].dueDate + "</td>" +
-							"<td>" + datas[i].returnDate + "</td>" +
-							"<td>" + datas[i].overdue + "</td>" + 
-							"<td>" + datas[i].money + "</td></tr>";
+				if(datas.length == 0){
+					$add += "<tr><Td colspan='7'>연체 목록이 없습니다.</td></tr>";
+				}else{  
+					for(var i=0; i<datas.length; i++){
+						$add += "<tr><input type=hidden name=num id=num value=" + datas[i].rentalNum + ">"   +
+								"<td><input type=checkbox name=check onclick=check_ck()></td>" +
+								"<td>" + datas[i].bookTitle + "</td>" + 
+								"<td>" + datas[i].rentalDate + "</td>" +
+								"<td>" + datas[i].dueDate + "</td>" +
+								"<td>" + datas[i].returnDate + "</td>" +
+								"<td>" + datas[i].overdue + "</td>" + 
+								"<td>" + datas[i].money + "</td></tr>";
+					}
 				}
 				
 				$($add).prependTo("#overdueList");
@@ -47,7 +52,7 @@
 			var td = tr.children();
 
 			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-			var money = td.eq(6).text();
+			var money = td.eq(7).text();
 			
 			money = Number(money);
 			
@@ -56,8 +61,9 @@
 		})
 		
 		document.getElementById("hap").innerHTML = result;
-		
-	}
+		payment_book();
+		 
+	}  
 	
 	
 	function all_check(){
@@ -93,7 +99,10 @@
 				type : "post",
 				dataType : "json",
 				data : params,
-				async: false
+				async: false,
+				success : function() {
+					
+				}
 			})
 		});
 		
@@ -109,32 +118,74 @@
 	IMP.init('imp39765501'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
 	function pay() {
-		IMP.request_pay({
-			pg : 'html5_inicis', // version 1.1.0부터 지원.
-			pay_method : 'card',
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : '연회비',
-			amount : 100,
-			buyer_email : document.getElementById("email").value,
-			buyer_name : document.getElementById("name").value,
-			buyer_tel : document.getElementById("phone").value,
-			buyer_addr : document.getElementById("address").value,
-			buyer_postcode : '123-456',
-			m_redirect_url : 'http://localhost:8081/ddos/payList'
-		}, function(rsp) {
-			if (rsp.success) {
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-				document.form.submit();
-			} else {
-				var msg = '결제에 실패하였습니다.';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-			alert(msg);
+			var $name, $tel, $addr;
+			
+			$.ajax({
+				data : {id : "${login.id}" },
+				url : "getUser",
+				method : "post", 
+				success : function(result) {	
+					IMP.request_pay({
+						pg : 'html5_inicis', // version 1.1.0부터 지원.
+						pay_method : 'card',
+						merchant_uid : 'merchant_' + new Date().getTime(),
+						name : '연체비',
+						amount : $("#hap").text(),
+						buyer_email : "${login.id}",
+						buyer_name : result.name,
+						buyer_tel : result.phone,
+						buyer_addr : result.address ,
+						buyer_postcode : '123-456',
+						m_redirect_url : 'http://localhost:8081/ddos/payList'
+					}, function(rsp) {
+						if (rsp.success) {
+							var msg = '결제가 완료되었습니다.';
+							msg += '고유ID : ' + rsp.imp_uid;
+							msg += '상점 거래ID : ' + rsp.merchant_uid;
+							msg += '결제 금액 : ' + rsp.paid_amount;
+							msg += '카드 승인번호 : ' + rsp.apply_num;
+							
+						} else {
+							var msg = '결제에 실패하였습니다.';
+							msg += '에러내용 : ' + rsp.error_msg;
+						}
+						alert(msg);
+					});
+					
+				}
+			});
+	}
+	
+	function payment_book(){
+		var checkbox = $("input[name=check]:checked");
+		var $save = new Array();
+		 
+		// 체크된 체크박스 값을 가져온다
+		checkbox.each(function(i) {
+
+			var tr = checkbox.parent().parent().eq(i);
+			var td = tr.children();
+
+			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+			var num = td.eq(0).attr("value");
+			$save.push(num);
+			
 		});
+		
+		var params = { "arr" : $save };
+		
+		console.log($save);
+		
+		$.ajax({
+			url : "paymentBook",
+			type : "post",
+			dataType : "json",
+			data : params,
+			async: false
+		});
+		
+		//Nonpay_search();	
+	
 	}
 </script>
 

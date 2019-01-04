@@ -37,13 +37,13 @@ div.card {
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Assets</h3>
+							<h3 class="mb-2">Assets Manage</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Assets</li>
+										<li class="breadcrumb-item active" aria-current="page">Assets Manage List</li>
 									</ol>
 								</nav>
 							</div>
@@ -53,66 +53,65 @@ div.card {
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="row" style="margin-top:5%;">
+				<div class="row" style="margin-top: 5%;">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-						 <div class="card">
-							검색
+						<div class="card">
 							<div class="card-body">
 								<form name="search" onsubmit="check()">
 									<select class="form-control" name="searchType"
 										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
-										<option value="noticeTitle">제목
-										<option value="noticeCont">내용
+										<option value="memberId">회원ID
 									</select> <input class="form-control form-control-lg"
 										style="width: 75%; margin-left: 1%; display: inline-block;"
 										id="searchUserKeyword" type="text" name="searchKeyword"
 										placeholder="Search">
-									<button class="btn btn-primary" style="margin-left:1%; width:7%; height:48px;">검색</button>
-							<input type="hidden" name="page" />
+									<button class="btn btn-primary"
+										style="margin-left: 1%; width: 7%; height: 48px;">검색</button>
+									<input type="hidden" name="page" />
 								</form>
 							</div>
 
-
-							<div class="card-body">
-								<div class="table-responsive">
-									<table id="getAssetsList" width="100%"
-										class="table table-bordered table-hover text-center">
-										<thead>
-											<tr>
-												<th>구분</th>
-												<th>금액</th>
-												<th>날짜</th>
-												<th>내용</th>
-												<th>상세내용</th>
-												<th>회원ID</th>
-											</tr>
-										</thead>
-										<tbody id=getAssetsList>
-											<c:forEach items="${getAssetsList}" var="assets">
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-hover" id="getAssetsList" width="100%">
+											<thead>
 												<tr>
-												<td>${assets.assetsSeparation}</td>
-													<td>${assets.assetsPrice}</td>
-													<td>${assets.assetsDate}</td>
-													<td>${assets.assetsCont}</td>
-													<td>${assets.assetsDetail}</td>
-													
-													<td>${assets.memberId}</td>
+												<th scope="col">적요</th>
+													<th scope="col">구분</th>
+													<th scope="col">날짜</th>
+													<th scope="col">금액</th>
+													<th scope="col">회원ID</th>
+													<th scope="col">비고</th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									
+											</thead>
+											<tbody id=getAssetsList>
+												<c:forEach items="${getAssetsList}" var="assets">
+													<tr>
+													<td>${assets.assetsCont}</td>
+														<td>${assets.assetsSeparation}</td>
+														<td>${assets.assetsDate}</td>
+														<td>${assets.assetsPrice}</td>
+														<td>${assets.memberId}</td>
+														<td>${assets.contDetail}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
 								</div>
-							</div>
 								<my:paging paging="${paging}" />
-							<script>
+								<script>
 								function go_page(page) {
-									document.frm.page.value = page;
-									document.frm.submit();
+									document.search.page.value = page;
+									document.search.submit();
 								}
 							</script>
 							
 							
+							</div>
+							<input type="button" style="float: right"
+								onclick="location.href='./assetsInsertform'" value="등록"
+								class="btn btn-primary">
 						</div>
 					</div>
 				</div>

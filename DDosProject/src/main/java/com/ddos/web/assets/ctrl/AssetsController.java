@@ -5,8 +5,10 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +24,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.company.app.board.Boardvo;
 import com.ddos.web.assets.AssetsService;
 import com.ddos.web.assets.AssetsVO;
 import com.ddos.web.paging.PagingVO;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 
 
 @Controller
@@ -188,6 +201,34 @@ public class AssetsController {
 			printwriter.println("</html>");
 			printwriter.flush();
 			printwriter.close();
+		}
+		
+		
+		//pdf
+		@RequestMapping("assetsReport")
+		public void report(HttpServletRequest request, HttpServletResponse response, Boardvo vo) throws Exception {
+			try {
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				JasperReport report = JasperCompileManager
+						.compileReport(request.getSession().getServletContext().getRealPath("reports/assetsList.jrxml"));//소스파일 지정
+				vo.setFirst(1);
+				vo.setLast(100);
+				JRDataSource JRdataSource = new JRBeanCollectionDataSource(assetsService.getAssetsList(vo));	//출력할 데이터 넘김
+				JasperPrint print = JasperFillManager.fillReport(report, map, JRdataSource);
+				JRExporter exporter = new JRPdfExporter();
+				OutputStream out;
+				
+				response.reset();
+				out = response.getOutputStream();
+				exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, "report3.pdf");
+				exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+				exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);	//pdf 다운
+				exporter.exportReport();	//pdf 파일 생성됨
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

@@ -9,12 +9,12 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function check() {
-	if (document.search.searchKeyword.value == "") {
+	if (document.frm.searchKeyword.value == "") {
 		alert("검색어를 입력하세요");
-		document.search.searchKeyword.focus();
-		return;
+		document.frm.searchKeyword.focus();
+		return false;
 	}
-	document.search.submit();
+	return true;
 }
 </script>
 </head>
@@ -56,7 +56,7 @@ function check() {
 						<div class="card">
 							<!-- 검색 -->
 							<div class="card-body">
-								<form name="frm" onsubmit="check()">
+								<form name="frm" onsubmit="return check()">
 
 									<select class="form-control" name="searchCondition"
 										style="text-align: center; width: 15%; height: 45px; display: inline-block;">

@@ -44,6 +44,18 @@ h2 {
 	font-size: 20px;
 }
 </style>
+<script type="text/javascript">
+
+function check() {
+	if (document.frm.searchKeyword.value == "") {
+		alert("검색어를 입력하세요");
+		document.frm.searchKeyword.focus();
+		return false;
+	}
+	return true;
+}
+	
+</script>
 
 
 <body>
@@ -88,7 +100,7 @@ h2 {
 						<div class="card">
 							<!-- 검색 -->
 							<div class="card-body">
-								<form name="frm" onsubmit="check()">
+								<form name="frm" action="getBookList" onsubmit="check()">
 									<select class="form-control" name="searchCondition"
 										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
 										<option value="booktitle">도서명

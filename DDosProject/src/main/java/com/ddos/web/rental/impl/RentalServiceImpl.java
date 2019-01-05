@@ -50,6 +50,11 @@ public class RentalServiceImpl implements RentalService{
 		
 	}
 
+	@Override
+	public int getCount(RentalVO vo) {
+		return rda.getCount(vo);
+	}
+
 	
 
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,6 +64,9 @@
 				<!-- ============================================================== -->
 				<div>
 					<div class="section-block">
+					<form name="frm" >
+					<input type="hidden" name="page" />
+					</form>
 						<h5 class="section-title">대출현황</h5>
 					</div>
 					<div class="tab-regular">
@@ -81,6 +84,9 @@
 							<!--대출 현황-->
 							<div class="tab-pane fade active show" id="home" role="tabpanel"
 								aria-labelledby="home-tab">
+								<form name="frm" >
+					<input type="hidden" name="page" />
+					</form>
 								<div class="card-body" style="width: 100%;">
 									<h3>대출 현황</h3>
 									<table class="table">
@@ -133,12 +139,23 @@
 											</c:forEach>
 										</tbody>
 									</table>
+									<my:paging paging="${paging}" />
+								<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script>
 								</div>
+									
 							</div>
 
 
 							<div class="tab-pane fade" id="profile"
 								role="tabpanel" aria-labelledby="profile-tab">
+									<form name="frm" >
+					<input type="hidden" name="page" />
+					</form>
 								<h3>대출 이력</h3>
 								<div class="card-body">
 								<table class="table">
@@ -168,9 +185,20 @@
 									</tbody>
 								</table>
 							</div>
+								<my:paging paging="${paging}" />
+								<script>
+								function go_page(page) {
+									document.frm.page.value = page;
+									document.frm.submit();
+								}
+							</script>
 						</div>
 					</div>
 				</div>
+			
+				
+				
+			</div>
 			</div>
 		</div>
 	</div>

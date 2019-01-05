@@ -91,9 +91,8 @@
 								<!-- 여기서 부터 내용 -->
 								<div class="row"> 
 									<div style="width: 30%;">
-										<div style="height: 80%; width: 90%; left:20%; " class="testimg">
-											<img class="d-block" src="./bookImg/${book.isbn}.jpg" 
-															 	alt="Third slide">
+										<div style="margin-left:160px; margin-top:150px; height: 200px; width: 150px; left:20%; " class="testimg">
+											<img class="d-block" src="./bookImg/${book.isbn}.jpg"  >
 										</div> 	
 										<%-- <div class="product-slider">
 											<!--사진넣는 곳--> 

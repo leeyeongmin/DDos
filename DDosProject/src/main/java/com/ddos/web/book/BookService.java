@@ -28,6 +28,9 @@ public interface BookService {
 	// 전체 건수
 	public int getCount(BookVO vo);
 
+	//도서 이미지
 	public List<BookVO> apiBookList(String keyword, int display, int start);	
 
+	//인기도서 
+	public List<BookVO> topBookList(BookVO vo);
 }

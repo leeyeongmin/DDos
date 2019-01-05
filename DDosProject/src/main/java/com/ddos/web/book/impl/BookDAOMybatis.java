@@ -57,5 +57,12 @@ public class BookDAOMybatis {
 		Mybatis.update("book.adminUpdateBook", vo);
 
 	}
+	
+	//인기도서
+	public List<BookVO> topBookList(BookVO vo) {
+		System.out.println("Mybatis topBookList 실행");
+		return Mybatis.selectList("book.topBookList", vo);
+	}
+	
 
 }

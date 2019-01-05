@@ -44,4 +44,8 @@ public class RentalDAOMybatis {
 		System.out.println("마이바티스 대출반납히스토리 조회");
 		return mybatis.selectList("rental.getHistoryList", vo);
 	}
+
+	public int getCount(RentalVO vo) {
+		return  mybatis.selectOne("rental.getCount", vo);
+	}
 }

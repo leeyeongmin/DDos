@@ -27,26 +27,7 @@ public class BookController {
 	ReviewService reviewservice;
 	
 	// 메인에서 도서목록으로
-		/*@RequestMapping("book")
-		public String book(Model model, BookVO vo) {
-			model.addAttribute("bookList", bookservice.getBookList(vo));
-			return "book/getBookList";
-		}*/
 		
-	/*@RequestMapping("getBookList")
-    public ModelAndView bookList(@RequestParam(required=false)String keyword){
-        ModelAndView mav = new ModelAndView();
-        
-        if(keyword !=null)
-        {
-            mav.addObject("getBookList", bookservice.apiBookList(keyword,10,1));
-        }
-        mav.setViewName("getBookList");
-        return mav;
-    }*/
-
-
-	
 	// user 전체 조회
 	@RequestMapping(value = "/getBookList")
 	public ModelAndView getBookList(Model model, BookVO vo, PagingVO paging) {
@@ -85,11 +66,6 @@ public class BookController {
 		return mv;
 		
 	}
-/*	@RequestMapping("/admincollection")
-	public String adminGetBookList(Model model, BookVO vo) {
-		model.addAttribute("adminGetBookList", bookservice.adminGetBookList(vo));
-		return "admin/book/adminGetBookList";
-	}*/
 
 	// 한건 조회
 	@RequestMapping("adminGetBook")
@@ -137,31 +113,17 @@ public class BookController {
 	}
 
 	
-
-	// 도서 전체 목록 조회
-	/*
-	 * @RequestMapping("getBookList") public String getBookList(Model model, BookVO
-	 * vo) { model.addAttribute("bookList", bookservice.getBookList(vo)); return
-	 * "book/getBookList"; }
-	 */
-
 	
 	// 도서 1건 조회 및 isbn으로 리뷰 조회
 	@RequestMapping("getBook")
 	public String getBook(Model model, BookVO vo, ReviewVO rvo) {
-
 		model.addAttribute("book", bookservice.getBook(vo));
 		model.addAttribute("review", reviewservice.getReviewList(rvo));
-
 		return "book/getBook";
-
-		/*
-		 * System.out.println(vo); ReviewVO ro = new ReviewVO();
-		 * ro.setIsbn(vo.getIsbn()); ro.setPageUnit(3); model.addAttribute("book",
-		 * bookservice.getBook(vo)); model.addAttribute("review",
-		 * reviewservice.getReviewList(ro)); return "book/getBook";
-		 */
 	}
+	
+	//인기도서
+	
 	
 
 	////////////////////////////////////// 리뷰 컨트롤러

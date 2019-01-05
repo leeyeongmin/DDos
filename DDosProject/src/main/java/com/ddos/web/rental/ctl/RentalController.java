@@ -25,8 +25,8 @@ public class RentalController {
 	
 	@Autowired 	RentalService rentalService;
 	
-	//메인에서 대출이력조회
-	/*@RequestMapping("/rental")
+	/*//메인에서 대출이력조회
+	@RequestMapping("/rental")
 	public String getRentalList(Model model, RentalVO vo, HttpSession session) {
 		vo.setLoginId(((UserVO)session.getAttribute("login")).getId());
 		model.addAttribute("getRentalList", rentalService.getRentalList(vo));
@@ -109,8 +109,6 @@ public class RentalController {
 	}
 	
 	
-	
-	
 	//반납 리스트
 	@RequestMapping("rentalSearch")
 	@ResponseBody
@@ -118,26 +116,6 @@ public class RentalController {
 		return rentalService.rentalSearch(vo);
 	}
 	
-	/*//반납 리스트
-		@RequestMapping(value="rentalSearch", method = RequestMethod.POST)
-		@ResponseBody
-		public Map rental_search(RentalVO vo,  PagingVO paging){
-			HashMap map = new HashMap();
-			  if (paging.getPage() == null) {
-			         paging.setPage(1);
-			      }
-			  paging.setPageUnit(10);
-		      
-		      vo.setFirst(paging.getFirst());
-		      vo.setLast(paging.getLast());
-		      
-		      paging.setTotalRecord(rentalService.getCount(vo));
-		      map.put("paging", paging);
-		      map.put("result", rentalService.rentalSearch());
-			
-			  return map;
-
-		}*/
 	
 	//반납
 	@RequestMapping("returnBook")
@@ -145,9 +123,4 @@ public class RentalController {
 	public void ReturnBook(RentalVO vo) {
 		rentalService.returnBook(vo);
 	}
-	
-
-	
-	
-
 }

@@ -44,6 +44,18 @@ h2 {
 	font-size: 20px;
 }
 </style>
+<script type="text/javascript">
+
+function check() {
+	if (document.frm.searchKeyword.value == "") {
+		alert("검색어를 입력하세요");
+		document.frm.searchKeyword.focus();
+		return false;
+	}
+	return true;
+}
+	
+</script>
 
 
 <body>
@@ -64,7 +76,7 @@ h2 {
 						<img src="assets/images/home/home.jpg" style="width: 500px">
 					</div>
 				</div>
-<!-- 				<div class="row">
+				<!-- 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
 							<h3 class="mb-2">메인 페이지</h3>
@@ -88,7 +100,7 @@ h2 {
 						<div class="card">
 							<!-- 검색 -->
 							<div class="card-body">
-								<form name="frm" onsubmit="check()">
+								<form name="frm" action="getBookList" onsubmit="check()">
 									<select class="form-control" name="searchCondition"
 										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
 										<option value="booktitle">도서명
@@ -119,6 +131,53 @@ h2 {
 							style="width: 100%">
 					</div>
 				</div>
+
+				<!-- =============================== -->
+				<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+
+					<div class="pills-regular">
+						<ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
+							<li class="nav-item"><a class="nav-link active show"
+								id="pills-home-tab" data-toggle="pill" href="#pills-home"
+								role="tab" aria-controls="home" aria-selected="true">신착도서</a></li>
+							<li class="nav-item"><a class="nav-link"
+								id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+								role="tab" aria-controls="profile" aria-selected="false">인기도서</a>
+							</li>
+						</ul>
+						<div class="tab-content" id="pills-tabContent">
+							<div class="tab-pane fade active show" id="pills-home"
+								role="tabpanel" aria-labelledby="pills-home-tab">
+								<table>
+									<tr>
+										<th><img class="d-block" src="./bookImg/${book.isbn}.jpg"></th>
+									</tr>
+									<tr>
+										<td>${book.bookTitle}</td>
+									</tr>
+
+								</table>
+
+
+							</div>
+							
+							<div class="tab-pane fade" id="pills-profile" role="tabpanel"
+								aria-labelledby="pills-profile-tab"></div>
+							<table>
+								<tr>
+									<th>bookImg</th>
+								</tr>
+								<tr>
+									<td>book_title</td>
+								</tr>
+
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+				<!--====================  -->
 			</div>
 		</div>
 	</div>

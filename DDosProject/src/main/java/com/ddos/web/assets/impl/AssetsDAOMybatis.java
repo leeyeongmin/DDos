@@ -24,12 +24,12 @@ public class AssetsDAOMybatis {
 	//단건 조회
 	public AssetsVO getAssets(AssetsVO vo) {
 		System.out.println("자산상세보기  mybatis ");
-		return mybatis.selectOne("asssets.getAssets", vo);
+		return mybatis.selectOne("assets.getAssets", vo);
 	}
 
 	//등록
 	public void assetsInsert(AssetsVO vo) {
-		System.out.println("자산 입력  mybatis ");
+		System.out.println("===============자산 입력  mybatis ");
 		mybatis.insert("assets.assetsInsert", vo);
 	}
 

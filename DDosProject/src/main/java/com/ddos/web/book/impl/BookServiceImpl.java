@@ -190,5 +190,12 @@ public class BookServiceImpl implements BookService {
 	        return list;
 	    }
 
+//인기 도서
+	@Override
+	public List<BookVO> topBookList(BookVO vo) {
+		
+		return dab.topBookList(vo);
+	}
+
 	
 }

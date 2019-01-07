@@ -111,7 +111,7 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	}
 
 	@Override
-	public List<Map> month_inputList(String day) {
+	public List<Map> month_inputList(Map day) {
 		// TODO Auto-generated method stub
 		return dao.month_inputList(day);
 	}
@@ -143,13 +143,14 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	//전체 건수 
 	@Override
 	public int getCount(PagingVO vo) {
-		return dao.getCount(vo);
+		//return dao.getCount(vo);
+		return 0;
 	}
 
 	@Override
-	public int getCount(Map map) {
+	public Map getinputCount(Map map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.getinputCount(map);
 	}
 
 

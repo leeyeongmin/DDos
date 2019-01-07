@@ -33,6 +33,31 @@
 		output_table();
 	}) 
 	
+	 function go_page(page,type) {
+      
+      $("#paging").empty();
+      $("#pagination").html("");
+      if(type==undefined) {
+         type = $("#searchType").val();
+      } else {
+         $("#searchType").val(type);
+      }
+      
+      if(type==1)   {
+         $("#uId").val("");x
+      } else if(type==2) {
+         $("#uId").val("");
+         $("#searchKeyword").val("");
+      } else if(type==3) {
+         $("#uId").val("admin");
+      }
+            
+      if(page == undefined || page == ""){
+         page=1
+         
+      };      
+	
+	
 	/*--------------------------------inTable 수입 목록 테이블--------------------------------*/
 	function input_table(){
 		var s_year = document.getElementById('year').value;
@@ -47,19 +72,40 @@
 			url : "month_inputList?day=" + sear_day,
 			method : "post",
 			success : function(datas) {
-				
-				if (datas.length == 0){
+					console.log(datas);
+					console.log(datas.result.length);
+				if (datas.result.length == 0){
 					$add += "<tr><td colspan='4'>검색결과가 없습니다.</td></tr>";
-				}else{
-					for(var i=0; i<datas.length; i++){
-						$add += "<tr><td>" + datas[i].day + "</td>" + 
-						"<td>" + datas[i].content + "</td>" + 
-						"<td>" + datas[i].money + "</td>" + 
-						"<td>" + datas[i].id + "</td></tr>";
+				}else{ 
+					for(var i=0; i<datas.result.length; i++){
+						$add += "<tr><td>" + datas.result[i].day + "</td>" + 
+						"<td>" + datas.result[i].content + "</td>" + 
+						"<td>" + datas.result[i].money + "</td>" + 
+						"<td>" + datas.result[i].id + "</td></tr>";
 					}	
 				}
 			
 				$($add).prependTo("#addRow"); 		
+				
+				
+				 var dd = "<a href='#' onclick='go_page(1)' >&laquo;</a>";
+		            $(dd).appendTo("#paging");
+		            
+		            var begin = datas.paging.first;
+		            var end = datas.paging.last;               
+		            for(j = begin; j <= end; j++ ) {
+		               if(j != datas.paging.page) {
+		                  var bb = "<a href='#' onclick='go_page("+j+")'>"+j+"</a>";
+		                  $(bb).appendTo("#paging");
+		               }
+		                else if(j == datas.paging.page) {
+		                  var cc = "<a href='#' class='active'>"+j+"</a>";
+		                  $(cc).appendTo("#paging");
+		               }
+		            }
+		            var ee = "<a href='#' onclick='go_page("+datas.paging.lastPage+")'>&raquo;</a>";
+		            $(ee).appendTo("#paging");
+		            
 			}
 		});
 	}
@@ -321,13 +367,7 @@
 									</table>
 								</div>
 							</div> 
-						<my:paging paging="${paging}" />
-						<script>
-								function go_page(page) {
-									document.frm.page.value = page;
-									document.frm.submit();
-								}
-							</script> 
+							<div id="paging"></div>
 						</div>
 					</div>
 				</div>		<!--  row -->
@@ -360,13 +400,7 @@
 									</table>
 								</div>
 							</div>
-						 <my:paging paging="${paging}" />
-							<script>
-								function go_page(page) {
-									document.frm.page.value = page;
-									document.frm.submit();
-								}
-							</script>  
+						 	
 						</div>
 					</div>
 				</div>		<!--  row -->

@@ -59,8 +59,7 @@ div.card {
 						<div class="card">
 
 							<div class="card-body">
-								<form action="search" name="search" method="post"
-									onsubmit="check()">
+								<form action="getSuggestionList" name="search" onsubmit="check()">
 									<select class="form-control" name="searchType"
 										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
 										<option value="sugTitle"

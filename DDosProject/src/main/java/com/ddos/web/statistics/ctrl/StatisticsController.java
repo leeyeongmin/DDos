@@ -3,7 +3,7 @@ package com.ddos.web.statistics.ctrl;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Map;import org.omg.PortableServer.Servant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -121,10 +121,34 @@ public class StatisticsController {
 		return serivce.month_inputchart(day);
 	}
 	
+	
 	@RequestMapping("month_inputList")
 	@ResponseBody
-	public List<Map> month_inputList(@RequestParam String day){
-		return serivce.month_inputList(day);
+	public Map month_inputList(@RequestParam Map day, PagingVO page){
+		
+		Map map = new HashMap();
+		
+		System.out.println("sssssssssssssss : " + day);
+		
+		 if (page.getPage() == null) {
+	         page.setPage(1);
+	      }
+	      page.setPageUnit(5);
+	      
+	      day.put("first", page.getFirst());
+	      day.put("last", page.getLast());      
+
+	     int cnt = Integer.parseInt(((serivce.getinputCount(day)).get("cnt")).toString());
+
+	     //page.setTotalRecord(cnt);
+	     page.setTotalRecord(cnt);
+	      
+	     
+	     map.put("paging", page);
+		 map.put("result", serivce.month_inputList(day));
+		
+		 
+		return map;
 	}
 	
 	@RequestMapping("click_input")

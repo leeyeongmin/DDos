@@ -46,7 +46,13 @@ public class RentalDAOMybatis {
 		return mybatis.selectList("rental.getHistoryList", vo);
 	}
 
+
 	public String getRentalCount(UserVO vo) {
 		return mybatis.selectOne("rental.getRentalCount", vo);
+	}
+
+	public int getCount(RentalVO vo) {
+		return  mybatis.selectOne("rental.getCount", vo);
+
 	}
 }

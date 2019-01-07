@@ -75,6 +75,19 @@
 	<select id="getCount" resultType="int">
 	SELECT COUNT(*)
 	FROM  WISH_BOOK
+	<where>
+		<if
+			test="searchCondition != null and searchCondition == 'wishTitle'">
+			and WISH_TITLE like '%' || #{searchKeyword} || '%' </if>
+		<if
+			test="searchCondition != null and searchCondition == 'wishWriter'">
+			and WISH_WRITER like '%' || #{searchKeyword} || '%' </if>
+		<if test="searchCondition != null and searchCondition == 'isbn'">
+			and ISBN like '%' || #{searchKeyword} || '%' </if>
+		<if
+			test="searchCondition != null and searchCondition == 'memberId'">
+			and MEMBER_ID like '%' || #{searchKeyword} || '%' </if>
+	</where>
 	</select>
 
 <!-- user 희망도서 전체 조회 -->

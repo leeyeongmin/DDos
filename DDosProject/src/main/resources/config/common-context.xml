@@ -23,7 +23,12 @@
 		location="/resources/" />
 	<mvc:resources mapping="/assets/**" location="/assets/" />
 	<mvc:resources mapping="/images/**" location="/images/" />
+
 	<mvc:resources mapping="/bookImg/**" location="/bookImg/" />
+
+
+<mvc:resources mapping="/bookImg/**" location="/bookImg/" />
+<mvc:resources mapping="/file/**" location="/file/" />
 
 	<bean
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver"
@@ -45,12 +50,17 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+
 	<!-- MultipartResolver 설정 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000000" />
 		<property name="maxInMemorySize" value="100000000" />
 	</bean>
+
+
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="1000000000"></property></bean>
 
 
 	<!-- 해당 태그들은 크론탭을 설정에 필요한 태그들 -->

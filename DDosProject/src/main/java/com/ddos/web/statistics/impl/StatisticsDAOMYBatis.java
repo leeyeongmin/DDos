@@ -90,7 +90,7 @@ public class StatisticsDAOMYBatis {
 		return mybatis.selectList("Statics.month_inputchart", day);
 	}
 	
-	public List<Map> month_inputList(String day){
+	public List<Map> month_inputList(Map day){
 		return mybatis.selectList("Statics.month_inputList", day);
 	}
 	
@@ -111,7 +111,7 @@ public class StatisticsDAOMYBatis {
 	}
 	
 	//전체 건수 조회
-	public int getCount(PagingVO vo) {
-		return mybatis.selectOne("paging.getCount", vo);
+	public Map getinputCount(Map map) {
+		return mybatis.selectOne("Statics.getinputCount", map);
 	}
 }

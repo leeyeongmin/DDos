@@ -52,9 +52,14 @@ public class RentalServiceImpl implements RentalService{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public String getCount(UserVO vo) {
 		// TODO Auto-generated method stub
 		return rda.getRentalCount(vo);
+=======
+	public int getCount(RentalVO vo) {
+		return rda.getCount(vo);
+>>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 	}
 
 	

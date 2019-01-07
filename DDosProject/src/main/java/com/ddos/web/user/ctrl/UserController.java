@@ -193,4 +193,10 @@ public class UserController {
 		return "no/login/Login";   
 	}
 	
+	@RequestMapping("getUser")
+	@ResponseBody
+	public UserVO getUser(UserVO vo) {
+		return userService.getUser(vo);
+	}
+	
 }

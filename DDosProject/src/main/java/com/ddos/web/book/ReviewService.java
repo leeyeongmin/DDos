@@ -18,4 +18,6 @@ public interface ReviewService {
 	
 	//한권 조회
 	public ReviewVO getReview(ReviewVO rvo);
+	
+	
 }

@@ -148,12 +148,20 @@
 	    group by assets_cont
 	</select>
 	
-	 <select id="month_inputList" resultType="map" parameterType="string">
+	 <select id="month_inputList" resultType="map" parameterType="map">
 		select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
 		from assets_manage
-		where to_char(assets_date, 'yyyy/mm') = #{value}
+		where to_char(assets_date, 'yyyy/mm') = #{day}
 		and assets_separation = '수입'
 	</select> 
+	
+	
+	<select id="getinputCount" parameterType="map" resultType="map">
+		select count(*) "cnt"
+		from assets_manage
+		where to_char(assets_date, 'yyyy/mm') = #{day}
+		and assets_separation = '수입'
+	</select>
 	
 	<select id="click_input" parameterType="map" resultType="map">
 		 select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"

@@ -28,12 +28,12 @@ public interface StatisticsService {
 	public List<Map> UnpaidList();
 	public List<Map> month_inputchart(String day);
 	public List<Map> month_outputchart(String day);
-	public List<Map> month_inputList(String day);
+	public List<Map> month_inputList(Map day);
 	public List<Map> month_outputList(String day);
 	public List<Map> click_input(Map map);
 	public List<Map> click_output(Map map);
 	
 	// 전체 건수
-	public int getCount(Map map);
+	public Map getinputCount(Map map);
 	int getCount(PagingVO vo);
 }

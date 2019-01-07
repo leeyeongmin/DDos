@@ -1,14 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<!doctype html>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
+<!DOCTYPE html>
 <html>
-
 <head>
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>DDos</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="assets/vendor/bootstrap/css/bootstrap.min.css">
@@ -16,146 +19,484 @@
 <link rel="stylesheet" href="assets/libs/css/style.css">
 <link rel="stylesheet"
 	href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+<title>DDos</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+	var chart, data, sear_day, chart1, data1;
+	var in_click, out_click;
+	var options, options1;
 	
-<!-- jquery 3.3.1  -->
-	<script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-	<!-- bootstap bundle js -->
-	<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-	<!-- slimscroll js -->
-	<script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+	google.charts.load("current", {packages:["corechart"]});
+	google.charts.setOnLoadCallback(drawChart);
+	
+	window.onresize = function(){
+		chart.draw(data, options);
+		chart1.draw(data1, options1);
+	}
+	
+	
+	$(function(){
+		combobox();
+		input_table(); 
+		output_table();
+	}) 
+	
+	
+	function combobox(){
+		
+		var today = new Date();
+		
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+		 
+		console.log(today);
+		console.log(mm);
+		console.log(yyyy);
+		
+		
+        // 올해 기준으로 -3년부터 +0년을 보여준다.
+        for(var y = yyyy-2; y <= yyyy; y++){ 
+        	if(yyyy == y){
+        		$("#year").append("<option value='"+ y +"' selected=selected>"+ y + " 년" +"</option>");
+        	}else{
+        		$("#year").append("<option value='"+ y +"'>"+ y + " 년" +"</option>");
+        	}
+            
+        }  
+        // 월 뿌려주기(1월부터 12월)  
+        var month;
+        for(var i = 1; i <= 12; i++){
+        	if(i == mm) {
+        		if(1 < 10){
+        			$("#month").append("<option value='"+ "0" + i +"' selected=selected>"+ i + " 월" +"</option>");
+        		}else{
+        			$("#month").append("<option value='"+ i +"' selected=selected>"+ i + " 월" +"</option>");
+        		}
+        	}else{
+        		$("#month").append("<option value='"+ i +"'>"+ i + " 월" +"</option>");
+        	}
+            
+        }
+   
+	}
+	
+	function change_show(){
+		input_table();
+		output_table();
+		drawChart();
+	}
+	 
+	/*--------------------------------inTable 수입 목록 테이블--------------------------------*/
+	function input_table(e, page){
+		
+		if(e)
+			e.preventDefault();
+		
+		/* var s_year = document.getElementById('year').value;
+		var s_month = document.getElementById('month').value;  */
+		var s_year = $("#year option:selected").val();
+		var s_month = $("#month option:selected").val();
+		
+		sear_day = s_year + "/" + s_month;
+		
+		$("#addRow").empty();
+		
+		if(page == undefined || page == ""){
+	         page=1
+	    }
+		
+		console.log(page);
+	    $("#paging").val(page);
+		
+		var $add = "";
+		
+		$.ajax({
+			data : { "day" : sear_day, "page" : page},
+			url : "month_inputList",
+			method : "post",
+			success : function(datas) {
+					console.log(datas);
+				if (datas.result.length == 0){
+					$add += "<tr><td colspan='4'>검색결과가 없습니다.</td></tr>";
+				}else{ 
+					for(var i=0; i<datas.result.length; i++){
+						$add += "<tr><td>" + datas.result[i].day + "</td>" + 
+						"<td>" + datas.result[i].content + "</td>" + 
+						"<td>" + datas.result[i].money + "</td>" + 
+						"<td>" + datas.result[i].id + "</td></tr>";
+					}	
+				} 
+			 
+				$($add).prependTo("#addRow"); 		
+				$("#paging").empty(); 
+				var $dd = "";
+				
+				 $dd += "<nav aria-label='Page navigation example'>" + 
+						  "<ul class=pagination>" + 
+						  "<li class=page-item>" +  
+					 	  "<a href='#'class='page-link' onclick='input_table(event, 1)' >&laquo;</a></li>";
+		         //$(dd).appendTo("#paging"); 
+		            
+		            var begin = datas.paging.startPage;
+		            var end = datas.paging.lastPage;               
+		            for(j = begin; j <= end; j++ ) {
+		               if(j != datas.paging.page) {
+		                  $dd += "<li class='page-item'><a href='#' class='page-link' onclick='input_table(event, "+j+")'>"+j+"</a></li>";
+		                  //$(bb).appendTo("#paging");
+		               }
+		                else if(j == datas.paging.page) {
+		                  $dd += "<li class='page-item active'><a href='#' class='page-link'>"+j+"</a></li>";
+		                  //$(cc).appendTo("#paging");
+		               }  
+		            }
+		            $dd += "<li class=page-item><a href='#' class='page-link' onclick='input_table(event, "+datas.paging.lastPage+")'>&raquo;</a></li></ul></nav>";
+		            $($dd).appendTo("#paging");
+		            
+		            console.log($dd);
+			}
+		});
+	}
+	
+	/*------------------------outTable 지출 테이블--------------------------*/
+	function output_table(e, page){
+		e = window.event||e;
+		
+		
+		if(e)
+			e.preventDefault();
+		/* var s_year = document.getElementById('year').value;
+		var s_month = document.getElementById('month').value;  */
+		var s_year = $("#year option:selected").val();
+		var s_month = $("#month option:selected").val();
+		sear_day = s_year + "/" + s_month;
+		
+		$("#addRow2").empty();
+		var $add = "";
+		
+		if(page == undefined || page == ""){
+	         page=1
+	         
+	    }
+		
+		
+	    $("#outpaging").val(page);
+		
+			 
+		$.ajax({
+			data : { "day" : sear_day, "page" : page},
+			url : "month_outputList",
+			method : "post",
+			success : function(datas) {
+				console.log(datas);
+				/* if (datas.length == 0){
+					$add += "<tr><td colspan='4'>검색결과가 없습니다.</td></tr>";
+				}else{
+					for(var i=0; i<datas.length; i++){
+						$add += "<tr><td>" + datas[i].day + "</td>" + 
+						"<td>" + datas[i].content + "</td>" + 
+						"<td>" + datas[i].money + "</td>" + 
+						"<td>" + datas[i].id + "</td></tr>";
+					}
+				} */
+				if (datas.result.length == 0){
+					$add += "<tr><td colspan='4'>검색결과가 없습니다.</td></tr>";
+				}else{ 
+					for(var i=0; i<datas.result.length; i++){
+						$add += "<tr><td>" + datas.result[i].day + "</td>" + 
+						"<td>" + datas.result[i].content + "</td>" + 
+						"<td>" + datas.result[i].money + "</td>" + 
+						"<td>" + datas.result[i].id + "</td></tr>";
+					}	
+				} 
+				$($add).prependTo("#addRow2"); 		
+				
+				$("#outpaging").empty(); 
+				var $dd = "";
+				
+				 $dd += "<nav aria-label='Page navigation example'>" + 
+						  "<ul class=pagination>" + 
+						  "<li class=page-item>" +  
+					 	  "<a href='#'class='page-link' onclick='output_table(event, 1)' >&laquo;</a></li>";
+		         //$(dd).appendTo("#paging"); 
+		            
+		            var begin = datas.paging.startPage;
+		            var end = datas.paging.lastPage;               
+		            for(j = begin; j <= end; j++ ) {
+		               if(j != datas.paging.page) {
+		                  $dd += "<li class='page-item'><a href='#' class='page-link' onclick='output_table(event,"+j+")'>"+j+"</a></li>";
+		                  //$(bb).appendTo("#paging");
+		               }
+		                else if(j == datas.paging.page) {
+		                  $dd += "<li class='page-item active'><a href='#' class='page-link'>"+j+"</a></li>";
+		                  //$(cc).appendTo("#paging");
+		               }  
+		            }
+		            $dd += "<li class=page-item><a href='#' class='page-link' onclick='output_table(event,"+datas.paging.lastPage+")'>&raquo;</a></li></ul></nav>";
+		            $($dd).appendTo("#outpaging");
+				
+			}
+		
+			
+		});
+		return false;
+	}
+	
+	
+	
+	function drawChart() {
+		/* var s_year = document.getElementById('year').value;
+		var s_month = document.getElementById('month').value;  */
+		var s_year = $("#year option:selected").val();
+		var s_month = $("#month option:selected").val();
+		sear_day = s_year + "/" + s_month;
+		
+		/*--------------------------------in 수입 그래프--------------------------------*/
+		$.ajax({
+			url : "month_inputchart?day=" + sear_day,
+			method : "post",
+			success : function(datas) {
+		 	 data = new google.visualization.DataTable();
+				
+				 data.addColumn('string', 'content');
+				 data.addColumn('number', 'total');  
+				
+				for(var i=0; i<datas.length; i++){ 
+					data.addRow([datas[i].content, datas[i].total]);
+				}
+				
+				 options = {
+				          title: '수입',
+				          pieHole: 0.4, 
+				          colors : ['gray', 'green' , 'pink', 'blue', 'orange'], 
+				          annotations:{ textStyle:{ fontSize:7, color:'black'} },
+				          height : "400" ,
+				 };
 
-<script>
-var chart = new CanvasJS.Chart("chartContainer1",
-	    {
-	        animationEnabled: true,
-	        title: {
-	            text: "Spline Area Chart"
-	        },
-	        axisX: {
-	            interval: 10,
-	        },
-	        data: [
-	        {
-	            type: "splineArea",
-	            color: "rgba(255,12,32,.3)",
-	            type: "splineArea",
-	            dataPoints: [
-	                { x: new Date(1992, 0), y: 2506000 },
-	                { x: new Date(1993, 0), y: 2798000 },
-	                { x: new Date(1994, 0), y: 3386000 },
-	                { x: new Date(1995, 0), y: 6944000 },
-	                { x: new Date(1996, 0), y: 6026000 },
-	                { x: new Date(1997, 0), y: 2394000 },
-	                { x: new Date(1998, 0), y: 1872000 },
-	                { x: new Date(1999, 0), y: 2140000 },
-	                { x: new Date(2000, 0), y: 7289000 },
-	                { x: new Date(2001, 0), y: 4830000 },
-	                { x: new Date(2002, 0), y: 2009000 },
-	                { x: new Date(2003, 0), y: 2840000 },
-	                { x: new Date(2004, 0), y: 2396000 },
-	                { x: new Date(2005, 0), y: 1613000 },
-	                { x: new Date(2006, 0), y: 2821000 }
-	            ]
-	        },
-	        ]
-	    });
-	chart.render();
+				chart = new google.visualization.PieChart(document.getElementById('month_inputchart'));
 
-	var chart = new CanvasJS.Chart("chartContainer2",
-	    {
-	        animationEnabled: true,
-	        title: {
-	            text: "Pie Chart",
-	        },
-	        data: [
-	        {
-	            type: "pie",
-	            showInLegend: true,
-	            dataPoints: [
-	                { y: 4181563, legendText: "PS 3", indexLabel: "PlayStation 3" },
-	                { y: 2175498, legendText: "Wii", indexLabel: "Wii" },
-	                { y: 3125844, legendText: "360", indexLabel: "Xbox 360" },
-	                { y: 1176121, legendText: "DS", indexLabel: "Nintendo DS" },
-	                { y: 1727161, legendText: "PSP", indexLabel: "PSP" },
-	                { y: 4303364, legendText: "3DS", indexLabel: "Nintendo 3DS" },
-	                { y: 1717786, legendText: "Vita", indexLabel: "PS Vita" }
-	            ]
-	        },
-	        ]
-	    });
-	chart.render();
+				chart.draw(data, options);
+				        
+				google.visualization.events.addListener(chart, 'select', selectHandler);	
+			}
+		})
+		
+		/*-----------------------------------out 지출 그래프------------------------------------*/
+		$.ajax({
+			url : "month_outputchart?day=" + sear_day,
+			method : "post",
+			success : function(datas) {
+		 	 	data1 = new google.visualization.DataTable();
+				
+				 data1.addColumn('string', 'content');
+				 data1.addColumn('number', 'total'); 
+				
+				for(var i=0; i<datas.length; i++){
+					data1.addRow([datas[i].content, datas[i].total]);
+				}
+				
+				options1 = {
+				          title: '지출',
+				          pieHole: 0.4, 
+				          colors : ['gray', 'green' , 'pink', 'blue', 'orange'], 
+				          annotations:{ textStyle:{ fontSize:7, color:'black'} },
+				          height : "400" ,
+				 };
 
-	var chart = new CanvasJS.Chart("chartContainer3",
-	    {
-	        animationEnabled: true,
-	        title: {
-	            text: "Line Chart"
-	        },
-	        axisX: {
-	            valueFormatString: "MMM",
-	            interval: 1,
-	            intervalType: "month"
-	        },
-	        axisY: {
-	            includeZero: false
-	        },
-	        data: [
-	        {
-	          type: "line",
-	          dataPoints: [
-	              { x: new Date(2012, 00, 1), y: 450 },
-	              { x: new Date(2012, 01, 1), y: 414 },
-	              { x: new Date(2012, 02, 1), y: 520, indexLabel: "highest", markerColor: "red", markerType: "triangle" },
-	              { x: new Date(2012, 03, 1), y: 460 },
-	              { x: new Date(2012, 04, 1), y: 450 },
-	              { x: new Date(2012, 05, 1), y: 500 },
-	              { x: new Date(2012, 06, 1), y: 480 },
-	              { x: new Date(2012, 07, 1), y: 480 },
-	              { x: new Date(2012, 08, 1), y: 410, indexLabel: "lowest", markerColor: "DarkSlateGrey", markerType: "cross" },
-	              { x: new Date(2012, 09, 1), y: 500 },
-	              { x: new Date(2012, 10, 1), y: 480 },
-	              { x: new Date(2012, 11, 1), y: 510 }
-	            ]
-	        }
-	        ]
-	    });
-	chart.render();
+				chart1 = new google.visualization.PieChart(document.getElementById('month_outputchart'));
 
-	var chart = new CanvasJS.Chart("chartContainer4",
-	    {
-	        animationEnabled: true,
-	        title: {
-	            text: "Column Chart"
-	        },
-	        axisX: {
-	            interval: 10,
-	        },
-	        data: [
-	        {
-	            type: "column",
-	            legendMarkerType: "triangle",
-	            legendMarkerColor: "green",
-	            color: "rgba(255,12,32,.3)",
-	            showInLegend: true,
-	            legendText: "Country wise population",
-	            dataPoints: [
-	                { x: 10, y: 297571, label: "India" },
-	                { x: 20, y: 267017, label: "Saudi" },
-	                { x: 30, y: 175200, label: "Canada" },
-	                { x: 40, y: 154580, label: "Iran" },
-	                { x: 50, y: 116000, label: "Russia" },
-	                { x: 60, y: 97800, label: "UAE" },
-	                { x: 70, y: 20682, label: "US" },
-	                { x: 80, y: 20350, label: "China" }
-	            ]
-	        },
-	        ]
-	    });
-	chart.render();
+				chart1.draw(data1, options1);
+				        
+				google.visualization.events.addListener(chart1, 'select', selectHandler2);	
+			}
+		})
+		
+		
+		/*--------------------------------in_click--------------------------------*/
+        function selectHandler(){			//클릭 시 
+      	  var selection = chart.getSelection();
+      	  
+      	  for(var i=0; i<selection.length; i++){
+      		  var item = selection[i];
+      		  if(item.row != null && item.column == null){
+      			  in_click = data.getValue(chart.getSelection()[0].row, 0)
+      		  }
+      	  }
+      	  inclick();
+        }
+		
+		/*-------------------------------out_click---------------------------------*/
+		function selectHandler2(){
+			  var selection = chart1.getSelection();
+	      	  
+	      	  for(var i=0; i<selection.length; i++){
+	      		  var item = selection[i];
+	      		  if(item.row != null && item.column == null){
+	      			out_click = data1.getValue(chart1.getSelection()[0].row, 0)
+	      		  }
+	      	  }
+	      	  outclick();
+      	}
+	}
+      
+	
+	/*--------------------------------click event in--------------------------------*/
+      function inclick(e, page){
+    	  	if(e)
+  				e.preventDefault();
+    	  
+			var $click_add ="";
+			
+			var s_year = $("#year option:selected").val();
+			var s_month = $("#month option:selected").val();
+			
+			sear_day = s_year + "/" + s_month;
+			
+			
+			if(page == undefined || page == ""){
+		         page=1
+		         
+		    }
+			$("#paging").empty();
+
+			$.ajax({
+				url : "click_input",
+				data : {day : sear_day , click : in_click, "page" : page},
+				method : "post",
+				success : function(datas) {
+					$("#addRow").empty();
+				
+					for(var i=0; i<datas.result.length; i++){
+						$click_add += "<tr><td>" + datas.result[i].day + "</td>" + 
+						"<td>" + datas.result[i].content + "</td>" + 
+						"<td>" + datas.result[i].money + "</td>" + 
+						"<td>" + datas.result[i].id + "</td></tr>";
+					}	
+			
+					
+				/* 	for(var i=0; i<datas.length; i++){
+						$click_add += "<tr><td>" + datas[i].day + "</td>" + 
+						"<td>" + datas[i].content + "</td>" + 
+						"<td>" + datas[i].money + "</td>" + 
+						"<td>" + datas[i].id + "</td></tr>";
+					} */
+					$($click_add).prependTo("#addRow"); 	
+					
+					
+					var $dd = "";
+					
+					 $dd += "<nav aria-label='Page navigation example'>" + 
+							  "<ul class=pagination>" + 
+							  "<li class=page-item>" +  
+						 	  "<a href='#'class='page-link' onclick='inclick(event, 1)' >&laquo;</a></li>";
+			         //$(dd).appendTo("#paging"); 
+			            
+			            var begin = datas.paging.startPage;
+			            var end = datas.paging.lastPage;               
+			            for(j = begin; j <= end; j++ ) {
+			               if(j != datas.paging.page) {
+			                  $dd += "<li class='page-item'><a href='#' class='page-link' onclick='inclick(event, "+j+")'>"+j+"</a></li>";
+			                  //$(bb).appendTo("#paging");
+			               }
+			                else if(j == datas.paging.page) {
+			                  $dd += "<li class='page-item active'><a href='#' class='page-link'>"+j+"</a></li>";
+			                  //$(cc).appendTo("#paging");
+			               }  
+			            }
+			            $dd += "<li class=page-item><a href='#' class='page-link' onclick='inclick(event, "+datas.paging.lastPage+")'>&raquo;</a></li></ul></nav>";
+			            $($dd).appendTo("#paging");
+				}
+			});
+      }
+	
+	/*-----------------------------------out click-------------------------*/
+	function outclick(e, page){
+		
+		if(e)
+			e.preventDefault();
+		
+		var $click_add ="";
+		var $dd = "";
+		
+		var s_year = $("#year option:selected").val();
+		var s_month = $("#month option:selected").val();
+		
+		sear_day = s_year + "/" + s_month;
+		
+		if(page == undefined || page == ""){
+	         page=1  
+	    }
+
+		$.ajax({
+			url : "click_output",
+			data : {day : sear_day , click : out_click, page : page},
+			method : "post",
+			success : function(datas) {
+				$("#addRow2").empty();
+				$("#outpaging").empty();
+
+				for(var i=0; i<datas.result.length; i++){
+					$click_add += "<tr><td>" + datas.result[i].day + "</td>" + 
+					"<td>" + datas.result[i].content + "</td>" + 
+					"<td>" + datas.result[i].money + "</td>" + 
+					"<td>" + datas.result[i].id + "</td></tr>";
+				}	
+		
+				/* for(var i=0; i<datas.length; i++){
+					$click_add += "<tr><td>" + datas[i].day + "</td>" + 
+					"<td>" + datas[i].content + "</td>" + 
+					"<td>" + datas[i].money + "</td>" + 
+					"<td>" + datas[i].id + "</td></tr>";
+				} */
+				$($click_add).prependTo("#addRow2"); 	 
+				
+				 $dd += "<nav aria-label='Page navigation example'>" + 
+				  "<ul class=pagination style='text-align:right'>" + 
+				  "<li class=page-item>" +  
+			 	  "<a href='#'class='page-link'  onclick='outclick(event, 1)' >&laquo;</a></li>";
+        //$(dd).appendTo("#paging"); 
+            
+           var begin = datas.paging.startPage;
+           var end = datas.paging.lastPage;               
+           for(j = begin; j <= end; j++ ) {
+              if(j != datas.paging.page) {
+                 $dd += "<li class='page-item'><a href='#' class='page-link' onclick='outclick(event, "+j+")'>"+j+"</a></li>";
+                 //$(bb).appendTo("#paging");
+              }
+               else if(j == datas.paging.page) {
+                 $dd += "<li class='page-item active'><a href='#' class='page-link' class='active'>"+j+"</a></li>";
+                 //$(cc).appendTo("#paging");
+              }  
+           }
+           $dd += "<li class=page-item><a href='#' class='page-link' onclick='outclick(event, "+datas.paging.lastPage+")'>&raquo;</a></li></ul></nav>";
+           $($dd).appendTo("#outpaging");
+				
+				
+			}
+		});
+	}
+	 
+	function searchChar(){
+		input_table(); 
+		output_table();
+		drawChart();
+	}
+	
+	
 </script>
-
-
 </head>
+<!-- ============================================================== -->
+<!-- end main wrapper  -->
+<!-- ============================================================== -->
+<!-- Optional JavaScript -->
+<!-- jquery 3.3.1 -->
+<script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<!-- bootstap bundle js -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<!-- slimscroll js -->
+<script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+<!-- main js -->
+<script src="assets/libs/js/main-js.js"></script>
 
 <body>
 	<div class="dashboard-main-wrapper">
@@ -164,137 +505,111 @@ var chart = new CanvasJS.Chart("chartContainer1",
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
 		<div class="influence-finder">
+					
 			<div class="container-fluid dashboard-content">
-				<!-- ============================================================== -->
-				<!-- pageheader -->
-				<!-- ============================================================== -->
-				<div class="row">
+				<div class="row"> 
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Expenditure Statistics</h3>
+							<h3 class="mb-2">Income Statistics</h3> 
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
 										<li class="breadcrumb-item">Statistics</li>
-										<li class="breadcrumb-item active" aria-current="page">Expenditure
-											Statisticst</li>
+										<li class="breadcrumb-item active" aria-current="page">Income
+											Expenditure</li>
 									</ol>
 								</nav>
 							</div>
 						</div>
 					</div>
+				<%-- 	<%  Date date = new Date();
+						SimpleDateFormat sim = new SimpleDateFormat("yyyy");
+						String sear_year = sim.format(date);
+						SimpleDateFormat sim2 = new SimpleDateFormat("MM");
+						String sear_month = sim2.format(date);
+					%>
+					<input type="text" style="width: 50px;" id="year" value=<%= sear_year %>>년 &nbsp;&nbsp; 
+					<input type="text" style="width: 30px;" id="month" value=<%= sear_month %>>월  &nbsp;&nbsp; 
+					<input type="button" value="보기" onclick="searchChar()">  --%>
+					<select name="year" id="year"></select> &nbsp;&nbsp;
+					<select name="month" id="month" ></select> &nbsp;&nbsp;
+					<input type="button" value="검색" onclick="change_show()" class="btn btn-primary"> 
+				<!-- <input type="hidden" name="page" />  -->
+				
 				</div>
-				<!-- ============================================================== -->
-				<!-- end pageheader -->
-				<!-- ============================================================== -->
-				
-				<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<div id="chartContainer1" style="width: 45%; height: 300px;display: inline-block;"></div> 
-<div id="chartContainer2" style="width: 45%; height: 300px;display: inline-block;"></div><br/>
-<div id="chartContainer3" style="width: 45%; height: 300px;display: inline-block;"></div>
-<div id="chartContainer4" style="width: 45%; height: 300px;display: inline-block;"></div>
-				
-				
-				
-				<div class="row"
-					style="display: inline-block; margin-top: 2%; width: 50%;">
-
 					
 					
-				</div>
-				<div class="row"
-					style="display: inline-block; margin-top: 2%; margin-left: 2%; width: 50%;">
-					<!-- ============================================================== -->
-					<!-- start list  -->
-					<!-- ============================================================== -->
+					<div class="row" style="margin-top: 2%; ">
+						<div class="col-sm" style="height: 500px;">
+							<div id="month_inputchart"></div>
+						</div> 
 					
-					<h3 class="mb-2" style="text-align:center;">Expenditure Statistics</h3>
-					
-					
-					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+					<div class="col-sm">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body"> 
+						
+								<div align="right"><input type="button" value="전체보기" onclick="input_table()" class="btn btn-primary"></div>
 								<div class="table-responsive">
-									<table id="getExpenditureList" width="100%"
+								<h3 class="mb-2" style="text-align:center;">수입 목록</h3>
+									<table id="inputList" width="100%"
 										class="table table-bordered table-hover text-center">
 										<thead>
 											<tr>
-												<th width="40%">ID</th>
-												<th width="20%">NAME</th>
-												<th width="20%">DATE</th>
-												<th width="40%">PRICE</th>
+												<th width="40%">날짜</th>
+												<th width="20%">내용</th>
+												<th width="20%">금액</th>
+												<th width="30%">ID</th>
 											</tr>
 										</thead>
-										<tbody id=expenditureList>
+										<tbody id=addRow></tbody>
+									</table>
+								</div>
+							</div> 
+							<div id="paging"  class="card-footer" style="margin: auto; background-color: #fff; border-top: 0px;" ></div>
+							
+						</div>
+					</div>
+				</div>		<!--  row -->
+				
+				<div class="row" style="margin-top: 2%; ">
+						<div class="col-sm" style="height: 500px;">
+							<div id="month_outputchart"></div>
+						</div> 
+					
+					<div class="col-sm"> 
+						<div class="card">
+							<div class="card-body"> 
+							
+							<div align="right"><input type="button" value="전체보기" onclick="output_table()" class="btn btn-primary"></div>
+							<!-- 페이징처리 부분 -->	<input type="hidden" name="page" />
+						
+								<div class="table-responsive">
+								<h3 class="mb-2" style="text-align:center;">지출 목록</h3>
+									<table id="inputList" width="100%"
+										class="table table-bordered table-hover text-center">
+										<thead>
 											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
+												<th width="40%">날짜</th>
+												<th width="20%">내용</th>
+												<th width="20%">금액</th>
+												<th width="30%">ID</th>
 											</tr>
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											
-											<tr>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-												<td>aaa</td>
-											</tr>
-											
-										
-										
-											<%-- <c:forEach items="${noticeList}" var="notice">
-												<c:set var="grant" value="${notice.memberId}"></c:set>
-												<input type="hidden" value="${notice.memberId}">
-												<tr>
-													<td>${notice.noticeNum}</td>
-													<td><a
-														href="./getNotice?noticeNum=${notice.noticeNum}">${notice.noticeTitle}</a></td>
-													<td>${notice.noticeDate}</td>
-													<td>${notice.noticeCnt}</td>
-												</tr>
-											</c:forEach> --%>
-											
-											
-										</tbody>
+										</thead>
+										<tbody id=addRow2></tbody>
 									</table>
 								</div>
 							</div>
-
-
+							<div id="outpaging"  class="card-footer" style="margin: auto; background-color: #fff; border-top: 0px;" ></div>
+				
 						</div>
 					</div>
-					<!-- ============================================================== -->
-					<!-- end list  -->
-					<!-- ============================================================== -->
-				</div>
+				</div>		<!--  row -->
+				
+				
 			</div>
-
-
-
 		</div>
 	</div>
-	
-
-	
 </body>
 </html>

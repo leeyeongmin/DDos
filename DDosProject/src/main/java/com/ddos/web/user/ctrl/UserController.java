@@ -58,7 +58,7 @@ public class UserController {
 			
 			Date date = new Date();
 			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-
+System.out.println(uservo);
 			int bigo = format1.format(date).compareTo(uservo.getExpDate());
 				
 			if (bigo >  0) {
@@ -157,6 +157,15 @@ public class UserController {
 
 		model.addAttribute("user", userService.getUser(vo));
 		return "userPage/UserInfo";
+	}
+	
+	@RequestMapping("updateUserInfo")
+	public String updateUserInfo(UserVO vo) {
+
+		System.out.println(vo);
+
+		userService.updateUser(vo);
+		return "user/UserHome";
 	}
 	
 	@RequestMapping("/withdrawalForm") // http://localhost:8081/app/getBoardList

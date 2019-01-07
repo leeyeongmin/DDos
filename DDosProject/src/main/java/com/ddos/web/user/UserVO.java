@@ -13,6 +13,10 @@ public class UserVO {
 	private String address;
 	private String gender;
 	
+	private int rentalCount;
+	private int readCount;
+	private int reviewCount;
+	
 
 	// 검색
 	private String searchType;
@@ -104,6 +108,27 @@ public class UserVO {
 		this.sortCol = sortCol;
 	}
 	
+	
+	
+	
+	public int getRentalCount() {
+		return rentalCount;
+	}
+	public void setRentalCount(int rentalCount) {
+		this.rentalCount = rentalCount;
+	}
+	public int getReadCount() {
+		return readCount;
+	}
+	public void setReadCount(int readCount) {
+		this.readCount = readCount;
+	}
+	public int getReviewCount() {
+		return reviewCount;
+	}
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", phone=" + phone + ", birth="

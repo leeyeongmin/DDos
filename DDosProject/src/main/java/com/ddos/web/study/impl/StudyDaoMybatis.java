@@ -50,4 +50,8 @@ public class StudyDaoMybatis {
 		public void deleteStudyMember(StudyMemberVO svo) {
 			mybatis.update("study.deleteStudyMember",svo);
 		}
+
+		public StudyVO checkStudy(StudyVO vo) {
+			return mybatis.selectOne("study.checkStudy",vo);
+		}
 }

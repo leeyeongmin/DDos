@@ -81,23 +81,25 @@
 		and b.book_loc = '언어 및 문학'
 	</select>
 
-	<select id="toprental" resultType="map" >
-			
+	<select id="toprental" resultType="map" parameterType="map" >
+		select B.* FROM (SELECT A.*, ROWNUM RN FROM (
 		select member_id "memberId", book_comp "bookComp", m.name "name", m.phone "phone" 
 		from member m ,
 		(select rank() over(order by book_comp desc) rental_top, book_comp, member_id from (
-		<![CDATA[select count(*) book_comp , member_Id from rental where to_char(rental_date,'yyyy/mm') = #{value} group by member_id))
+		<![CDATA[select count(*) book_comp , member_Id from rental where to_char(rental_date,'yyyy/mm') = #{day} group by member_id))
 		where rental_top <= 5
 		and m.id = member_id]]>
+		)A) B WHERE RN BETWEEN #{first} and #{last}
 	</select>
 
-	<select id="toprentalbook" resultType="map">
+	<select id="toprentalbook" resultType="map" parameterType="map">
+		select B.* FROM (SELECT A.*, ROWNUM RN FROM (
 		select rank_cnt "rankCnt", cnt "cnt", b.book_title "bookTitle", b.book_loc "bookLoc" from book b ,(
 		select rank() over(order by cnt desc) rank_cnt, cnt, isbn from (
-		<![CDATA[select count(*) cnt, isbn from rental where to_char(rental_date, 'yyyy/mm') = #{value} group by isbn)) r 
+		<![CDATA[select count(*) cnt, isbn from rental where to_char(rental_date, 'yyyy/mm') = #{day} group by isbn)) r 
 		where rank_cnt <= 5
 		and r.isbn = b.isbn]]>
-		
+		)A) B WHERE RN BETWEEN #{first} and #{last}
 	</select>
 
 	<select id="rentalCount" resultType="map" parameterType="string">
@@ -118,12 +120,22 @@
 	    order by 2
 	</select>
 	
-	<select id="totalList" resultType="map" parameterType="string">
-		 select assets_separation "gubun", assets_price "money", assets_cont "content", to_char(assets_date,'yyyy/mm/dd') "day" 
+	<select id="totalList" resultType="map" parameterType="map">
+		select B.* FROM (SELECT A.*, ROWNUM RN FROM (
+		select rownum "num", assets_separation "gubun", to_char(assets_price,'9,999,999,999') "money", assets_cont "content", to_char(assets_date,'yyyy/mm/dd') "day" 
 	    from assets_manage
-	    where to_char(assets_date, 'yyyy') = #{value}
-	    order by 4 desc
+	    where to_char(assets_date, 'yyyy') = #{year}
+	    order by 1 asc
+	    )A) B WHERE RN BETWEEN #{first} and #{last} 
 	</select>
+	
+	
+	<select id="totalListCount" resultType="map" parameterType="map">
+		select count(*) "cnt"
+	    from assets_manage
+	    where to_char(assets_date, 'yyyy') = #{year}
+	</select>
+	
 	
 	<select id="totalChart_output" resultType="map" parameterType="string">
 		select sum(assets_price) "money", to_char(assets_date, 'mm') "month"
@@ -134,10 +146,12 @@
 	    order by 2
 	</select>
 
-	<select id="UnpaidList" resultType="map" parameterType="string">
+	<select id="UnpaidList" resultType="map" parameterType="map">
+	  select B.* FROM (SELECT A.*, ROWNUM RN FROM (
 	  select member_id "id", assets_price "money", assets_cont "content", to_char(assets_date, 'yyyy') "day", TRUNC(sysdate) - TRUNC(assets_date) "delay"
       from assets_manage
       where cont_detail = 'N'
+      )A) B WHERE RN BETWEEN #{first} and #{last}
 	</select>
 	
 	<select id="month_inputchart" resultType="map" parameterType="string">
@@ -149,10 +163,17 @@
 	</select>
 	
 	 <select id="month_inputList" resultType="map" parameterType="map">
-		select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
+		<!-- select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
+		from assets_manage
+		where to_char(assets_date, 'yyyy/mm') = #{day}
+		and assets_separation = '수입' -->
+		select B.* FROM (SELECT A.*, ROWNUM RN FROM (
+   		select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
 		from assets_manage
 		where to_char(assets_date, 'yyyy/mm') = #{day}
 		and assets_separation = '수입'
+    	order by assets_num desc
+   		)A) B WHERE RN BETWEEN #{first} and #{last}
 	</select> 
 	
 	
@@ -164,11 +185,22 @@
 	</select>
 	
 	<select id="click_input" parameterType="map" resultType="map">
+		 select B.* FROM (SELECT A.*, ROWNUM RN FROM (
 		 select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
 		 from assets_manage
 		 where to_char(assets_date, 'yyyy/mm') = #{day}
      	 and assets_cont = #{click}
      	 and assets_separation = '수입'
+     	 )A) B WHERE RN BETWEEN #{first} and #{last}
+	</select> 
+	
+	
+	<select id="click_input_count" parameterType="map" resultType="map">
+		select count(*) "cnt"
+ 		from assets_manage
+		where to_char(assets_date, 'yyyy/mm') = #{day}
+		and assets_cont = #{click}
+		and assets_separation = '수입'
 	</select>
 	
 	
@@ -180,21 +212,66 @@
 	    group by assets_cont
 	</select>
 	
-	<select id="month_outputList" resultType="map" parameterType="string">
+	<select id="month_outputList" resultType="map" parameterType="map">
+		select B.* FROM (SELECT A.*, ROWNUM RN FROM (
 		select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
 		from assets_manage
-		where to_char(assets_date, 'yyyy/mm') = #{value}
+		where to_char(assets_date, 'yyyy/mm') = #{day}
+		and assets_separation = '지출'
+    	order by 1 asc
+    	)A) B WHERE RN BETWEEN #{first} and #{last}
+	</select>
+	
+	<select id="getoutputCount" parameterType="map" resultType="map">
+		select count(*) "cnt"
+		from assets_manage
+		where to_char(assets_date, 'yyyy/mm') = #{day}
 		and assets_separation = '지출'
 	</select>
 	
+	
 	<select id="click_output" parameterType="map" resultType="map">
+		 select B.* FROM (SELECT A.*, ROWNUM RN FROM (
 	 	 select to_char(assets_date, 'yyyy/mm/dd') "day" ,  assets_cont "content", assets_price "money", member_id "id"
+		 from assets_manage
+		 where to_char(assets_date, 'yyyy/mm') = #{day}
+     	 and assets_cont = #{click}
+     	 and assets_separation = '지출'
+     	 )A) B WHERE RN BETWEEN #{first} and #{last}
+	</select>
+	
+	<select id="click_output_count" parameterType="map" resultType="map">
+		select count(*) "cnt"
 		 from assets_manage
 		 where to_char(assets_date, 'yyyy/mm') = #{day}
      	 and assets_cont = #{click}
      	 and assets_separation = '지출'
 	</select>
 	
+
+	<select id="toprentalcount" parameterType="map" resultType="map">
+		select count(*) "cnt"
+		from member m ,
+		(select rank() over(order by book_comp desc) rental_top, book_comp, member_id from (
+		<![CDATA[select count(*) book_comp , member_Id from rental where to_char(rental_date,'yyyy/mm') = #{day} group by member_id))
+		where rental_top <= 5
+		and m.id = member_id]]>
+	</select>
+
+	<select id="toprentalbookcount" parameterType="map" resultType="map">
+		select count(*) "cnt" from book b ,(
+		select rank() over(order by cnt desc) rank_cnt, cnt, isbn from (
+		select count(*) cnt, isbn from rental where to_char(rental_date, 'yyyy/mm') = #{day} group by isbn)) r 
+		<![CDATA[where rank_cnt <= 5
+		and r.isbn = b.isbn]]>
+	</select>
+
+	<select id="UnpaidListCount" parameterType="map" resultType="map">
+      select count(*) "cnt"
+      from assets_manage
+      where cont_detail = 'N'
+	</select>
+
 
 </mapper> 
 

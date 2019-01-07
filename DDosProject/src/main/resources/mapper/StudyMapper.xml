@@ -31,8 +31,8 @@
 		#{studyName},
 		#{studySubject},
 		#{studyTime},
-		to_date(#{studyDate},'mm/dd'),
-		to_date(#{recruitEnd},'yyyy/mm/dd'),
+		to_date(#{studyDate},'yyyy-mm-dd'),
+		to_date(#{recruitEnd},'yyyy-mm-dd'),
 		#{recruitPerson},
 		#{status},
 		#{studyroomNumber},
@@ -71,6 +71,28 @@
 		FROM STUDY
 		WHERE STUDY_NUM=#{studyNumber}
 	</select> 
+	
+	<!-- 조회 -->
+	<select id="checkStudy" parameterType="study" resultType="study">
+		SELECT 
+		
+		STUDY_NUM as studyNumber,
+		STUDY_NAME,
+		STUDY_SUBJECT,
+		STUDY_TIME,
+		TO_CHAR(STUDY_DATE,'YYYY-MM-DD') AS STUDY_DATE,
+		TO_CHAR(RECRUIT_END,'YYYY-MM-DD') AS RECRUIT_END,
+		RECRUIT_PERSON,
+		STATUS,
+		STUDYROOM_NUM as studyroomNumber,
+		MEMBER_ID
+		
+		FROM STUDY
+		WHERE STUDY_DATE=#{studyDate}
+		AND STUDY_TIME=#{studyTime}
+		AND STUDYROOM_NUM=#{studyroomNumber}
+	</select> 
+	
 	
 	<delete id="deleteStudy" parameterType="study">
 	DELETE FROM STUDY WHERE STUDY_NUM= #{studyNumber}

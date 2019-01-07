@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,13 +66,15 @@ margin-top:2%;
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse " id="navbarSupportedContent">
-					<ul class="navbar-nav navbar-right-top" style="margin-left:78%;">
-						<li class="nav-item">
-							<div id="custom-search" class="top-search-bar">
-								<input class="form-control" type="text" placeholder="Search..">
+					<ul class="navbar-nav navbar-right-top" style="width:50%; margin-left: 80%;">
+						<li class="nav-item"  style="width:30%; padding-top:5%;">
+							<div id="custom-search">
+								<c:if test="${not empty sessionScope.login }">
+									${sessionScope.login.name}&ensp;&ensp;님
+								</c:if>
 							</div>
 						</li>
-						<li class="nav-item dropdown notification"><a
+						<li class="nav-item dropdown notification" style="margin-left:5%; width:25%;"><a
 							class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 								class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
@@ -105,7 +108,7 @@ margin-top:2%;
 								</li>
 							</ul></li>
 						
-						<li class="nav-item dropdown nav-user logoutbtn">
+						<li class="nav-item dropdown nav-user logoutbtn" style="margin-left:10%;">
 							<a href="logout" class="btn btn-rounded btn-dark">Log&nbsp;Out</a>
 						</li>
 					</ul>

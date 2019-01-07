@@ -26,12 +26,13 @@
 
 
 	var sear_day , sta_leng, max;
-	$(function(){
-		  var s_year = document.getElementById('year').value;
-		  var s_month = document.getElementById('month').value; 
+	$(function(){ 
+		  combobox();
+		  var s_year = $("#year option:selected").val();
+		  var s_month = $("#month option:selected").val();
 		  sear_day = s_year + "/" + s_month;
-		  topRentalList(sear_day); 
-		  topRentalBook(sear_day);
+		  topRentalList(); 
+		  topRentalBook();
 	  })
 	
 	  google.charts.load("current", {packages:["corechart"]});
@@ -49,6 +50,46 @@
 			chart1.draw(data1, options1);
 		}
 
+		
+		function combobox(){
+			
+			var today = new Date();
+			
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+			 
+			console.log(today);
+			console.log(mm);
+			console.log(yyyy);
+			
+			
+	        // 올해 기준으로 -3년부터 +0년을 보여준다.
+	        for(var y = yyyy-2; y <= yyyy; y++){ 
+	        	if(yyyy == y){
+	        		$("#year").append("<option value='"+ y +"' selected=selected>"+ y + " 년" +"</option>");
+	        	}else{
+	        		$("#year").append("<option value='"+ y +"'>"+ y + " 년" +"</option>");
+	        	}
+	            
+	        }  
+	        // 월 뿌려주기(1월부터 12월)  
+	        var month;
+	        for(var i = 1; i <= 12; i++){
+	        	if(i == mm) {
+	        		if(1 < 10){
+	        			$("#month").append("<option value='"+ "0" + i +"' selected=selected>"+ i + " 월" +"</option>");
+	        		}else{
+	        			$("#month").append("<option value='"+ i +"' selected=selected>"+ i + " 월" +"</option>");
+	        		}
+	        	}else{
+	        		$("#month").append("<option value='"+ i +"'>"+ i + " 월" +"</option>");
+	        	}
+	            
+	        }
+	   
+		}
+		
+		
 		function lineChart(sear_day){
 			  arr = new Array();
 			  max = 0;
@@ -129,42 +170,130 @@
 	}
 
 	
-	function topRentalList(sear_day){
+	function topRentalList(event, page){
+		
+		if(event)
+			event.preventDefault();
+		
+		  var s_year = $("#year option:selected").val();
+		  var s_month = $("#month option:selected").val();
+		  sear_day = s_year + "/" + s_month;
 		
 		$("#expenditureList").empty();
 		
+		if(page == undefined || page == ""){
+	         page=1  
+	    }
+		
 		 $.ajax({
-			url : "toprental?day=" +sear_day, 
+			data : {day : sear_day , page : page},
+			url : "toprental", 
 			method : "post",
 			success : function(datas) {
+				console.log(datas);
 					var $add = "";
-					for (var i = 0; i < datas.length; i++) {
+					
+					/* for (var i = 0; i < datas.length; i++) {
 						$add += "<tr><td>" + datas[i].memberId + "</td>"
 								+ "<td>" + datas[i].name + "</td>" + "<td>"
 								+ datas[i].bookComp + "</td></tr>"
 					
-				}
-				$($add).prependTo("#expenditureList");
+					} */
+					for (var i=0; i<datas.result.length; i++){
+						$add += "<tr><td>" + datas.result[i].memberId + "</td>" 
+							 + "<td>" + datas.result[i].name + "</td>" 
+							 + "<td>" + datas.result[i].bookComp + "</td></tr>";
+					} 
+					
+					$($add).prependTo("#expenditureList");
+				
+					$("#rentalpage").empty(); 
+					var $dd = "";
+					
+					 $dd += "<nav aria-label='Page navigation example'>" + 
+							  "<ul class=pagination>" + 
+							  "<li class=page-item>" +  
+						 	  "<a href='#'class='page-link' onclick='topRentalList(event, 1)' >&laquo;</a></li>";
+			            
+			            var begin = datas.paging.startPage;
+			            var end = datas.paging.lastPage;               
+			            for(j = begin; j <= end; j++ ) {
+			               if(j != datas.paging.page) {
+			                  $dd += "<li class='page-item'><a href='#' class='page-link' onclick='topRentalList(event, "+j+")'>"+j+"</a></li>";
+			                  //$(bb).appendTo("#paging");
+			               }
+			                else if(j == datas.paging.page) {
+			                  $dd += "<li class='page-item active'><a href='#' class='page-link'>"+j+"</a></li>";
+			                  //$(cc).appendTo("#paging");
+			               }  
+			            }
+			            $dd += "<li class=page-item><a href='#' class='page-link' onclick='topRentalList(event, "+datas.paging.lastPage+")'>&raquo;</a></li></ul></nav>";
+			        
+			    $($dd).appendTo("#rentalpage");
+	
 			}
 		});
 	}
 
-	function topRentalBook(sear_day) {
+	function topRentalBook(event, page) {
 
+		if(event)
+			event.preventDefault();
+		
+		 var s_year = $("#year option:selected").val();
+		 var s_month = $("#month option:selected").val();
+		 sear_day = s_year + "/" + s_month;
+		
+		
 		$("#bookGenre").empty();
+		$("#rentalBookpage").empty();
 
+		console.log(sear_day);
+		console.log(page);
+		
+		if(page == undefined || page == ""){
+	         page=1  
+	    }
+		
 		$.ajax({
-			url : "toprentalbook?day=" + sear_day,
+			data : {day : sear_day, page : page},
+			url : "toprentalbook",
 			method : "post",
 			success : function(datas) {
+				console.log(datas);
 				var $add = "";
-				for (var i = 0; i < datas.length; i++) {
-					$add += "<tr><td>" + datas[i].rankCnt + "</td>" + "<td>"
-							+ datas[i].bookTitle + "</td>" + "<td>"
-							+ datas[i].bookLoc + "</td>" + "<td>"
-							+ datas[i].cnt + "</td></tr>";
+				for (var i = 0; i < datas.result.length; i++) {
+					$add += "<tr><td>" + datas.result[i].rankCnt + "</td>" + "<td>"
+							+ datas.result[i].bookTitle + "</td>" + "<td>"
+							+ datas.result[i].bookLoc + "</td>" + "<td>"
+							+ datas.result[i].cnt + "</td></tr>";
 				}
 				$($add).prependTo("#bookGenre");
+				
+				var $dd = "";
+				
+				 $dd += "<nav aria-label='Page navigation example'>" + 
+						  "<ul class=pagination>" + 
+						  "<li class=page-item>" +  
+					 	  "<a href='#'class='page-link' onclick='topRentalBook(event, 1)' >&laquo;</a></li>";
+		            
+		            var begin = datas.paging.startPage;
+		            var end = datas.paging.lastPage;               
+		            for(j = begin; j <= end; j++ ) {
+		               if(j != datas.paging.page) {
+		                  $dd += "<li class='page-item'><a href='#' class='page-link' onclick='topRentalBook(event, "+j+")'>"+j+"</a></li>";
+		                  //$(bb).appendTo("#paging");
+		               }
+		                else if(j == datas.paging.page) {
+		                  $dd += "<li class='page-item active'><a href='#' class='page-link'>"+j+"</a></li>";
+		                  //$(cc).appendTo("#paging");
+		               }  
+		            }
+		            $dd += "<li class=page-item><a href='#' class='page-link' onclick='topRentalBook(event, "+datas.paging.lastPage+")'>&raquo;</a></li></ul></nav>";
+		        
+		    $($dd).appendTo("#rentalBookpage");
+				
+				//rentalBookpage
 			}
 		});
 	}
@@ -209,24 +338,15 @@
 	}
 
 	function searchChar() {
-		var s_year = document.getElementById('year').value;
-		var s_month = document.getElementById('month').value;
-
-		if (s_year == "" || s_month == "") {
-			alert("빈칸을 입력하세요.")
-		} else if (s_month > 12 || s_month <= 0) {
-			alert("1- 12 입력하세요");
-		} else {
-			if (s_month.length == 1) {
-				s_month = "0" + s_month;
-			}
-			var sear_day = s_year + "/" + s_month;
-			topRentalList(sear_day);
-			topRentalBook(sear_day);
-			book_chart(sear_day);
-			lineChart(sear_day);
-		}
-
+		var s_year = $("#year option:selected").val();
+		var s_month = $("#month option:selected").val();
+		
+		var sear_day = s_year + "/" + s_month;
+		topRentalList();
+		topRentalBook();
+		book_chart(sear_day);
+		lineChart(sear_day);
+	
 	}
 </script>
 </head>
@@ -271,7 +391,7 @@
 							</div>
 						</div>
 					</div>
-					<% 	Date date = new Date();
+					<%-- <% 	Date date = new Date();
 						SimpleDateFormat sim = new SimpleDateFormat("yyyy");
 						String sear_year = sim.format(date);
 						SimpleDateFormat sim2 = new SimpleDateFormat("MM");
@@ -279,7 +399,10 @@
 					%>
 					<input type="text" style="width: 50px;" id="year" value=<%= sear_year %>>년 &nbsp;&nbsp; 
 					<input type="text" style="width: 30px;" id="month" value=<%= sear_month %>>월  &nbsp;&nbsp; 
-					<input type="button" value="보기" onclick="searchChar()"> 
+					<input type="button" value="보기" onclick="searchChar()">  --%>
+					<select name="year" id="year"></select> &nbsp;&nbsp;
+					<select name="month" id="month" ></select> &nbsp;&nbsp;
+					<input type="button" value="검색" onclick="searchChar()" class="btn btn-primary"> 
 				</div>
 				<!-- ============================================================== -->
 				<!-- end pageheader -->
@@ -306,9 +429,11 @@
 										</thead>
 										<tbody id=expenditureList>
 										</tbody>
-							</table>
+									</table>
+								</div>
 							</div>
-							</div> 
+							<!-- <div id="rentalpage"></div> -->
+							<div id="rentalpage"  class="card-footer" style="margin: auto; background-color: #fff; border-top: 0px;" ></div>
 						</div>
 					</div>
 				</div>		<!--  row -->
@@ -345,7 +470,9 @@
 												</tbody>
 									</table>
 								</div>
-							</div> 
+							</div>
+						 <!--  <div id="rentalBookpage"></div>  -->
+						  <div id="rentalBookpage"  class="card-footer" style="margin: auto; background-color: #fff; border-top: 0px;" ></div>
 						</div>
 					</div>
 				</div>		<!--  row -->

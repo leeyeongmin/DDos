@@ -20,9 +20,10 @@
 <title>DDos</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
+<meta property="og:image" content="https://devtalk.kakao.com/images/devtalk_.png">
 
 <script>
-var eventNum, eventTitle, eventCont, startDate, endDate, writeDate;
+var eventNum, eventTitle, eventCont, startDate, endDate, writeDate, eventFile;
 
 $(function() {
 	$(".identifyingClass").click(function() {
@@ -44,6 +45,7 @@ function eventDetail(eventNum) {
 				startDate = data.startDate;
 				endDate = data.endDate;
 				writeDate = data.writeDate;
+				eventFile = data.eventFile;
 			}
 	}).done(function(response) {
 		$('#resultShow').text(eventNum);
@@ -63,10 +65,11 @@ function eventDetail(eventNum) {
 	});
 	
 }
-
 function shareEvent(){
 	// // 사용할 앱의 JavaScript 키를 설정해 주세요.
 	Kakao.init('4e34fd015dcb3287cbdac98a3d2fda30');
+	
+	
 	// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
 	Kakao.Link.createDefaultButton({
 		container : '#kakao-link-btn',
@@ -74,10 +77,11 @@ function shareEvent(){
 		content : {
 			title : eventTitle,
 			description : eventCont,
-			imageUrl : 'http://preimage.hankookilbo.com/i.aspx?Guid=b0ecee4d1faa46b49675f93b0835d6c1&Month=DirectUpload&size=400',
+			/* imageUrl : 'C:/Users/User/git/DDos/DDosProject/src/main/webapp/assets/images/eventImg/event1.PNG', */
+			imageUrl : 'C:\Users\User\Desktop',
 			link : {
-				mobileWebUrl : 'http://180.71.250.243:8081/ddos/eventList',
-				webUrl : 'http://localhost:8081/ddos/eventList'
+				mobileWebUrl : 'http://localhost:8081/app/eventList'/* 'http://180.71.250.243:8081/ddos/eventList' */,
+				webUrl : 'http://localhost:8081/app/eventList'
 			}
 		},
 	});
@@ -190,7 +194,7 @@ function shareEvent(){
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 									<div class="card">
 										<img class="card-img-top img-fluid p-2"
-											src="assets/images/card-img.jpg" alt="Card image cap">
+											src="assets/images/eventImg/${aheadEvent.eventFile }" alt="Card image cap">
 										<div class="card-body" style="text-align: center;">
 											<h3 class="card-title">${aheadEvent.eventTitle}</h3>
 											<p class="card-text">${aheadEvent.eventCont}</p>

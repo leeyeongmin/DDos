@@ -194,18 +194,17 @@
 									</div>
 								</div>
 								<div class="border-top user-social-box">
-									<div class="user-social-media d-xl-inline-block ">
-										<span class="mr-2 twitter-color"> Rental : </span><span>20</span>
+									<div class="user-social-media d-xl-inline-block " style="width:33%;">
+										<span class="mr-2 twitter-color"> Rental : </span>
+										<span>${userList.rentalCount}</span>
 									</div>
-									<div class="user-social-media d-xl-inline-block">
-										<span class="mr-2  pinterest-color"> ReadingRoom
-											history : </span><span>19</span>
+									<div class="user-social-media d-xl-inline-block" style="width:33%;">
+										<span class="mr-2  pinterest-color"> ReadingRoom history : </span>
+											<span>${userList.readCount}</span>
 									</div>
-									<div class="user-social-media d-xl-inline-block">
-										<span class="mr-2 instagram-color"> Review : </span><span>12</span>
-									</div>
-									<div class="user-social-media d-xl-inline-block">
-										<span class="mr-2 instagram-color"> Out Count : </span><span>${userList.outCount}</span>
+									<div class="user-social-media d-xl-inline-block"  style="width:33%;">
+										<span class="mr-2 instagram-color"> Review : </span>
+										<span>${userList.reviewCount}</span>
 									</div>
 								</div>
 							</div>

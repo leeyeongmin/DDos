@@ -25,7 +25,7 @@ public class StudyController {
 	@RequestMapping("insertStudy")
 	public String insertStudy(StudyVO vo, HttpSession session, HttpServletResponse response) throws IOException {
 
-		StudyVO studyvo = studyService.getStudy(vo);
+		StudyVO studyvo = studyService.checkStudy(vo);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
@@ -42,7 +42,7 @@ public class StudyController {
 	// 스터디 등록 창
 	@RequestMapping("makeStudy")
 	public String makeStudy() {
-		return "study/makeStudy";
+		return "no/study/makeStudy";
 	}
 
 	// 스터디 삭제

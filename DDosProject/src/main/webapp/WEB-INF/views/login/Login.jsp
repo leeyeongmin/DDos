@@ -107,12 +107,7 @@
     <!-- Optional JavaScript -->
     <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script>
-    	if('${NO}'=='noId')
-        	alert("이메일이 올바르지 않습니다. 다시 한번 확인해주십시오.");
-    	else if('${NO}' == 'noPw')
-    		alert("회원님의 이메일과 비밀번호가 올바르지 않습니다. 다시 한번 확인해주십시오.");
-    </script>
+
 </body>
  
 </html>

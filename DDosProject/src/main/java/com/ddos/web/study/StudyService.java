@@ -14,4 +14,5 @@ public interface StudyService {
 	public void insertStudyMember(StudyMemberVO vo);
 	public List<StudyVO> getAdminStudytList(StudyVO vo);
 	public void deleteStudyMember(StudyMemberVO svo);
+	public StudyVO checkStudy(StudyVO vo);
 }

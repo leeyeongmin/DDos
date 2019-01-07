@@ -63,13 +63,13 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	}
 
 	@Override
-	public List<Map> toprental(String day) {
+	public List<Map> toprental(Map day) {
 		// TODO Auto-generated method stub
 		return dao.toprental(day);
 	}
 
 	@Override
-	public List<Map> toprentalbook(String day) {
+	public List<Map> toprentalbook(Map day) {
 		// TODO Auto-generated method stub
 		return dao.toprentalbook(day);
 	}
@@ -87,7 +87,7 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	}
 
 	@Override
-	public List<Map> totalList(String year) {
+	public List<Map> totalList(Map year) {
 		// TODO Auto-generated method stub
 		return dao.totalList(year);
 	}
@@ -99,9 +99,9 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	}
 
 	@Override
-	public List<Map> UnpaidList() {
+	public List<Map> UnpaidList(Map map) {
 		// TODO Auto-generated method stub
-		return dao.UnpaidList();
+		return dao.UnpaidList(map);
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	}
 
 	@Override
-	public List<Map> month_outputList(String day) {
+	public List<Map> month_outputList(Map day) {
 		// TODO Auto-generated method stub
 		return dao.month_outputList(day);
 	}
@@ -151,6 +151,48 @@ public class StatisticsSeviceImpl implements StatisticsService{
 	public Map getinputCount(Map map) {
 		// TODO Auto-generated method stub
 		return dao.getinputCount(map);
+	}
+
+	@Override
+	public Map getoutputCount(Map map) {
+		// TODO Auto-generated method stub
+		return dao.getoutputCount(map);
+	}
+
+	@Override
+	public Map click_input_count(Map map) {
+		// TODO Auto-generated method stub
+		return dao.click_input_count(map);
+	}
+
+	@Override
+	public Map click_output_count(Map map) {
+		// TODO Auto-generated method stub
+		return dao.click_output_count(map);
+	}
+
+	@Override
+	public Map toprentalcount(Map day) {
+		// TODO Auto-generated method stub
+		return dao.toprentalcount(day);
+	}
+
+	@Override
+	public Map toprentalbookcount(Map day) {
+		// TODO Auto-generated method stub
+		return dao.toprentalbookcount(day);
+	}
+
+	@Override
+	public Map totalListCount(Map map) {
+		// TODO Auto-generated method stub
+		return dao.totalListCount(map);
+	}
+
+	@Override
+	public Map UnpaidListCount(Map map) {
+		// TODO Auto-generated method stub
+		return dao.UnpaidListCount(map);
 	}
 
 

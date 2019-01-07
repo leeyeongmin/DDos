@@ -47,12 +47,24 @@ public class RentalDAOMybatis {
 	}
 
 
-	public String getRentalCount(UserVO vo) {
-		return mybatis.selectOne("rental.getRentalCount", vo);
-	}
-
+	//rentaldao
 	public int getCount(RentalVO vo) {
-		return  mybatis.selectOne("rental.getCount", vo);
+			return mybatis.selectOne("rental.getCount", vo);
+		}
 
-	}
+		// 대출 반납 리스트 건수
+		public int hCount(RentalVO vo) {
+			return mybatis.selectOne("rental.hCount", vo);
+		}
+
+		// 대출현황 건수
+		public int rCount(RentalVO vo) {
+			return mybatis.selectOne("rental.rCount", vo);
+		}
+
+		// 반납 리스트
+		public int tCount(RentalVO vo) {
+			return mybatis.selectOne("rental.tCount", vo);
+		}
+
 }

@@ -59,8 +59,6 @@
 	</bean>
 
 
-<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	<property name="maxUploadSize" value="1000000000"></property></bean>
 
 
 	<!-- 해당 태그들은 크론탭을 설정에 필요한 태그들 -->

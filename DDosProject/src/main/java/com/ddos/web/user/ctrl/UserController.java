@@ -58,7 +58,7 @@ public class UserController {
 			
 			Date date = new Date();
 			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-
+System.out.println(uservo);
 			int bigo = format1.format(date).compareTo(uservo.getExpDate());
 				
 			if (bigo >  0) {

@@ -25,14 +25,11 @@ public interface RentalService {
 
 	// 연장
 	public void renewBook(RentalVO vo);
-<<<<<<< HEAD
 
 
 	public String getCount(UserVO vo);
 
-=======
 	
 	// 전체 건수
 	public int getCount(RentalVO vo);
->>>>>>> branch 'master' of https://github.com/leeyeongmin/DDos.git
 }

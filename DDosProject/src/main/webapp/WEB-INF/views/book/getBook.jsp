@@ -208,7 +208,7 @@
 																	<tr>
 																		<th scope="row" style="width: 30%">제목</th>
 																		<th scope="row" width="20%">별점</th>
-																		<th scope="row" width="40%">작성일자</th>
+																		<th scope="row" style="width:40%">작성일</th>
 																		<th scope="row" colspan="2"></th>
 																	</tr>
 																	<!-- <tr>
@@ -235,7 +235,7 @@
 																					<img src="assets/images/reviewImg/star_5.png"
 																						width="90">
 																				</c:if></td>
-																			<td>${review.reviewDate}</td>
+																			<td width="40%">${review.reviewDate}</td>
 																		</tr>
 																		<tr style="width: 100%">
 																			<td width="100%">${review.reviewCont}</td>
@@ -245,7 +245,7 @@
 																					<a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
 																						class="btn btn-primary">수정</a>
 																					<a href="./deleteReview?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
-																						class="btn btn-space btn-secondary">삭제</a>
+																						class="btn btn-space btn-secondary">삭제</a><br/><br/>
 																				</c:if></td>
 																		</tr>
 																	</c:forEach>

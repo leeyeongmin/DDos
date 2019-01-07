@@ -251,7 +251,7 @@ margin-left:15%;
 								role="tabpanel" aria-labelledby="pills-campaign-tab">
 								<div class="row">
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-										<form class="joinForm" action="updateUserInfo"
+										<form class="joinForm" action="updateManagerInfo"
 											method="post">
 											<div class="card">
 												<div class="card-body location">

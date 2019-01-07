@@ -150,14 +150,16 @@
 													<p class="lead">This page is show your History about
 														number of using readingroom & number of rental & number of
 														your review.</p>
-													<p class="lead">Plus recent history.</p>
-													<ul class="list-unstyled arrow">
-														<li>Lorem ipsum dolor sit amet, consectetur
-															adipiscing elit.</li>
-														<li>Mauris bibendum massa ut porttitor congue.</li>
-														<li>Morbi condimentum magna eget facilisis accumsan.</li>
-														<li>Proin euismod eros nec libero efficitur, a
-															dapibus mauris condimentum.</li>
+													<ul class="list-unstyled arrow" style="margin-top:7%;">
+														<li style="marimargin-top:3%;">
+															RENTAL COUNT : ${user.rentalCount }
+														</li>
+														<li style="margin-top:3%;">
+															USING READING ROOM COUNT : ${user.readCount}
+														</li>
+														<li style="margin-top:3%;">
+															REVIEW COUNT : ${user.reviewCount}
+														</li>
 													</ul>
 												</div>
 											</div>

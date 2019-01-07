@@ -63,14 +63,18 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse " id="navbarSupportedContent">
-					<ul class="navbar-nav navbar-right-top" style="margin-left: 78%;">
-						<li class="nav-item">
-							<div id="custom-search" class="top-search-bar">
-								<input class="form-control" type="text" placeholder="Search..">
+					<ul class="navbar-nav navbar-right-top" style="width:50%; margin-left: 80%;">
+						<li class="nav-item" style="width:30%; padding-top:5%;">
+							<div id="custom-search">
+
+								<c:if test="${not empty sessionScope.login }">
+									${sessionScope.login.name}&ensp;&ensp;님
+								</c:if>
+
 							</div>
 						</li>
 						<!-- 별모양 -->
-						<li class="nav-item dropdown notification"><a
+						<li class="nav-item dropdown notification" style="margin-left:5%; width:25%;"><a
 							class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1"
 							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
 								class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
@@ -106,7 +110,7 @@
 
 
 
-						<li class="nav-item dropdown nav-user logoutbtn"><a
+						<li class="nav-item dropdown nav-user logoutbtn" style="margin-left:10%;"><a
 							href="logout" class="btn btn-rounded btn-dark">Log&nbsp;Out</a></li>
 					</ul>
 				</div>
@@ -146,27 +150,26 @@
 
 							<li class="nav-divider">Function</li>
 
-						
+
 							<!-- =============================== -->
-					<li class="nav-item">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-book"></i>Library</a>
-                                <div id="submenu-2" class="submenu collapse" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="wishbook?loginId=${login.id}">WishBook <span class="badge badge-secondary">New</span></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="getBookList">Collection</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="rental?loginId=${login.id}">borrow</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </div>
-                            </li>
-							
-							
+							<li class="nav-item"><a class="nav-link collapsed" href="#"
+								data-toggle="collapse" aria-expanded="false"
+								data-target="#submenu-2" aria-controls="submenu-2"><i
+									class="fas fa-book"></i>Library</a>
+								<div id="submenu-2" class="submenu collapse" style="">
+									<ul class="nav flex-column">
+										<li class="nav-item"><a class="nav-link"
+											href="wishbook?loginId=${login.id}">WishBook <span
+												class="badge badge-secondary">New</span></a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="getBookList">Collection</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="rental?loginId=${login.id}">borrow</a></li>
+
+									</ul>
+								</div></li>
+
+
 
 							<li class="nav-item "><a class="nav-link" href="read"> <i
 									class="fab fa-fw fa-wpforms"></i> Reading Room
@@ -191,10 +194,9 @@
 								href="getSuggestionList"> <i class="fas fa-comment-dots"></i>
 									Suggestion
 							</a></li>
-							
-							<li class="nav-item"><a class="nav-link"
-								href="payList"> <i class="fas fa-comment-dots"></i>
-									Pay
+
+							<li class="nav-item"><a class="nav-link" href="payList">
+									<i class="fas fa-comment-dots"></i> Pay
 							</a></li>
 							<!-- <li class="nav-item">
 								<a class="nav-link" href="#">

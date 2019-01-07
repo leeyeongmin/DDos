@@ -69,5 +69,10 @@ public class StudyServiceImpl implements StudyService{
 		dao.deleteStudyMember(svo);
 		
 	}
+	@Override
+	public StudyVO checkStudy(StudyVO vo) {
+		// TODO Auto-generated method stub
+		return dao.checkStudy(vo);
+	}
 
 }

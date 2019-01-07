@@ -159,6 +159,15 @@ public class UserController {
 		return "userPage/UserInfo";
 	}
 	
+	@RequestMapping("updateUserInfo")
+	public String updateUserInfo(UserVO vo) {
+
+		System.out.println(vo);
+
+		userService.updateUser(vo);
+		return "user/UserHome";
+	}
+	
 	@RequestMapping("/withdrawalForm") // http://localhost:8081/app/getBoardList
 	public String withsrawalForm(Model model, UserVO vo) {
 		return "userPage/Withdrawal";

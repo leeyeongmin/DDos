@@ -1,14 +1,12 @@
 package com.ddos.web.admin.user.ctl;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ddos.web.notice.NoticeService;
-import com.ddos.web.notice.NoticeVO;
-import com.ddos.web.study.StudyService;
-import com.ddos.web.study.StudyVO;
 import com.ddos.web.user.UserService;
 import com.ddos.web.user.UserVO;
 
@@ -17,10 +15,7 @@ public class AdminUserController {
 
 	@Autowired
 	UserService userService;
-	@Autowired
-	StudyService studyService;
-	@Autowired
-	NoticeService noticeService;
+	
 
 	// -------------------------------------------------------admin user
 	// manager----------------------------------------------
@@ -36,8 +31,10 @@ public class AdminUserController {
 	}
 
 	@RequestMapping("getUserList")
-	public String getUserList(Model model, UserVO vo) {
+	public String getUserList(Model model, UserVO vo, HttpSession session) {
 		model.addAttribute("userList", userService.getUserList(vo));
+		
+		String id = (String) session.getAttribute("temp");
 		
 		System.out.println(vo);
 		
@@ -74,7 +71,7 @@ public class AdminUserController {
 
 	
 	// update admin info
-	@RequestMapping("updateUserInfo")
+	@RequestMapping("updateManagerInfo")
 	public String updateUserInfo(UserVO vo) {
 
 		System.out.println(vo);

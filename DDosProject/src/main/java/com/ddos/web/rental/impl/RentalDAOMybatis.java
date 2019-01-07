@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ddos.web.rental.RentalVO;
+import com.ddos.web.user.UserVO;
 
 @Repository
 public class RentalDAOMybatis {
@@ -43,5 +44,9 @@ public class RentalDAOMybatis {
 	public List<RentalVO> getHistoryList(RentalVO vo){
 		System.out.println("마이바티스 대출반납히스토리 조회");
 		return mybatis.selectList("rental.getHistoryList", vo);
+	}
+
+	public String getRentalCount(UserVO vo) {
+		return mybatis.selectOne("rental.getRentalCount", vo);
 	}
 }

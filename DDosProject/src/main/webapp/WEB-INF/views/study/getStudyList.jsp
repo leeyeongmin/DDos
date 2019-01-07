@@ -29,27 +29,11 @@
 
 <script>
 //팝업창 띄움
-	function popup(month, day){
-		var modal = $('<div class="modal" tabindex="-1" role="dialog" id="stydySubmit">'+
-			'<div class="modal-dialog" role="document">'+
-				'<div class="modal-content">'+
-					'<div class="modal-header">'+
-						'<h5 class="modal-title">스터디 생성</h5>'+
-					'</div>'+
-					'<div class="modal-body" id="modal-body"></div>'+
-					'<div class="modal-footer" id="modal-footer"></div>'+
-				'</div>'+
-			'</div>'+
-		'</div>');
-
-		$.ajax({
-  			url: "./makeStudy?month="+ month +'&&day='+ day,
-		}).done(function(response) {
-			var response = $(response);
-			$(modal).find('#modal-body').append($(response).find('#studyList-b'));
-			$(modal).find('#modal-footer').append($(response).find('#studyList-f'));
-			$(modal).modal('toggle');	
-		}); 
+	function popup(year, month, day){
+		var url = "./makeStudy?year="+ year +"&&month="+ month +"&&day="+ day
+		$("#modal-body").load(url,function(){
+			$("#studySubmit").modal('toggle');
+		})
 	}
 	
 	
@@ -74,7 +58,6 @@
 	    });
 	}
 </script>
-
 
 
 <body>
@@ -210,7 +193,7 @@
 							<td>
 								<button
 									style="color: gray; cursor: pointer; border: none; background: none;"
-									onclick="event.stopPropagation(); popup(<%=m%>, <%=k%>)">
+									onclick="event.stopPropagation(); popup(<%=y%>, <%=m%>, <%=k%>)">
 									<%=k%>
 								</button>
 								<div style="overflow-y: auto; height: 80%; width: 100%">
@@ -226,13 +209,13 @@
 													if (today.compareTo(recruitDay) > 0) {
 									%>
 									<button
-										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #EC4646;">
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border-style:solid; border-color:#821B08; background: #EC4646;">
 										<%=studyName%></button>
 									<%
 										} else {
 									%>
 									<button
-										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #7DC74B;"
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border-style:solid; border-color:#2B6E33; background: #7DC74B;"
 										onclick="event.stopPropagation(); getStudyDetail(<%=studyNumber%>)"><%=studyName%></button>
 									<%
 										}
@@ -252,7 +235,7 @@
 							<td>
 								<button
 									style="color: gray; cursor: pointer; border: none; background: none;"
-									onclick="event.stopPropagation(); popup(<%=m + 1%>,<%=j%>)">
+									onclick="event.stopPropagation(); popup(<%=y%>, <%=m + 1%>,<%=j%>)">
 									<%=j%>
 								</button>
 								<div style="overflow-y: auto; height: 80%; width: 100%">
@@ -268,13 +251,13 @@
 													if (today.compareTo(recruitDay) > 0) {
 									%>
 									<button
-										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #EC4646;">
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border-style:solid; border-color:#821B08; background: #EC4646;">
 										<%=studyName%></button>
 									<%
 										} else {
 									%>
 									<button
-										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #7DC74B;"
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border-style:solid; border-color:#2B6E33; background: #7DC74B;"
 										onclick="event.stopPropagation(); getStudyDetail(<%=studyNumber%>)"><%=studyName%></button>
 									<%
 										}
@@ -309,7 +292,7 @@
 							<td>
 								<button
 									style="color: gray; cursor: pointer; border: none; background: none;"
-									onclick="event.stopPropagation(); popup(<%=m + 2%>,<%=e%>)">
+									onclick="event.stopPropagation(); popup(<%=y%>, <%=m + 2%>,<%=e%>)">
 									<%=e%>
 								</button>
 								<div style="overflow-y: auto; height: 80%; width: 100%">
@@ -320,18 +303,18 @@
 												for (String wo : tmp) {
 													studyName = wo.split(",")[0];
 													studyNumber = wo.split(",")[1];
-													recruitDay = wo.split(",")[2].substring(0,10);
+													recruitDay = wo.split(",")[2].substring(0, 10);
 
 													if (today.compareTo(recruitDay) > 0) {
 									%>
 									<button
-										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #EC4646;">
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border-style:solid; border-color:#821B08; background: #EC4646;">
 										<%=studyName%></button>
 									<%
 										} else {
 									%>
 									<button
-										style="color: white; cursor: pointer; width: 100%; height: 50px; border: none; background: #7DC74B;"
+										style="color: white; cursor: pointer; width: 100%; height: 50px; border-style:solid; border-color:#2B6E33; background: #7DC74B;"
 										onclick="event.stopPropagation(); getStudyDetail(<%=studyNumber%>)"><%=studyName%></button>
 									<%
 										}
@@ -352,6 +335,18 @@
 					<%
 						sd.close();
 					%>
+				</div>
+
+				<div class="modal" tabindex="-1" role="dialog" id="studySubmit">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">스터디 생성</h5>
+							</div>
+							<div class="modal-body" id="modal-body"></div>
+							<div class="modal-footer" id="modal-footer"></div>
+						</div>
+					</div>
 				</div>
 
 

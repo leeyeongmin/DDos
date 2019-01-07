@@ -47,7 +47,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<form action="insertEvent" method="post">
+									<form action="insertEvent" method="post" encType="multipart/form-data">
 										<table id="insertEvent" width="100%"
 											class="table table-bordered table-hover text-center">
 											<tr>
@@ -56,9 +56,10 @@
 													value="${sessionScope.login.id}">${sessionScope.login.id}</td>
 											</tr>
 											<tr>
-												<td>이미지</td>
-												<td><input type="text" name="eventTitle"
-													style="width: 100%" required></td>
+												<td>첨부파일</td>
+												<td>
+													<input type="file" name="fileName" style="width:100%;"><br/>
+												</td>
 											</tr>
 											<tr>
 												<td>제목</td>
@@ -73,11 +74,11 @@
 											<tr>
 												<td>시작일</td>
 												<td><input type="date" id="startDate" name="startDate"
-													value="${sysdate}" min="${sysdate}" required></td>
+													value="${sysdate}" min="${sysdate}" style="width:100%;" required></td>
 											</tr>
 											<tr>
 												<td>종료일</td>
-												<td><input type="date" id="endDate" name="endDate" required></td>
+												<td><input type="date" id="endDate" name="endDate" style="width:100%;" required></td>
 											<tr>
 												<td colspan="2"><input type="submit"
 													class="btn btn-primary btn-sm"

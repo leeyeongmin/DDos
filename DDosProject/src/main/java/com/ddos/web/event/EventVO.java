@@ -1,5 +1,7 @@
 package com.ddos.web.event;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class EventVO {
 
 	private int eventNum;
@@ -9,6 +11,9 @@ public class EventVO {
 	private String endDate;
 	private String writeDate;
 	private String memberId;
+	
+	private String eventFile;
+	private MultipartFile fileName;
 	
 	// 페이징 처리
 		private int First;
@@ -84,6 +89,23 @@ public class EventVO {
 
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+	
+
+	public String getEventFile() {
+		return eventFile;
+	}
+
+	public void setEventFile(String eventFile) {
+		this.eventFile = eventFile;
+	}
+
+	public MultipartFile getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(MultipartFile fileName) {
+		this.fileName = fileName;
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package com.ddos.web.rental;
 
 import java.util.List;
 
+import com.ddos.web.user.UserVO;
+
 public interface RentalService {
 	
 	//대출 현황 조회
@@ -23,4 +25,8 @@ public interface RentalService {
 
 	// 연장
 	public void renewBook(RentalVO vo);
+
+
+	public String getCount(UserVO vo);
+
 }

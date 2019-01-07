@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ddos.web.rental.RentalService;
 import com.ddos.web.rental.RentalVO;
+import com.ddos.web.user.UserVO;
 
 @Service
 public class RentalServiceImpl implements RentalService{
@@ -48,6 +49,12 @@ public class RentalServiceImpl implements RentalService{
 	public void renewBook(RentalVO vo) {
 		rda.renewBook(vo);
 		
+	}
+
+	@Override
+	public String getCount(UserVO vo) {
+		// TODO Auto-generated method stub
+		return rda.getRentalCount(vo);
 	}
 
 	

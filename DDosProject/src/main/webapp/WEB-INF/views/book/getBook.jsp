@@ -8,13 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>도서 상세 페이지</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 	function rentalBook() {
@@ -35,6 +28,7 @@
 					alert ("대출 완료되었습니다");	
 					location.reload();
 				}
+			}
 		})
 	}
 </script>

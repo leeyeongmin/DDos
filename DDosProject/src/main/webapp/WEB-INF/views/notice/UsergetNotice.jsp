@@ -63,7 +63,7 @@
 										</tr>
 										<tr>
 											<td width="10%">내용</td>
-											<td>${notice.noticeCont}</td>
+											<td style="word-break:break-all;">${notice.noticeCont}</td>
 										</tr>
 									</table>
 								</div>

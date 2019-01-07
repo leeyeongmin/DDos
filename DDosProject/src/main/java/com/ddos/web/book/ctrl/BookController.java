@@ -100,7 +100,7 @@ public class BookController {
 
 	// 도서 수정 처리
 	@RequestMapping("adminUpdateBook")
-	public String adminUpdateBook(BookVO vo) {
+	public String adminUpdateBook(BookVO vo, ReviewVO rvo) {
 		System.out.println(vo);
 		bookservice.adminUpdateBook(vo);
 		return "redirect:admincollection";
@@ -122,14 +122,7 @@ public class BookController {
 		return "book/getBook";
 	}
 	
-	//인기도서
-	@RequestMapping("UserHome")
-	public String topBookList(Model model, BookVO vo) {
-		model.addAttribute("book", bookservice.topBookList(vo));
-		
-		return "redirect:UserHome";
 	
-	}
 	////////////////////////////////////// 리뷰 컨트롤러
 	////////////////////////////////////// /////////////////////////////////////////////////
 

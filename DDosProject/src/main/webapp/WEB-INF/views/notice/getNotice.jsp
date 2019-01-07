@@ -63,9 +63,13 @@
 										</tr>
 										<tr>
 											<td width="10%">내용</td>
-											<td>${notice.noticeCont}</td>
+											<td style="word-break:break-all;" id="noticeCont">${notice.noticeCont}</td>
 										</tr>
 									</table>
+									<script>
+											var text = $('#noticeCont').html().replace(/(\n|\r\n)/g, '<br>');
+											$('#noticeCont').html(text);
+									</script>
 								</div>
 								<a href="getNoticeList" class="btn btn-primary btn-sm" style="width:8%; margin-left:2%; margin-top: 30px">목록</a>
 								<c:if test="${login.id == 'admin@gmail.com'}">  

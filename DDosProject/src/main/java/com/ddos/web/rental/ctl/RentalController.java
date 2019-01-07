@@ -39,19 +39,19 @@ public class RentalController {
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
 		paging.setTotalRecord(rentalService.rCount(vo));
+		mv.addObject("paging", paging);
+		mv.addObject("getRentalList", rentalService.getRentalList(vo));
+		
 		
 		PagingVO paging1 = new PagingVO();
 		paging1.setPage(page1);
 		paging1.setPageUnit(10);
 		vo.setFirst(paging1.getFirst());
 		vo.setLast(paging1.getLast());
-
-
 		paging1.setTotalRecord(rentalService.hCount(vo));
-		mv.addObject("paging", paging);
 		mv.addObject("paging1", paging1);
-		mv.addObject("getRentalList", rentalService.getRentalList(vo));
 		mv.addObject("getHistoryList", rentalService.getHistoryList(vo));
+		
 		mv.setViewName("rental/getRentalList");
 		return mv;
 	}

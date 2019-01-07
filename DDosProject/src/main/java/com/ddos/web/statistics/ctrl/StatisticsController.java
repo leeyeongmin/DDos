@@ -74,15 +74,67 @@ public class StatisticsController {
 	
 	@RequestMapping("toprental")
 	@ResponseBody
-	public List<Map> topRental(@RequestParam String day){
-		return serivce.toprental(day);
+	public Map topRental(@RequestParam Map day, PagingVO page){
+		
+		Map map = new HashMap();
+		
+		System.out.println("sssssssssssssss : " + day);
+		
+		page.setPage(Integer.parseInt(day.get("page").toString()));
+		
+		 if (page.getPage() == null) {
+	         page.setPage(1);
+	      }
+	      page.setPageUnit(5);
+	      
+	      day.put("first", page.getFirst());
+	      day.put("last", page.getLast());      
+
+	     int cnt = Integer.parseInt(((serivce.toprentalcount(day)).get("cnt")).toString());
+
+	     //page.setTotalRecord(cnt);
+	     page.setTotalRecord(cnt);
+	      
+	     
+	     map.put("paging", page);
+		 map.put("result", serivce.toprental(day));
+		
+		 
+		return map;
+
 	}
 	
 	
 	@RequestMapping("toprentalbook")
 	@ResponseBody
-	public List<Map> toprentalbook(@RequestParam String day){
-		return serivce.toprentalbook(day);
+	public Map toprentalbook(@RequestParam Map day, PagingVO page){
+		
+		Map map = new HashMap();
+		
+		System.out.println("sssssssssssssss : " + day);
+		
+		page.setPage(Integer.parseInt(day.get("page").toString()));
+		
+		 if (page.getPage() == null) {
+	         page.setPage(1);
+	      }
+	      page.setPageUnit(5);
+	      
+	      day.put("first", page.getFirst());
+	      day.put("last", page.getLast());      
+
+	     int cnt = Integer.parseInt(((serivce.toprentalbookcount(day)).get("cnt")).toString());
+
+	     //page.setTotalRecord(cnt);
+	     page.setTotalRecord(cnt);
+	      
+	     
+	     map.put("paging", page);
+		 map.put("result", serivce.toprentalbook(day));
+		
+		 
+		return map;
+
 	}
 	
 	@RequestMapping("rentalCount")
@@ -99,8 +151,34 @@ public class StatisticsController {
 	
 	@RequestMapping("totalList")
 	@ResponseBody
-	public List<Map> totalList(@RequestParam String year){
-		return serivce.totalList(year);
+	public Map totalList(@RequestParam Map year , PagingVO page){
+		
+		Map map = new HashMap();
+		
+		System.out.println("sssssssssssssss : " + year);
+		
+		page.setPage(Integer.parseInt(year.get("page").toString()));
+		
+		 if (page.getPage() == null) {
+	         page.setPage(1);
+	      }
+	      page.setPageUnit(7);
+	      
+	      year.put("first", page.getFirst());
+	      year.put("last", page.getLast());      
+
+	     int cnt = Integer.parseInt(((serivce.totalListCount(year)).get("cnt")).toString());
+
+	     //page.setTotalRecord(cnt);
+	     page.setTotalRecord(cnt);
+	      
+	     
+	     map.put("paging", page);
+		 map.put("result", serivce.totalList(year));
+		
+		 
+		return map;
+				
 	}
 	
 	@RequestMapping("totalChart_output")
@@ -111,8 +189,30 @@ public class StatisticsController {
 	
 	@RequestMapping("UnpaidList")
 	@ResponseBody
-	public List<Map> UnpaidList(){
-		return serivce.UnpaidList();
+	public Map UnpaidList(@RequestParam Map pag, PagingVO page){
+		
+		Map map = new HashMap();
+	
+		page.setPage(Integer.parseInt(pag.get("page").toString()));
+		
+		 if (page.getPage() == null) {
+	         page.setPage(1);
+	      }
+	      page.setPageUnit(7);
+	      
+	      pag.put("first", page.getFirst());
+	      pag.put("last", page.getLast());      
+
+	     int cnt = Integer.parseInt(((serivce.UnpaidListCount(pag)).get("cnt")).toString());
+
+	     page.setTotalRecord(cnt);
+	      
+	     map.put("paging", page);
+		 map.put("result", serivce.UnpaidList(pag));
+		
+		 
+		return map;
+
 	}
 	
 	@RequestMapping("month_inputchart")
@@ -129,6 +229,8 @@ public class StatisticsController {
 		Map map = new HashMap();
 		
 		System.out.println("sssssssssssssss : " + day);
+		
+		page.setPage(Integer.parseInt(day.get("page").toString()));
 		
 		 if (page.getPage() == null) {
 	         page.setPage(1);
@@ -153,8 +255,30 @@ public class StatisticsController {
 	
 	@RequestMapping("click_input")
 	@ResponseBody
-	public List<Map> click_input(@RequestParam Map map){
-		return serivce.click_input(map);
+	public Map Mapclick_input(@RequestParam Map day, PagingVO page){
+		Map map = new HashMap();
+		
+		page.setPage(Integer.parseInt(day.get("page").toString()));
+		
+		 if (page.getPage() == null) {
+	         page.setPage(1);
+	      }
+		 
+	      page.setPageUnit(5);
+	      
+	      day.put("first", page.getFirst());
+	      day.put("last", page.getLast());      
+
+	     int cnt = Integer.parseInt(((serivce.click_input_count(day)).get("cnt")).toString());
+
+	     //page.setTotalRecord(cnt);
+	     page.setTotalRecord(cnt);
+	     
+	     map.put("paging", page); 
+		 map.put("result", serivce.click_input(day));
+		
+		 
+		return map;
 	}
 	
 	@RequestMapping("month_outputchart")
@@ -165,14 +289,68 @@ public class StatisticsController {
 	
 	@RequestMapping("month_outputList")
 	@ResponseBody
-	public List<Map> month_outputList(@RequestParam String day){
-		return serivce.month_outputList(day);
+	public Map month_outputList(@RequestParam Map day , PagingVO page){
+		
+		Map map = new HashMap();
+		
+		page.setPage(Integer.parseInt(day.get("page").toString()));
+		
+		 if (page.getPage() == null) {
+	         page.setPage(1);
+	      }
+		 
+	      page.setPageUnit(5);
+	      
+	      day.put("first", page.getFirst());
+	      day.put("last", page.getLast());      
+
+	     int cnt = Integer.parseInt(((serivce.getoutputCount(day)).get("cnt")).toString());
+
+	     //page.setTotalRecord(cnt);
+	     page.setTotalRecord(cnt);
+	     
+	     map.put("paging", page); 
+		 map.put("result", serivce.month_outputList(day));
+		
+		 
+		return map;
+
 	}
 	
 	@RequestMapping("click_output")
 	@ResponseBody
-	public List<Map> click_output(@RequestParam Map map){
-		return serivce.click_output(map);
+	public Map click_output(@RequestParam Map day, PagingVO page){
+		Map map = new HashMap();
+		
+		System.out.println("====================" + day);
+		
+		
+		page.setPage(Integer.parseInt(day.get("page").toString()));
+		
+		 if (page.getPage() == null) {
+	         page.setPage(1);
+	      }
+		 
+	      page.setPageUnit(5);
+	      
+	      day.put("first", page.getFirst());
+	      day.put("last", page.getLast());      
+ 
+
+	      
+	      
+	     int cnt = Integer.parseInt(((serivce.click_output_count(day)).get("cnt")).toString());
+
+	      System.out.println("cnt :===================" + cnt);
+	     
+	     //page.setTotalRecord(cnt);
+	     page.setTotalRecord(cnt);
+	     
+	     map.put("paging", page); 
+		 map.put("result", serivce.click_output(day));
+		
+		 
+		return map;
 	}
 	
 	

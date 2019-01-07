@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,7 +129,7 @@
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
-								<form name="Search" id="Search">
+								<form name="Search" id="Search"   method="post">
 									<select class="form-control" name="searchTitle"
 										style="text-align: center; width: 15%; height: 45px; display: inline-block;">
 										<option value="book_title">책제목
@@ -139,6 +140,7 @@
 										style="width: 75%; margin-left: 1%; display: inline-block;"
 										id="searchKeyword" type="text" name="searchKeyword"
 										placeholder="Search">
+										<input type="hidden" name="page" />
 								</form>
 								<button class="btn btn-primary search-btn" onclick="check()">Search</button>
 							</div>
@@ -153,7 +155,7 @@
 							<!-- 검색 -->
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getNoticeList" width="100%"
+									<table id="rentalSearch" width="100%"
 										class="table table-bordered table-hover text-center">
 										<tr>
 											<td><input type="checkbox" onclick="all_check()" id="checkyn"></td>
@@ -169,6 +171,13 @@
 									</table>
 								</div>							
 							</div>
+							<my:paging paging="${paging}" />
+								<script>
+								function go_page(page) {
+									document.Search.page.value = page;
+									document.Search.submit();
+								}
+							</script>
 						</div>
 					</div>	
 					<!-- ============================================================== -->

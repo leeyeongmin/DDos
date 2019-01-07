@@ -13,6 +13,12 @@ public class PagingVO {
 	
 	
 	
+	@Override
+	public String toString() {
+		return "PagingVO [pageUnit=" + pageUnit + ", pageSize=" + pageSize + ", lastPage=" + lastPage + ", totalRecord="
+				+ totalRecord + ", page=" + page + ", startPage=" + startPage + ", endPage=" + endPage + ", first="
+				+ first + ", last=" + last + "]";
+	}
 	public int getFirst() {	//현재 페이지랑 레코드 건수만 넣어주면 자동 계산해서 넘겨줌.
 		first = (getPage() - 1) * getPageUnit() + 1;
 		return first;

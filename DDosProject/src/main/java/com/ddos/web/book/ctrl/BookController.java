@@ -123,9 +123,13 @@ public class BookController {
 	}
 	
 	//인기도서
+	@RequestMapping("UserHome")
+	public String topBookList(Model model, BookVO vo) {
+		model.addAttribute("book", bookservice.topBookList(vo));
+		
+		return "redirect:UserHome";
 	
-	
-
+	}
 	////////////////////////////////////// 리뷰 컨트롤러
 	////////////////////////////////////// /////////////////////////////////////////////////
 

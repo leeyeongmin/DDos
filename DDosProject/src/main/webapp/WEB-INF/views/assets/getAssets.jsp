@@ -87,11 +87,14 @@ div.card {
 							</div>
 
 							<div class="form-group row">
-								<label class="col-12 col-sm-3 col-form-label text-sm-right"></label>
-								<div class="col-12 col-sm-8 col-lg-6" id="uploadFile"
-									name="uploadFile">${assets.uploadFile}</div>
-							</div>
-
+							<label class="col-12 col-sm-3 col-form-label text-sm-right" id="uploadFileName"
+									name="uploadFileName">파일</label>
+							<c:if test="${not empty assets.uploadFileName}">
+	<a href="FileDown?atchFileId=${assets.uploadFileName}" i class="far fa-file" >${assets.uploadFileName}</a>
+	
+	
+	</c:if>
+</div>
 							<div class="form-group row text-right">
 								<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
 									<a href="./assetsUpdateform?assetsNum=${assets.assetsNum}"

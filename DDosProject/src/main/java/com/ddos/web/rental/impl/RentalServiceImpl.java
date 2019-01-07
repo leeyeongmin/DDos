@@ -50,10 +50,23 @@ public class RentalServiceImpl implements RentalService{
 		
 	}
 
+	// 대출 반납 리스트  건수
 	@Override
-	public int getCount(RentalVO vo) {
-		return rda.getCount(vo);
+	public int hCount(RentalVO vo) {
+		return rda.hCount(vo);
 	}
+	// 대출현황 건수
+	@Override
+	public int rCount(RentalVO vo) {
+		
+		return rda.rCount(vo);
+	}
+
+	@Override
+	public int tCount(RentalVO vo) {
+		return rda.tCount(vo);
+	}
+	
 
 	
 

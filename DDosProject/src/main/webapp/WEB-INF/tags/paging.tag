@@ -22,7 +22,7 @@
 <c:if test="${empty jsFunc}">
 	<c:set var="jsFunc" value="go_page"></c:set>
 </c:if>
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation example"  style="margin:auto;" >
 	<ul class="pagination">
 		<li class="page-item"><a class="page-link" href="#">Previous
 				<c:forEach begin="${paging.startPage}" end="${paging.endPage}"

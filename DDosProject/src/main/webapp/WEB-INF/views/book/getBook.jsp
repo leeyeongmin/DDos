@@ -27,30 +27,24 @@
 			dataType : "json",
 
 			success : function(data) {
-				if(data.result == "true"){
+				if (data.result == "true") {
 					alert("대출 중인 책입니다.");
-				}else{
-					alert ("대출 완료되었습니다");	
+				} else {
+					alert("대출 완료되었습니다");
 					location.reload();
 				}
-			} 
+			}
 		});
 	}
 </script>
 <style type="text/css">
-
-.testimg img
-{
- 
- top:0;
- width: 100%;
- height: 100%; 
+.testimg img {
+	top: 0;
+	width: 100%;
+	height: 100%;
 }
 </style>
-
-
 </head>
-
 <body>
 	<div class="dashboard-main-wrapper">
 		<!-- ============================================================== -->
@@ -87,157 +81,77 @@
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<div class="card-body">
-  
-								<!-- 여기서 부터 내용 -->
-								<div class="row"> 
-									<div style="width: 30%;">
-										<div style="margin-left:160px; margin-top:150px; height: 200px; width: 150px; left:20%; " class="testimg">
-											<img class="d-block" src="./bookImg/${book.isbn}.jpg"  >
-										</div> 	
-										<%-- <div class="product-slider">
-											<!--사진넣는 곳--> 
-											<div id="productslider-1" 
-												class="product-carousel carousel slide" data-ride="carousel">
-												<ol class="carousel-indicators">
-												</ol>
-												<div class="carousel-inner">
-													<div class="carousel-item active">
-														<img class="d-block" src="./bookImg/${book.isbn}.jpg" 
-															alt="Third slide"> 
-													</div>
-												</div>
 
-											</div>
-										</div> --%>
-									</div> 
+								<!-- 여기서 부터 내용 -->
+								<div class="row">
+									<div style="width: 30%;">
+										<div
+											style="margin-left: 160px; margin-top: 150px; height: 200px; width: 150px; left: 20%;"
+											class="testimg">
+											<img class="d-block" src="./bookImg/${book.isbn}.jpg">
+										</div>
+
+									</div>
 									<div style="width: 70%;">
 										<div class="product-details">
 											<div class="border-bottom pb-3 mb-3">
-												<%-- <h2 class="mb-3">${book.bookTitle}</h2> --%>
-												 <span class="mb-3" style="font-size: 50pt;">${book.bookTitle}</span> 
+												<span class="mb-3" style="font-size: 25pt;">${book.bookTitle}</span>
 												<div class="product-rating d-inline-block float-right">
 													<!-- 별점 평균 넣기 -->
 												</div>
-												<%-- <h3 class="mb-0 text-primary">${book.bookWriter}</h3> --%>
-												<br><br>
-												<span style="font-size: 30pt;" class="mb-0 text-primary">${book.bookWriter}</span>
-												<br><br>
-											</div> 
-											<table 
-											style="font-size: 30px;  border-collapse: separate; border-spacing: 30px; border-radius: 20%;">
-											<thead> 
-												<tr>   
-													<td width="15%">ISBN &nbsp;</th>
-													<td width="40%">${book.isbn}</th>
-												</tr>
-												<tr>
-													<td width="15%" >출판사 &nbsp;</td>
-													<td width="30%">${book.bookComp}</td>
-												</tr>
-												<tr>
-													<td width="15%" >장르 &nbsp;</td>
-													<td width="40%">${book.bookGenre}</td>
-												</tr>
-												<tr>
-													<td width="15%">소장처/자료실 &nbsp;</td>
-													<td>${book.bookLoc}</td>
-												</tr> 
-												<tr>
-													<td width="15%">도서상태 &nbsp;</td>
-													<td>${book.bookAmount}</td>
-												</tr>
-												<c:if test="${book.bookAmount == '0'}">										
+
+												<span style="font-size: 20pt;" class="mb-0 text-primary">${book.bookWriter}</span>
+
+											</div>
+											<table
+												style="font-size: 15px; border-collapse: separate; border-spacing: 30px; border-radius: 20%;">
+												<thead>
 													<tr>
-														<td width="15%" >반납예정일&nbsp;</td>
-														<td>${book.dueDate}</td>
-													</tr> 
-												</c:if>	
-											</thead> 
-										</table>
-										<br>
-										<div style="padding-left: 10%"> 
-											<c:choose>   
+														<td width="15%">ISBN &nbsp;
+														</th>
+														<td width="40%">${book.isbn}
+														</th>
+													</tr>
+													<tr>
+														<td width="15%">출판사 &nbsp;</td>
+														<td width="30%">${book.bookComp}</td>
+													</tr>
+													<tr>
+														<td width="15%">장르 &nbsp;</td>
+														<td width="40%">${book.bookGenre}</td>
+													</tr>
+													<tr>
+														<td width="15%">소장처/자료실 &nbsp;</td>
+														<td>${book.bookLoc}</td>
+													</tr>
+													<tr>
+														<td width="15%">도서상태 &nbsp;</td>
+														<td>${book.bookAmount}</td>
+													</tr>
+													<c:if test="${book.bookAmount == '0'}">
+														<tr>
+															<td width="15%">반납예정일&nbsp;</td>
+															<td>${book.dueDate}</td>
+														</tr>
+													</c:if>
+												</thead>
+											</table>
+											<br>
+											<div style="padding-left: 10%">
+												<c:choose>
 													<c:when test="${book.bookAmount == '0'}">
 														<input type="button" class="btn btn-primary"
-															onclick="rentalBook();" value="대출불가" disabled="disabled" style="width: 30%">
+															onclick="rentalBook();" value="대출불가" disabled="disabled"
+															style="width: 30%">
 													</c:when>
 													<c:otherwise>
 														<input type="button" class="btn btn-primary"
 															onclick="rentalBook();" value="대출" style="width: 30%">
 													</c:otherwise>
-											</c:choose>
+												</c:choose>
+											</div>
 										</div>
-									</div>
-										<%-- <table  
-											style="font-size: 25px; text-align: center; width: 80%" border="1">
-											<thead>
-												<tr>
-													<td width="30%"><strong>소장처/자료실</strong> &nbsp;</td>
-													<td width="20%"><strong>도서상태</strong> &nbsp;</td>
-													<td width="30%"><strong>반납예정일 </strong>&nbsp;</td>
-												</tr> 
-												<tr>    
-													<td>${book.bookLoc}</td>
-													<td>${book.bookAmount}</td>
-													<td>${book.dueDate}</td>
-											</thead> 
-										</table>  --%> 
-									<%-- 	<br>
-										<c:choose> 
-											<c:when test="${book.bookAmount == '0'}">
-												<input type="button" class="btn btn-primary"
-													onclick="rentalBook();" value="대출불가" disabled="disabled">
-											</c:when>
-											<c:otherwise>
-												<input type="button" class="btn btn-primary"
-													onclick="rentalBook();" value="대출">
-											</c:otherwise>
-										</c:choose> --%>
-										
-										
-										<%-- <table
-											style="font-size: 17px; margin: 25px; border-collapse =separate; border-spacing: 2px;">
-											<thead>
-												<tr>
-													<th>ISBN &nbsp;</th>
-													<th>${book.isbn}</th>
-												</tr>
-												<tr>
-													<td>출판사 &nbsp;</td>
-													<td>${book.bookComp}</td>
-												</tr>
-												<tr>
-													<td>장르 &nbsp;</td>
-													<td>${book.bookGenre}</td>
-												</tr>
-											</thead>
-										</table> --%>
 
-										<%-- <table
-											style="font-size: 17px; margin: 25px; text-align: center">
-											<thead>
-												<tr>
-													<th>소장처/자료실 &nbsp;</th>
-													<th>도서상태 &nbsp;</th>
-													<th>반납예정일 &nbsp;</th>
-												</tr>
-												<tr>
-													<td>${book.bookLoc}</td>
-													<td>${book.bookAmount}</td>
-													<td>${book.dueDate}</td>
-											</thead>
-										</table>
-
-										<c:choose>
-											<c:when test="${book.bookAmount == '0'}">
-												<input type="button" class="btn btn-primary"
-													onclick="rentalBook();" value="대출불가" disabled="disabled">
-											</c:when>
-											<c:otherwise>
-												<input type="button" class="btn btn-primary"
-													onclick="rentalBook();" value="대출">
-											</c:otherwise>
-										</c:choose> --%>
 
 									</div>
 								</div>
@@ -247,8 +161,9 @@
 								class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
 								<div class="simple-card">
 									<ul class="nav nav-tabs" id="myTab5" role="tablist">
-										<li class="nav-item"><a class="nav-link border-left-0 active show"
-											id="product-tab-1" data-toggle="tab" href="#tab-1" role="tab"
+										<li class="nav-item"><a
+											class="nav-link border-left-0 active show" id="product-tab-1"
+											data-toggle="tab" href="#tab-1" role="tab"
 											aria-controls="product-tab-1" aria-selected="true">내용</a></li>
 										<li class="nav-item"><a class="nav-link "
 											id="product-tab-2" data-toggle="tab" href="#tab-2" role="tab"
@@ -310,12 +225,14 @@
 																						width="90">
 																				</c:if></td>
 																			<td>${review.reviewDate}</td>
-																			<td>
-																			<c:if test="${login.id == review.memberId}">
-																			<a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}" class="btn btn-primary">수정</a> 
-																			<a href="./deleteReview?reviewNum=${review.reviewNum}&isbn=${review.isbn}" class="btn btn-space btn-secondary">삭제</a>
-																			</c:if>
-																			</td>
+																			<td><c:if test="${login.id == review.memberId}">
+																					<a
+																						href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
+																						class="btn btn-primary">수정</a>
+																					<a
+																						href="./deleteReview?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
+																						class="btn btn-space btn-secondary">삭제</a>
+																				</c:if></td>
 																		</tr>
 																	</c:forEach>
 																</tbody>

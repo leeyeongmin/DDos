@@ -7,26 +7,33 @@
 	<select id="getRentalList" parameterType="rental"
 		resultType="rental">
 		SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
-		SELECT R.RENTAL_NUM, B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER,
+		SELECT R.RENTAL_NUM,
+		B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER,
 		TO_CHAR(R.RENTAL_DATE, 'YYYY/MM/DD')AS RENTAL_DATE,
-		R.RETURN_DATE, R.MEMBER_ID, TO_CHAR(R.DUE_DATE, 'YYYY/MM/DD')AS DUE_DATE , RENEW_CNT
+		TO_CHAR( R.RETURN_DATE, 'YYYY/MM/DD'),
+		R.MEMBER_ID, TO_CHAR(R.DUE_DATE,
+		'YYYY/MM/DD')AS DUE_DATE , RENEW_CNT
 		FROM BOOK B JOIN RENTAL R
-		ON (B.ISBN=R.ISBN)
+		ON
+		(B.ISBN=R.ISBN)
 		<where>
 			<if test=" loginId != null">
 				AND RETURN_DATE IS NULL AND MEMBER_ID = #{loginId}
 			</if>
 		</where>
-	 ORDER BY ISBN DESC
+		ORDER BY ISBN DESC
 		) A) B WHERE RN BETWEEN #{first} and #{last}
 	</select>
 
 
 	<!-- 대출 -->
 	<insert id="rentalBook" statementType="CALLABLE">
-		{call P_rental(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
-		#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
-		#{overck, mode=OUT, jdbcType=VARCHAR, javaType=string}
+		{call P_rental(#{isbn,
+		mode=IN, jdbcType=VARCHAR, javaType=string},
+		#{loginId, mode=IN,
+		jdbcType=VARCHAR, javaType=string},
+		#{overck, mode=OUT,
+		jdbcType=VARCHAR, javaType=string}
 		)
 	</insert>
 
@@ -34,11 +41,15 @@
 	<select id="getHistoryList" parameterType="rental"
 		resultType="rental">
 		SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
-		SELECT R.RENTAL_DATE, R.RETURN_DATE, R.DUE_DATE, R.MEMBER_ID,
-   		  B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER	
+		SELECT
+		to_char(R.RENTAL_DATE, 'YYYY/MM/DD') as RENTAL_DATE,
+		to_char(R.RETURN_DATE,'YYYY/MM/DD') as RETURN_DATE,
+		to_char(R.DUE_DATE,'YYYY/MM/DD') as DUE_DATE, R.MEMBER_ID,
+		B.ISBN,
+		B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER
 		FROM BOOK B JOIN RENTAL R
-		ON (B.ISBN=R.ISBN)
-		
+		ON
+		(B.ISBN=R.ISBN)
 		<where>
 			<if test=" loginId != null">
 				AND RETURN_DATE IS NOT NULL AND MEMBER_ID = #{loginId}
@@ -51,8 +62,10 @@
 	<!-- 연장 -->
 	<insert id="renewBook" statementType="CALLABLE">
 		{call P_renewal
-		(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
-		#{loginId, mode=IN, jdbcType=VARCHAR, javaType=string},
+		(#{isbn,
+		mode=IN, jdbcType=VARCHAR, javaType=string},
+		#{loginId, mode=IN,
+		jdbcType=VARCHAR, javaType=string},
 		'1' )
 		}
 
@@ -62,39 +75,91 @@
 	<!-- 반납 리스트 -->
 	<select id="rentalSearch" resultType="rental"
 		parameterType="rental">
-		SELECT B.book_title, R.isbn , R.rental_date , R.due_date , R.member_id
-		FROM Rental R LEFT OUTER JOIN Book B
+		SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
+		SELECT B.book_title,
+		R.isbn , R.rental_date , R.due_date , R.member_id
+		FROM Rental R LEFT
+		OUTER JOIN Book B
 		on (R.isbn = B.isbn)
-		<choose>
-			<when
-				test="searchTitle != null and searchTitle == 'book_title' ">
-				where ${searchTitle} like '%' || #{searchKeyword} || '%'
-				and r.return_date is null
+		<!-- <where>
+			<if test="searchTitle != null and searchTitle == 'booktitle'">
+				and book_Title like '%' || #{searchKeyword} || '%'	</if>
+			<if test="searchTitle != null and searchTitle == 'isbn'">
+				and isbn like '%' || #{searchKeyword} || '%' </if>
+			<if test="searchTitle != null and searchTitle == 'memberId'">
+				and member_Id like '%' || #{searchKeyword} || '%' </if>
+		</where>  -->
+	<choose>
+			<when test="searchTitle != null and searchTitle == 'book_title' ">
+				  where ${searchTitle} like '%' || #{searchKeyword} || '%'
+				  and r.return_date is null
 			</when>
 
 			<when test="searchTitle != null and searchTitle == 'isbn' ">
-				where R.${searchTitle} = #{searchKeyword}
-				and R.return_date is null
-			</when>
+			      where R.${searchTitle} = #{searchKeyword} 
+				  and R.return_date is null 
+			</when>	
 
 			<otherwise>
-				where member_id = #{searchKeyword}
+				where member_id = #{searchKeyword} 
 				and R.return_date is null
-			</otherwise>
+			</otherwise>	
 		</choose>
+	ORDER BY rental_date DESC
+	) A) B WHERE RN BETWEEN #{first} and #{last}
 	</select>
 
 	<!-- 반납 -->
 	<insert id="returnBook">      <!-- 프로시저는 insert,update, delete 사용 가능 -->
 		{call P_return(#{isbn, mode=IN, jdbcType=VARCHAR, javaType=string},
 		#{rentalDate, mode=IN, jdbcType=VARCHAR, javaType=string},
-		#{memberId, mode=IN, jdbcType=VARCHAR, javaType=string})
+		#{memberId,
+		mode=IN, jdbcType=VARCHAR, javaType=string})
 		}
 	</insert>
 
-<!-- 건수 -->
-	<select id="getCount" resultType="int">
+	<!-- 대출 반납 리스트  건수 -->
+	<select id="hCount" resultType="int">
 		SELECT COUNT(*)
 		FROM RENTAL
+		<where>
+			 <if test=" loginId != null">
+				AND RETURN_DATE IS NOT NULL AND MEMBER_ID = #{loginId}
+			</if>
+		</where>
 	</select>
+
+	<!-- 대출현황 건수 -->
+	<select id="rCount" resultType="int">
+		SELECT COUNT(*)
+		FROM RENTAL
+		<where>
+			<if test=" loginId != null">
+				AND RETURN_DATE IS NULL AND MEMBER_ID = #{loginId}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 반납리스트 건수-->
+	<select id="tCount" resultType="int">
+		SELECT COUNT(*)
+		FROM RENTAL
+		<!--<choose>
+		 <when test="searchTitle != null and searchTitle == 'book_title' ">
+				  where ${searchTitle} like '%' || #{searchKeyword} || '%'
+				  and return_date is null
+			</when>
+
+			<when test="searchTitle != null and searchTitle == 'isbn' ">
+			      where R.${searchTitle} = #{searchKeyword} 
+				  and return_date is null 
+			</when>	
+
+			<otherwise>
+				where member_id = #{searchKeyword} 
+				and return_date is null
+			</otherwise>	
+	</choose> -->
+	</select>
+
 </mapper>

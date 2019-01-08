@@ -181,8 +181,8 @@
 		SELECT PASSWORD
 		FROM MEMBER
 		WHERE ID = #{id}
-		AND NAME = #{name}
-		AND PHONE = #{phone}
+	<!-- 	AND NAME = #{name}
+		AND PHONE = #{phone} -->
 	
 	</select>
 	

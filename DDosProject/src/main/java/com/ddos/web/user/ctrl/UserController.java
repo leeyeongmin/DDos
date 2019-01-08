@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import com.ddos.web.email.EmailVO;
+import com.ddos.web.email.SendEmailService;
 import com.ddos.web.user.UserService;
 import com.ddos.web.user.UserVO;
 
@@ -25,6 +28,9 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	SendEmailService emailService;
 
 	// -------------------------------------------------------------------로그인---------------------------------------------------
 
@@ -98,7 +104,7 @@ public class UserController {
 		return "no/login/FindInfo";
 	}
 
-	@RequestMapping("findPwd")
+	/*@RequestMapping("findPwd")
 	public String findPwd(@ModelAttribute("fpwd") UserVO vo, HttpSession session, HttpServletResponse response)
 			throws IOException { // UserVO 瑜� jsp�뿉�꽌 user濡� �궗�슜
 		
@@ -123,7 +129,40 @@ public class UserController {
 			out.flush();
 			return "no/login/Login";
 		}
+	}*/
+	
+	@RequestMapping("findPwd")
+	public String findPwd(EmailVO vo, HttpServletResponse response, UserVO user) throws IOException {
+		
+		System.out.println(user);
+		
+		UserVO uservo = userService.findPwd(user);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+
+		if (uservo == null) {
+
+			out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
+			
+		} else {
+			
+			
+			vo.setFrom("aaa@gmail.com"); 
+			vo.setTo(user.getId());
+			vo.setSubject("비밀번호");
+			vo.setContent(uservo.getPassword());
+			
+			emailService.send(vo);
+			
+			out.println("<script>alert(" + user.getId()+ "로 이메일이 발생되었습니다.);</script>");
+		}
+		
+		out.flush();
+		return "no/login/Login";
 	}
+	
 
 	// -------------------------------------------------------------------�쉶�썝媛��엯-----------------------------------------------------------
 

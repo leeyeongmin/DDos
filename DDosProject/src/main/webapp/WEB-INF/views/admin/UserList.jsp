@@ -187,7 +187,7 @@
 														class="far fa-star"></i></a>
 												</c:if>
 
-												<a href="userDetail?id=${userList.id}"
+												<a href="userDetail?id=${userList.id}&&memberId=${userList.id}"
 													class="btn btn-secondary">Show User</a>
 											</div>
 										</div>
@@ -235,9 +235,6 @@
 										<option value="" selected>SELECT</option>
 										<option value="OUT_COUNT">OUT&nbsp;COUNT</option>
 										<option value="EXP_DATE">EXP&nbsp;DATE</option>
-										<option value="">RENTAL</option>
-										<option value="">OVERDUE</option>
-										<option value="">REVIEW</option>
 									</select>
 								</form>
 							</div>

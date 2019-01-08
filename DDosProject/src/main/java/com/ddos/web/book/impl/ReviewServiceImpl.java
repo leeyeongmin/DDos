@@ -41,5 +41,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewVO getReview(ReviewVO rvo) {
 		return dao.getReview(rvo);
 	}
+	// 리뷰 히스토리
+	@Override
+	public List<ReviewVO> getReviewHistory(ReviewVO rvo) {
+		return dao.getReviewHistory(rvo);
+	}
 
 }

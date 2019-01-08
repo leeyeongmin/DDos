@@ -32,10 +32,10 @@ public class StudyController {
 		if (studyvo != null) {
 			out.println("<script>alert('이미 사용중인 스터디 룸입니다. 다시 등록해주세요.');</script>");
 			out.flush();
-			return "redirect:getStudyList";
+			return "study/getStudyList";
 		} else {
 			studyService.insertStudy(vo);
-			return "redirect:getStudyList";
+			return "study/getStudyList";
 		}
 	}
 

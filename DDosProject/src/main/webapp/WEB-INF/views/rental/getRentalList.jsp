@@ -83,7 +83,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">#</th>
+    
                                                 <th scope="col">ISBN</th>
                                                 <th scope="col">도서명</th>
                                                 <th scope="col">저자</th>
@@ -96,7 +96,7 @@
                                         <tbody id=getRentalList>
                                             <c:forEach items="${getRentalList}" var="rental">
                                                 <tr>
-                                                    <td><input type="checkbox" name="rnum" value="${rental.rentalNum}"></td>
+                                                    
                                                     <td>${rental.isbn}</td>
                                                     <td>${rental.bookTitle}</td>
                                                     <td>${rental.bookWriter}</td>
@@ -178,6 +178,9 @@
             </div>
         </div>
     </div>
+    
+    ${paging1}<br><br><br><br>
+    ${paging}
 </body>
 
 </html>

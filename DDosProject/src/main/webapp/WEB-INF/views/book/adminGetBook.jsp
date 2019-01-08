@@ -114,7 +114,7 @@
 										</table>
 
 
-										<a href="#" class="btn btn-primary">대출</a> <a
+										 <a
 											href="./adminUpdateBookform?isbn=${book.isbn}"
 											class="btn btn-space btn-secondary">수정</a>
 									</div>

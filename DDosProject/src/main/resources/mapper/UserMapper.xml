@@ -156,7 +156,7 @@
 	<insert id="insertUser" parameterType="user">
 	
 		INSERT INTO MEMBER(ID, PASSWORD, NAME, PHONE, BIRTH, EXP_DATE, MEM_SEPARATION, OUT_COUNT, ADDRESS, GENDER) 
-		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, ADD_MONTHS(sysdate,+12),'user',0, #{address}, #{gender})
+		VALUES( #{id}, #{password}, #{name}, #{phone}, #{birth}, null,'user',0, #{address}, #{gender})
 	
 	</insert>
 	

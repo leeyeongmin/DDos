@@ -9,13 +9,12 @@
 		SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
 		SELECT R.RENTAL_NUM,
 		B.ISBN, B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER,
-		TO_CHAR(R.RENTAL_DATE, 'YYYY/MM/DD')AS RENTAL_DATE,
-		TO_CHAR( R.RETURN_DATE, 'YYYY/MM/DD'),
+		TO_CHAR(R.RENTAL_DATE, 'YYYY/MM/DD') AS RENTAL_DATE,
+		TO_CHAR( R.RETURN_DATE, 'YYYY/MM/DD') as RETURN_DATE,
 		R.MEMBER_ID, TO_CHAR(R.DUE_DATE,
 		'YYYY/MM/DD')AS DUE_DATE , RENEW_CNT
 		FROM BOOK B JOIN RENTAL R
-		ON
-		(B.ISBN=R.ISBN)
+		ON (B.ISBN=R.ISBN)
 		<where>
 			<if test=" loginId != null">
 				AND RETURN_DATE IS NULL AND MEMBER_ID = #{loginId}
@@ -48,8 +47,7 @@
 		B.ISBN,
 		B.BOOK_TITLE, B.BOOK_COMP, B.BOOK_WRITER
 		FROM BOOK B JOIN RENTAL R
-		ON
-		(B.ISBN=R.ISBN)
+		ON (B.ISBN=R.ISBN)
 		<where>
 			<if test=" loginId != null">
 				AND RETURN_DATE IS NOT NULL AND MEMBER_ID = #{loginId}
@@ -81,14 +79,7 @@
 		FROM Rental R LEFT
 		OUTER JOIN Book B
 		on (R.isbn = B.isbn)
-		<!-- <where>
-			<if test="searchTitle != null and searchTitle == 'booktitle'">
-				and book_Title like '%' || #{searchKeyword} || '%'	</if>
-			<if test="searchTitle != null and searchTitle == 'isbn'">
-				and isbn like '%' || #{searchKeyword} || '%' </if>
-			<if test="searchTitle != null and searchTitle == 'memberId'">
-				and member_Id like '%' || #{searchKeyword} || '%' </if>
-		</where>  -->
+		
 	<choose>
 			<when test="searchTitle != null and searchTitle == 'book_title' ">
 				  where ${searchTitle} like '%' || #{searchKeyword} || '%'
@@ -142,24 +133,27 @@
 	
 	<!-- 반납리스트 건수-->
 	<select id="tCount" resultType="int">
-		SELECT COUNT(*)
-		FROM RENTAL
-		<!--<choose>
-		 <when test="searchTitle != null and searchTitle == 'book_title' ">
+		SELECT count(*)
+		FROM Rental R LEFT
+		OUTER JOIN Book B
+		on (R.isbn = B.isbn)
+		<choose>
+			<when test="searchTitle != null and searchTitle == 'book_title' ">
 				  where ${searchTitle} like '%' || #{searchKeyword} || '%'
-				  and return_date is null
+				  and r.return_date is null
 			</when>
 
 			<when test="searchTitle != null and searchTitle == 'isbn' ">
 			      where R.${searchTitle} = #{searchKeyword} 
-				  and return_date is null 
+				  and R.return_date is null 
 			</when>	
 
 			<otherwise>
 				where member_id = #{searchKeyword} 
-				and return_date is null
+				and R.return_date is null
 			</otherwise>	
-	</choose> -->
+		</choose>
+		ORDER BY rental_date DESC
 	</select>
 
 </mapper>

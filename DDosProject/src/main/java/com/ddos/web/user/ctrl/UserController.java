@@ -56,10 +56,16 @@ public class UserController {
 			return "no/login/Login";
 		}else {
 			
+			int bigo;
+			
 			Date date = new Date();
 			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-System.out.println(uservo);
-			int bigo = format1.format(date).compareTo(uservo.getExpDate());
+			System.out.println(uservo);
+			if(uservo.getExpDate() != null) {
+				bigo = format1.format(date).compareTo(uservo.getExpDate());
+			}else {
+				bigo = 1;
+			}
 				
 			if (bigo >  0) {
 				session.setAttribute("temp", uservo);
@@ -80,6 +86,7 @@ System.out.println(uservo);
 	@RequestMapping("logout")
 	public String logout(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response){
 		session.removeAttribute("login");
+		session.removeAttribute("temp");
 		return "no/login/Login";
 
 	}
@@ -94,7 +101,9 @@ System.out.println(uservo);
 	@RequestMapping("findPwd")
 	public String findPwd(@ModelAttribute("fpwd") UserVO vo, HttpSession session, HttpServletResponse response)
 			throws IOException { // UserVO 瑜� jsp�뿉�꽌 user濡� �궗�슜
-
+		
+		System.out.println(vo);
+		
 		UserVO uservo = userService.findPwd(vo);
 
 		System.out.println(vo);
@@ -166,6 +175,8 @@ System.out.println(uservo);
 
 		userService.updateUser(vo);
 		return "user/UserHome";
+		//return "admin/admin/AdminHome";
+		//return "redirect:getUserList";
 	}
 	
 	@RequestMapping("/withdrawalForm") // http://localhost:8081/app/getBoardList
@@ -189,7 +200,8 @@ System.out.println(uservo);
 	}
 	
 	@RequestMapping("loginHomepage")
-	public String loginHomepage() {
+	public String loginHomepage(HttpSession session) {
+		session.removeAttribute("temp");
 		return "no/login/Login";   
 	}
 	

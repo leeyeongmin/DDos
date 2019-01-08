@@ -87,7 +87,8 @@ public class AdminUserController {
 
 		userService.updateUser(vo);
 		return "admin/admin/AdminHome";
-	}
+		//return "redirect:getUserList";
+	}  
 	
 	
 

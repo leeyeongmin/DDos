@@ -52,9 +52,15 @@ public class WishBookDAOMybatis {
 		}
 		
 		// 전체 건수 조회
-		public int getCount(WishBookVO vo) {
-			return mybatis.selectOne("wishbook.getCount", vo);
+		public int adminCount(WishBookVO vo) {
+			return mybatis.selectOne("wishbook.adminCount", vo);
 		}
+		
+		public int userCount(WishBookVO vo) {
+			return mybatis.selectOne("wishbook.userCount", vo);
+		}
+		
+		
 
 		
 	

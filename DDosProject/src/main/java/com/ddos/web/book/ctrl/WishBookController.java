@@ -36,7 +36,7 @@ public class WishBookController {  //희망도서 controller
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
 
-		paging.setTotalRecord(wishBookService.getCount(vo));
+		paging.setTotalRecord(wishBookService.adminCount(vo));
 		mv.addObject("paging", paging);
 		mv.addObject("adminWishBookList", wishBookService.adminWishBookList(vo));
 		mv.setViewName("admin/book/adminWishBookList");
@@ -59,7 +59,9 @@ public class WishBookController {  //희망도서 controller
 	
 	//희망도서 등록처리
 	@RequestMapping("adminInsertWishBook")
-	public String adminInsertWishBook(WishBookVO vo) {
+	public String adminInsertWishBook(WishBookVO vo,  HttpSession session) {
+		vo.setMemberId(((UserVO)session.getAttribute("login")).getId());
+		System.out.println("희망도서 등록 처리컨드롤러" + vo);
 		wishBookService.adminInsertWishBook(vo);
 		System.out.println("희망도서 컨트롤 등록처리");
 		return "redirect:adminWishBook";
@@ -110,7 +112,7 @@ public class WishBookController {  //희망도서 controller
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
 
-		paging.setTotalRecord(wishBookService.getCount(vo));
+		paging.setTotalRecord(wishBookService.userCount(vo));
 		
 		mv.addObject("paging", paging);
 		mv.addObject("getWishBookList", wishBookService.getWishBookList(vo));
@@ -136,7 +138,8 @@ public class WishBookController {  //희망도서 controller
 	
 	//희망도서 등록처리
 	@RequestMapping("insertWishBook")
-	public String insertWishBook(WishBookVO vo) {
+	public String insertWishBook(WishBookVO vo,  HttpSession session) {
+		vo.setMemberId(((UserVO)session.getAttribute("login")).getId());
 		wishBookService.insertWishBook(vo);
 		System.out.println("희망도서 컨트롤 등록처리");
 		return "redirect:wishbook";

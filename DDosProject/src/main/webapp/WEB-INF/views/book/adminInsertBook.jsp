@@ -27,7 +27,7 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Book Insert</a>
+										<li class="breadcrumb-item active" aria-current="page">Wish Book Insert</a>
 										</li>
 									</ol>
 								</nav>

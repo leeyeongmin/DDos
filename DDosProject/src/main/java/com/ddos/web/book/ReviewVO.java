@@ -10,9 +10,6 @@ public class ReviewVO {
 	private String reviewNum; // 리뷰 글번호
 	private int pageUnit; // 페이징처리
 	private String reviewDate;
-	
-	private String id;
-	private String bookTitle;
 
 	public String getIsbn() {
 		return isbn;
@@ -76,24 +73,6 @@ public class ReviewVO {
 
 	public void setReviewDate(String reviewDate) {
 		this.reviewDate = reviewDate;
-	}
-	
-	
-	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getBookTitle() {
-		return bookTitle;
-	}
-
-	public void setBookTitle(String bookTitle) {
-		this.bookTitle = bookTitle;
 	}
 
 	@Override

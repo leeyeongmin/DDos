@@ -15,6 +15,11 @@
 	IMP.init('imp93998128'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
 	function pay(){
+		if('${user.expDate}' != ""){
+			alert("사용기간이 만료되었습니다.");
+		}else{
+			alert("이용하기 위해선 연회비를 납부하셔야합니다.");
+		}
 		IMP.request_pay({
 				pg : 'html5_inicis', // version 1.1.0부터 지원.
 				pay_method : 'card',

@@ -44,8 +44,5 @@ public class ReviewDAOMybatis {
 		System.out.println("sqlsession getReview 실행");
 		return sqlsession.selectOne("review.getReview", rvo);
 	}
-	public List<ReviewVO> getReviewHistory(ReviewVO rvo) {
-		return sqlsession.selectList("review.getReviewHistory", rvo);
-	}
 
 }

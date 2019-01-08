@@ -5,7 +5,7 @@
 	<%
 	//String memberId = (String) session.getAttribute("id");
 	%>
-	<div id="info">
+	<div id="info" style="margin-left:10%; margin-top:5%; margin-bottom:5%;">
 		스터디 명&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.studyName}<br>
 		스터디 주제&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.studySubject}<br>
 		스터디 시간&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;${study.studyTime}&ensp;:&ensp;00<br>
@@ -41,3 +41,7 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 	</form>
 </c:if>
+
+
+
+

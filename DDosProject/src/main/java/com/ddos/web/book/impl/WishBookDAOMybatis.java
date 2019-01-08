@@ -52,9 +52,15 @@ public class WishBookDAOMybatis {
 		}
 		
 		// 전체 건수 조회
-		public int getCount(WishBookVO vo) {
-			return mybatis.selectOne("wishbook.getCount", vo);
+		public int adminCount(WishBookVO vo) {
+			return mybatis.selectOne("wishbook.adminCount", vo);
 		}
+		
+		public int userCount(WishBookVO vo) {
+			return mybatis.selectOne("wishbook.userCount", vo);
+		}
+		
+		
 
 		
 	
@@ -79,23 +85,4 @@ public class WishBookDAOMybatis {
 		mybatis.update("wishbook.insertWishBook", vo); 
 	}
 	
-	/*//희망도서 수정
-	public void updateWishBook(WishBookVO vo) {
-		System.out.println(vo);
-		System.out.println("희망도서 mybatis 수정 실행");
-		mybatis.update("wishbook.updateWishBook", vo);
-	}
-	
-	//희망도서 삭제
-	public void deleteWishbook(WishBookVO vo) {
-		System.out.println("희망도서 mybatis 삭제 실행");
-		mybatis.delete("wishbook.deleteWishBook", vo);
-	}
-	//희망도서 선택 삭제
-	public void deleteWishBookList(WishBookVO vo) {
-		System.out.println("희망도서 mybatis 선택 삭제 실행");
-		mybatis.delete("wishbook.deleteWishBookList", vo);
-	}
-
-	*/
 }

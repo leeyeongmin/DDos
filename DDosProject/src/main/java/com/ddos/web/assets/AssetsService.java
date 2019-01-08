@@ -12,7 +12,7 @@ public interface AssetsService {
 	public AssetsVO getAssets(AssetsVO vo);
 	
 	//입력
-	public void assetsInsert(AssetsVO vo);
+	public void assetsInsert(AssetsVO vo, String path);
 
 	//수정
 	public void assetsUpdate(AssetsVO vo);

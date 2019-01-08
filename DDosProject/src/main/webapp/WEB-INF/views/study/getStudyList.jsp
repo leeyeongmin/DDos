@@ -40,7 +40,7 @@
 	
 	function getStudyDetail(studyNumber) {
 		var modal = $('#stydyDetail');
-		$('#modal-body').children().remove();
+		$('#modal-body2').children().remove();
 		$('#modal-footer').children().remove();
 		
 		$.ajax({
@@ -48,7 +48,7 @@
 		}).done(function(response) {
 			var response = jQuery.parseHTML(response)
 			response = $(response).find('div');
-			$('#modal-body').append(response.find('#info'));
+			$('#modal-body2').append(response.find('#info'));
 			$('#modal-footer').append(response.find('#studyMember'));
 			$('#modal-footer').append(response.find('#studyCaptin'));
 			modal.modal('toggle');	
@@ -344,7 +344,7 @@
 								<h5 class="modal-title">스터디 생성</h5>
 							</div>
 							<div class="modal-body" id="modal-body"></div>
-							<div class="modal-footer" id="modal-footer"></div>
+							
 						</div>
 					</div>
 				</div>
@@ -357,7 +357,7 @@
 							<div class="modal-header">
 								<h5 class="modal-title">수강 신청</h5>
 							</div>
-							<div class="modal-body" id="modal-body"></div>
+							<div class="modal-body2" id="modal-body2"></div>
 							<div class="modal-footer" id="modal-footer"></div>
 						</div>
 					</div>

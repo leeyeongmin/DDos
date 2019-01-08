@@ -79,7 +79,8 @@ public class BookServiceImpl implements BookService {
 
 	//도서 이미지 가져는거
 	@Override
-	public List<BookVO> apiBookList(String isbn, int display, int start) {
+	public List<BookVO> apiBookList(String isbn, int display, int start, String path) {
+		
 		
 		 List<BookVO> list = null;
 	        try {
@@ -133,7 +134,7 @@ public class BookServiceImpl implements BookService {
 	                    case "image":
 	                        if(b != null) {	                            
 	                            String img = parser.nextText();
-	                            File outputFile = new File("C:\\Users\\User\\git\\DDos2\\DDosProject\\src\\main\\webapp\\bookImg", isbn+".jpg");
+	                            File outputFile = new File(path, isbn+".jpg");
 	                        
 		                        URL imgurl = null;
 		                        BufferedImage bi = null;

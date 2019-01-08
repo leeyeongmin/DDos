@@ -27,8 +27,16 @@ public class RentalVO {
 	// 페이징 처리
 	private int First;
 	private int Last;
-
 	
+	private int page;
+	
+
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
 	public int getFirst() {
 		return First;
 	}
@@ -146,7 +154,7 @@ public class RentalVO {
 				+ ", isbn=" + isbn + ", memberId=" + memberId + ", loginId=" + loginId + ", dueDate=" + dueDate
 				+ ", renewCnt=" + renewCnt + ", searchTitle=" + searchTitle + ", searchKeyword=" + searchKeyword
 				+ ", bookTitle=" + bookTitle + ", bookWriter=" + bookWriter + ", bookComp=" + bookComp + ", money="
-				+ money + ", overdue=" + overdue + ", overck=" + overck + ", First=" + First + ", Last=" + Last + "]";
+				+ money + ", overdue=" + overdue + ", overck=" + overck + ", First=" + First + ", Last=" + Last + "page : " + page + "]";
 	}
 	
 	

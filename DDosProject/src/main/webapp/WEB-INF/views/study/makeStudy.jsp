@@ -74,7 +74,7 @@
 			<input type="hidden" value="${sessionScope.login.id}" name="memberId">
 			<br>
 			
-			<button type="submit" class="btn btn-secondary" style="margin-left:50%;">Insert</button>
+			<button type="submit" class="btn btn-secondary" style="margin-left:25%;">Insert</button>
 			<button type="reset" class="btn btn-warning">Reset</button>
      		<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
      	</form>
@@ -114,3 +114,4 @@ function checkOne() {
 </script>
 	 </div>
 </div>
+

@@ -27,8 +27,7 @@
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="#"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">WishBook
-											Application</li>
+										<li class="breadcrumb-item active" aria-current="page">Wish Book Insert</li>
 									</ol>
 								</nav>
 							</div>
@@ -63,7 +62,7 @@
 									<i class="fas fa-star" style="color:red;" ></i>저자</label> <input
 										name="wishWriter" type="text" class="form-control" required>
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label for="inputText4" class="col-form-label">출판사</label> <input
 										name="wishComp" type="text" class="form-control">
 								</div>
@@ -81,10 +80,10 @@
 										<option value="예술">예술</option>
 										<option value="언어 및 문학">언어 및 문학</option>
 									</select>
-								</div>
+								</div> -->
 								<div class="form-group">
 									<label for="exampleFormControlTextarea1">사유</label>
-									<textarea class="form-control" name="wishReason" rows="3"></textarea>
+									<textarea class="form-control" name="wishReason" style="width:100%;height:300px";></textarea>
 								</div>
 								<div class="form-group row text-right">
 									<div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">

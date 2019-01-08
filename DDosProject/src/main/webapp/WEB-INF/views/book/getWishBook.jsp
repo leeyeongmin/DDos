@@ -39,69 +39,48 @@
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<c:if test="${not empty sessionScope.login}">
-				${sessionScope.login.id} 님
-				</c:if>
+				
 
-				<div class="row">
-					<div class="col-md-8">
+					<div class="row" style="margin-top:2%;">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
-							<div class="card-header">
-								<h4 class="mb-0">희망도서 상세보기</h4>
-							</div>
 							<div class="card-body">
-								<form class="needs-validation">
-									<div class="row">
-										<div class="col-md-6 mb-3">
-											<label for="isbn">ISBN</label>
-											<div class="form-control" id="isbn">${wishbook.isbn}</div>
-										</div>
-										<div class="col-md-6 mb-3">
-											<label for="wishTitle">도서명</label>
-											<div class="form-control" id="wishTitle">${wishbook.wishTitle}</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6 mb-3">
-											<label for="wishWriter">저자</label>
-											<div class="form-control" id="wishWriter">${wishbook.wishWriter}</div>
-										</div>
-										<div class="col-md-6 mb-3">
-											<label for="wishComp">출판사</label>
-											<div class="form-control" id="wishComp">${wishbook.wishComp}</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-6 mb-3">
-											<label for="wishPrice">가격</label>
-											<div class="form-control" id="wishPrice">${wishbook.wishPrice}</div>
-										</div>
-										<div class="col-md-6 mb-3">
-										<label for="wishGenre">장르</label>
-										<div class="form-control" id="wishGenre">${wishbook.wishGenre}</div>
-									</div>
-									</div>
-									<div class="row">
-											<label for="wishReason">사유</label>
-											<textarea class="form-control" id="wishReason">${wishbook.wishReason}</textarea >
-										</div>
-									<script>
-										var text = document.querySelector('#wishReason');
-										text.innerHTML = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
+							<div class="table-responsive">
+							<table id="getWishBook"  class="table table-bordered table-hover text-center">
+										<tr>
+											<td width="20%">ISBN</td>
+											<td>${wishbook.isbn}</td>
+										</tr>
+										<tr>
+											<td width="10%">도서명</td>
+											<td>${wishbook.wishTitle}</td>
+										</tr>
+										<tr>
+											<td width="10%">저자</td>
+											<td>${wishbook.wishWriter}</td>
+										</tr>
+										<tr>
+											<td width="10%">사유</td>
+											<td>${wishbook.wishReason}</td>
+										</tr>
 										
-										</script>
-									<c:if test ="${login.id == wishbook.memberId}">
-									<a href="./wishbook" class="btn btn-secondary">취소</a>
-									</c:if>
-									
-								</form>
-</div>
+									</table>
+									<script>
+											var text = $('#wishReason').html().replace(/(\n|\r\n)/g, '<br>');
+											$('#wishReason').html(text);
+									</script>
+							
 							</div>
-						</div>
+													<c:if test="${login.id == wishbook.memberId}">
+								<a href="./wishbook" class="btn btn-secondary"  style="width:8%; margin-left:2%; margin-top: 30px">취소</a>
+							</c:if>			
+					
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 
 </body>
 </html>

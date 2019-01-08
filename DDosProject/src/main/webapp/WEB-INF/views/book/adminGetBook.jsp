@@ -7,21 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>도서 상세 페이지</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 	<div class="dashboard-main-wrapper">
-			<!-- ============================================================== -->
+		<!-- ============================================================== -->
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
-
 		<div class="dashboard-finance">
 			<div class="container-fluid dashboard-content">
 				<!-- ============================================================== -->
@@ -30,13 +22,14 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">희망도서 상세정보</h3>
+							<h3 class="mb-2">Book Detail</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">WishBook Detail</a>
+										<li class="breadcrumb-item active" aria-current="page">Book
+											Detail</a>
 										</li>
 									</ol>
 								</nav>
@@ -52,7 +45,7 @@
 						<div class="card">
 							<div class="card-body">
 
-								<!-- 여기서 부터 내용 -->
+							<!-- 여기서 부터 내용 -->
 								<div class="row">
 									<div style="width: 30%;">
 										<div class="product-slider">
@@ -63,8 +56,8 @@
 												</ol>
 												<div class="carousel-inner">
 													<div class="carousel-item active">
-														<img class="d-block"
-															src="./bookImg/${book.isbn}.jpg">
+														<img class="d-block" src="./bookImg/${book.isbn}.jpg"
+															>
 													</div>
 												</div>
 
@@ -74,48 +67,52 @@
 									<div style="width: 70%;">
 										<div class="product-details">
 											<div class="border-bottom pb-3 mb-3">
-												<h2 class="mb-3">${book.bookTitle}</h2>
+												<span class="mb-3" style="font-size: 25pt;">${book.bookTitle}</span>
 												<div class="product-rating d-inline-block float-right">
 													<!-- 별점 평균 넣기 -->
 												</div>
-												<h3 class="mb-0 text-primary">${book.bookWriter}</h3>
+												<span style="font-size: 20pt;" class="mb-0 text-primary">${book.bookWriter}</span>
+<%-- 			<c:forEach var="review" items="${result.review}">
+												<tr>
+													<td><c:out value="${review.reviewPoint}"/></td>
+												</tr>
+												</c:forEach> --%>
 											</div>
 										</div>
 										<table
-											style="font-size: 17px; margin: 25px; border-collapse =separate; border-spacing: 2px;">
-											<thead>
-												<tr>
-													<th>ISBN&nbsp;</th>
-													<th>${book.isbn}</th>
-												</tr>
-												<tr>
-													<td>출판사 &nbsp;</td>
-													<td>${book.bookComp}</td>
-												</tr>
-												<tr>
-													<td>장르 &nbsp;</td>
-													<td>${book.bookGenre}</td>
-												</tr>
-											</thead>
-										</table>
-
-										<table
-											style="font-size: 17px; margin: 25px; text-align: center">
-											<thead>
-												<tr>
-													<th>소장처/자료실 &nbsp;</th>
-													<th>도서상태 &nbsp;</th>
-													<th>반납예정일 &nbsp;</th>
-												</tr>
-												<tr>
-													<td>${book.bookLoc}</td>
-													<td>${book.bookAmount}</td>
-													<td>${book.dueDate}</td>
-											</thead>
-										</table>
-
-
-										<a href="#" class="btn btn-primary">대출</a> <a
+												style="font-size: 15px; border-collapse: separate; border-spacing: 30px; border-radius: 20%;">
+												<thead>
+													<tr>
+														<td width="15%">ISBN &nbsp;
+														</th>
+														<td width="40%">${book.isbn}
+														</th>
+													</tr>
+													<tr>
+														<td width="15%">출판사 &nbsp;</td>
+														<td width="30%">${book.bookComp}</td>
+													</tr>
+													<tr>
+														<td width="15%">장르 &nbsp;</td>
+														<td width="40%">${book.bookGenre}</td>
+													</tr>
+													<tr>
+														<td width="15%">소장처/자료실 &nbsp;</td>
+														<td>${book.bookLoc}</td>
+													</tr>
+													<tr>
+														<td width="15%">도서상태 &nbsp;</td>
+														<td>${book.bookAmount}</td>
+													</tr>
+													<c:if test="${book.bookAmount == '0'}">
+														<tr>
+															<td width="15%">반납예정일&nbsp;</td>
+															<td>${book.dueDate}</td>
+														</tr>
+													</c:if>
+												</thead>
+											</table>
+										 <a
 											href="./adminUpdateBookform?isbn=${book.isbn}"
 											class="btn btn-space btn-secondary">수정</a>
 									</div>
@@ -136,12 +133,14 @@
 									<div class="tab-content" id="myTabContent5">
 										<div class="tab-pane fade" id="tab-1" role="tabpanel"
 											aria-labelledby="product-tab-1">
-											<p id ="bookCont">${book.bookCont}</p>
+											<p id="bookCont">${book.bookCont}</p>
 										</div>
 										<script>
-										var text = document.querySelector('#bookCont');
-										text.innerHTML = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
-										
+											var text = document
+													.querySelector('#bookCont');
+											text.innerHTML = text.innerHTML
+													.replace(/(\n|\r\n)/g,
+															'<br>');
 										</script>
 										<div class="tab-pane active show" id="tab-2" role="tabpanel"
 											aria-labelledby="product-tab-2">
@@ -174,8 +173,9 @@
 																			<td>${review.reviewCont}</td>
 																			<td>${review.reviewPoint}</td>
 																			<td>${review.reviewDate}</td>
-																			<td colspan="2">
-																				<a href="./deleteReview?reviewNum=${review.reviewNum}" class="btn btn-space btn-secondary">삭제</a></td>
+																			<td colspan="2"><a
+																				href="./deleteReview?reviewNum=${review.reviewNum}"
+																				class="btn btn-space btn-secondary">삭제</a></td>
 																		</tr>
 																	</c:forEach>
 																</tbody>

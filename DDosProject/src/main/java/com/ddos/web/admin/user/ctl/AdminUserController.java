@@ -1,7 +1,5 @@
 package com.ddos.web.admin.user.ctl;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ddos.web.book.ReviewService;
-import com.ddos.web.book.ReviewVO;
 import com.ddos.web.user.UserService;
 import com.ddos.web.user.UserVO;
 
@@ -19,8 +15,6 @@ public class AdminUserController {
 
 	@Autowired
 	UserService userService;
-	@Autowired
-	ReviewService reviewService;
 	
 
 	// -------------------------------------------------------admin user
@@ -48,7 +42,7 @@ public class AdminUserController {
 	}
 
 	@RequestMapping("/userDetail") // http://localhost:8081/app/getBoardList
-	public String getUser(Model model, UserVO vo, ReviewVO rvo) {
+	public String getUser(Model model, UserVO vo) {
 
 		model.addAttribute("user", userService.getUser(vo));
 
@@ -57,9 +51,6 @@ public class AdminUserController {
 		if (uservo.getId().equals("admin@gmail.com")) {
 			return "admin/admin/AdminProfile";
 		} else {
-			
-			model.addAttribute("reviewHistory", reviewService.getReviewHistory(rvo));
-			
 			return "admin/admin/UserProfile";
 		}
 	}
@@ -87,7 +78,8 @@ public class AdminUserController {
 
 		userService.updateUser(vo);
 		return "admin/admin/AdminHome";
-	}
+		//return "redirect:getUserList";
+	}  
 	
 	
 

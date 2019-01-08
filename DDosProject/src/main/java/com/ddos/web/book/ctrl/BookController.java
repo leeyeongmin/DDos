@@ -84,9 +84,10 @@ public class BookController {
 
 	// 도서 등록 처리
 	@RequestMapping("adminInsertBook")
-	public String adminInsertBook(BookVO vo) {
+	public String adminInsertBook(BookVO vo, HttpSession session) {
 		//이미지 저장
-		bookservice.apiBookList(vo.getIsbn(),  100, 1);
+		String path = session.getServletContext().getRealPath("/bookImg");
+		bookservice.apiBookList(vo.getIsbn(),  100, 1, path);
 		bookservice.adminInsertBook(vo);
 		return "redirect:admincollection";
 	}
@@ -100,7 +101,7 @@ public class BookController {
 
 	// 도서 수정 처리
 	@RequestMapping("adminUpdateBook")
-	public String adminUpdateBook(BookVO vo) {
+	public String adminUpdateBook(BookVO vo, ReviewVO rvo) {
 		System.out.println(vo);
 		bookservice.adminUpdateBook(vo);
 		return "redirect:admincollection";
@@ -122,10 +123,7 @@ public class BookController {
 		return "book/getBook";
 	}
 	
-	//인기도서
 	
-	
-
 	////////////////////////////////////// 리뷰 컨트롤러
 	////////////////////////////////////// /////////////////////////////////////////////////
 

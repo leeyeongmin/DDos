@@ -29,7 +29,7 @@ public interface BookService {
 	public int getCount(BookVO vo);
 
 	//도서 이미지
-	public List<BookVO> apiBookList(String keyword, int display, int start);	
+	public List<BookVO> apiBookList(String keyword, int display, int start, String path);	
 
 	//인기도서 
 	public List<BookVO> topBookList(BookVO vo);

@@ -145,7 +145,8 @@
 
 						var maxRow = result[0].rmax;
 						var maxCol = result[0].cmax;
-						var add = "<table border=0 style=\"margin-left:auto; margin-right:auto; width:80%; height:auto;>";
+
+						var add = "<table border=0 style=\"margin-left:auto; margin-right:auto;\">";
 
 						for (var row = 1; row <= maxRow; row++) {
 							add += "<tr>";

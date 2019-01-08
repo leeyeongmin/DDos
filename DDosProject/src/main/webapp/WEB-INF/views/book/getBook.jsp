@@ -28,6 +28,7 @@
 					alert ("대출 완료되었습니다");	
 					location.reload();
 				}
+			}
 		})
 	}
 </script>
@@ -91,7 +92,7 @@
 												<div class="carousel-inner">
 													<div class="carousel-item active">
 														<img class="d-block" src="./bookImg/${book.isbn}.jpg"
-															alt="Third slide">
+															>
 													</div>
 												</div>
 
@@ -101,12 +102,12 @@
 									<div style="width: 70%;">
 										<div class="product-details">
 											<div class="border-bottom pb-3 mb-3">
-												<h2 class="mb-3">${book.bookTitle}</h2>
+												<span class="mb-3" style="font-size: 25pt;">${book.bookTitle}</span>
 												<div class="product-rating d-inline-block float-right">
 													<!-- 별점 평균 넣기 -->
 												</div>
-												<h3 class="mb-0 text-primary">${book.bookWriter}</h3>
-												<%-- 			<c:forEach var="review" items="${result.review}">
+												<span style="font-size: 20pt;" class="mb-0 text-primary">${book.bookWriter}</span>
+<%-- 			<c:forEach var="review" items="${result.review}">
 												<tr>
 													<td><c:out value="${review.reviewPoint}"/></td>
 												</tr>
@@ -114,53 +115,56 @@
 											</div>
 										</div>
 										<table
-											style="font-size: 17px; margin: 25px; border-collapse =separate; border-spacing: 2px;">
-											<thead>
-												<tr>
-													<th>ISBN &nbsp;</th>
-													<th>${book.isbn}</th>
-												</tr>
-												<tr>
-													<td>출판사 &nbsp;</td>
-													<td>${book.bookComp}</td>
-												</tr>
-												<tr>
-													<td>장르 &nbsp;</td>
-													<td>${book.bookGenre}</td>
-												</tr>
-											</thead>
-										</table>
-
-										<table
-											style="font-size: 17px; margin: 25px; text-align: center">
-											<thead>
-												<tr>
-													<th>소장처/자료실 &nbsp;</th>
-													<th>도서상태 &nbsp;</th>
-													<th>반납예정일 &nbsp;</th>
-												</tr>
-												<tr>
-													<td>${book.bookLoc}</td>
-													<td>${book.bookAmount}</td>
-													<td>${book.dueDate}</td>
-											</thead>
-										</table>
-
+												style="font-size: 15px; border-collapse: separate; border-spacing: 30px; border-radius: 20%;">
+												<thead>
+													<tr>
+														<td width="15%">ISBN &nbsp;
+														</th>
+														<td width="40%">${book.isbn}
+														</th>
+													</tr>
+													<tr>
+														<td width="15%">출판사 &nbsp;</td>
+														<td width="30%">${book.bookComp}</td>
+													</tr>
+													<tr>
+														<td width="15%">장르 &nbsp;</td>
+														<td width="40%">${book.bookGenre}</td>
+													</tr>
+													<tr>
+														<td width="15%">소장처/자료실 &nbsp;</td>
+														<td>${book.bookLoc}</td>
+													</tr>
+													<tr>
+														<td width="15%">도서상태 &nbsp;</td>
+														<td>${book.bookAmount}</td>
+													</tr>
+													<c:if test="${book.bookAmount == '0'}">
+														<tr>
+															<td width="15%">반납예정일&nbsp;</td>
+															<td>${book.dueDate}</td>
+														</tr>
+													</c:if>
+												</thead>
+											</table>
+<br>
+											<div style="padding-left: 10%">
 										<c:choose>
-											<c:when test="${book.bookAmount == '0'}">
-												<input type="button" class="btn btn-primary"
-													onclick="rentalBook();" value="대출불가" disabled="disabled">
-											</c:when>
-											<c:otherwise>
-												<input type="button" class="btn btn-primary"
-													onclick="rentalBook();" value="대출">
-											</c:otherwise>
-										</c:choose>
+													<c:when test="${book.bookAmount == '0'}">
+														<input type="button" class="btn btn-primary"
+															onclick="rentalBook();" value="대출불가" disabled="disabled"
+															style="width: 30%">
+													</c:when>
+													<c:otherwise>
+														<input type="button" class="btn btn-primary"
+															onclick="rentalBook();" value="대출" style="width: 30%">
+													</c:otherwise>
+												</c:choose>
 
 									</div>
 								</div>
 							</div>
-
+							<br><br>
 							<div
 								class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-b-60">
 								<div class="simple-card">
@@ -200,8 +204,9 @@
 																<thead>
 																	<tr>
 																		<th scope="row" style="width: 30%">제목</th>
+																		<th scope="row" width="30%">내용</th>
 																		<th scope="row" width="20%">별점</th>
-																		<th scope="row" style="width:40%">작성일</th>
+																		<th scope="row" width="20%">작성일자</th>
 																		<th scope="row" colspan="2"></th>
 																	</tr>
 																	<!-- <tr>
@@ -212,6 +217,7 @@
 																	<c:forEach items="${review}" var="review">
 																		<tr>
 																			<td>${review.reviewTitle}</td>
+																			<td>${review.reviewCont}</td>
 																			<td><c:if test="${review.reviewPoint == 1}">
 																					<img src="assets/images/reviewImg/star_1.png"
 																						width="90">
@@ -228,17 +234,14 @@
 																					<img src="assets/images/reviewImg/star_5.png"
 																						width="90">
 																				</c:if></td>
-																			<td width="40%">${review.reviewDate}</td>
-																		</tr>
-																		<tr style="width: 100%">
-																			<td width="100%">${review.reviewCont}</td>
-																		</tr>
-																		<tr>
+																			<td>${review.reviewDate}</td>
 																			<td><c:if test="${login.id == review.memberId}">
-																					<a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
+																					<a
+																						href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
 																						class="btn btn-primary">수정</a>
-																					<a href="./deleteReview?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
-																						class="btn btn-space btn-secondary">삭제</a><br/><br/>
+																					<a
+																						href="./deleteReview?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
+																						class="btn btn-space btn-secondary">삭제</a>
 																				</c:if></td>
 																		</tr>
 																	</c:forEach>

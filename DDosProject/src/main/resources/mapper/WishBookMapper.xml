@@ -71,8 +71,27 @@
 		<if test="wishNum == null or not wishNum.length=0"> where WISH_NUM=-1</if> 
 			
 	</delete>
-	<!-- 건수 -->
-	<select id="getCount" resultType="int">
+	<!-- user건수 -->
+	<select id="userCount" resultType="int">
+	SELECT COUNT(*)
+	FROM  WISH_BOOK
+	<where>
+		<if test=" loginId != null">
+			AND MEMBER_ID = #{loginId}
+		</if>
+		<if
+			test="searchCondition != null and searchCondition == 'wishTitle'">
+			and WISH_TITLE like '%' || #{searchKeyword} || '%' </if>
+		<if
+			test="searchCondition != null and searchCondition == 'wishWriter'">
+			and WISH_WRITER like '%' || #{searchKeyword} || '%' </if>
+		<if test="searchCondition != null and searchCondition == 'isbn'">
+			and ISBN like '%' || #{searchKeyword} || '%' </if>
+	</where>
+	</select>
+	
+	<!-- admin건수 -->
+	<select id="adminCount" resultType="int">
 	SELECT COUNT(*)
 	FROM  WISH_BOOK
 	<where>
@@ -93,7 +112,7 @@
 <!-- user 희망도서 전체 조회 -->
 	<select id="getWishBookList" parameterType="wishbook" 	resultType="wishbook">
 	SELECT B.* FROM (SELECT A.*, ROWNUM RN FROM (
-			SELECT WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER, WISH_COMP, 
+			SELECT WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER,
 					WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_STATUS, WISH_PRICE
 	FROM WISH_BOOK
 	<where>
@@ -128,10 +147,8 @@
 		<selectKey keyProperty="wishNum" resultType="integer" order="BEFORE">
 			SELECT MAX(WISH_NUM)+ 1 FROM WISh_BOOK
 		</selectKey>
-			INSERT INTO WISH_BOOK(WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER,  
-			WISH_COMP, WISH_GENRE, MEMBER_ID, WISH_REASON, WISH_PRICE)
-			VALUES(#{wishNum}, #{isbn}, #{wishTitle}, #{wishWriter}, #{wishComp}, 
-				#{wishGenre}, #{memberId}, #{wishReason}, #{wishPrice})
+			INSERT INTO WISH_BOOK(WISH_NUM, ISBN, WISH_TITLE, WISH_WRITER,  MEMBER_ID, WISH_REASON)
+			VALUES(#{wishNum}, #{isbn}, #{wishTitle}, #{wishWriter}, #{memberId}, #{wishReason} )
 	</insert>
 
 

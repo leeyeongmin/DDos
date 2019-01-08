@@ -77,7 +77,7 @@
 													<th class="border-0">ISBN</th>
 													<th class="border-0">도서명</th>
 													<th class="border-0">저자</th>
-													<th class="border-0">출판사</th>
+												
 													<th class="border-0">상태</th>
 												</tr>
 											</thead>
@@ -90,7 +90,7 @@
 														<td>${wishbook.isbn}</td>
 														<td><a href="./getWishBook?isbn=${wishbook.isbn}">${wishbook.wishTitle}</a></td>
 														<td>${wishbook.wishWriter}</td>
-														<td>${wishbook.wishComp}</td>
+														
 														<td><span class="badge-dot badge-brand mr-1"></span>${wishbook.wishStatus}</td>
 													</tr>
 												</c:forEach>

@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.ddos.web.email.EmailService;
 import com.ddos.web.email.EmailVO;
-import com.ddos.web.email.SendEmailService;
 import com.ddos.web.user.UserService;
 import com.ddos.web.user.UserVO;
 
@@ -30,7 +29,7 @@ public class UserController {
 	UserService userService;
 	
 	@Autowired
-	SendEmailService emailService;
+	EmailService emailService;
 
 	// -------------------------------------------------------------------로그인---------------------------------------------------
 
@@ -61,12 +60,17 @@ public class UserController {
 
 			return "no/login/Login";
 		}else {
+			int bigo;
 			
 			Date date = new Date();
 			SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-System.out.println(uservo);
-			int bigo = format1.format(date).compareTo(uservo.getExpDate());
-				
+
+			System.out.println(uservo);
+			if(uservo.getExpDate() != null) {
+				bigo = format1.format(date).compareTo(uservo.getExpDate());
+			}else {
+				bigo = 1;
+			}
 			if (bigo >  0) {
 				session.setAttribute("temp", uservo);
 				model.addAttribute("user", uservo);
@@ -86,6 +90,7 @@ System.out.println(uservo);
 	@RequestMapping("logout")
 	public String logout(@ModelAttribute("user") UserVO vo, HttpSession session, HttpServletResponse response){
 		session.removeAttribute("login");
+		session.removeAttribute("temp");
 		return "no/login/Login";
 
 	}
@@ -103,9 +108,6 @@ System.out.println(uservo);
 
 		UserVO uservo = userService.findPwd(vo);
 
-		System.out.println(vo);
-		System.out.println(uservo);
-
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
@@ -120,41 +122,42 @@ System.out.println(uservo);
 			out.flush();
 			return "no/login/Login";
 		}
-	}*/
-	
-	@RequestMapping("findPwd")
-	public String findPwd(EmailVO vo, HttpServletResponse response, UserVO user) throws IOException {
-		
-		System.out.println(user);
-		
-		UserVO uservo = userService.findPwd(user);
-		
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("utf-8");
-		PrintWriter out = response.getWriter();
-
-		if (uservo == null) {
-
-			out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
-			
-		} else {
-			
-			
-			vo.setFrom("aaa@gmail.com"); 
-			vo.setTo(user.getId());
-			vo.setSubject("비밀번호");
-			vo.setContent(uservo.getPassword());
-			
-			emailService.send(vo);
-			
-			out.println("<script>alert(" + user.getId()+ "로 이메일이 발생되었습니다.);</script>");
-		}
-		
-		out.flush();
-		return "no/login/Login";
 	}
-	
+*/
+	// 이메일 비번 찾기
+	@RequestMapping("findPwd")
+	   public String findPwd(EmailVO vo, HttpServletResponse response, UserVO user) throws IOException {
+	      
+	      System.out.println(user);
+	      
+	      UserVO uservo = userService.findPwd(user);
+	      
+	      response.setContentType("text/html; charset=UTF-8");
+	      response.setCharacterEncoding("utf-8");
+	      PrintWriter out = response.getWriter();
 
+	      if (uservo == null) {
+
+	         out.println("<script>alert('회원정보가 존재하지 않습니다. 다시 한번 확인해 주세요.');</script>");
+	         
+	      } else {
+	         
+	         
+	         vo.setFrom("whkvgh@gmail.com"); 
+	         vo.setTo(user.getId());
+	         vo.setSubject("비밀번호");
+	         vo.setContent(uservo.getPassword());
+	         
+	         emailService.send(vo);
+	         
+
+	         out.println("<script>alert('" + user.getId()+ "로 이메일이 발생되었습니다.');</script>");
+
+	      }
+	      
+	      out.flush();
+	      return "no/login/Login";
+	   }
 	// -------------------------------------------------------------------�쉶�썝媛��엯-----------------------------------------------------------
 
 	@RequestMapping("/joinForm")
@@ -204,6 +207,8 @@ System.out.println(uservo);
 		System.out.println(vo);
 
 		userService.updateUser(vo);
+		//return "user/UserHome";
+		//return "admin/admin/AdminHome";
 		return "user/UserHome";
 	}
 	
@@ -228,8 +233,9 @@ System.out.println(uservo);
 	}
 	
 	@RequestMapping("loginHomepage")
-	public String loginHomepage() {
-		return "no/login/Login";   
+	public String loginHomepage(HttpSession session) {
+		session.removeAttribute("temp");
+		return "no/login/Login";     
 	}
 	
 	@RequestMapping("getUser")

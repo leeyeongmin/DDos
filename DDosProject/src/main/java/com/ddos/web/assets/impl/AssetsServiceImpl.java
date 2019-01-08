@@ -27,7 +27,7 @@ public class AssetsServiceImpl implements AssetsService {
 	}
 
 	@Override
-	public void assetsInsert(AssetsVO vo) {
+	public void assetsInsert(AssetsVO vo, String path) {
 		ada.assetsInsert(vo);
 		
 	}

@@ -55,13 +55,4 @@
 	<delete id="deleteReview" parameterType="review">
 		DELETE REVIEW WHERE REVIEW_NUM = #{reviewNum}
 	</delete>
-	
-	
-	<select id="getReviewHistory" resultType="review" parameterType="review">
-		SELECT BOOK_TITLE, REVIEW_DATE, REVIEW_TITLE, REVIEW_CONT, REVIEW_POINT
-		FROM BOOK B, (SELECT * FROM REVIEW ORDER BY REVIEW_DATE DESC) R
-		WHERE B.ISBN=R.ISBN
-		AND R.MEMBER_ID = #{memberId}
-		<![CDATA[ AND ROWNUM<=3 ]]>
-	</select>
 </mapper>

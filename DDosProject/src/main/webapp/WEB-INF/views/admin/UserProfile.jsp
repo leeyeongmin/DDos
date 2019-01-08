@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html>
 
@@ -126,14 +127,6 @@
 									id="pills-packages-tab" data-toggle="pill" href="#review"
 									role="tab" aria-controls="pills-packages" aria-selected="false">Review</a>
 								</li>
-
-
-
-								<li class="nav-item"><a class="nav-link" id="sendMessage"
-									data-toggle="pill" href="#insertMessageform" role="tab"
-									aria-controls="pills-msg" aria-selected="false">Send
-										Messages</a></li>
-
 							</ul>
 							<div class="tab-content" id="pills-tabContent">
 								<div class="tab-pane fade show active" id="history"
@@ -150,16 +143,13 @@
 													<p class="lead">This page is show your History about
 														number of using readingroom & number of rental & number of
 														your review.</p>
-													<ul class="list-unstyled arrow" style="margin-top:7%;">
-														<li style="marimargin-top:3%;">
-															RENTAL COUNT : ${user.rentalCount }
-														</li>
-														<li style="margin-top:3%;">
-															USING READING ROOM COUNT : ${user.readCount}
-														</li>
-														<li style="margin-top:3%;">
-															REVIEW COUNT : ${user.reviewCount}
-														</li>
+													<ul class="list-unstyled arrow" style="margin-top: 7%;">
+														<li style="marimargin-top: 3%;">RENTAL COUNT :
+															${user.rentalCount }</li>
+														<li style="margin-top: 3%;">USING READING ROOM COUNT
+															: ${user.readCount}</li>
+														<li style="margin-top: 3%;">REVIEW COUNT :
+															${user.reviewCount}</li>
 													</ul>
 												</div>
 											</div>
@@ -171,136 +161,60 @@
 								<div class="tab-pane fade" id="review" role="tabpanel"
 									aria-labelledby="pills-review-tab">
 									<div class="card">
-										<h5 class="card-header">Campaign Reviews</h5>
-										<div class="card-body">
-											<div class="review-block">
-												<p class="review-text font-italic m-0">“Quisque lobortis
-													vestibulum elit, vel fermentum elit pretium et. Nullam id
-													ultrices odio. Cras id nulla mollis, molestie diam eu,
-													facilisis tortor. Mauris ultrices lectus laoreet commodo
-													hendrerit. Nullam varius arcu sed aliquam imperdiet. Etiam
-													ut luctus augue.”</p>
-												<div class="rating-star mb-4">
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i> <i class="fa fa-fw fa-star"></i>
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i>
-												</div>
-												<span class="text-dark font-weight-bold">Tabitha C.
-													Campbell</span><small class="text-mute"> (Company name)</small>
-											</div>
-										</div>
-										<div class="card-body border-top">
-											<div class="review-block">
-												<p class="review-text font-italic m-0">“Maecenas rutrum
-													viverra augue. Nulla in eros vitae ante ullamcorper congue.
-													Praesent tristique massa ac arcu dapibus tincidunt. Mauris
-													arcu mi, lacinia et ipsum vel, sollicitudin laoreet risus.”</p>
-												<div class="rating-star mb-4">
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i> <i class="fa fa-fw fa-star"></i>
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i>
-												</div>
-												<span class="text-dark font-weight-bold">Luise M.
-													Michet</span><small class="text-mute"> (Company name)</small>
-											</div>
-										</div>
-										<div class="card-body border-top">
-											<div class="review-block">
-												<p class="review-text font-italic m-0">“ Cras non rutrum
-													neque. Sed lacinia ex elit, vel viverra nisl faucibus eu.
-													Aenean faucibus neque vestibulum condimentum maximus. In id
-													porttitor nisi. Quisque sit amet commodo arcu, cursus
-													pharetra elit. Nam tincidunt lobortis augueat euismod ante
-													sodales non. ”</p>
-												<div class="rating-star mb-4">
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i> <i class="fa fa-fw fa-star"></i>
-													<i class="fa fa-fw fa-star"></i> <i
-														class="fa fa-fw fa-star"></i>
-												</div>
-												<span class="text-dark font-weight-bold">Gloria S.
-													Castillo</span><small class="text-mute"> (Company name)</small>
-											</div>
-										</div>
-									</div>
-									<nav aria-label="Page navigation example">
-										<ul class="pagination">
-											<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-											<li class="page-item"><a class="page-link" href="#">1</a></li>
-											<li class="page-item active"><a class="page-link "
-												href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#">Next</a></li>
-										</ul>
-									</nav>
-								</div>
+										<h5 class="card-header">Your Recent Book Reviews</h5>
 
+										<c:forEach items="${reviewHistory}" var="reviewHistory">
 
+											<div class="card-body">
+												<div class="review-block">
 
-
-
-								<div class="tab-pane fade" id="insertMessageform" role="tabpanel"
-									aria-labelledby="pills-msg-tab">
-									<div class="card">
-										<h5 class="card-header">Send Messages</h5>
-										<div class="card-body">
-											<form action="insertMessage">
-												<div class="row">
-													<div
-														class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-3 col-md-12 col-sm-12 col-12 p-4">
-<%-- 														<div class="form-group">
-															<label for="messageNum"></label> <input type="hidden"
-																class="form-control form-control-lg" name="messageNum"
-																value="${message.messageNum}">
-														</div> --%>
-														<div class="form-group">
-															<label for="memberId">회원 아이디</label> <input type="email"
-																class="form-control form-control-lg" name="memberId"
-																value="${user.id}">
-														</div>
-														<div class="form-group">
-															<label for="messageTitle">제목</label> <input type="text"
-																class="form-control form-control-lg" name="messageTitle"
-																placeholder="">
-														</div>
-														<div class="form-group">
-															<label for="messageCont">내용</label>
-															<textarea class="form-control" name="messageCont" rows="3"></textarea>
-														</div>
-														<button type="submit" class="btn btn-primary float-right">Send
-															Message</button>
+													<span class="text-dark font-weight-bold">
+														${reviewHistory.bookTitle} </span> <small class="text-mute">&ensp;&ensp;&ensp;${reviewHistory.reviewDate}</small>
+														
+													<!-- ---------------------------------------------- -->
+													<!-- 리뷰 별점 -->
+													<div class="rating-star mb-4">
+														
+														${reviewHistory.reviewPoint}
+														
+														
 													</div>
+													
+													<!-- ------------------------------------------- -->
+
+													<p class="review-text font-italic m-0">
+													제목&ensp;:&ensp;  ${reviewHistory.reviewTitle} </p>
+
+													<p class="review-text font-italic m-0">“
+														${reviewHistory.reviewCont} ”<br></p>
 												</div>
-											</form>
-										</div>
+											</div>
+
+										</c:forEach>
+
 									</div>
 								</div>
+								<!-- ============================================================== -->
+								<!-- end campaign tab one -->
+								<!-- ============================================================== -->
 							</div>
 							<!-- ============================================================== -->
-							<!-- end campaign tab one -->
+							<!-- end campaign data -->
 							<!-- ============================================================== -->
 						</div>
-						<!-- ============================================================== -->
-						<!-- end campaign data -->
-						<!-- ============================================================== -->
 					</div>
 				</div>
+				<!-- ============================================================== -->
+				<!-- end content -->
+				<!-- ============================================================== -->
 			</div>
-			<!-- ============================================================== -->
-			<!-- end content -->
-			<!-- ============================================================== -->
+
+
+
 		</div>
-
-
-
-	</div>
-	<!-- ============================================================== -->
-	<!-- end main wrapper -->
-	<!-- ============================================================== -->
-
-
+		<!-- ============================================================== -->
+		<!-- end main wrapper -->
+		<!-- ============================================================== -->
 </body>
 
 </html>

@@ -27,7 +27,7 @@
 
 <div>
     <div id="studyList-b">
-	    <form id="addForm" action="./insertStudy" method="post" target="studylist.do" name="studycheck" onsubmit="return checkOne();">
+	    <form id="addForm" action="./insertStudy" method="post" name="studycheck" onsubmit="return checkOne();">
 			<p>스터디 명&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;<input type="text" name="studyName"></p>
 			<p>스터디 주제&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;<input type="text" name="studySubject"></p>
 			<p>스터디 룸&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;:&ensp;&ensp;

@@ -111,9 +111,9 @@ public class RentalController {
 	*/
 	@RequestMapping("rentalSearch")
 	@ResponseBody
-	public ModelAndView rental_search(Model model, RentalVO vo, PagingVO paging) {
+	public Map rental_search(RentalVO vo, PagingVO paging) {
 		
-		ModelAndView mv = new ModelAndView();
+	/*	ModelAndView mv = new ModelAndView();
 		if (paging.getPage() == null) {
 			paging.setPage(1);
 		}
@@ -125,8 +125,27 @@ public class RentalController {
 		mv.addObject("paging", paging);
 		mv.addObject("rentalSearch", rentalService.rentalSearch(vo));
 		mv.setViewName("admin/rental/ReturnBook");
-		return mv;
+		return mv;*/
 		
+		System.out.println("ssssssssssssssssssssss : " + vo);
+		
+		Map map = new HashMap();
+		
+		paging.setPage(vo.getPage());
+		
+		if (paging.getPage() == null) {
+			paging.setPage(1);
+		}
+		
+		paging.setPageUnit(7);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		
+		paging.setTotalRecord(rentalService.tCount(vo));
+		map.put("paging", paging);
+		map.put("result", rentalService.rentalSearch(vo));
+		
+		return map;
 	}
 	
 	

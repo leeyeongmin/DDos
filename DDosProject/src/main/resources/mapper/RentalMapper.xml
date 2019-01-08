@@ -142,24 +142,27 @@
 	
 	<!-- 반납리스트 건수-->
 	<select id="tCount" resultType="int">
-		SELECT COUNT(*)
-		FROM RENTAL
-		<!--<choose>
-		 <when test="searchTitle != null and searchTitle == 'book_title' ">
+		SELECT count(*)
+		FROM Rental R LEFT
+		OUTER JOIN Book B
+		on (R.isbn = B.isbn)
+		<choose>
+			<when test="searchTitle != null and searchTitle == 'book_title' ">
 				  where ${searchTitle} like '%' || #{searchKeyword} || '%'
-				  and return_date is null
+				  and r.return_date is null
 			</when>
 
 			<when test="searchTitle != null and searchTitle == 'isbn' ">
 			      where R.${searchTitle} = #{searchKeyword} 
-				  and return_date is null 
+				  and R.return_date is null 
 			</when>	
 
 			<otherwise>
 				where member_id = #{searchKeyword} 
-				and return_date is null
+				and R.return_date is null
 			</otherwise>	
-	</choose> -->
+		</choose>
+		ORDER BY rental_date DESC
 	</select>
 
 </mapper>

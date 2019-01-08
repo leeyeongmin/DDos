@@ -165,7 +165,9 @@ System.out.println(uservo);
 		System.out.println(vo);
 
 		userService.updateUser(vo);
-		return "user/UserHome";
+		//return "user/UserHome";
+		//return "admin/admin/AdminHome";
+		return "redirect:getUserList";
 	}
 	
 	@RequestMapping("/withdrawalForm") // http://localhost:8081/app/getBoardList

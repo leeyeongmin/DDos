@@ -52,8 +52,6 @@
 					          vAxis: {minValue: 0},
 					          height : "400" ,
 					          legend : {position : 'none' },
-					          pointSize: 10,
-						       pointShape: { type: 'star', dent: 0.8 }
 					        };
 
 				   var chart = new google.visualization.AreaChart(document.getElementById('totalchart'));
@@ -82,8 +80,6 @@
 					          height : "400" ,
 					          legend : {position : 'none' },
 					          colors : ['red'], 
-					          pointSize: 10,
-						      pointShape: { type: 'star', dent: 0.8  }
 					        };
 
 				   var chart1 = new google.visualization.AreaChart(document.getElementById('totalchar_output'));
@@ -94,70 +90,26 @@
 		 
 		 /*--------------------------------------------------------------------*/
 		 
-		totallist(); 
- 
-      }
-		
-		
-	 function totallist(e, page){
 		 $("#totalList").empty();
 		 var $add = "";
-		 var choose = $("#year option:selected").text();
 		 
-		 if(e)
-			e.preventDefault();
-		 
-		 if(page == undefined || page == ""){
-	         page=1
-	    }
-		  
 		 $.ajax({
-			 	data : { year : choose, page : page},
 			 	url : "totalList?year=" + choose,
 				method : "post",
 				success : function(datas) {
-					console.log(datas);
-					for(var i=0; i<datas.result.length; i++){
+					for(var i=0; i<datas.length; i++){
 						console.log(datas);
-						$add += "<tr><td>" + datas.result[i].num + "</td>" +
-								"<td>" + datas.result[i].gubun + "</td>" +  
-								"<td>" + datas.result[i].content + "</td>" +  
-								"<td>" + datas.result[i].money + "</td>" + 
-								"<td>" + datas.result[i].day + "</td></tr>";	
+						$add += "<tr><td>" + datas[i].gubun + "</td>" +
+								"<td>" + datas[i].content + "</td>" +  
+								"<td>" + datas[i].money + "</td>" + 
+								"<td>" + datas[i].day + "</td></tr>";	
 					}
 					$($add).prependTo("#totalList"); 
-					
-					$("#paging").empty(); 
-					
-					 var $dd = "";
-					
-					 $dd += "<nav aria-label='Page navigation example'>" + 
-							  "<ul class=pagination>" + 
-							  "<li class=page-item>" +  
-						 	  "<a href='#'class='page-link' onclick='totallist(event, 1)' >&laquo;</a></li>";
-			         //$(dd).appendTo("#paging"); 
-			            
-			            var begin = datas.paging.startPage;
-			            var end = datas.paging.lastPage;               
-			            for(j = begin; j <= end; j++ ) {
-			               if(j != datas.paging.page) {
-			                  $dd += "<li class='page-item'><a href='#' class='page-link' onclick='totallist(event, "+j+")'>"+j+"</a></li>";
-			                  //$(bb).appendTo("#paging");
-			               }
-			                else if(j == datas.paging.page) {
-			                  $dd += "<li class='page-item active'><a href='#' class='page-link'>"+j+"</a></li>";
-			                  //$(cc).appendTo("#paging");
-			               }  
-			            }
-			            $dd += "<li class=page-item><a href='#' class='page-link' onclick='totallist(event, "+datas.paging.lastPage+")'>&raquo;</a></li></ul></nav>";
-			            $($dd).appendTo("#paging");
-			            
-					//paging
 				}
 		 }) 
-	 }
-	
-	 function Change(){
+ 
+      }
+		function Change(){
 			drawChart();
 		}
       
@@ -234,21 +186,20 @@
 					<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 				
-				<div class="row" 
-					style="display: inline-block; margin-top: 2%; margin-left: 25%; width: 50%; ">
+				<div class="row"
+					style="display: inline-block; margin-top: 2%; margin-left: 2%; width: 50%;">
 					<!-- ============================================================== -->
 					<!-- start list  -->
 					<!-- ============================================================== -->
-						<div class="col-sm" style=" margint-left: auto; margin-right: auto;" >
-						<div class="card" >
+						<div class="col-sm">
+						<div class="card">
 						<div class="card-body">
 							<div class="table-responsive">
 								<h3 class="mb-2" style="text-align:center;">자산 내역 리스트</h3>
-								<table  id="getExpenditureList" width="100%"
+								<table id="getExpenditureList" width="100%"
 											class="table table-bordered table-hover text-center">
 									<thead>
 												<tr>
-													<th width="10%">num</th>
 													<th width="20%">구분</th>
 													<th width="30%">내용</th>
 													<th width="30%">금액</th>
@@ -260,7 +211,6 @@
 									</table>
 								</div>
 								</div> 
-								<div id="paging" style='margin: auto'></div>
 							</div>
 						</div>
 					

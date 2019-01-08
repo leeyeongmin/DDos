@@ -63,17 +63,10 @@ public class WishBookServiceImpl implements WishBookService {
 
 	}
 
-	// admin전체 건수
-	
+	// 전체 건수
 	@Override
-	public int adminCount(WishBookVO vo) {
-		return wbd.adminCount(vo);
-	}
+	public int getCount(WishBookVO vo) {
 
-	// user전체 건수
-	@Override
-	public int userCount(WishBookVO vo) {
-		
-		return wbd.userCount(vo);
+		return wbd.getCount(vo);
 	}
 }

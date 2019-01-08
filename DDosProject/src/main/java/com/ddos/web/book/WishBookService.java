@@ -23,11 +23,8 @@ public interface WishBookService {
 	public void adminDeleteWishBookList(WishBookVO vo);
 
 	
-	// admin희망도서 전체 건수
-	public int adminCount(WishBookVO vo);
-	
-	//user 희망도서 전체 건수
-	public int userCount(WishBookVO vo);
+	// 희망도서 전체 건수
+	public int getCount(WishBookVO vo);
 	
 	// 희망도서 전체 조회
 	public List<WishBookVO> getWishBookList(WishBookVO vo);

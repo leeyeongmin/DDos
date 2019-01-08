@@ -18,9 +18,10 @@
 
 <body>
 	<div class="dashboard-main-wrapper">
-		<!-- ============================================================== -->
+			<!-- ============================================================== -->
 		<!-- wrapper  -->
 		<!-- ============================================================== -->
+
 		<div class="dashboard-finance">
 			<div class="container-fluid dashboard-content">
 				<!-- ============================================================== -->
@@ -29,14 +30,13 @@
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="page-header">
-							<h3 class="mb-2">Wish Book Detail</h3>
+							<h3 class="mb-2">희망도서 상세정보</h3>
 							<div class="page-breadcrumb">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb">
 										<li class="breadcrumb-item"><a href="adminHome"
 											class="breadcrumb-link">DDos</a></li>
-										<li class="breadcrumb-item active" aria-current="page">WishBook
-											Detail</a>
+										<li class="breadcrumb-item active" aria-current="page">WishBook Detail</a>
 										</li>
 									</ol>
 								</nav>
@@ -63,7 +63,8 @@
 												</ol>
 												<div class="carousel-inner">
 													<div class="carousel-item active">
-														<img class="d-block" src="./bookImg/${book.isbn}.jpg">
+														<img class="d-block"
+															src="./bookImg/${book.isbn}.jpg">
 													</div>
 												</div>
 
@@ -114,7 +115,7 @@
 										</table>
 
 
-										 <a
+										<a href="#" class="btn btn-primary">대출</a> <a
 											href="./adminUpdateBookform?isbn=${book.isbn}"
 											class="btn btn-space btn-secondary">수정</a>
 									</div>
@@ -135,14 +136,12 @@
 									<div class="tab-content" id="myTabContent5">
 										<div class="tab-pane fade" id="tab-1" role="tabpanel"
 											aria-labelledby="product-tab-1">
-											<p id="bookCont">${book.bookCont}</p>
+											<p id ="bookCont">${book.bookCont}</p>
 										</div>
 										<script>
-											var text = document
-													.querySelector('#bookCont');
-											text.innerHTML = text.innerHTML
-													.replace(/(\n|\r\n)/g,
-															'<br>');
+										var text = document.querySelector('#bookCont');
+										text.innerHTML = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
+										
 										</script>
 										<div class="tab-pane active show" id="tab-2" role="tabpanel"
 											aria-labelledby="product-tab-2">
@@ -175,9 +174,8 @@
 																			<td>${review.reviewCont}</td>
 																			<td>${review.reviewPoint}</td>
 																			<td>${review.reviewDate}</td>
-																			<td colspan="2"><a
-																				href="./deleteReview?reviewNum=${review.reviewNum}"
-																				class="btn btn-space btn-secondary">삭제</a></td>
+																			<td colspan="2">
+																				<a href="./deleteReview?reviewNum=${review.reviewNum}" class="btn btn-space btn-secondary">삭제</a></td>
 																		</tr>
 																	</c:forEach>
 																</tbody>

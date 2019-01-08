@@ -58,11 +58,11 @@ public class StatisticsDAOMYBatis {
 		return mybatis.selectOne("Statics.BookChart_language", day);
 	}
 
-	public List<Map> toprental(Map day){
+	public List<Map> toprental(String day){
 		return mybatis.selectList("Statics.toprental", day);
 	}
 	
-	public List<Map> toprentalbook(Map day){
+	public List<Map> toprentalbook(String day){
 		return mybatis.selectList("Statics.toprentalbook", day);
 	}
 	
@@ -74,7 +74,7 @@ public class StatisticsDAOMYBatis {
 		return mybatis.selectList("Statics.totalChart_input" ,year);
 	}
 	
-	public List<Map> totalList(Map year){
+	public List<Map> totalList(String year){
 		return mybatis.selectList("Statics.totalList", year);
 	}
 	
@@ -82,8 +82,8 @@ public class StatisticsDAOMYBatis {
 		return mybatis.selectList("Statics.totalChart_output", year);
 	}
 	
-	public List<Map> UnpaidList(Map map){
-		return mybatis.selectList("Statics.UnpaidList", map);
+	public List<Map> UnpaidList(){
+		return mybatis.selectList("Statics.UnpaidList");
 	}
 	
 	public List<Map> month_inputchart(String day){
@@ -102,7 +102,7 @@ public class StatisticsDAOMYBatis {
 		return mybatis.selectList("Statics.month_outputchart", day);
 	}
 	
-	public List<Map> month_outputList(Map day){
+	public List<Map> month_outputList(String day){
 		return mybatis.selectList("Statics.month_outputList", day);
 	}
 	
@@ -114,33 +114,4 @@ public class StatisticsDAOMYBatis {
 	public Map getinputCount(Map map) {
 		return mybatis.selectOne("Statics.getinputCount", map);
 	}
-	
-	public Map getoutputCount(Map map) {
-		return mybatis.selectOne("Statics.getoutputCount", map);
-	}
-	
-	public Map click_input_count(Map map) {
-		return mybatis.selectOne("Statics.click_input_count", map);
-	}
-	
-	public Map click_output_count(Map map) {
-		return mybatis.selectOne("Statics.click_output_count", map);
-	}
-	
-	public Map toprentalcount(Map map) {
-		return mybatis.selectOne("Statics.toprentalcount", map);
-	}
-	
-	public Map toprentalbookcount(Map map) {
-		return mybatis.selectOne("Statics.toprentalbookcount", map);
-	}
-	
-	public Map totalListCount(Map map) {
-		return mybatis.selectOne("Statics.totalListCount", map);
-	}
-	
-	public Map UnpaidListCount(Map map) {
-		return mybatis.selectOne("Statics.UnpaidListCount", map);
-	}
-	
 }

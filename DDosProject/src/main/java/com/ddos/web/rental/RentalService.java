@@ -9,6 +9,7 @@ public interface RentalService {
 	//대출 현황 조회
 	public List<RentalVO> getRentalList(RentalVO vo);
 	
+	
 	//대출 반납이력 조회
 	public List<RentalVO> getHistoryList(RentalVO vo);
 	
@@ -29,13 +30,6 @@ public interface RentalService {
 	public String getCount(UserVO vo);
 
 	
-	// 대출 반납 리스트  건수
-	public int hCount(RentalVO vo);
-	
-	// 대출현황 건수
-	public int rCount(RentalVO vo);
-
-	// 반납 리스트
-	public int tCount(RentalVO vo);
-
+	// 전체 건수
+	public int getCount(RentalVO vo);
 }

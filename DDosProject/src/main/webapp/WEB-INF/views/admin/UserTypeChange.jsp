@@ -145,7 +145,7 @@
 												
 												
 												
-												<a href="updateManagerInfo?id=${user.id}&&memSeparation=user" 
+												<a href="updateUserInfo?id=${user.id}&&memSeparation=user" 
 												class="btn btn-secondary btn-block btn-lg">Change</a>
 											
 											
@@ -169,7 +169,7 @@
 												
 												
 												
-												<a href="updateManagerInfo?id=${user.id}&&memSeparation=iuser" 
+												<a href="updateUserInfo?id=${user.id}&&memSeparation=iuser" 
 												class="btn btn-secondary-i btn-block btn-lg">Change</a>
 											
 											
@@ -191,7 +191,7 @@
 												<ul class="list-unstyled bullet-check font-14">
 													<li>Members who are harmed by other members as a bad act</li>
 												</ul>
-												<a href="updateManagerInfo?id=${user.id}&&memSeparation=buser" class="btn btn-secondary-b btn-block btn-lg">Change</a>
+												<a href="updateUserInfo?id=${user.id}&&memSeparation=buser" class="btn btn-secondary-b btn-block btn-lg">Change</a>
 											</div>
 										</div>
 									</div>

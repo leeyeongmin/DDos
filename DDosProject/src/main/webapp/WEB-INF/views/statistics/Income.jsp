@@ -21,64 +21,23 @@
 <script>
 
 	$(function(){
-		show();
-	});
-	
-	function show(event, page){
 		$("#addRow").empty();
-		$("#page").empty();
 		var $add ="";
-		
-		if(event)
-			event.preventDefault();
-		
-		if(page == undefined || page == ""){
-	         page=1;
-	    }
-		
 		$.ajax({
-			data : {page : page},
 			url : "UnpaidList",
 			method : "post", 
 			success : function(datas) {
-				console.log(datas);
-				for(var i=0; i<datas.result.length; i++){
-					$add += "<tr><td>" + datas.result[i].id + "</td>" +
-					"<td>" + datas.result[i].money + "</td>" + 
-					"<td>" + datas.result[i].content + "</td>" + 
-					"<td>" + datas.result[i].day + "</td>" +
-					"<td>" + datas.result[i].delay + "</td></tr>";	
+				for(var i=0; i<datas.length; i++){
+					$add += "<tr><td>" + datas[i].id + "</td>" +
+					"<td>" + datas[i].money + "</td>" + 
+					"<td>" + datas[i].content + "</td>" + 
+					"<td>" + datas[i].day + "</td>" +
+					"<td>" + datas[i].delay + "</td></tr>";	
 				}		
 				$($add).prependTo("#addRow"); 
-				
-				var $dd = "";
-				
-				 $dd += "<nav aria-label='Page navigation example'>" + 
-						  "<ul class=pagination>" + 
-						  "<li class=page-item>" +  
-					 	  "<a href='#'class='page-link' onclick='show(event, 1)' >&laquo;</a></li>";
-		            
-		            var begin = datas.paging.startPage;
-		            var end = datas.paging.lastPage;               
-		            for(j = begin; j <= end; j++ ) {
-		               if(j != datas.paging.page) {
-		                  $dd += "<li class='page-item'><a href='#' class='page-link' onclick='show(event, "+j+")'>"+j+"</a></li>";
-		                  //$(bb).appendTo("#paging");
-		               }
-		                else if(j == datas.paging.page) { 
-		                  $dd += "<li class='page-item active'><a href='#' class='page-link'>"+j+"</a></li>";
-		                  //$(cc).appendTo("#paging");
-		               }  
-		            }
-		            $dd += "<li class=page-item><a href='#' class='page-link' onclick='show(event, "+datas.paging.lastPage+")'>&raquo;</a></li></ul></nav>";
-		        
-		    $($dd).appendTo("#page");
-				
 			}
 		});  
-	}
-		
-
+	}); 
 
 </script>
 </head>
@@ -145,7 +104,6 @@
 										</tbody>
 									</table>
 							</div>
-							<div id="page"  class="card-footer" style="margin: auto; background-color: #fff; border-top: 0px;" ></div>
 						</div>
 					</div>
 					<!-- ============================================================== -->

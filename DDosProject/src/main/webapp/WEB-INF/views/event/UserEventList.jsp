@@ -159,7 +159,7 @@ function shareEvent(){
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 									<div class="card">
 										<img class="card-img-top img-fluid p-2"
-											src="assets/images/card-img.jpg" alt="Card image cap">
+											src="resources/${ongoingEvent.eventFile}" alt="Card image cap">
 										<div class="card-body" style="text-align: center;">
 											<h3 class="card-title">${ongoingEvent.eventTitle}</h3>
 											<p class="card-text">${ongoingEvent.eventCont}</p>
@@ -194,7 +194,7 @@ function shareEvent(){
 								<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
 									<div class="card">
 										<img class="card-img-top img-fluid p-2"
-											src="assets/images/eventImg/${aheadEvent.eventFile }" alt="Card image cap">
+											src="resources/${aheadEvent.eventFile }" alt="Card image cap">
 										<div class="card-body" style="text-align: center;">
 											<h3 class="card-title">${aheadEvent.eventTitle}</h3>
 											<p class="card-text">${aheadEvent.eventCont}</p>

@@ -60,7 +60,7 @@ public class EventController {
 		
 		System.out.println(vo);
 		String path = request.getSession().getServletContext().getRealPath("/resources");
-		
+		System.out.println(path);
 		
 		//첨부파일 업로드 처리
 		MultipartFile fileName = vo.getFileName();

@@ -147,7 +147,7 @@
 
                   var maxRow = result[0].rmax;
                   var maxCol = result[0].cmax;
-                  var add = "<table border=0 style=\"margin-left:auto; margin-right:auto; width:70%; height:400px;>";
+                  var add = "<table border=0 style=\"margin-left:auto; margin-right:auto; width:70%; height:400px;\">";
 
                   for (var row = 1; row <= maxRow; row++) {
                      add += "<tr>";
@@ -173,13 +173,15 @@
                                        + " style=\"background:#00ff00; width:100%; height:100%; border:5px outset #215713;\""
                                        + "onclick=click_set(this)></td>";
                               }
-
+ 
                            } //if
                         } //for
                      } //for
                      add += "</tr>";
                   } //for
-
+				  
+                  add += "</table>";
+                  console.log(add);
                   $(add).prependTo("#show");
 
                }

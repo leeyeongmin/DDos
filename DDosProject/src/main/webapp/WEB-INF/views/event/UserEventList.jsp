@@ -80,8 +80,8 @@ function shareEvent(){
 			/* imageUrl : 'C:/Users/User/git/DDos/DDosProject/src/main/webapp/assets/images/eventImg/event1.PNG', */
 			imageUrl : 'C:\Users\User\Desktop',
 			link : {
-				mobileWebUrl : 'http://localhost:8081/app/eventList'/* 'http://180.71.250.243:8081/ddos/eventList' */,
-				webUrl : 'http://localhost:8081/app/eventList'
+				mobileWebUrl : 'http://180.71.250.243:8081/ddos/eventList'/* 'http://180.71.250.243:8081/ddos/eventList' */,
+				webUrl : 'http://180.71.250.243:8081/ddos/eventList'
 			}
 		},
 	});

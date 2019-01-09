@@ -57,7 +57,7 @@
 												<div class="carousel-inner">
 													<div class="carousel-item active">
 														<img class="d-block" src="./bookImg/${book.isbn}.jpg"
-															>
+															style="width: 100%";>
 													</div>
 												</div>
 
@@ -155,30 +155,53 @@
 													<li class="media">
 														<div class="media-body">
 															<table class="table">
-																<thead>
-																	<tr>
-																		<th scope="row">아이디</th>
-																		<th scope="row">제목</th>
-																		<th scope="row">내용</th>
-																		<th scope="row">별점</th>
-																		<th scope="row">작성일자</th>
-																		<th scope="row" colspan="2"></th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<c:forEach items="${review}" var="review">
-																		<tr>
-																			<td>${review.memberId}</td>
-																			<td>${review.reviewTitle}</td>
-																			<td>${review.reviewCont}</td>
-																			<td>${review.reviewPoint}</td>
-																			<td>${review.reviewDate}</td>
-																			<td colspan="2"><a
-																				href="./deleteReview?reviewNum=${review.reviewNum}"
-																				class="btn btn-space btn-secondary">삭제</a></td>
-																		</tr>
-																	</c:forEach>
-																</tbody>
+                                                <thead>
+                                                   <tr>
+                                                      <th scope="row" style="width: 30%">제목</th>
+                                                      <th scope="row" width="20%">별점</th>
+                                                      <th scope="row" style="width:40%">작성일</th>
+                                                      <th scope="row" colspan="2"></th>
+                                                   </tr>
+                                                   <!-- <tr>
+                                                      <th scope="row" width="100%">내용</th>
+                                                   </tr> -->
+                                                </thead>
+                                                <tbody>
+                                                   <c:forEach items="${review}" var="review">
+                                                      <tr>
+                                                         <td>${review.reviewTitle}</td>
+                                                         <td><c:if test="${review.reviewPoint == 1}">
+                                                               <img src="assets/images/reviewImg/star_1.png"
+                                                                  width="90">
+                                                            </c:if> <c:if test="${review.reviewPoint == 2}">
+                                                               <img src="assets/images/reviewImg/star_2.png"
+                                                                  width="90">
+                                                            </c:if> <c:if test="${review.reviewPoint == 3}">
+                                                               <img src="assets/images/reviewImg/star_3.png"
+                                                                  width="90">
+                                                            </c:if> <c:if test="${review.reviewPoint == 4}">
+                                                               <img src="assets/images/reviewImg/star_4.png"
+                                                                  width="90">
+                                                            </c:if> <c:if test="${review.reviewPoint == 5}">
+                                                               <img src="assets/images/reviewImg/star_5.png"
+                                                                  width="90">
+                                                            </c:if></td>
+                                                         <td width="40%">${review.reviewDate}</td>
+                                                      </tr>
+                                                      <tr style="width: 100%">
+                                                         <td width="100%">${review.reviewCont}</td>
+                                                      </tr>
+                                                      <tr>
+                                                         <td><c:if test="${login.id == review.memberId}">
+                                                               <a href="./updateReviewform?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
+                                                                  class="btn btn-primary">수정</a>
+                                                               <a href="./deleteReview?reviewNum=${review.reviewNum}&isbn=${review.isbn}"
+                                                                  class="btn btn-space btn-secondary">삭제</a><br/><br/>
+                                                            </c:if></td>
+                                                      </tr>
+                                                   </c:forEach>
+                                                </tbody>
+                                             </table>
 															</table>
 														</div>
 													</li>

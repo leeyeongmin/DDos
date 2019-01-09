@@ -48,7 +48,7 @@ public class SuggestionController {
 	@RequestMapping("deleteSuggestion")
 	public String deleteSuggestion(SuggestionVO vo) {
 		suggestionService.deleteSuggestion(vo); // 삭제 처리
-		return "redirect:AdmingetSuggestionList"; // 목록 요청
+		return "redirect:getSuggestionList"; // 목록 요청
 	}
 
 	// 단건 조회

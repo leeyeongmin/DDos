@@ -5,7 +5,7 @@
 	<select id="Nonpayment_book" resultType="rental" parameterType="string">
 		 select a.assets_num "rentalNum",b.isbn,  b.book_title, to_char(r.rental_date,'yyyy-mm-dd') "rental_date", 
 		 to_char(r.due_date,'yyyy-mm-dd') "due_date", to_char(r.return_date,'yyyy-mm-dd') "return_date", 
-		 CEIL(sysdate - R.due_date) "overdue", assets_price "money"
+		 CEIL(R.return_date - R.due_date) "overdue", assets_price "money"
 		 from  book b  LEFT OUTER JOIN  rental r
 		 on(r.isbn = b.isbn) ,ASSETS_MANAGE a
 		 where a.member_id = r.member_id

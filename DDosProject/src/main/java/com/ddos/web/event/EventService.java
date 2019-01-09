@@ -12,7 +12,7 @@ public interface EventService {
 
 	public EventVO getEventDetail(EventVO vo);
 
-	public void insertEvent(EventVO vo);
+	//public void insertEvent(EventVO vo);
 
 	public Object getService(EventVO vo);
 
@@ -26,5 +26,7 @@ public interface EventService {
 
 	// 전체 건수
 	public int getCount(EventVO vo);
+
+	void insertEvent(EventVO vo, String path);
 
 }

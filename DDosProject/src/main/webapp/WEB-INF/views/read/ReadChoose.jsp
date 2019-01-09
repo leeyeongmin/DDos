@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-		<input type="button" value="A열람실"  onclick="location.href='setRoom?room=A'"> &nbsp;&nbsp;
-		<input type="button" value="B열람실"  onclick="location.href='setRoom?room=B'"> &nbsp;&nbsp;
-		<input type="button" value="C열람실"  onclick="location.href='setRoom?room=C'"> &nbsp;&nbsp;
+   
+      <input type="button" value="A열람실"  onclick="location.href='setRoom?room=A'"> &nbsp;&nbsp;
+      <input type="button" value="B열람실"  onclick="location.href='setRoom?room=B'"> &nbsp;&nbsp;
+      <input type="button" value="C열람실"  onclick="location.href='setRoom?room=C'"> &nbsp;&nbsp;
 
 </body>
 </html>

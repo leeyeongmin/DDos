@@ -28,7 +28,7 @@ public class ReadDAOMyBatis {
 	}
 	
 	public void updateSeat(ReadVO vo) {
-		mybatis.update("read.updateSeat",vo);			//좌석 사용중 변경
+		//mybatis.update("read.updateSeat",vo);			//좌석 사용중 변경
 		mybatis.update("read.insertUsing",vo);			//history 추가
 	}
 

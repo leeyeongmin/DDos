@@ -63,17 +63,22 @@
 										name="wishWriter" type="text" class="form-control" required>
 								</div>
 								<div class="form-group">
-									<label for="inputText4" class="col-form-label">출판사</label> <input
+									<label for="inputText4" class="col-form-label">
+									<i class="fas fa-star" style="color:red;" ></i>출판사</label> <input
 										name="wishComp" type="text" class="form-control">
 								</div>
 								<div class="form-group">
-									<label for="inputText3" class="col-form-label">가격</label> <input
+									<label for="inputText3" class="col-form-label">
+									<i class="fas fa-star" style="color:red;" ></i>가격</label> <input
 										name="wishPrice" type="text" class="form-control">
 								</div>
 								<div class="form-group">
+								<i class="fas fa-star" style="color:red;" ></i>
 									<label for="input-select">장르</label> <select
 										class="form-control" name="wishGenre">
-										<option value="genre" selected>장르 선택</option>
+										
+										<option value="genre" selected>
+										장르 선택</option>
 										<option value="총류">총류</option>
 										<option value="철학 및 역사">철학 및 역사</option>
 										<option value="과학">과학</option>
@@ -82,6 +87,7 @@
 									</select>
 								</div>
 								<div class="form-group">
+								<i class="fas fa-star" style="color:red;" ></i>
 									<label for="exampleFormControlTextarea1">사유</label>
 									<textarea class="form-control" name="wishReason" rows="3"></textarea>
 								</div>

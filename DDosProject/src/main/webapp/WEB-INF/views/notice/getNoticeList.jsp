@@ -53,7 +53,7 @@ div.card {
 				<!-- ============================================================== -->
 				<!-- end pageheader  -->
 				<!-- ============================================================== -->
-				<div class="row" style="margin-top: 5%;">
+				<div class="row" >
 					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 						<div class="card">
 							<!-- 검색 -->
@@ -76,7 +76,7 @@ div.card {
 
 							<div class="card-body">
 								<div class="table-responsive">
-									<table id="getNoticeList" width="100%"
+									<table id="getNoticeList"
 										class="table table-bordered table-hover text-center">
 										<thead>
 											<tr>

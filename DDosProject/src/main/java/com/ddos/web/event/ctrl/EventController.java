@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,24 +54,26 @@ public class EventController {
 	}
 	
 	// 등록 처리
-	@RequestMapping("insertEvent")
+	@RequestMapping(value="insertEvent", method=RequestMethod.POST)
 	public String insertEvent(EventVO vo, SessionStatus sessionStatus,
 			HttpServletRequest request ) throws IllegalStateException, IOException {
 		
 		System.out.println(vo);
+		String path = request.getSession().getServletContext().getRealPath("/resources");
+		
 		
 		//첨부파일 업로드 처리
 		MultipartFile fileName = vo.getFileName();
 		String tfileName = null;
 		if(fileName !=null && !fileName.isEmpty() && fileName.getSize()>0) {
 		tfileName = fileName.getOriginalFilename();
-		fileName.transferTo(new File("C:/Users/User/git/DDos/DDosProject/src/main/webapp/assets/images/eventImg/"+tfileName));
+		fileName.transferTo(new File(path, tfileName));
 		}
 		//첨부파일명 VO에 지정
 		vo.setEventFile(tfileName);
 		
 		
-		eventService.insertEvent(vo);
+		eventService.insertEvent(vo, path);
 		
 		sessionStatus.setComplete();
 		

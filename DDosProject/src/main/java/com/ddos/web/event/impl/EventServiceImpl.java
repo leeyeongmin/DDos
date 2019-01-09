@@ -28,11 +28,7 @@ public class EventServiceImpl implements EventService {
 		return dao.getEventDetail(vo);
 	}
 
-	// 이벤트 등록
-	@Override
-	public void insertEvent(EventVO vo) {
-		dao.insertEvent(vo);
-	}
+	
 
 
 	// 이벤트 수정
@@ -72,4 +68,15 @@ public class EventServiceImpl implements EventService {
 	
 		return dao.getCount(vo);
 	}
+
+	@Override
+	public void insertEvent(EventVO vo, String path) {
+		dao.insertEvent(vo);
+		
+	}
+
+
+
+
+	
 }
